@@ -46,7 +46,7 @@ SQL Workbench/J是一款免费的、跨平台的SQL查询分析工具，您可�
 
 3.  设置扩展属性。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2053140061/p65608.png)
+    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1246322061/p65608.png)
 
     1.  单击**Extended Properties**，配置SSL为true。
 
