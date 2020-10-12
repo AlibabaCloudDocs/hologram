@@ -10,7 +10,7 @@ keyword: [Hologres, 实时分析, 最佳实践]
 
     **说明：** 请确保MaxCompute和Hologres的地域相同。
 
--   开通Hologres并连接至HoloWeb，详情请参见[快速入门](/cn.zh-CN/快速入门/快速入门.md)。
+-   开通Hologres并连接至HoloWeb，详情请参见[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 -   开通Quick BI，详情请参见[准备工作]()。
 
 Hologres是兼容PostgreSQL协议的实时交互式分析产品，在底层与MaxCompute无缝连接。
@@ -95,7 +95,7 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
         **数据预览**只展示部分数据。
 
-        ![预览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6560409951/p118166.png)
+        ![预览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1015631061/p118166.png)
 
     4.  查询外部表数据。
 
@@ -152,7 +152,7 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
     1.  添加数据源。
 
-        进入[Quick BI控制台](https://www.aliyun.com/product/bigdata/bi?spm=a2c4g.11174283.h2v3icoap.176.1432729fes4mKL)首页，选择PostgreSQL数据源，并填写配置信息，详情请参见[Quick BI](/cn.zh-CN/常见BI连接工具/Quick BI.md)。
+        进入[Quick BI控制台](https://www.aliyun.com/product/bigdata/bi?spm=a2c4g.11174283.h2v3icoap.176.1432729fes4mKL)首页，选择PostgreSQL数据源，并填写配置信息，详情请参见[t1841752.md\#](/cn.zh-CN/常见BI连接工具/Quick BI.md)。
 
     2.  创建数据集。
 
