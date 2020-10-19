@@ -38,6 +38,4 @@ Tableau是安全并且灵活的端到端数据分析平台，提供从连接到�
 
     使用Tableau成功连接Hologres后，您可以可视化分析已有的表数据，详情请参见[Tableau官网教程](https://www.tableau.com/zh-cn/learn/get-started)。
 
-    ![分析](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3180420061/p166755.png)
-
 
