@@ -6,7 +6,7 @@ keyword: [SQL Workbench/J, Hologres, 开发工具]
 
 本文为您介绍如何使用交互式分析Hologres连接SQL Workbench/J实现数据的可视化分析。
 
--   单击[SQL Workbench/J](https://www.sql-workbench.eu/downloads.html)，下载并安装MySQL Workbench。
+-   单击[SQL Workbench/J](https://www.sql-workbench.eu/downloads.html)，下载并安装SQL Workbench。
 -   开通Hologres实例，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
 
 SQL Workbench/J是一款免费的、跨平台的SQL查询分析工具，您可以使用SQL Workbench/J通过PostgreSQL驱动连接Hologres进行数据开发。
