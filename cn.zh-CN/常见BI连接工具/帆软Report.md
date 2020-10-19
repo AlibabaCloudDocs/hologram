@@ -26,14 +26,14 @@ keyword: [帆软Report, Hologres, BI工具, 可视化分析]
     |数据库|连接Hologres服务必须选择**postgre**数据库。
 
 |**postgre**|
-    |驱动器|使用帆软Report自带的`org.postgresql.Driver`。 帆软Report添加数据库后会自动生成驱动器。
+    |驱动器|使用帆软Report自带的`org.postgresql.Driver`。帆软Report添加数据库后会自动生成驱动器。
 
 |无|
     |URL|Hologres的公共网络地址`jdbc:postgresql://localhost:port/dbname`。|`jdbc:postgresql://demo-cn-hangzhou.hologres.aliyuncs.com:80/postgres`|
-    |用户名|当前阿里云账号的AccessKey ID。 您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey ID。
+    |用户名|当前阿里云账号的AccessKey ID。您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey ID。
 
 |无|
-    |密码|当前阿里云账号的AccessKey Secret。 您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey Secret。
+    |密码|当前阿里云账号的AccessKey Secret。您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey Secret。
 
 |无|
 
