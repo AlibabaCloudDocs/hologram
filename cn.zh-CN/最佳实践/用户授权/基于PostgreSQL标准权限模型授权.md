@@ -39,7 +39,7 @@ PostgreSQL授权的限制如下：
 
     **说明：**
 
-    -   您只能使用当前用户去匹配匹配项规则，不能使用用户所属的组去匹配。
+    -   您只能使用当前用户与匹配项规则进行匹配，不能使用当前用户的用户组去匹配。
     -   `alter default privileges`规则匹配只能在创建表时执行，在创建表之后修改表Owner（ `alter table set owner to`）不会触发`alter default privileges`。
     例如，用户User1属于Group1，如果要给Group1匹配规则，授予未来表全权限。情况如下：
 
