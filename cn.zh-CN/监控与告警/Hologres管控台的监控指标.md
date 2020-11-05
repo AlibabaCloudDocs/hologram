@@ -83,7 +83,7 @@ select * from pg_stat_activity where backend_type = 'client backend' and state =
 -   idle in transaction（Aborted），已失败事务中的空闲状态。 |
 |query|表示该连接最近执行的query操作。|
 
-更多字段的含义请参见[https://www.postgresql.org/docs/11/monitoring-stats.html\#PG-STAT-ACTIVITY-VIEW](https://www.postgresql.org/docs/11/monitoring-stats.html#PG-STAT-ACTIVITY-VIEW)。
+更多字段的含义请参见[Postgresql VIEW](https://www.postgresql.org/docs/11/monitoring-stats.html#PG-STAT-ACTIVITY-VIEW)。
 
 当存在较多无用的idle连接时，您可以从上述查询结果中，获取无用连接进程的pid，并使用如下语句杀死无用进程或取消目标进程的query操作。
 
