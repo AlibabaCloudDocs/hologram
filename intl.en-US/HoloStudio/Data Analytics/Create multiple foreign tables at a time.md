@@ -22,13 +22,13 @@ You can also use the `[IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEM
 
     1.  Go to the [Hologres console](https://hologram.console.aliyun.com/#/instance).
 
-    2.  In the top navigation bar of the console, move the pointer over the ![Triangle](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134229.png) icon and select the region where your Hologres instance resides.
+    2.  In the top navigation bar of the console, move the pointer over the ![Triangle](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134229.png) icon and select the region where your Hologres instance resides.
 
     3.  In the left-side navigation pane, click **Instances**. On the **Hologres Instances** page, click **Go to DataWorks - HoloStudio**.
 
-    4.  On the **HoloStudio** page, click the ![Data Analytics](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134237.png) icon in the left-side navigation pane.
+    4.  On the **HoloStudio** page, click the ![Data Analytics](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134237.png) icon in the left-side navigation pane.
 
-    5.  On the **Data Analytics** page, move the pointer over the ![Create](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134243.png) icon.
+    5.  On the **Data Analytics** page, move the pointer over the ![Create](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134243.png) icon.
 
     6.  Click **One-click MaxCompute table structure synchronization**.
 
@@ -38,7 +38,7 @@ You can also use the `[IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEM
 
 2.  On the editing page of the created node, set the parameters as required.
 
-    ![bia](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134363.png)
+    ![bia](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134363.png)
 
     |Parameter|Description|
     |---------|-----------|
@@ -54,9 +54,9 @@ You can also use the `[IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEM
 
     -   If a foreign table to be created has the same name as an existing foreign table in Hologres, the foreign table is not created.
     -   If a foreign table to be created contains data of types that are not supported by Hologres, an error is thrown. In this case, you must exclude the mapping MaxCompute table from the regular expression and create foreign tables again.
-3.  On the editing page of the created node, click the![Save](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134275.png) icon to save the configuration.
+3.  On the editing page of the created node, click the![Save](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134275.png) icon to save the configuration.
 
-4.  On the editing page of the created node, click the ![Run](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4259623061/p134276.png) icon to create multiple foreign tables.
+4.  On the editing page of the created node, click the ![Run](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4259623061/p134276.png) icon to create multiple foreign tables.
 
 5.  On the **PG management** page, view the created foreign tables and query data by using these tables. For more information, see [Manage foreign tables](/intl.en-US/HoloStudio/PG Management/Manage foreign tables.md).
 
