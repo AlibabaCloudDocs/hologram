@@ -17,7 +17,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
     ```
     Connection conn = DriverManager.getConnection(url, user, password);
-    conn.setAutoCommit(false);
+    conn.setAutoCommit(true);
     ```
 
     如果出现`ERROR: INSERT in transaction is not supported now`报错，则需要关闭autoCommit。
