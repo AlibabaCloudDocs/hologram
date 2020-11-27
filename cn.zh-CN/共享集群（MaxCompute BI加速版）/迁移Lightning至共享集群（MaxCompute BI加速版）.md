@@ -6,11 +6,22 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
 本文为您介绍迁移原有Lightning服务至共享集群（MaxCompute BI加速版）的最佳实践。
 
+共享集群（MaxCompute BI加速版）是针对MaxCompute交互式分析场景设计的在线查询加速服务，基于Hologres存储计算分离的云原生架构，以共享集群资源的形式，加快存储在MaxCompute中的数据访问。
+
+您可以将共享集群（MaxCompute BI加速版）认为是Lightning的升级版，性能和服务更优于Lightning。
+
+**说明：** Lightning后期会逐步下线，下线后不再继续维护，建议您选择共享集群（MaxCompute BI加速版）处理业务。
+
 ## 操作流程
 
-迁移Lightning服务至共享集群（MaxCompute BI加速版）的流程示意图如下。
+Lightning与共享集群（MaxCompute BI加速版）的操作流程区别如下图所示。
 
-![迁移Lighting至共享集群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8693126061/p184902.png)
+![迁移Lighting至共享集群](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9964446061/p184902.png)
+
+-   开通共享集群（MaxCompute BI加速版）后，您必须先新建一个数据库。
+-   修改原开发工具中Lightning的Eendpoint为共享集群（MaxCompute BI加速版）的Endpoint。
+-   共享集群（MaxCompute BI加速版）是通过新建外部表的方式加速查询MaxCompute数据，因此在查询之前，您必须先创建一张与之映射的外部表。
+-   修改原BI工具中Lightning的Endpoint为共享集群（MaxCompute BI加速版）的Endpoint。
 
 ## 操作步骤
 
