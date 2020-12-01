@@ -33,8 +33,7 @@ The data types of Hologres are a subset of the data types of PostgreSQL. The fol
 |Maximum precision and scale: 38.|DECIMAL\(38, 10\)|
 |DATE|DATE|Hologres version 0.8|4 bytes.|4713 BC ~ 5874897 AD|Unit: Day|2004-10-19|
 |TIMESTAMP|TIMESTAMP|Hologres version 0.8|8 bytes.|4713 BC ~ 5874897 AD|A timestamp without a time zone. Unit: microseconds.|2020-01-01 01:01:01.123456|
-|CHAR\(n\)|CHAR\(n\)|Hologres version 0.8|Fixed number of characters in length. Maximum value: n.|The data size must be less than or equal to 1 GB.|A string that consists of a fixed number of characters in length.|-   abcd
--    |
+|CHAR\(n\)|CHAR\(n\)|Hologres version 0.8|Fixed number of characters in length. Maximum value: n.|The data size must be less than or equal to 1 GB.|A string that consists of a fixed number of characters in length.|-   abcd |
 |VARCHAR\(n\)|VARCHAR\(n\)|Hologres version 0.8|The value is variable in length and cannot exceed n characters.|The data size must be less than or equal to 1 GB.|A mutable string that contains a limited number of characters in length.|abcdefg|
 |SERIAL|AUTO-INCREMENT COLUMN|Hologres version 0.8|For more information, see PostgreSQL SERIAL.|N/A|N/A|N/A|
 
