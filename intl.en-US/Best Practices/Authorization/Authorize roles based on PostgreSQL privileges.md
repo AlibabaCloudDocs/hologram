@@ -6,7 +6,7 @@ keyword: [best practices, PostgreSQL privileges, authorize roles]
 
 This topic provides the best practices for Hologres when you authorize roles based on PostgreSQL privileges. This way, you can simplify authorization and manage privileges in a fine-grained manner.
 
-Hologres is compatible with PostgreSQL and supports authorization based on PostgreSQL privileges. Hologres also provides an authorization method called Simple Permission Model \(SPM\). For more information, see [SPM](https://help.aliyun.com/document_detail/158698.html?spm=a2c4g.11174283.6.596.2411729fVnA6oV).
+Hologres is compatible with PostgreSQL and supports authorization based on PostgreSQL privileges. Hologres also provides an authorization method called Simple Permission Model \(SPM\). For more information, see [t1877869.dita\#concept\_2449386](/intl.en-US/User Authorization/SPM/Overview.md).
 
 However, SPM manages privileges in a coarse-grained manner. If you need to manage privileges in a fine-grained manner, see the "Best practice 1" and "Best practice 2" sections.
 
