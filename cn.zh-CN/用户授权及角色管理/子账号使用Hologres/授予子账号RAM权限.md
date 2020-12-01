@@ -31,7 +31,7 @@ RAM主要用于控制账号系统的权限。
 
     1.  配置**添加权限**对话框的各项参数。
 
-        ![添加权限](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5504158951/p133226.png)
+        ![添加权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5504158951/p133226.png)
 
         |参数|描述|
         |--|--|
@@ -68,11 +68,11 @@ RAM主要用于控制账号系统的权限。
 
         您可以根据业务需求，在**新建权限策略**中自定义不同的权限。
 
-        ![新建](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5504158951/p133299.png)
+        ![新建](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5504158951/p133299.png)
 
         在**新建自定义权限策略**页面，您可以使用**脚本配置**自定义权限。
 
-        ![jiaoben ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5504158951/p141598.png)
+        ![jiaoben ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5504158951/p141598.png)
 
         示例语句如下。
 
@@ -158,9 +158,9 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 -   子账号无法查看实例列表及实例ID。
     -   问题现象
 
-        子账号选择了正确的地域，但无法看到已购买的实例，并提示**暂无权限查看所有实例，请让主账号前往RAM中心授予当前用户"xxx/\*"资源的"hologram:ListInstances"权限**报错。
+        子账号选择了正确的地域，但无法看到已购买的实例，并提示**暂无权限查看所有实例，请让主账号前往RAM中心授予当前用户“xxx/\*”资源的“hologram:ListInstances”权限**报错。
 
-        ![无法查看实例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8345525061/p182182.png)
+        ![无法查看实例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8345525061/p182182.png)
 
     -   问题原因
 
@@ -175,7 +175,7 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 
         子账号已经被授权为Superuser，但是在Hologres管理控制台的**用户管理**模块无法看到实例列表并新增用户。提示**暂无权限列出所有子账号，请让主账号前往RAM中心授予当前用户ram:ListUsers权限**报错。
 
-        ![无新增用户权限](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9345525061/p182184.png)
+        ![无新增用户权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9345525061/p182184.png)
 
     -   问题原因
 
@@ -190,7 +190,7 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 
         子账号登录Hologres管理控制台后，无法查看**用户管理**和**DB管理**模块的信息。提示**暂无权限，请找Superuser将当前账户添加到实例中**报错。
 
-        ![无查看实例权限](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9345525061/p182187.png)
+        ![无查看实例权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9345525061/p182187.png)
 
     -   问题原因
 
@@ -205,7 +205,7 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 
         被授权为Superuser的子账号无法购买、升配和降配实例，以及转换实例的付费方式由**按量付费**为**包年包月**。提示**子账号鉴权不通过**报错。
 
-        ![无实例操作权限](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9345525061/p182186.png)
+        ![无实例操作权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9345525061/p182186.png)
 
     -   问题原因
 
@@ -213,6 +213,6 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 
     -   解决方法
 
-        主账号登录[RAM控制台](https://ram.console.aliyun.com/overview)，授予子账号与实例费用相关的的权限**AliyunHologresFullAccess**及**AliyunBSSOrderAccess**。
+        主账号登录[RAM控制台](https://ram.console.aliyun.com/overview)，授予子账号与实例费用相关的权限**AliyunHologresFullAccess**及**AliyunBSSOrderAccess**。
 
 
