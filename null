@@ -6,10 +6,10 @@ keyword: [HoloWeb, 外部表, 数据预览, DDL预览]
 
 本文为您介绍如何使用HoloWeb新建、编辑或删除外部表，以及预览外部表数据和DDL语句。
 
--   阿里云账号注册，详情请参见[t12832.md\#]()。
--   实名认证，详情请参见[t12833.md\#]()或[t12834.md\#]()。
--   开通交互式分析Hologres，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
--   连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
+-   阿里云账号注册。
+-   实名认证。
+-   开通交互式分析Hologres，详情请参见[购买Hologres](/intl.zh-CN/准备工作/购买Hologres.md)。
+-   连接Hologres实例至HoloWeb，详情请参见[数据连接](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
 ## 新建外部表
 
