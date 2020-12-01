@@ -1,120 +1,110 @@
 ---
-keyword: [HoloWeb, 外部表, 数据预览, DDL预览]
+keyword: [HoloWeb, foreign table, preview the table data, preview the DDL statement]
 ---
 
-# 外部表
+# Manage a foreign table
 
-本文为您介绍如何使用HoloWeb新建、编辑或删除外部表，以及预览外部表数据和DDL语句。
+This topic describes how to use HoloWeb to create, edit, and delete a foreign table that is sourced from MaxCompute. This topic also describes how to preview the source data and the Data Definition Language \(DDL\) statement of the foreign table.
 
--   阿里云账号注册。
--   实名认证。
--   开通交互式分析Hologres，详情请参见[购买Hologres](/intl.zh-CN/准备工作/购买Hologres.md)。
--   连接Hologres实例至HoloWeb，详情请参见[数据连接](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
+-   An Alibaba Cloud account is created..
+-   Real-name verification is completed.
+-   A Hologres instance is purchased. For more information, see [Purchase a Hologres instance](/intl.en-US/Preparations/Purchase a Hologres instance.md).
+-   The purchased Hologres instance is connected to HoloWeb. For more information, see [Manage a connection](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Manage a connection.md).
 
-## 新建外部表
+## Create a foreign table
 
-1.  登录[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)。
+1.  Log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance).
 
-2.  在顶部菜单栏左侧，选择相应的地域。
+2.  In the top navigation bar, select a region from the drop-down list.
 
-    ![地域](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3542488951/p141749.png)
+    ![Region](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8969182061/p141749.png)
 
-3.  单击**Hologres引擎管理**页面的**登录Hologres数据库**。
+3.  In the left-side navigation pane, click Instances. On the **Hologres Instances** page, click **Log in to the hologres database**.
 
-4.  在顶部菜单栏，单击**连接管理** \> **外部表**。
+4.  On the **Connection Management** page of the HoloWeb console, click the **External table** tab. The New external table tab appears.
 
-    您也可以通过如下步骤新建外部表：
+    You can also go to the New external table tab by performing the following steps:
 
-    1.  在左侧导航栏，单击**连接管理** \> **我的连接**，显示所有连接名称。
+    1.  In the left-side navigation pane of the **Connection Management** page, click **My connection**. All the configured connections are displayed.
 
-    2.  单击目标连接下的**数据库**，显示所有已创建的数据库。
+    2.  Click the relevant connection and then click **Database**. All the databases that are created in the connected Hologres instance are displayed.
 
-    3.  单击目标数据库下的**模式**，显示所有已创建的模式。
+    3.  Click the relevant database and then click **Schema**. All the available schemas are displayed.
 
-    4.  鼠标右击目标模式，选择**新建外部表**。
+    4.  Right-click the schema under which you want to create a foreign table and select **New external table**.
 
-5.  在**新建外部表**页面，配置各项参数。单击**提交表**。
+5.  On the **New external table** tab, set the parameters as required. Then, click **Submit form**.
 
-    ![外部表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6987631061/p132279.png)
+    ![New external table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6566762061/p132279.png)
 
-    |参数|描述|
-    |--|--|
-    |连接名|已配置的连接名称。|
-    |数据库|Hologres的数据库名称。|
-    |表名|新建的Hologres外部表名称。|
-    |描述|新建的Hologres外部表描述。|
-    |模式|模式名称。默认为**public**。您也可以选择新建的模式名称。 |
-    |类型|外部表类型。目前仅支持MaxCompute。 |
-    |服务器列表|您可以直接调用Hologres底层已创建的名为**odps\_server**的外部表服务器。详细原理请参见[Postgres FDW](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k)。|
-    |表|MaxCompute的项目名和表名。格式为**project.table\_name**。
+    |Parameter|Description|
+    |---------|-----------|
+    |Connection name|The name of the connection based on which you want to create the foreign table.|
+    |Database|The name of the database where the foreign table is to be created.|
+    |Table name|The name of the foreign table.|
+    |Description|The description of the foreign table.|
+    |Mode|The schema under which the foreign table is to be created.Default value: **public**. You can also select a custom schema. |
+    |Type|The service type of the source table.The default value is MaxCompute, which cannot be changed. |
+    |Server List|The server on which the source table is stored. You can select the **odps\_server** server that is created at the underlying layer of Hologres. For more information, see [Postgres FDW](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k).|
+    |Table|The source table in MaxCompute to be mapped.The value of this parameter is in the format of **project.table\_name**.
 
-**说明：**
+**Note:**
 
-    -   目前暂不支持跨地域查询外部表数据。
-    -   输入表名称后，会显示外部源表的所有字段。您可以选择同步外部源表的部分或所有字段至Hologres。 |
-
-    **说明：** 创建外部表同步MaxCompute表的数据时，会将数据库中表字段的Comment和列的Comment一并同步至Hologres。
-
-6.  您可以在已创建的外部表页面，单击**查询表**，配置**新建SQL查询**对话框的各项参数，新建SQL查询窗口。
-
-    ![新建SQL查询](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6987631061/p171249.png)
-
-7.  单击**确认**，跳转至新建的SQL查询窗口，使用标准的PostgreSQL语言进行开发。
-
-    ![SQL查询窗口](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5441731061/p171289.png)
+    -   You cannot map a MaxCompute table that is stored in a region different from that of the selected Hologres instance.
+    -   After you specify a MaxCompute table, the fields in the table are displayed on the Field tab. You can map all the fields or select some of the fields as required. |
 
 
-## 编辑外部表
+## Edit a foreign table
 
-1.  在左侧导航栏，单击**我的连接**，显示所有连接名称。
+1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed.
 
-2.  单击目标连接下的**数据库**，显示所有已创建的数据库。
+2.  Click the relevant connection and then click **Database**. All the databases that are created in the connected Hologres instance are displayed.
 
-3.  单击目标数据库下的**模式**，显示所有已创建的模式。
+3.  Click the relevant database and then click **Schema**. All the available schemas are displayed.
 
-4.  单击目标模式下的**外表**，显示所有已创建的外部表。
+4.  Click the schema for which you want to edit a foreign table and then click **Foreign table**. All the foreign tables that are created in the database under the schema are displayed.
 
-5.  鼠标右击目标外部表，选择**编辑表**。
+5.  Right-click the foreign table that you want to edit and select **Edit table**.
 
-6.  您可以根据业务需求，更改需要映射的外部源表的**字段**或**分区**。
+6.  You can modify the fields and partition of the foreign table that is mapped from the source MaxCompute table based on your business requirements.
 
-    ![编辑](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6987631061/p132300.png)
+    ![Edit table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132300.png)
 
-7.  单击**提交表**。
-
-
-## 删除外部表
-
-1.  在左侧导航栏**我的连接**界面查询目标外部表。
-
-    查询目标外部表的步骤请参见[编辑外部表](#section_ppd_18h_f0e)的步骤1~4。
-
-2.  鼠标右击目标外部表，选择**删除表**。
+7.  Click **Submit form**.
 
 
-## 数据预览
+## Delete a foreign table
 
-1.  在左侧导航栏**我的连接**界面查询目标外部表。
+1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table that you want to delete.
 
-    查询目标外部表的步骤请参见[编辑外部表](#section_ppd_18h_f0e)的步骤1~4。
+    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
 
-2.  双击目标外部表，在外部表的编辑界面单击**数据预览**。
-
-    示例预览的外部表数据如下。
-
-    ![数据预览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2905631061/p132309.png)
+2.  Right-click the foreign table and select **Delete table**.
 
 
-## DDL语句
+## Preview the table data
 
-1.  在左侧导航栏**我的连接**界面查询目标外部表。
+1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table of which you want to preview the source data.
 
-    查询目标外部表的步骤请参见[编辑外部表](#section_ppd_18h_f0e)的步骤1~4。
+    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
 
-2.  双击目标外部表，在外部表的编辑界面单击**DDL语句**。
+2.  Double-click the table.
 
-    示例预览的DDL语句如下。
+    On the tab that appears, click Data preview and preview the source data, as shown in the following figure.
 
-    ![DDL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2905631061/p132312.png)
+    ![Data preview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132309.png)
+
+
+## Preview the DDL statement
+
+1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table of which you want to preview the DDL statement.
+
+    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
+
+2.  Double-click the table.
+
+    On the tab that appears, click DDL statement and preview the DDL statement of the table, as shown in the following figure.
+
+    ![DDL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132312.png)
 
 
