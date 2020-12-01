@@ -6,7 +6,7 @@ keyword: [最佳实践, 专家权限模型, 标准授权]
 
 本文为您介绍在Hologres中，如何基于PostgreSQL标准模型（专家权限模型）进行授权的最佳实践。帮助您简化授权操作并使用更细粒度的权限管理。
 
-Hologres兼容PostgreSQL生态，支持PostgreSQL的标准权限模型（简称专家权限模型）。同时，Hologres提供了一套简单权限模型的授权模式，详情请参见[简单权限模型](https://help.aliyun.com/document_detail/158698.html?spm=a2c4g.11174283.6.596.2411729fVnA6oV)。
+Hologres兼容PostgreSQL生态，支持PostgreSQL的标准权限模型（简称专家权限模型）。同时，Hologres提供了一套简单权限模型的授权模式，详情请参见[t1877869.dita\#concept\_2449386](/intl.zh-CN/用户授权及角色管理/简单权限模型/简单权限模型概述.md)。
 
 简单权限模型的权限划分粒度比较粗，不太适用于细粒度的权限管理场景。PostgreSQL的标准授权对于权限的划分非常细致，如果您需要使用更细粒度的权限管理，请参照本文基于PostgreSQL授权的最佳实践进行操作。
 
