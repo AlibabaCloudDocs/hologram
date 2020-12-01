@@ -6,12 +6,12 @@ keyword: [导入本地文件, HoloWeb]
 
 本文为您介绍如何使用HoloWeb导入本地文件至Hologres。
 
--   注册阿里云账号，详情请参见[t12832.md\#]()。
--   实名认证，详情请参见[t12833.md\#]()或[t12834.md\#]()。
--   开通交互式分析Hologres，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
--   连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
+-   注册阿里云账号。
+-   实名认证。
+-   开通交互式分析Hologres，详情请参见[购买Hologres](/intl.zh-CN/准备工作/购买Hologres.md)。
+-   连接Hologres实例至HoloWeb，详情请参见[数据连接](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-HoloWeb的可视化方式仅支持导入小于100M的文件至Hologres，大于等于100M的文件请使用`COPY`命令导入，详情请参见[使用COPY命令导入客户端数据至Hologres](/cn.zh-CN/数据接入/客户端数据/使用COPY命令导入客户端数据至Hologres.md)。
+HoloWeb的可视化方式仅支持导入小于100M的文件至Hologres，大于等于100M的文件请使用`COPY`命令导入，详情请参见[使用COPY命令导入客户端数据至Hologres](/intl.zh-CN/数据接入/客户端数据/使用COPY命令导入客户端数据至Hologres.md)。
 
 1.  登录[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)。
 
