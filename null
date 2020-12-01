@@ -1,110 +1,73 @@
 ---
-keyword: [HoloWeb, foreign table, preview the table data, preview the DDL statement]
+keyword: [导入本地文件, HoloWeb]
 ---
 
-# Manage a foreign table
+# 一键上传本地文件
 
-This topic describes how to use HoloWeb to create, edit, and delete a foreign table that is sourced from MaxCompute. This topic also describes how to preview the source data and the Data Definition Language \(DDL\) statement of the foreign table.
+本文为您介绍如何使用HoloWeb导入本地文件至Hologres。
 
--   An Alibaba Cloud account is created..
--   Real-name verification is completed.
--   A Hologres instance is purchased. For more information, see [Purchase a Hologres instance](/intl.en-US/Preparations/Purchase a Hologres instance.md).
--   The purchased Hologres instance is connected to HoloWeb. For more information, see [Manage a connection](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Manage a connection.md).
+-   注册阿里云账号，详情请参见[t12832.md\#]()。
+-   实名认证，详情请参见[t12833.md\#]()或[t12834.md\#]()。
+-   开通交互式分析Hologres，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
+-   连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-## Create a foreign table
+HoloWeb的可视化方式仅支持导入小于100M的文件至Hologres，大于等于100M的文件请使用`COPY`命令导入，详情请参见[使用COPY命令导入客户端数据至Hologres](/cn.zh-CN/数据接入/客户端数据/使用COPY命令导入客户端数据至Hologres.md)。
 
-1.  Log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance).
+1.  登录[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)。
 
-2.  In the top navigation bar, select a region from the drop-down list.
+2.  在顶部菜单栏左侧，选择相应的地域。
 
-    ![Region](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8969182061/p141749.png)
+    ![地域](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3542488951/p141749.png)
 
-3.  In the left-side navigation pane, click Instances. On the **Hologres Instances** page, click **Log in to the hologres database**.
+3.  单击**Hologres引擎管理**页面的**登录Hologres数据库**。
 
-4.  On the **Connection Management** page of the HoloWeb console, click the **External table** tab. The New external table tab appears.
+4.  在顶部菜单栏，单击**工具**。
 
-    You can also go to the New external table tab by performing the following steps:
+5.  在左侧导航栏，单击**数据方案** \> **导入**。
 
-    1.  In the left-side navigation pane of the **Connection Management** page, click **My connection**. All the configured connections are displayed.
+6.  单击**新建数据导入**。
 
-    2.  Click the relevant connection and then click **Database**. All the databases that are created in the connected Hologres instance are displayed.
+7.  配置**一键本地文件上传**对话框中**选择目标表**页面的各项参数。
 
-    3.  Click the relevant database and then click **Schema**. All the available schemas are displayed.
+    ![一键上传](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0685477951/p141331.png)
 
-    4.  Right-click the schema under which you want to create a foreign table and select **New external table**.
+    |参数|描述|
+    |--|--|
+    |作业名称|新建的作业名称。|
+    |连接名称|选择已创建的连接名称。|
+    |目标库|Hologres中已创建的数据库名称。|
+    |目标Schema|Hologres中已创建的Schema名称。如果您没有新建Schema，则只能选择默认创建的**public**。如果有新建的Schema，您也可以选择新建的Schema。 |
+    |选择要导入的数据表|用于存储本地文件的表名称。导入本地文件前，您需要在目标数据库中创建一张用于存储本地文件的表。 |
 
-5.  On the **New external table** tab, set the parameters as required. Then, click **Submit form**.
+8.  单击**下一步**。
 
-    ![New external table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6566762061/p132279.png)
+9.  配置**选择数据源表**页面的各项参数。
 
-    |Parameter|Description|
-    |---------|-----------|
-    |Connection name|The name of the connection based on which you want to create the foreign table.|
-    |Database|The name of the database where the foreign table is to be created.|
-    |Table name|The name of the foreign table.|
-    |Description|The description of the foreign table.|
-    |Mode|The schema under which the foreign table is to be created.Default value: **public**. You can also select a custom schema. |
-    |Type|The service type of the source table.The default value is MaxCompute, which cannot be changed. |
-    |Server List|The server on which the source table is stored. You can select the **odps\_server** server that is created at the underlying layer of Hologres. For more information, see [Postgres FDW](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k).|
-    |Table|The source table in MaxCompute to be mapped.The value of this parameter is in the format of **project.table\_name**.
+    ![源表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0685477951/p141340.png)
 
-**Note:**
+    |参数|描述|
+    |--|--|
+    |选择文件|需要上传的本地文件。仅支持上传TXT、CSV和LOG类型的文件。 |
+    |选择分隔符|    -   **逗号**
+    -   **Tab**
+    -   **分号**
+    -   **空格**
+    -   **\|**
+    -   **\#**
+    -   **&**
+您也可以自定义分隔符。 |
+    |原始字符集|    -   **GBK**
+    -   **UTF-8**
+    -   **CP936**
+    -   **ISO-8859** |
+    |首行为标题|勾选则设置首行数据为标题。|
 
-    -   You cannot map a MaxCompute table that is stored in a region different from that of the selected Hologres instance.
-    -   After you specify a MaxCompute table, the fields in the table are displayed on the Field tab. You can map all the fields or select some of the fields as required. |
+10. 单击**下一步**。
 
+11. 在**导入总览**页面，单击**执行**。
 
-## Edit a foreign table
+    您可以查看本地文件导入的Schema、数据库、表、状态及启动时间等信息。
 
-1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed.
-
-2.  Click the relevant connection and then click **Database**. All the databases that are created in the connected Hologres instance are displayed.
-
-3.  Click the relevant database and then click **Schema**. All the available schemas are displayed.
-
-4.  Click the schema for which you want to edit a foreign table and then click **Foreign table**. All the foreign tables that are created in the database under the schema are displayed.
-
-5.  Right-click the foreign table that you want to edit and select **Edit table**.
-
-6.  You can modify the fields and partition of the foreign table that is mapped from the source MaxCompute table based on your business requirements.
-
-    ![Edit table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132300.png)
-
-7.  Click **Submit form**.
-
-
-## Delete a foreign table
-
-1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table that you want to delete.
-
-    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
-
-2.  Right-click the foreign table and select **Delete table**.
-
-
-## Preview the table data
-
-1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table of which you want to preview the source data.
-
-    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
-
-2.  Double-click the table.
-
-    On the tab that appears, click Data preview and preview the source data, as shown in the following figure.
-
-    ![Data preview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132309.png)
-
-
-## Preview the DDL statement
-
-1.  In the left-side navigation pane of the Connection Management page, click **My connection**. All the configured connections are displayed. Then, find the foreign table of which you want to preview the DDL statement.
-
-    For more information about how to find the desired foreign table, see Step 1 to Step 4 in [Edit a foreign table](#section_ppd_18h_f0e).
-
-2.  Double-click the table.
-
-    On the tab that appears, click DDL statement and preview the DDL statement of the table, as shown in the following figure.
-
-    ![DDL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7566762061/p132312.png)
+    ![导入](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1685477951/p141354.png)
 
 
