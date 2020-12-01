@@ -6,7 +6,7 @@ keyword: [最佳实践, 专家权限模型, 标准授权]
 
 本文为您介绍在Hologres中，如何基于PostgreSQL标准模型（专家权限模型）进行授权的最佳实践。帮助您简化授权操作并使用更细粒度的权限管理。
 
-Hologres兼容PostgreSQL生态，支持PostgreSQL的标准权限模型（简称专家权限模型）。同时，Hologers提供了一套简单权限模型的授权模式，详情请参见[简单权限模型](https://help.aliyun.com/document_detail/158698.html?spm=a2c4g.11174283.6.596.2411729fVnA6oV)。
+Hologres兼容PostgreSQL生态，支持PostgreSQL的标准权限模型（简称专家权限模型）。同时，Hologres提供了一套简单权限模型的授权模式，详情请参见[t1877869.dita\#concept\_2449386](/cn.zh-CN/用户授权及角色管理/简单权限模型/简单权限模型概述.md)。
 
 简单权限模型的权限划分粒度比较粗，不太适用于细粒度的权限管理场景。PostgreSQL的标准授权对于权限的划分非常细致，如果您需要使用更细粒度的权限管理，请参照本文基于PostgreSQL授权的最佳实践进行操作。
 
@@ -40,7 +40,7 @@ PostgreSQL授权的限制如下：
     **说明：**
 
     -   您只能使用当前用户与匹配项规则进行匹配，不能使用当前用户的用户组去匹配。
-    -   `alter default privileges`规则匹配只能在创建表时执行，在创建表之后修改表Owner（ `alter table set owner to`）不会触发`alter default privileges`。
+    -   `alter default privileges`规则匹配只能在创建表时执行，在创建表之后修改表Owner（ `alter table tablename owner to`）不会触发`alter default privileges`。
     例如，用户User1属于Group1，如果要给Group1匹配规则，授予未来表全权限。情况如下：
 
     -   如果当前用户是User1，则创建表时匹配不到规则。
@@ -57,8 +57,8 @@ PostgreSQL授权的限制如下：
     修改表Owner，示例如下语句。
 
     ```
-    alter table <table> owner to user2; //将表Owner由User1修改为User2。
-    alter table <table> owner to GROUP1;//将表Owner修改为Group1。
+    alter table <tablename> owner to user2; //将表Owner由User1修改为User2。
+    alter table <tablename> owner to GROUP1;//将表Owner修改为Group1。
     ```
 
     修改表Owner的操作限制如下：
@@ -210,7 +210,7 @@ PostgreSQL授权的限制如下：
 
     如果您希望DEV\_GROUP中的其他用户也可以管理或删除创建的表，则可以修改表的Owner为对应项目的DEV\_GROUP，例如PROJ1\_DEV\_GROUP。
 
-    修改表Owner的语句必须由或Superuser执行。例如，示例中表的创建者必须是PROJ1\_DEV\_GROUP的成员。假设新创建的表为TABLE1。示例修改表Owner的语句如下。
+    修改表Owner的语句必须由表的创建者或Superuser执行。例如，示例中表的创建者必须是PROJ1\_DEV\_GROUP的成员。假设新创建的表为TABLE1。示例修改表Owner的语句如下。
 
     ```
     alter table SCHEMA1.TABLE1 owner to PROJ1_DEV_GROUP; //修改TABLE1的Owner为PROJ1_DEV_GROUP。
@@ -220,7 +220,8 @@ PostgreSQL授权的限制如下：
 
     -   新创建的表，由Superuser定期修改表Owner。
     -   在需要管理或删除表之前修改表Owner。
-    -   如果您可以确认表的管理或删除操作是由表的创建者或Superuser执行的，您也可以不执行上述命令。
+    **说明：** 如果您可以确认表的管理或删除操作是由表的创建者或Superuser执行的，您也可以不执行上述命令。
+
 5.  修改用户的默认项目。
 
     调整用户的默认项目，需要Superuser或用户本人执行`alter default privileges`命令，撤销已设置的缺省权限后，使用新的`alter default privileges`创建默认授权。
