@@ -8,7 +8,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
 1.  准备MaxCompute表数据。
 
-    准备一张MaxCompute数据源表，您可以参考[MaxCompute创建表](https://help.aliyun.com/document_detail/27808.html?spm=a2c4g.11186623.6.589.613b2b17XHk7rR)进行建表，也可以直接从数据地图中选用一张表。示例选用数据地图中已创建的表，其建表DDL语句如下。
+    准备一张MaxCompute数据源表，您可以参考[t11950.dita\#concept\_rkk\_kcy\_5db](/cn.zh-CN/快速入门/创建和查看表.md)进行建表，也可以直接从数据地图中选用一张表。示例选用数据地图中已创建的表，其建表DDL语句如下。
 
     ```
     CREATE TABLE IF NOT EXISTS bank_data_odps
