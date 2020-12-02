@@ -173,7 +173,7 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 -   被授权为Superuser的子账号无法新增用户。
     -   问题现象
 
-        子账号已经被授权为Superuser，但是在Hologres管理控制台的**用户管理**模块无法看到实例列表并新增用户。提示**暂无权限列出所有子账号，请让主账号前往RAM中心授予当前用户ram:ListUsers权限**报错。
+        子账号已经被授权为Superuser，但是在Hologres管理控制台的**用户管理**模块无法看到用户列表并新增用户。提示**暂无权限列出所有子账号，请让主账号前往RAM中心授予当前用户ram:ListUsers权限**报错。
 
         ![无新增用户权限](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9345525061/p182184.png)
 
