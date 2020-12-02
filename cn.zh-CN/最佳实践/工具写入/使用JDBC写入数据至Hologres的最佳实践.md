@@ -13,7 +13,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 ## 注意事项
 
 -   使用JDBC连接Hologres后，如果您需要测试写入数据的性能，建议使用VPC网络。公共网络由于自身原因，无法达到性能测试的目标。
--   Hologres当前不支持在一个事务中多次写入，因此需要关闭autoCommit（JDBC的autoCommit默认关闭），并且不要显示的在代码中执行提交动作。显示关闭autoCommit的语句如下。
+-   Hologres当前不支持在一个事务中多次写入，因此需要关闭autoCommit（JDBC的autoCommit默认关闭），关闭autoCommit的语句如下。
 
     ```
     Connection conn = DriverManager.getConnection(url, user, password);
@@ -61,7 +61,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
     您可以通过JDBC的Statement或Prepared Statement模式写入数据。
 
-    通常情况下，推荐您使用Prepare Statment模式，并且设置批量写入数据的条数为256的倍数（建议最低设置为256条）。因为使用Prepare Statment模式时，服务端会缓存SQL编译的结果，从而降低写入数据的延时，并提高吞吐量。
+    通常情况下，推荐您使用Prepared Statment模式，并且设置批量写入数据的条数为256的倍数（建议最低设置为256条）。因为使用Prepared Statment模式时，服务端会缓存SQL编译的结果，从而降低写入数据的延时，并提高吞吐量。
 
     使用Prepared Statement模式写入数据的示例如下：
 
