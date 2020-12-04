@@ -9,21 +9,14 @@ keyword: [查看活跃Query, HoloWeb]
 -   注册阿里云账号，详情请参见[t12832.md\#]()。
 -   实名认证，详情请参见[t12833.md\#]()或[t12834.md\#]()。
 -   开通交互式分析Hologres，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
--   连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-1.  登录[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)。
+1.  连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-2.  单击**Hologres引擎管理**页面的**登录Hologres数据库**。
+2.  在HoloWeb开发页面的顶部菜单栏，单击**工具**。
 
-3.  在顶部菜单栏左侧，选择相应的地域。
+3.  在左侧导航栏，单击**性能优化** \> **活跃Query**。
 
-    ![地域](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3542488951/p141749.png)
-
-4.  在顶部菜单栏，单击**工具**。
-
-5.  在左侧导航栏，单击**性能优化** \> **活跃Query**。
-
-6.  配置**活跃Query**页面的各项参数。
+4.  配置**活跃Query**页面的各项参数。
 
     ![活跃query](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2399048951/p141399.png)
 
@@ -38,7 +31,7 @@ keyword: [查看活跃Query, HoloWeb]
     -   **fastpath function call**：表示进程正在执行一个`fast-path`函数。
     -   **disabled**：表示进程的**track activities**被禁用。 |
 
-7.  单击**查询**。
+5.  单击**查询**。
 
     示例查看数据库中状态为**idle**的查询操作。
 
