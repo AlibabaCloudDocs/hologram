@@ -48,10 +48,14 @@ Hologres与Quick BI高效连通，支持将查询的数据直接对接Quick BI�
     |显示名称|自定义的显示名称。 |
     |数据库地址|连接的Hologres实例的服务器地址。
 
-您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。 |
+您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。
+
+**说明：** Quick BI当前仅支持使用公共网络和经典网络连接Hologres，不支持使用VPC网络连接Hologres。 |
     |端口|连接的Hologres实例的端口。
 
-您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。 |
+您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。
+
+**说明：** Quick BI当前仅支持使用公共网络和经典网络连接Hologres，不支持使用VPC网络连接Hologres。 |
     |数据库|连接的Hologres实例的数据库名称。
 
 您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**DB管理**页面获取。 |
@@ -75,10 +79,14 @@ Hologres与Quick BI高效连通，支持将查询的数据直接对接Quick BI�
     |显示名称|自定义的显示名称。 |
     |数据库地址|连接的Hologres实例的服务器地址。
 
-您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。 |
+您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。
+
+**说明：** Quick BI当前仅支持使用公共网络和经典网络连接Hologres，不支持使用VPC网络连接Hologres。 |
     |端口|连接的Hologres实例的端口。
 
-您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。 |
+您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**实例配置**页面获取。
+
+**说明：** Quick BI当前仅支持使用公共网络和经典网络连接Hologres，不支持使用VPC网络连接Hologres。 |
     |数据库|连接的Hologres实例的数据库名称。
 
 您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**DB管理**页面获取。 |
