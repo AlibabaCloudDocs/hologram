@@ -37,6 +37,9 @@ Hologres与Quick BI高效连通，支持将查询的数据直接对接Quick BI�
     4.  选择目标数据源并配置相应参数。当前Hologres连接Quick BI时，支持Hologres和PostgreSQL两种数据源，您可以根据Quick BI版本选择相应的数据源（推荐使用Hologres数据源）：
 
         -   1.  选择**云数据库** \> **Hologres**。
+
+    ![选择Hologres数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1299147061/p190025.png)
+
 2.  配置**添加Hologres数据源**的各项参数。
 
     ![添加Hologres数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2063147061/p189738.png)
@@ -68,6 +71,9 @@ Hologres与Quick BI高效连通，支持将查询的数据直接对接Quick BI�
 您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey Secret。 |
 
         -   1.  选择**云数据库** \> **PostgreSQL**。
+
+    ![选择postgreSQL数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1299147061/p190026.png)
+
 2.  配置**添加PostgreSQL数据源**的各项参数。
 
     ![配置PSQL数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2063147061/p189743.png)
