@@ -21,7 +21,7 @@ We recommend that you use the built-in Spark connector to import Spark data to H
 
 1.  Obtain a JAR file.
 
-    Click [here](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183066/cn_zh/1607582104290/emr-datahub_shaded_2.11-2.2.0-SNAPSHOT.jar) to download the generated JAR file. You can view the source code of the JAR file on [GitHub](https://github.com/aliyun/aliyun-emapreduce-datasources).
+    Click [Spark JAR](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183066/cn_zh/1607582104290/emr-datahub_shaded_2.11-2.2.0-SNAPSHOT.jar) to download the generated JAR file. You can view the source code of the JAR file on [GitHub](https://github.com/aliyun/aliyun-emapreduce-datasources).
 
 2.  Use the JAR file.
 
