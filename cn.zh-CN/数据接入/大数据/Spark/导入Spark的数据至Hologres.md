@@ -21,7 +21,7 @@ Hologres支持使用内置的Spark Connector将Spark数据写入Hologres，相�
 
 1.  获取JAR文件。
 
-    单击[Spark JAR](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/30259/cn_zh/1605085168372/emr-datahub_shaded_2.11-2.2.0-SNAPSHOT.jar)，下载Hologres已自动生成的JAR文件。您可以在[Git库](https://github.com/aliyun/aliyun-emapreduce-datasources)中查看JAR文件的源代码。
+    单击​[Spark JAR](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/183066/cn_zh/1607582104290/emr-datahub_shaded_2.11-2.2.0-SNAPSHOT.jar)，下载Hologres已自动生成的JAR文件。您可以在[Git库](https://github.com/aliyun/aliyun-emapreduce-datasources)中查看JAR文件的源代码。
 
 2.  使用JAR文件。
 
