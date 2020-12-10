@@ -8,7 +8,7 @@ HoloStudio is seamlessly integrated with DataWorks. You can use HoloStudio to im
 
 1.  Prepare a MaxCompute table.
 
-    Prepare a MaxCompute table that stores source data. You can create a table and import data, or directly select a table from the data map. For more information, see [MaxCompute Quick Start](https://help.aliyun.com/document_detail/27808.html?spm=a2c4g.11186623.6.589.613b2b17XHk7rR). The following sample statements use a table created in the data map:
+    Prepare a MaxCompute table that stores source data. You can create a table and import data, or directly select a table from the data map. For more information, see [t11950.dita\#concept\_rkk\_kcy\_5db](/intl.en-US/Quick Start/Create and view a table.md). The following sample statements use a table created in the data map:
 
     ```
     CREATE TABLE IF NOT EXISTS bank_data_odps
