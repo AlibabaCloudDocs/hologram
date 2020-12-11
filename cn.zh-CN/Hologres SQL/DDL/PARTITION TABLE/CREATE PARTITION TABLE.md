@@ -10,7 +10,7 @@ CREATE PARTITION TABLE语句用于创建分区表。本文为您介绍CREATE PAR
 
 -   Hologres暂不支持插入数据至分区表父表，只支持插入数据至具体的分区表子表。
 
-    **说明：** 实时计算Flink版支持实时写入数据至Hologres的分区表父表，详情请参见[t1880180.dita\#task\_1939753](/cn.zh-CN/数据接入/大数据/实时计算Flink版/实时计算实时写入数据至分区表父表.md)。
+    **说明：** 实时计算Flink版支持实时写入数据至Hologres的分区表父表，详情请参见[t1997136.dita\#task\_1997136/section\_7av\_gr2\_kws](t1997136.dita#task_1997136/section_7av_gr2_kws)。
 
 -   只有TEXT、VARCHAR以及INT类型的数据才可以作为分区键（Partition Key）。
 -   一个分区只能创建一张分区表。
