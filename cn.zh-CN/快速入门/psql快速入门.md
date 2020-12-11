@@ -26,7 +26,7 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
 
         您也可以单击目标实例**操作**列的**管理**，进入实例详情页。
 
-3.  连接psql客户端，详情请参见[psql客户端](/cn.zh-CN/常见开发工具/psql客户端.md)。
+3.  连接psql客户端，详情请参见[psql客户端](/cn.zh-CN/连接开发工具/psql客户端.md)。
 
 4.  创建数据库。
 
@@ -84,8 +84,8 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
     SELECT * FROM nation;
     ```
 
-    您也可以使用HoloStudio或HoloWeb进行数据开发，详情请参见[HoloStudio快速入门](/cn.zh-CN/基于HoloStudio的开发/HoloStudio快速入门.md)或[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
+    您也可以使用HoloStudio或HoloWeb进行数据开发，详情请参见[HoloStudio快速入门](/cn.zh-CN/连接开发工具/DataWorks数仓开发/HoloStudio快速入门.md)或[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 
-    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/cn.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)或[实时计算实时写入数据至Hologres](/cn.zh-CN/数据接入/大数据/实时计算Flink版/实时计算实时写入数据至Hologres.md)。
+    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/cn.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)或[Hologres结果表](/cn.zh-CN/数据接入/大数据/实时计算Flink版/Blink独享集群（原产品线）/Hologres结果表.md)。
 
 
