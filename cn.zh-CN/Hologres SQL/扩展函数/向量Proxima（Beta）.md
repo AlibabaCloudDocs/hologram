@@ -8,7 +8,7 @@ Proxima向量检索引擎是运用于大数据领域，实现向量近邻搜索�
 
 ## 使用限制
 
-当前向量计算Proxima功能还处于Beta版本，不能保证生产的稳定性，不建议直接用于生产环境。如果在使用过程中有任何问题，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)反馈。
+当前向量计算Proxima功能还处于Beta版本，不能完全保证生产的稳定性，但非常欢迎您试用，如果在使用过程中有任何问题，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)反馈。
 
 ## 使用Proxima进行向量计算
 
@@ -107,15 +107,15 @@ select pm_approx_inner_product_distance(feature, '{0.1,0.2,0.3,0.4}') as distanc
 
     -   不开方的欧式距离，计算公式如下。
 
-        ![不开方的欧式距离](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7161863061/p175758.png)
+        ![不开方的欧式距离](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7161863061/p175758.png)
 
     -   开方的欧氏距离，计算公式如下。
 
-        ![开方的欧氏距离](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7161863061/p175760.png)
+        ![开方的欧氏距离](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7161863061/p175760.png)
 
     -   内积距离，计算公式如下。
 
-        ![内积距离](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7161863061/p175762.png)
+        ![内积距离](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7161863061/p175762.png)
 
     **说明：** 如果您选用欧式距离进行向量计算，不开方的欧式距离与开方的欧式距离相比，可以少一个开方的计算，并且计算出的Top K记录一致。因此，不开方的欧式距离性能更好，在满足功能需求的情况下，一般建议您使用不开方的欧式距离。
 
