@@ -38,7 +38,7 @@ HoloWeb为您提供当前登录账号在HoloWeb中执行SQL语句的历史记录
     |SQL|执行的SQL语句详情。|
     |状态|取值如下：    -   执行成功。
     -   执行失败。您可以点击![报错](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7871896061/p187715.png)可以查看失败原因。 |
-    |行数|执行SQL语句进行查询时返回的结果行数。HoloWeb执行SQL语句时，默认在SQL语句后添加`Limit 200`限制，如果您需要展示更多的行数，请在SQL语句后添加`Limit N`。 |
+    |行数|执行SQL语句进行查询时返回的结果行数。HoloWeb执行SQL语句时，默认在SQL语句后添加`Limit 200`限制，如果您需要展示更多的行数，您可以使用`Limit N`语句，设置N的取值大于200即可。 |
     |耗时|当前SQL语句的执行时间。如果SQL语句的执行时间不符合业务预期，您可以结合管理控制台的监控指标进行分析，对相应的任务进行调优，详情请见[Hologres管控台的监控指标](/cn.zh-CN/监控与告警/Hologres管控台的监控指标.md)和[优化SQL语句](/cn.zh-CN/最佳实践/性能调优/优化内部表的性能.md)。 |
 
     如果不选择**连接名**和**数据库**，则默认展示当前账号在HoloWeb的所有SQL执行历史。
