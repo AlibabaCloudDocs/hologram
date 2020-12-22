@@ -6,10 +6,6 @@ keyword: [向量Proxima, Hologres]
 
 Proxima向量检索引擎是运用于大数据领域，实现向量近邻搜索的高性能软件库，相比Fassi等开源产品，稳定性和性能较好，提供了行业相关的基础方法模块，支持图像、视频及人脸等各种应用场景的搜索。交互式分析Hologres的向量查询功能与Proxima深度整合，为您提供高性能的向量查询服务。本文为您介绍在Hologres中如何使用向量计算功能。
 
-## 使用限制
-
-当前向量计算Proxima功能还处于Beta版本，不能完全保证生产的稳定性，但非常欢迎您试用，如果在使用过程中有任何问题，请[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)反馈。
-
 ## 使用Proxima进行向量计算
 
 使用Proxima进行向量计算的操作步骤如下：
