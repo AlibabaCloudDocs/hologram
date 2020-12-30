@@ -14,26 +14,24 @@ keyword: [HoloWeb, SQL窗口, SQL查询]
 
 1.  连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-2.  在HoloWeb开发页面的顶部菜单栏，单击**SQL编辑器** \> **新建SQL窗口**。
+2.  在HoloWeb开发页面的顶部菜单栏，单击**SQL编辑器** \> **新增SQL窗口**。
 
     您也可以在左侧导航栏，鼠标右击**我的SQL查询**，选择**新建SQL查询**。
 
     在**新建SQL查询**对话框，配置各项参数。
 
-    ![新建SQL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8042488951/p132716.png)
+    ![新建SQL](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3449918061/p132716.png)
 
     参数描述如下表所示。
 
     |参数|描述|
     |--|--|
     |作业名称|新建的SQL查询名称。|
-    |目录|新建SQL查询存放的位置。|
+    |目录|新建SQL查询存放的位置。默认目录为**我的SQL查询**，您也可以选择存放在已创建的文件夹中。|
     |连接名称|已配置的连接名称。|
     |数据库名称|Hologres的数据库名称。|
 
-    **说明：** 新建的SQL查询可以直接存放于**我的SQL查询**中，也可以存放于已创建的文件夹中。
-
-3.  在**临时Query查询**页面，选择已创建的**连接名**和**数据库**后，您可以在SQL编辑区域使用标准的PostgreSQL语言进行开发。
+3.  在新增生成的**临时Query查询**页面，选择已创建的**连接名**和**数据库**后，您可以在SQL编辑区域使用标准的PostgreSQL语言进行开发。
 
     ![临时查询](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7222186061/p186866.png)
 
@@ -82,9 +80,7 @@ keyword: [HoloWeb, SQL窗口, SQL查询]
 
         ![新建表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7222186061/p132804.png)
 
-4.  单击**保存**。
-
-    单击**保存**后，当前SQL查询会保存所有输入的SQL语句。
+4.  单击**保存**。保存成功后，当前SQL查询会保存所有输入的SQL语句。
 
 
 ## 删除SQL查询
