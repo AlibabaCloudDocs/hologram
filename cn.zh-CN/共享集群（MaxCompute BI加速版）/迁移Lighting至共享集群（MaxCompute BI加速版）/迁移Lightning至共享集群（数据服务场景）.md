@@ -58,8 +58,8 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
     Hologres为您提供了专家模式授权和简单权限模型两套授权体系。
 
-    -   专家模式授权：与PostgreSQL的权限模型完全一致，简称专家模式，详请参见[专家模式授权](/cn.zh-CN/用户授权及角色管理/专家模式授权.md)。
-    -   简单权限模型：Hologres基于实际业务，为了简化授权操作而抽象的一套简单权限模型（SPM），详请参见[简单权限模型概述](/cn.zh-CN/用户授权及角色管理/简单权限模型/简单权限模型概述.md)。
+    -   专家模式授权：与PostgreSQL的权限模型完全一致，简称专家模式，详请参见[专家权限模型](/cn.zh-CN/账号与权限管理/Hologres权限模型/专家权限模型.md)。
+    -   简单权限模型：Hologres基于实际业务，为了简化授权操作而抽象的一套简单权限模型（SPM），详请参见[简单权限模型概述](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型概述.md)。
 3.  单击**确定**完成数据库创建，您可以在DB管理页面，查看已创建的数据库。
 
 
@@ -130,9 +130,11 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
     4.  单击顶部菜单栏的**新增数据源**，在**大数据存储**区域，选择**Hologres**。
 
-    5.  配置新增Hologres数据源对话框的的参数，具体参数说明如下表所示。
+    5.  配置新增Hologres数据源对话框的的参数。
 
         ![新增数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p139621.png)
+
+        具体参数说明如下表所示：
 
         |参数|描述|
         |--|--|
@@ -180,7 +182,7 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
     API测试成功之后，在API编辑页面，单击顶部菜单栏右侧的**发布**。将API发布至API网关，并上架至API市场，详请参见[发布API]()。您也可以在**数据服务**页面，单击顶部菜单栏右侧的**服务管理**，查看已发布的API名称，查看API详情。
 
-5.  调用调用API。
+5.  调用API。
 
     如果您需要调用已成功发布的API，请参见[客户端调用API示例]()。
 
@@ -189,5 +191,5 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
 共享集群（MaxCompute BI加速版）的权限控制方式与Lightning不同，需要您重新给共享集群（MaxCompute BI加速版）用户授予相关权限。
 
-为共享集群（MaxCompute BI加速版）用户授权的具体操作请参见[t1917293.dita\#task\_2569531](/cn.zh-CN/用户授权及角色管理/子账号使用Hologres/授予子账号实例的开发权限.md)。
+为共享集群（MaxCompute BI加速版）用户授权的具体操作请参见[t1917293.dita\#task\_2569531](/cn.zh-CN/账号与权限管理/授权操作/授予RAM用户实例的开发权限.md)。
 
