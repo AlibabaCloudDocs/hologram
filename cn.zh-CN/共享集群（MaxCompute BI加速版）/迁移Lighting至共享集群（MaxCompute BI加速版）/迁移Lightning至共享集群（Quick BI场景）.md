@@ -60,8 +60,8 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
     Hologres为您提供了专家模式授权和简单权限模型两套授权体系。
 
-    -   专家模式授权：与PostgreSQL的权限模型完全一致，简称专家模式，详请参见[专家模式授权](/cn.zh-CN/用户授权及角色管理/专家模式授权.md)。
-    -   简单权限模型：Hologres基于实际业务，为了简化授权操作而抽象的一套简单权限模型（SPM），详请参见[简单权限模型概述](/cn.zh-CN/用户授权及角色管理/简单权限模型/简单权限模型概述.md)。
+    -   专家模式授权：与PostgreSQL的权限模型完全一致，简称专家模式，详请参见[专家权限模型](/cn.zh-CN/账号与权限管理/Hologres权限模型/专家权限模型.md)。
+    -   简单权限模型：Hologres基于实际业务，为了简化授权操作而抽象的一套简单权限模型（SPM），详请参见[简单权限模型概述](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型概述.md)。
 3.  单击**确定**完成数据库创建，您可以在DB管理页面，查看已创建的数据库。
 
 
@@ -118,9 +118,11 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
 3.  在替换数据源页面的云数据库页签，单击选择**Hologres**。
 
-4.  配置替换为Hologres数据源对话框的的参数，具体参数说明如下表所示。
+4.  配置替换为Hologres数据源对话框的的参数。
 
     ![替换为Hologres数据源参数配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5194458061/p203776.png)
+
+    具体参数说明如下表所示：
 
     |参数|说明|
     |--|--|
@@ -139,5 +141,5 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
 
 共享集群（MaxCompute BI加速版）的权限控制方式与Lightning不同，因此在完成数据源替换之后，需要您重新给共享集群（MaxCompute BI加速版）用户授予相关权限。
 
-为共享集群（MaxCompute BI加速版）用户授权的具体操作请参见[t1917293.dita\#task\_2569531](/cn.zh-CN/用户授权及角色管理/子账号使用Hologres/授予子账号实例的开发权限.md)。
+为共享集群（MaxCompute BI加速版）用户授权的具体操作请参见[t1917293.dita\#task\_2569531](/cn.zh-CN/账号与权限管理/授权操作/授予RAM用户实例的开发权限.md)。
 
