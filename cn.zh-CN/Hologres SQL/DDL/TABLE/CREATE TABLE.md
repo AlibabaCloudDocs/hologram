@@ -150,7 +150,41 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             commit;
             ```
 
-    2.  **clustering key**
+    2.  **distribution\_key**
+
+        ```
+        call set_table_property('<table_name>', 'distribution_key', '[columnName[,...]]');
+        ```
+
+        -   distribution\_key：指定了数据库表分布策略。数据根据distribution\_key被分配到各个shard上。系统保证distribution\_key相同的记录会被分配到同一个shard上。
+        -   columnName部分如设置单列，不要有多余空格。如设置多列，则以逗号分隔，同样不要有多余的空格。
+        -   distribution\_key指定的列或列组合不支持Float、Double、Numeric、Array、Json及其他复杂数据类型。
+        -   当表中有primary key时，distribution\_key默认为primary key。distribution\_key必须为primary key或者primary key中的部分字段（不能为空），同一记录的数据只能属于一个shard。当表中没有primary key时，对distribution\_key没有限制，可以为空（不指定任何列）。如果distribution\_key为空，即随机shuffle，数据随机分布到不同shard上。当distribution\_key对应列的值为空时，当作“”（空串）看待。
+        -   Hologres中，数据库表默认为随机分布形式。数据将被随机分配到各个shard上。如果制定了分布列，数据将按照指定列，将数据shuffle到各个shard，同样的数值肯定会在同样的shard中。当以分布列做过滤条件时，Hologres可以直接筛选出数据相关的shard进行扫描。当以分布列做join条件时，Hologres不需要再次将数据shuffle到其他计算节点，直接在本节点join本节点数据即可，可以大大提高执行效率。
+        -   使用示例
+
+            ```
+            begin;
+            create table tbl (a int not null, b text not null);
+            call set_table_property('tbl', 'distribution_key', 'a');
+            commit;
+            
+            begin;
+            create table tbl (a int not null, b text not null);
+            call set_table_property('tbl', 'distribution_key', 'a,b');
+            commit;
+            
+            begin;
+            create table tbl1(a int not null, b text not null);
+            call set_table_property('tbl1', 'distribution_key', 'a');
+            create table tbl2(c int not null, d text not null);
+            call set_table_property('tbl2', 'distribution_key', 'c');
+            commit;
+            
+            select b, count(*) from tbl1 join tbl2 on tbl1.a = tbl2.c group by b;
+            ```
+
+    3.  **clustering\_key**
 
         ```
         call set_table_property('<table_name>', 'clustering_key', '[columnName{:[desc|asc]} [,...]]');
@@ -192,7 +226,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             commit;
             ```
 
-    3.  **event\_time\_column**
+    4.  **event\_time\_column**
 
         ```
         call set_table_property('<table_name>', 'event_time_column', '[columnName{:[desc|asc]} [,...]]');
@@ -216,7 +250,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         commit;
         ```
 
-    4.  **bitmap columns**
+    5.  **bitmap\_columns**
 
         ```
         call set_table_property('<table_name>', 'bitmap_columns', '[columnName [,...]]');
@@ -227,7 +261,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         -   bitmap\_columns适合无序且取值不多的列，对于每个取值构造一个二进制串，表示取值所在位置的bitmap。
         -   bitmap\_columns指定的列可以为空。
         -   默认所有text列都会被隐式地设置到bitmap\_columns中。
-        -   **可以再事务之外单独使用，表示修改bitmap\_columns列，修改之后非立即生效，比特编码构建和删除在后台异步执行。**
+        -   **可以再事务之外单独使用，表示修改bitmap\_columns列，修改之后非立即生效，比特编码构建和删除在后台异步执行。**详请参见[ALTER TABLE](/cn.zh-CN/Hologres SQL/DDL/TABLE/ALTER TABLE.md)。
         -   使用示例
 
             ```
@@ -241,7 +275,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             call set_table_property('tbl', 'bitmap_columns', 'a');
             ```
 
-    5.  **dictionary encoding columns**
+    6.  **dictionary\_encoding\_columns**
 
         ```
         call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName [,...]]');
@@ -252,7 +286,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         -   dictionary\_encoding\_columns指定的列可以为null。型
         -   无序但取值较少的列适合设置dictionary\_encoding\_columns，可以压缩存储。
         -   V0.8及更早版本中默认所有text列都会被隐式地设置到dictionary\_encoding\_columns中。V0.9及之后的版本会根据数据特征自动选择是否创建字典编码。
-        -   可以再事务之外单独使用。表示修改dictionary\_encoding\_columns列，修改之后非立即生效，字典编码构建和删除在后台异步执行。。
+        -   **可以在事务之外单独使用。表示修改dictionary\_encoding\_columns列，修改之后非立即生效，字典编码构建和删除在后台异步执行。**详请参见[ALTER TABLE](/cn.zh-CN/Hologres SQL/DDL/TABLE/ALTER TABLE.md)。
         -   使用示例
 
             ```
@@ -266,7 +300,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             call set_table_property('tbl', 'dictionary_encoding_columns', 'a');
             ```
 
-    6.  **time to live in seconds**
+    7.  **time\_to\_live\_in\_seconds**
 
         ```
         call set_table_property('<table_name>', 'time_to_live_in_seconds', '<non_negative_literal>');
@@ -287,40 +321,6 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             ```
 
             **说明：** 表数据的TTL并不是精确的时间，当超过设置的TTL后，系统会在某一个时间自动删除表数据，所以业务逻辑不能强依赖TTL。若是想精确的删除表数据，可以使用HoloStudio数据开发，进行调度任务配置来删除数据。
-
-    7.  **distribution\_key**
-
-        ```
-        call set_table_property('<table_name>', 'distribution_key', '[columnName[,...]]');
-        ```
-
-        -   distribution\_key：指定了数据库表分布策略。数据根据distribution\_key被分配到各个shard上。系统保证distribution\_key相同的记录会被分配到同一个shard上。
-        -   columnName部分如设置单列，不要有多余空格。如设置多列，则以逗号分隔，同样不要有多余的空格。
-        -   distribution\_key指定的列或列组合不支持Float、Double、Numeric、Array、Json及其他复杂数据类型。
-        -   当表中有primary key时，distribution\_key默认为primary key。distribution\_key必须为primary key或者primary key中的部分字段（不能为空），同一记录的数据只能属于一个shard。当表中没有primary key时，对distribution\_key没有限制，可以为空（不指定任何列）。如果distribution\_key为空，即随机shuffle，数据随机分布到不同shard上。当distribution\_key对应列的值为空时，当作“”（空串）看待。
-        -   Hologres中，数据库表默认为随机分布形式。数据将被随机分配到各个shard上。如果制定了分布列，数据将按照指定列，将数据shuffle到各个shard，同样的数值肯定会在同样的shard中。当以分布列做过滤条件时，Hologres可以直接筛选出数据相关的shard进行扫描。当以分布列做join条件时，Hologres不需要再次将数据shuffle到其他计算节点，直接在本节点join本节点数据即可，可以大大提高执行效率。
-        -   使用示例
-
-            ```
-            begin;
-            create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'distribution_key', 'a');
-            commit;
-            
-            begin;
-            create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'distribution_key', 'a,b');
-            commit;
-            
-            begin;
-            create table tbl1(a int not null, b text not null);
-            call set_table_property('tbl1', 'distribution_key', 'a');
-            create table tbl2(c int not null, d text not null);
-            call set_table_property('tbl2', 'distribution_key', 'c');
-            commit;
-            
-            select b, count(*) from tbl1 join tbl2 on tbl1.a = tbl2.c group by b;
-            ```
 
 
 ## 增加注释
