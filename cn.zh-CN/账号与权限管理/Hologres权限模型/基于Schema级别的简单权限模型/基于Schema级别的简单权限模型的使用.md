@@ -167,14 +167,14 @@ DROP ROLE "云账号ID/云邮箱/RAM账号"; // 直接将该用户从实例中�
 
         **说明：** 调用slpm\_cleanup时，请确保该DB上没有正在运行的SQL语句，否则可能会失败，并可能对服务产生影响。
 
-        由于slpm\_cleanup需要将现有对象owner转移给当前用户，但spm\_cleanup默认每次仅对64个（参数可调）对象转移owner。因此，您可能需要多次执行slpm\_cleanup，直到所有对象完成迁移（建议累计执行次数小于5次），并删除所有保留用户组为止。更多关于该函数的说明，请参见[slpm\_cleanup](/cn.zh-CN/账号与权限管理/Hologres权限模型/基于Schema级别的简单权限模型/基于Schema级别的简单权限模型函数说明.mdsection_aen_1tr_jzt)。
+        由于slpm\_cleanup需要将现有对象owner转移给当前用户，但slpm\_cleanup默认每次仅对64个（参数可调）对象转移owner。因此，您可能需要多次执行slpm\_cleanup，直到所有对象完成迁移（建议累计执行次数小于5次），并删除所有保留用户组为止。更多关于该函数的说明，请参见[slpm\_cleanup](/cn.zh-CN/账号与权限管理/Hologres权限模型/基于Schema级别的简单权限模型/基于Schema级别的简单权限模型函数说明.mdsection_aen_1tr_jzt)。
 
     -   场景2：先删除DB再删除用户组。
 
         如果您已经将原有DB删除，但用户组并未删除，Superuser可以在其他的DB（例如postgres）执行如下语句删除原有DB对应的所有用户组。
 
         ```
-        postgres=# call spm_cleanup ( 'mydb' );
+        postgres=# call slpm_cleanup ( 'mydb' );
         ```
 
 
