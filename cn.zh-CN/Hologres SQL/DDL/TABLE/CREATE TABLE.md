@@ -126,6 +126,19 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     ```
 
 2.  **参数说明**
+
+    具体参数和相关内容如下表所示：
+
+    |参数|列存表|行存表|
+    |--|---|---|
+    |orientation|column（默认值）|row|
+    |distribution\_key|默认为主键，建议设置。|默认为主键，建议设置主键。|
+    |clustering\_key|默认为空。|默认为主键，不建议设置主键。|
+    |event\_time\_column|默认为第一个非空时间戳字段。|不可以设置主键。|
+    |bitmap\_columns|按需使用。|不支持|
+    |dictionary\_encoding\_columns|按需使用。|不支持|
+    |time\_to\_live\_in\_seconds|按需使用。|按需使用。|
+
     1.  **orientation**
 
         ```
