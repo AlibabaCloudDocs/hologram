@@ -73,14 +73,14 @@ keyword: [最佳实践, JDBC, 写入Hologres]
         private static void WriteBatchWithPreparedStatement(Connection conn) throws Exception {
             try (PreparedStatement stmt = conn.prepareStatement("insert into test_tb values (?,?,?,?)")) {
                 int batchSize = 256;
-                for (int i = 0; i < batchSize;   i) {
-                    stmt.setInt( 1, 1000   i);
+                for (int i = 0; i < batchSize; ++i) {
+                    stmt.setInt( 1, 1000 + i);
                     stmt.setString( 2, "1");
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
                     stmt.setTimestamp( 3, new java.sql.Timestamp(parsedDate.getTime()));
                     stmt.setDouble( 4 , 0.1 );
-                    stmt.addBatch();
+        		    stmt.addBatch();
                 }
                 stmt.executeBatch();
             }
@@ -95,16 +95,16 @@ keyword: [最佳实践, JDBC, 写入Hologres]
         private static void InsertOverwrite(Connection conn) throws Exception {
             try (PreparedStatement stmt = conn.prepareStatement("insert into test_tb values (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?) on conflict(pk) do update set f1 = excluded.f1, f2 = excluded.f2, f3 = excluded.f3")) {
                 int batchSize = 6;
-                for (int i = 0; i < batchSize;   i) {
-                    stmt.setInt(i * 4   1, i);
-                    stmt.setString(i * 4   2, "1");
+                for (int i = 0; i < batchSize; ++i) {
+                    stmt.setInt(i * 4 + 1, i);
+                    stmt.setString(i * 4 + 2, "1");
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                     Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
-                    stmt.setTimestamp(i * 4   3, new java.sql.Timestamp(parsedDate.getTime()));
-                    stmt.setDouble(i * 4   4, 0.1);
+                    stmt.setTimestamp(i * 4 + 3, new java.sql.Timestamp(parsedDate.getTime()));
+                    stmt.setDouble(i * 4 + 4, 0.1);
                 }
                 int affected_rows = stmt.executeUpdate();
-                System.out.println("affected rows => "   affected_rows);
+                System.out.println("affected rows => " + affected_rows);
             }
         }
         ```
@@ -130,36 +130,38 @@ public class WriteHolo {
         }
     }
 
+   
+
     private static void WriteBatchWithPreparedStatement(Connection conn) throws Exception {
         try (PreparedStatement stmt = conn.prepareStatement("insert into test_tb values (?,?,?,?)")) {
             int batchSize = 256;
-            for (int i = 0; i < batchSize;   i) {
-                stmt.setInt( 1, 1000   i);
+            for (int i = 0; i < batchSize; ++i) {
+                stmt.setInt( 1, 1000 + i);
                 stmt.setString( 2, "1");
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
                 stmt.setTimestamp( 3, new java.sql.Timestamp(parsedDate.getTime()));
                 stmt.setDouble( 4, 0.1);
-                stmt.addBatch();
+			    stmt.addBatch();
             }
             stmt.executeBatch();
         }
     }
 
     private static void InsertOverwrite(Connection conn) throws Exception {
-        try (PreparedStatement stmt = conn.prepareStatement("insert into test_tb values (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?) "  
+        try (PreparedStatement stmt = conn.prepareStatement("insert into test_tb values (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?) " +
                 "on conflict(pk) do update set f1 = excluded.f1, f2 = excluded.f2, f3 = excluded.f3")) {
             int batchSize = 6;
-            for (int i = 0; i < batchSize;   i) {
-                stmt.setInt(i * 4   1, i);
-                stmt.setString(i * 4   2, "1");
+            for (int i = 0; i < batchSize; ++i) {
+                stmt.setInt(i * 4 + 1, i);
+                stmt.setString(i * 4 + 2, "1");
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
-                stmt.setTimestamp(i * 4   3, new java.sql.Timestamp(parsedDate.getTime()));
-                stmt.setDouble(i * 4   4, 0.1);
+                stmt.setTimestamp(i * 4 + 3, new java.sql.Timestamp(parsedDate.getTime()));
+                stmt.setDouble(i * 4 + 4, 0.1);
             }
             int affected_rows = stmt.executeUpdate();
-            System.out.println("affected rows => "   affected_rows);
+            System.out.println("affected rows => " + affected_rows);
         }
     }
 
@@ -169,7 +171,7 @@ public class WriteHolo {
         String db = "postgres";
         String user = "xx";
         String password = "xx";
-        String url = "jdbc:postgresql://"   host   "/"   db "?reWriteBatchedInserts=true";
+        String url = "jdbc:postgresql://" + host + "/" + db+"?reWriteBatchedInserts=true";
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             Init(conn);
 
