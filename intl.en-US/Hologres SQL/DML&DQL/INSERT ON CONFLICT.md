@@ -24,7 +24,7 @@ Assume that you are using Data Integration or Flink to insert a row that contain
 
 -   Use the Data Integration service of DataWorks to write data to Hologres.
 
-    Data Integration supports the `INSERT ON CONFLICT` statement. For more information about how the statement works, see [Hologres Writer](https://help.aliyun.com/knowledge_detail/158321.html?spm=a2c4g.11186631.2.11.17e6f853Ju0Tz0). If you use Data Integration, you must set the following parameters:
+    Data Integration supports the `INSERT ON CONFLICT` statement. For more information about how the statement works, see [Hologres Writer](). If you use Data Integration, you must set the following parameters:
 
     -   If you use a batch sync node, set the Write mode parameter to **SDK\(Fast write\)** and set the **Write conflict strategy** parameter to **Ignore** or **Replace** based on your business logic.
     -   If you use a real-time sync node, set the **Write conflict strategy** parameter to **Ignore** or **Replace**.
