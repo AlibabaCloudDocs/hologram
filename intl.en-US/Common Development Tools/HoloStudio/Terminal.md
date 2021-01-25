@@ -85,7 +85,7 @@ The Terminal module of Hologres is a PostgreSQL client that executes SQL stateme
 
 ## Delete a terminal
 
-On the Terminal page, find the terminal and click the ![Delete icon](../images/p171717.png) icon in the **Test** column. In the **Delete** dialog box, click **OK**.
+On the Terminal page, find the terminal and click the ![Delete icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2644651161/p171717.png) icon in the **Test** column. In the **Delete** dialog box, click **OK**.
 
 ![Delete icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9402096061/p171720.png)
 
