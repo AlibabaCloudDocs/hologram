@@ -12,13 +12,13 @@ Hologres is deeply integrated with DataV. You can connect DataV to Hologres and 
 
 1.  Establish a connection to Hologres.
 
-    1.  Log on to the[DataV console](https://account.alibabacloud.com/login/login.htm?oauth_callback=http%3A%2F%2Fdatav-ap-southeast-1.alibabacloud.com%2F1%2Fproject). Click the **Data Sources** tab and click **Add Source**.
+    1.  Log on to the [DataV console](https://account.alibabacloud.com/login/login.htm?oauth_callback=http%3A%2F%2Fdatav-ap-southeast-1.alibabacloud.com%2F1%2Fproject). Click the **Data Sources** tab and click **Add Source**.
 
-        ![834](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1205013061/p100341.png)
+        ![834](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1205013061/p100341.png)
 
     2.  In the **Add Data Source** dialog box, configure the parameters listed in the following table and click **OK**.
 
-        ![40](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1205013061/p113812.png)
+        ![40](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1205013061/p113812.png)
 
         |Parameter|Description|Remarks|
         |---------|-----------|-------|
@@ -32,6 +32,6 @@ Hologres is deeply integrated with DataV. You can connect DataV to Hologres and 
 
 2.  Present data in a visualized manner.
 
-    After DataV is connected to Hologres, you can create a project based on an existing template or a blank template to present data in a visualized manner. For more information, see [Use a template to create a project](/intl.en-US/Quick Start/Create a project (template)/Create a project.md) \(based on an existing template\) or [Create a project](/intl.en-US/Quick Start/Create a project (blank canvas)/Create a project.md) \(based on a blank template\).
+    After DataV is connected to Hologres, you can create a project based on an existing template or a blank template to present data in a visualized manner. For more information, see [Use a template to create a project](/intl.en-US/Quick Start/Create a project by using a template/Use a template to create a project.md) \(based on an existing template\) or [Use a blank canvas to create a project](/intl.en-US/Quick Start/Create a project by using a blank canvas/Use a blank canvas to create a project.md) \(based on a blank template\).
 
 
