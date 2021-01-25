@@ -6,7 +6,7 @@ keyword: [best practices, PostgreSQL privileges, authorize roles]
 
 This topic provides the best practices for Hologres when you authorize roles based on PostgreSQL privileges. This way, you can simplify authorization and manage privileges in a fine-grained manner.
 
-Hologres is compatible with PostgreSQL and supports authorization based on PostgreSQL privileges. Hologres also provides an authorization method called Simple Permission Model \(SPM\). For more information, see [t1877869.dita\#concept\_2449386](/intl.en-US/User Authorization/SPM/Overview.md).
+Hologres is compatible with PostgreSQL and supports authorization based on PostgreSQL privileges. Hologres also provides an authorization method called Simple Permission Model \(SPM\). For more information, see [t1877869.dita\#concept\_2449386](/intl.en-US/User Authorization/Hologres Permission Model/SPM/Overview.md).
 
 However, SPM manages privileges in a coarse-grained manner. If you need to manage privileges in a fine-grained manner, see the "Best practice 1" and "Best practice 2" sections.
 
@@ -33,7 +33,7 @@ PostgreSQL privileges have the following limits:
 
     -   The current user is a member of the permission group to which xxx belongs.
     -   The current role is a superuser. xxx can be either a role or a permission group.
-    You can use the `\ddp` command to check whether the `ALTER DEFAULT PRIVILEGES` statement takes effect. Default privileges are stored in the`pg_catalog.pg_default_acl` catalog.
+    You can use the `\ddp` command to check whether the `ALTER DEFAULT PRIVILEGES` statement takes effect. Default privileges are stored in the `pg_catalog.pg_default_acl` catalog.
 
     `ALTER DEFAULT PRIVILEGES` serves as a trigger. When you create a table, Hologres compares the table and the `pg_catalog.pg_default_acl` catalog based on the current role and schema information. If matches are found, the corresponding match rules are added.
 
