@@ -29,11 +29,11 @@ Hologres supports the subscription and pay-as-you-go billing methods, as shown i
 
 -   **Subscription**
 
-    Alibaba Cloud charges for the computing and storage resources that are estimated for your business needs. **You can pay monthly or yearly fees in advance.** For more information, see[Subscription]().
+    Alibaba Cloud charges for the computing and storage resources that are estimated for your business needs. **You can pay monthly or yearly fees in advance.** For more information, see [Subscription](/intl.en-US/Pricing/Subscription.md).
 
 -   **Pay-as-you-go**
 
-    Alibaba Cloud charges for computing resources based on the specifications and running duration of instances and storage resources based on the volume and duration of stored data. **The payments are settled on an hourly basis.** For more information, see[Pay-as-you-go]().
+    Alibaba Cloud charges for computing resources based on the specifications and running duration of instances and storage resources based on the volume and duration of stored data. **The payments are settled on an hourly basis.** For more information, see [Pay-as-you-go](/intl.en-US/Pricing/Pay-as-you-go.md).
 
     **Note:** Even if no task is run in a Hologres instance, the payments for computing resources are also settled on an hourly basis.
 
