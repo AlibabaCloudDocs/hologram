@@ -17,7 +17,7 @@ To import data to Hologres, you can use only PostgreSQL JDBC Driver version 42.2
 
     ```
     Connection conn = DriverManager.getConnection(url, user, password);
-    conn.setAutoCommit(false);
+    conn.setAutoCommit(true);
     ```
 
     If the `ERROR:INSERT in transaction is not supported now` error occurred, you must disable the auto-commit mode.
@@ -87,7 +87,7 @@ To import data to Hologres, you can use only PostgreSQL JDBC Driver version 42.2
         }
         ```
 
-    -   Example 2: Add the `INSERT ON CONFLICT`statement to insert and update the data when you execute prepared statements. Execute the following statements:
+    -   Example 2: Add the `INSERT ON CONFLICT` statement to insert and update the data when you execute prepared statements. Execute the following statements:
 
         **Note:** When you use the `INSERT ON CONFLICT` statement, a primary key must be defined for the table.
 
