@@ -61,7 +61,7 @@ By default, all **text** columns are set to bitmap columns. |
 
 ## View an internal table
 
-In the left-side navigation pane, click **PG management** and double-click the table that you want to view.On the page that appears, you can preview the data and view the SQL statements used to create the table.
+In the left-side navigation pane, click **PG management** and double-click the table that you want to view. On the page that appears, you can preview the data and view the SQL statements used to create the table.
 
 -   In the upper-right corner, click **Generate DDL Statement** to view the SQL statements used to create the table.
 -   Click **Data Preview** to view the table data.
