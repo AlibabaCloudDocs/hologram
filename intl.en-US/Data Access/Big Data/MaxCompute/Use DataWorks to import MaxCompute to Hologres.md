@@ -5,10 +5,10 @@ This topic describes how to use Data Integration and DataStudio of DataWorks to 
 ## Prerequisites
 
 1.  DataWorks is activated. For more information, see [Overview]().
-2.  A Hologres instance is purchased and bound to a DataWorks workspace. For more information, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md).
+2.  A Hologres instance is purchased and bound to a DataWorks workspace. For more information, see [Quick start to HoloStudio](/intl.en-US/Common Development Tools/HoloStudio/Quick start to HoloStudio.md).
 3.  MaxCompute is activated. For more information, see [Activate MaxCompute](/intl.en-US/Prepare/Activate MaxCompute.md).
 
-**Note:** This topic describes how to import data from a MaxCompute non-partition table and a MaxCompute partition table to Hologres separately. Hologres seamlessly integrates with MaxCompute at the underlying layer. We recommend that you execute SQL statements to import data from MaxCompute tables to Hologres. For more information, see [t1644102.md\#](/intl.en-US/Data Access/Big Data/MaxCompute/Use SQL statements to import MaxCompute to Hologres.md).
+**Note:** This topic describes how to import data from a MaxCompute non-partition table and a MaxCompute partition table to Hologres separately. Hologres seamlessly integrates with MaxCompute at the underlying layer. We recommend that you execute SQL statements to import data from MaxCompute tables to Hologres. For more information, see [t1644102.md\#](/intl.en-US/Data Access/Big Data/MaxCompute/Use SQL statements to import data from MaxCompute to Hologres.md).
 
 ## Import MaxCompute non-partition table to Hologres
 
@@ -49,12 +49,12 @@ To import data from a MaxCompute non-partition table to Hologres, follow these s
 
     Before using Data Integration of DataWorks to import data to Hologres, you must configure a connection to Hologres. Log on to the DataWorks console and go to the Data Integration page of the target workspace. On the homepage of Data Integration, click the **Workspace Manage** icon in the upper-right corner. On the page that appears, click **Data Source** in the left-side navigation pane. On the Data Source page, click **Add a Connection** in the upper-right corner. In the dialog box that appears, click **Hologres**. In the Add Hologres Connection dialog box, set parameters as required.
 
-    ![c](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5098317951/p127045.png)
+    ![c](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5098317951/p127045.png)
 
 3.  **Use Data Integration to import data from MaxCompute non-partition table to Hologres.**
     1.  After configuring the connection, go back to the homepage of **Data Integration** and click **New Task**. Then, you are directed to DataStudio. In the Create Node dialog box that appears, select Batch Synchronization for Node Type, set Node Name and Location as required, and then click Commit.
 
-        ![738](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5098317951/p96502.png)
+        ![738](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5098317951/p96502.png)
 
     2.  In the **Connections** section on the configuration tab of the node, specify the MaxCompute non-partition table as the source. Specify a Hologres connection as the destination and click **Create Table** to create a table in Hologres for receiving data from the MaxCompute non-partition table. You can also set an existing table in Hologres as the destination if it supports the same data types as the MaxCompute non-partition table.
 
@@ -70,7 +70,7 @@ To import data from a MaxCompute non-partition table to Hologres, follow these s
         |Partitions|The partitions to which data is synchronized.|Yes|You can set partitioning fields to variables or fixed values.|
         |Write Mode|The method used to import data to Hologres. Valid values: SDK \(Fast Write\) and SQL \(INSERT INTO\).         -   SDK \(Fast Write\): Write data to Hologres through the HoloHub API. This mode provides the optimal performance for you.
         -   SQL \(INSERT INTO\): Write data to Hologres through the INSERT INTO statement provided by PostgreSQL.
-|Yes|To write data in the SDK \(Fast Write\) mode, use **the HoloHub API**. For more information, see [Overview of the HoloHub API](/intl.en-US/Data Access/Big Data/Realtime Compute/Overview of the HoloHub API.md).|
+|Yes|To write data in the SDK \(Fast Write\) mode, use **the HoloHub API**. For more information, see [Overview of the HoloHub API]().|
         |Solution to Data Write Conflicts|Specifies whether to overwrite the existing data in the destination Hologres table. Valid values: Replace and Ignore.         -   Replace: Overwrite the existing data.
         -   Ignore: Retain the existing data and ignore the new data.
 |Yes|**This parameter is available only when the table has a primary key.**|
@@ -96,7 +96,7 @@ To import data from a MaxCompute non-partition table to Hologres, follow these s
         |Expected Maximum Concurrency|The maximum number of concurrent threads to read and write data to data storage within a single sync node.|No|None.|
         |Bandwidth Throttling|Specifies whether to enable bandwidth throttling. You can enable bandwidth throttling and set a maximum transmission rate to avoid heavy read workload of the source.|No|We recommend that you enable bandwidth throttling and set the maximum transmission rate based on the configurations of the source database.|
         |Dirty Data Records Allowed|The maximum number of errors or dirty data records allowed.|No|None.|
-        |Resource Group|The group of the servers on which the batch sync node is run. To write data in the SDK \(Fast Write\) mode, you must select an exclusive resource group for data integration.|Yes|For more information, see [Use exclusive resource groups for data integration]() and [Add a custom resource group]().|
+        |Resource Group|The group of the servers on which the batch sync node is run. To write data in the SDK \(Fast Write\) mode, you must select an exclusive resource group for data integration.|Yes|For more information, see [Exclusive resource groups for data integration]() and [Add a custom resource group]().|
 
     6.  After the preceding configuration is completed, click the **Save** icon and then the **Run** icon on the top of the tab. The system synchronizes the specified data from the source MaxCompute table to Hologres.
 4.  **Query data in Hologres.**
@@ -143,7 +143,7 @@ Hologres seamlessly integrates with MaxCompute. Data in a MaxCompute partition t
             |Partitions|The partitions to which data is synchronized.|Yes|You can set partitioning fields to variables or fixed values.|
             |Write Mode|The method used to import data to Hologres. Valid values: SDK \(Fast Write\) and SQL \(INSERT INTO\).             -   SDK \(Fast Write\): Write data to Hologres through the HoloHub API. This mode provides the optimal performance for you.
             -   SQL \(INSERT INTO\): Write data to Hologres through the INSERT INTO statement provided by PostgreSQL.
-|Yes|To write data in the SDK \(Fast Write\) mode, use the HoloHub API. For more information, see [Overview of the HoloHub API](/intl.en-US/Data Access/Big Data/Realtime Compute/Overview of the HoloHub API.md).|
+|Yes|To write data in the SDK \(Fast Write\) mode, use the HoloHub API. For more information, see [Overview of the HoloHub API]().|
             |Solution to Data Write Conflicts|Specifies whether to overwrite the existing data in the destination Hologres table. Valid values: Replace and Ignore.             -   Replace: Overwrite the existing data.
             -   Ignore: Retain the existing data and ignore the new data.
 |Yes|**This parameter is available only when the table has a primary key.**|
@@ -157,7 +157,7 @@ Hologres seamlessly integrates with MaxCompute. Data in a MaxCompute partition t
             |Expected Maximum Concurrency|The maximum number of concurrent threads to read and write data to data storage within a single sync node.|No|None.|
             |Bandwidth Throttling|Specifies whether to enable bandwidth throttling. You can enable bandwidth throttling and set a maximum transmission rate to avoid heavy read workload of the source.|No|We recommend that you enable bandwidth throttling and set the maximum transmission rate based on the configurations of the source database.|
             |Dirty Data Records Allowed|The maximum number of errors or dirty data records allowed.|No|None.|
-            |Resource Group|The group of the servers on which the batch sync node is run. To write data in the SDK \(Fast Write\) mode, you must select an exclusive resource group for data integration.|Yes|For more information, see [Use exclusive resource groups for data integration]() and [Add a custom resource group]().|
+            |Resource Group|The group of the servers on which the batch sync node is run. To write data in the SDK \(Fast Write\) mode, you must select an exclusive resource group for data integration.|Yes|For more information, see [Exclusive resource groups for data integration]() and [Add a custom resource group]().|
 
         7.  Save and run the batch sync node. Then, the system synchronizes the data of the specified partitions to the Hologres non-partition table. You can also commit the batch sync node to the scheduling system to periodically import the specified data in the source MaxCompute table to the destination Hologres table. For more information, see [Dependencies]().
     -   **Case 2: Import MaxCompute partition table to a Hologres partition table.**
@@ -189,7 +189,7 @@ Hologres seamlessly integrates with MaxCompute. Data in a MaxCompute partition t
             |Partitions|The partitions to which data is synchronized.|Yes|You can set partitioning fields to variables or fixed values.|
             |Write Mode|The method used to import data to Hologres. Valid values: SDK \(Fast Write\) and SQL \(INSERT INTO\).             -   SDK \(Fast Write\): Write data to Hologres through the HoloHub API. This mode provides the optimal performance for you.
             -   SQL \(INSERT INTO\): Write data to Hologres through the INSERT INTO statement provided by PostgreSQL.
-|Yes|To write data in the SDK \(Fast Write\) mode, use **the HoloHub API**. For more information, see [Overview of the HoloHub API](/intl.en-US/Data Access/Big Data/Realtime Compute/Overview of the HoloHub API.md).|
+|Yes|To write data in the SDK \(Fast Write\) mode, use **the HoloHub API**. For more information, see [Overview of the HoloHub API]().|
             |Solution to Data Write Conflicts|Specifies whether to overwrite the existing data in the destination Hologres table. Valid values: Replace and Ignore.             -   Replace: Overwrite the existing data.
             -   Ignore: Retain the existing data and ignore the new data.
 |Yes|**This parameter is available only when the table has a primary key.**|
