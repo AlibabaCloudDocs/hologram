@@ -266,51 +266,78 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     5.  **bitmap\_columns**
 
         ```
-        call set_table_property('<table_name>', 'bitmap_columns', '[columnName [,...]]');
+        call set_table_property('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         ```
+
+        其中，参数说明如下表所示：
+
+        |参数|说明|
+        |--|--|
+        |table\_name|表名称。需要与待修改的表名大小写保持一致，可以携带Schema信息。|
+        |on|当前字段打开bitmap\_columns。|
+        |off|当前字段关闭bitmap\_columns。|
 
         -   bitmap\_columns：比特编码列。bitmap可以对存储文件内部的数据进行快速过滤，所以建议把filter条件的数据建成比特编码。
         -   设置bitmap\_columns要求表的存储形式为column，即列存表。
-        -   bitmap\_columns适合无序且取值不多的列，对于每个取值构造一个二进制串，表示取值所在位置的bitmap。
+        -   bitmap\_columns适合取值不多的列，对于每个取值构造一个二进制串，表示取值所在位置的bitmap。
         -   bitmap\_columns指定的列可以为空。
-        -   默认所有text列都会被隐式地设置到bitmap\_columns中。
+        -   当前版本默认所有text列都会被隐式地设置到bitmap\_columns中（Hologres V0.8和Hologres V0.9版本行为一致）。
         -   **可以再事务之外单独使用，表示修改bitmap\_columns列，修改之后非立即生效，比特编码构建和删除在后台异步执行。**详请参见[ALTER TABLE](/cn.zh-CN/Hologres SQL/DDL/TABLE/ALTER TABLE.md)。
         -   使用示例
 
             ```
             //创建tbl并设置bitmap索引
             begin;
-            create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'bitmap_columns', 'a,b');
+            create table tbl (
+              a int not null, 
+              b text not null);
+            call set_table_property('tbl', 'bitmap_columns', 'a:on,b:off');
             commit;
             
-            //修改bitmap索引
-            call set_table_property('tbl', 'bitmap_columns', 'a');
+            //全量修改bitmap索引（除了call里面设定的字段，其余text字段会自动设置为bitmap索引）
+            call set_table_property('tbl', 'bitmap_columns', 'a:off');
+            //增量修改bitmap索引（只修改指定的字段是否为bitmap）
+            call update_table_property('tbl', 'bitmap_columns', 'b:off');
             ```
 
     6.  **dictionary\_encoding\_columns**
 
         ```
-        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName [,...]]');
+        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off]}[,...]]');
         ```
+
+        其中，参数说明如下表所示：
+
+        |参数|说明|
+        |--|--|
+        |table\_name|表名称。需要与待修改的表名大小写保持一致，可以携带Schema信息。|
+        |on|表示当前字段打开dictionary\_encoding\_columns。|
+        |off|表示当前字段关闭dictionary\_encoding\_columns。|
+        |auto|表示自动。如果设置了auto，Hologres会根据所在列数值的重复程度自动选择是否进行dictionary\_encoding\_columns，值的重复度越高，字典编码的收益越大。在Hologres V0.8版本及更早版本中默认所有text列都会被设置为dictionary\_encoding\_columns，在Hologres V0.9版本及之后版本，会根据数据特征自动选择是否创建字典编码。|
 
         -   dictionary\_encoding\_columns：字典编码列，为指定列的值构建字典映射。字典编码可以将字符串的比较转成数字的比较，加速group by、filter等查询。
         -   设置dictionary\_encoding\_columns要求表的存储形式为column，即列存表。
         -   dictionary\_encoding\_columns指定的列可以为null。型
-        -   无序但取值较少的列适合设置dictionary\_encoding\_columns，可以压缩存储。
+        -   取值较少的列适合设置dictionary\_encoding\_columns，可以压缩存储。
         -   V0.8及更早版本中默认所有text列都会被隐式地设置到dictionary\_encoding\_columns中。V0.9及之后的版本会根据数据特征自动选择是否创建字典编码。
         -   **可以在事务之外单独使用。表示修改dictionary\_encoding\_columns列，修改之后非立即生效，字典编码构建和删除在后台异步执行。**详请参见[ALTER TABLE](/cn.zh-CN/Hologres SQL/DDL/TABLE/ALTER TABLE.md)。
         -   使用示例
 
             ```
-            /创建表tbl并设置dictionary_encoding_columns索引
+            //创建表tbl并设置dictionary_encoding_columns索引
             begin;
-            create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'dictionary_encoding_columns', 'a,b');
+            create table tbl (
+              a int not null, 
+              b text not null,
+              c text not null
+            );
+            call set_table_property('tbl', 'dictionary_encoding_columns', 'a:on,b:off,c:auto');
             commit;
             
-            //修改dictionary_encoding_columns索引
-            call set_table_property('tbl', 'dictionary_encoding_columns', 'a');
+            //全量修改dictionary_encoding_columns索引（除了call里面设定的字段，其余text字段会自动设置为dictionary_encoding_columns索引）
+            call set_table_property('tbl', 'dictionary_encoding_columns', 'a:off');
+            //增量修改dictionary_encoding_columns索引（只修改指定的字段是否为dictionary_encoding_columns）
+            call update_table_property('tbl', 'dictionary_encoding_columns', 'b:off');
             ```
 
     7.  **time\_to\_live\_in\_seconds**
