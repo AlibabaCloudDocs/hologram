@@ -14,7 +14,7 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
 2.  In the top navigation bar, select a region from the drop-down list.
 
-    ![Region](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8969182061/p141749.png)
+    ![Region](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8398778061/p141749.png)
 
 3.  In the left-side navigation pane, click Instances. On the **Hologres Instances** page, click **Log in to the hologres database**.
 
@@ -22,11 +22,11 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
     1.  On the **Connection Management** page of the HoloWeb console, click the **Data Connection** tab. The New Connection dialog box appears.
 
-        ![Data Connection](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p116500.png)
+        ![Data Connection](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6398928061/p116500.png)
 
     2.  In the **New Connection** dialog box, set the parameters as required and click **OK**.
 
-        ![New Connection](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2560409951/p116502.png)
+        ![New Connection](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2560409951/p116502.png)
 
         |Parameter|Description|Remarks|
         |---------|-----------|-------|
@@ -47,11 +47,11 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
     1.  On the **Connection Management** page of the HoloWeb console, click the **Database** tab. The New database dialog box appears.
 
-        ![Database](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118032.png)
+        ![Database](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9405651161/p118032.png)
 
     2.  In the **New database** dialog box, set the parameters as required and click **OK**.
 
-        ![DB](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0999438951/p118018.png)
+        ![DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0999438951/p118018.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -65,11 +65,11 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
     1.  In the top navigation bar, click **Query**. On the Query page, click the **SQL window** tab. The New SQL query dialog box appears.
 
-        ![sql](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118146.png)
+        ![sql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3749282061/p118146.png)
 
     2.  In the **New SQL query** dialog box, set the parameters as required and click **OK**.
 
-        ![chax](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118147.png)
+        ![chax](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3749282061/p118147.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -78,7 +78,7 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
         |Connection name|The name of the connection based on which you want to create the query task.|
         |Database name|The name of the database from which data is to be queried.|
 
-    3.  Enter the following statements in the SQL editor and click the ![r](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118141.png) icon:
+    3.  Enter the following statements in the SQL editor and click the ![r](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3749282061/p118141.png) icon:
 
         ```
         BEGIN;
@@ -117,11 +117,11 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
     1.  On the **Connection Management** page of the HoloWeb console, click the **External table** tab. The New external table tab appears.
 
-        ![o](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118150.png)
+        ![o](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3749282061/p118150.png)
 
     2.  On the **New external table** tab, set the parameters as required and click **Submit**.
 
-        ![c](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4074762061/p118151.png)
+        ![c](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4074762061/p118151.png)
 
         |Parameter|Description|Remarks|
         |---------|-----------|-------|
@@ -137,6 +137,6 @@ HoloWeb is a one-stop platform that is built based on Hologres. HoloWeb allows y
 
     3.  After you create the foreign table, click **My connection** in the left-side navigation pane of the **Connection Management** page. Double-click the foreign table. On the tab that appears, click **Data preview** and preview the source data.
 
-        ![Data preview](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3749282061/p118166.png)
+        ![Data preview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3749282061/p118166.png)
 
 
