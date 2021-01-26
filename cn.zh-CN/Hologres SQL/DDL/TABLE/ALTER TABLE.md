@@ -73,7 +73,7 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
         |参数|说明|
         |--|--|
         |table\_name|需要和待修改的表名大小写保持一致，可以携带Schema信息。|
-        |on|表示表示当前字段打开**dictionary\_encoding\_columns**。|
+        |on|表示当前字段打开**dictionary\_encoding\_columns**。|
         |off|表示当前字段关闭**dictionary\_encoding\_columns**。|
         |auto|表示自动。如果是设置了auto，Hologres会根据所在列数值的重复程度自动选择是否进行**dictionary\_encoding\_columns**，值的重复度越高，字典编码的收益越大。在Hologres V0.8版本及更早版本中默认所有text列都会被设置为**dictionary\_encoding\_columns**，在Hologres V0.9版本及之后版本，会根据数据特征自动选择是否创建字典编码。|
 
