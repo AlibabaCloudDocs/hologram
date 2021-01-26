@@ -31,13 +31,14 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
     |--|--|
     |table\_name|表示待查询的当前数据库下的表名称。|
 
--   返回值：返回值的单位是 Byte。返回的数据为该表此刻的memtable大小和当前该表的物理磁盘大小。即table size = memtable size + disk size。
+-   返回值：返回值的单位是 Byte。返回的数据为该表此刻的memtable大小和当前该表的物理磁盘大小。
 
-如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
+    如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
 
-```
-select pg_size_pretty( pg_relation_size('table_name'));//返回单位是KB或者MB等单位
-```
+    ```
+    select pg_size_pretty( pg_relation_size('table_name'));//返回单位是KB或者MB等单位
+    ```
+
 
 ## 查看DB的存储大小
 
@@ -57,11 +58,12 @@ select pg_size_pretty( pg_relation_size('table_name'));//返回单位是KB或者
     |--|--|
     |current\_database|指代当前DB。您无需替换参数，直接执行函数命令语句即可查询当前DB的存储规格大小。|
 
--   返回值：返回值的单位是 Byte。返回的数据为指定DB下面所有Hologres表的大小和DB下面产生的日志大小。即tdatabase size = SUM\(Holo表\) + 日志size。
+-   返回值：返回值的单位是 Byte。返回的数据为指定DB下面所有Hologres表的大小和DB下面产生的WAL（Write-Ahead Log）日志大小。
 
-如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
+    如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
 
-```
-select pg_size_pretty(pg_database_size(current_database())); //返回单位是KB或者MB等单位
-```
+    ```
+    select pg_size_pretty(pg_database_size(current_database())); //返回单位是KB或者MB等单位
+    ```
+
 
