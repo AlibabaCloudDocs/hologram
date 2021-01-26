@@ -24,7 +24,7 @@ INSERT ON CONFLICT语句用于在指定列插入某行数据时，如果主键�
 
 -   通过DataWorks的数据集成导入数据。
 
-    数据集成已内置`INSERT ON CONFLICT`功能，该功能的实现原理请参见[HoloWrtier](https://help.aliyun.com/knowledge_detail/158321.html?spm=a2c4g.11186631.2.11.17e6f853Ju0Tz0)。同时，您需要进行如下配置：
+    数据集成已内置`INSERT ON CONFLICT`功能，该功能的实现原理请参见[Hologres Writer]()。同时，您需要进行如下配置：
 
     -   离线同步数据时选择**SDK（极速写入）**写入模式，并根据业务逻辑选择**写入冲突策略**为**忽略（Ignore）**或者**更新（Replace）**。
     -   实时同步数据时，**写入冲突策略**选择**忽略（Ignore）**或者**更新（Replace）**。
