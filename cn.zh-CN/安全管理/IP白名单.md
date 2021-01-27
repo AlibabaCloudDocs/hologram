@@ -14,6 +14,9 @@ keyword: [Hologres, IP白名单, Holoweb]
 -   [购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)实例成功后，若是没有设置IP白名单， 则默认对所有网络开放。
 -   仅实例管理员（Superuser）可以设置IP白名单。
 -   在Holoweb配置数据连接时，需要将连接的登录方式设置为当前用户免密登录，才可以为当前连接配置IP白名单。连接Hologres实例配置操作指导，请参见[连接Hologres实例](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
+
+    ![当前用户免密登录](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9962371161/p232918.png)
+
 -   为避免设置白名单之后，Hologres管理控制台、HoloStudio或Holoweb不能访问。因此，您需要按照[新增IP白名单](#section_hsq_vod_xpd)的操作指导，将其对应的分组加入到IP白名单，保证正常访问。
 
     |分组|说明|
