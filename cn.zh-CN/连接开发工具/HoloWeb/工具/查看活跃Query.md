@@ -12,7 +12,7 @@ keyword: [查看活跃Query, HoloWeb]
 
 1.  连接Hologres实例至HoloWeb，详情请参见[数据连接](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据连接.md)。
 
-2.  在HoloWeb开发页面的顶部菜单栏，单击**工具**。
+2.  在HoloWeb开发页面的顶部菜单栏，单击**系统管理**。
 
 3.  在左侧导航栏，单击**性能优化** \> **活跃Query**。
 
