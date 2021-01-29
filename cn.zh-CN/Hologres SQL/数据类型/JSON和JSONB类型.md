@@ -60,7 +60,7 @@ JSON数据类型用来存储JSON数据，这种数据也可以被存储为TEXT�
 
 |函数|描述|操作示例|执行结果|
 |--|--|----|----|
-|to\_json\(anyelement\)|此函数可以将该值返回为JSON。数组和组合会被（递归）转换成数组和对象，对于不是数组和组合的值，如果有从该类型到JSON的造型，造型函数将被用来执行该转换，否则将产生一个标量值。对于任何不是数字、布尔、空值的标量类型，将使用文本表达，使其是一个有效的JSON值。|`select to_json('Fred said "Hi."'::text)`|`"Fred said \"Hi.\""`|
+|to\_json\(anyelement\)|此函数可以将该值返回为JSON。数组和组合会被（递归）转换成数组和对象，对于不是数组和组合的值，如果有从该类型到JSON的造型，造型函数将被用来执行该转换，否则将产生一个标量值。对于任何不是数字、布尔、空值的标量类型，将使用文本表达，使其是一个有效的JSON值。|`select to_json('Fred said "Hi."'::text)`|`"Fred said \"Hi.\""`|
 |to\_jsonb\(anyelement\)|
 |array\_to\_json\(anyarray \[, pretty\_bool\]\)|此函数可以将数组作为一个JSON数组返回。一个PostgreSQL多维数组会成为一个数组的JSON数组。如果pretty\_bool为真，将在第1维度的元素之间增加换行。|`select array_to_json('{{1,5},{99,100}}'::int[])`|`[[1,5],[99,100]]`|
 |row\_to\_json\(record \[, pretty\_bool\]\)|此函数可以将行作为一个 JSON对象返回。如果pretty\_bool为真，将在第1层元素之间增加换行。|`select row_to_json(row(1,'foo'))`|`{"f1":1,"f2":"foo"}`|
@@ -135,7 +135,7 @@ select * from json_populate_recordset(null::myrowtype, '[{"a":1,"b":2},{"a":3,"b
 |jsonb\_array\_elements\_text\(jsonb\)|
 |json\_typeof\(json\)|text|把最外层的JSON值的类型作为一个文本字符串返回。可能的类型是： object、array、string、number、 boolean以及null。|`select json_typeof('-123.4')`|`number`|
 |jsonb\_typeof\(jsonb\)|
-|json\_to\_record\(json\)|record|从一个JSON对象（见下文的注解）构建一个任意的记录。正如所有返回record的函数一样，调用者必须用一个AS子句显式地定义记录的结构。|`create table jpop  (a text, b int, c timestamp); select * from json_to_record('{"a":1, "b":{"c":16, "d":2}, "x":8, "ca": ["1 2", 3], "ia": [[1,2],[3,4]], "r": {"a": "aaa", "b": 123, "c": "2020-01-01 12:00:00.000"}}'::json)    as t(a int, b json, c text, x int, ca char(5)[], ia int[][], r jpop);`|```
+|json\_to\_record\(json\)|record|从一个JSON对象（见下文的注解）构建一个任意的记录。正如所有返回record的函数一样，调用者必须用一个AS子句显式地定义记录的结构。|`create table jpop (a text, b int, c timestamp);select * from json_to_record('{"a":1, "b":{"c":16, "d":2}, "x":8, "ca": ["1 2", 3], "ia": [[1,2],[3,4]], "r": {"a": "aaa", "b": 123, "c": "2020-01-01 12:00:00.000"}}'::json) as t(a int, b json, c text, x int, ca char(5)[], ia int[][], r jpop);`|```
 a |        b        | c | x |        ca         |      ia       |                r
 
 ---+-----------------+---+---+-------------------+---------------+---------------------------------
@@ -152,11 +152,11 @@ a |        b        | c | x |        ca         |      ia       |               
 |jsonb\_to\_recordset\(jsonb\)|
 |json\_strip\_nulls\(from\_json json\)|json|返回from\_json，其中所有具有空值的对象域都被省略。其他空值不动。|`select json_strip_nulls('[{"f1":1,"f2":null},2,null,3]')`|`[{"f1":1},2,null,3]`|
 |jsonb\_strip\_nulls\(from\_json jsonb\)|jsonb|
-|jsonb\_set\(target jsonb, path text\[\], new\_value jsonb\[,create\_missing boolean\]\)|jsonb|返回target，其中由path指定的节用new\_value替换，如果path指定的项不存在并且create\_missing为真（默认为 true）则加上new\_value。正如面向路径的 操作符一样，出现在path中的负整数表示从JSON数组的末尾开始数。|`select jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false);`|`[{"f1":[2,3,4],"f2":null},2,null,3]`|
+|jsonb\_set\(target jsonb, path text\[\], new\_value jsonb\[,create\_missing boolean\]\)|jsonb|返回target，其中由path指定的节用new\_value替换，如果path指定的项不存在并且create\_missing为真（默认为 true）则加上new\_value。正如面向路径的操作符一样，出现在path中的负整数表示从JSON数组的末尾开始数。|`select jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false);`|`[{"f1":[2,3,4],"f2":null},2,null,3]`|
 |`select jsonb_set('[{"f1":1,"f2":null},2]', '{0,f3}','[2,3,4]')`|`[{"f1": 1, "f2": null, "f3": [2, 3, 4]}, 2]`|
 |jsonb\_insert\(target jsonb, path text\[\], new\_value jsonb, \[insert\_after boolean\]\)|jsonb|返回被插入了new\_value的target。如果path指定的target节在一个JSONB数组中，new\_value将被插入到目标之前（insert\_after为false，默认情况）或者之后（insert\_after为真）。如果path指定的target节在一个JSONB对象内，则只有当target不存在时才插入new\_value。对于面向路径的操作符来说，出现在path中的负整数表示从JSON数组的末尾开始计数。|`select jsonb_insert('{"a": [0,1,2]}', '{a, 1}', '"new_value"')`|`{"a": [0, "new_value", 1, 2]}`|
 |`select jsonb_insert('{"a": [0,1,2]}', '{a, 1}', '"new_value"', true)`|`{"a": [0, 1, "new_value", 2]}`|
-|jsonb\_pretty\(from\_json jsonb\)|text|把from\_json返回成一段 缩进后的JSON文本。|`select jsonb_pretty('[{"f1":1,"f2":null},2,null,3]')`|```
+|jsonb\_pretty\(from\_json jsonb\)|text|把from\_json返回成一段缩进后的JSON文本。|`select jsonb_pretty('[{"f1":1,"f2":null},2,null,3]')`|```
 [
     {
         "f1": 1,
