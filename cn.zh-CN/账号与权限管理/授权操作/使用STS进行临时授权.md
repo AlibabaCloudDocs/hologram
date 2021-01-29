@@ -101,7 +101,7 @@ Hologres可以通过阿里云STS（Security Token Service）进行临时授权�
 
 5.  单击**确定**，完成STS角色设置。
 
-6.  当您完成RAM用户的STS角色设置之后，还需要为该RAM用户授予Hologres实例的权限，该RAM用户才能在权限范围内连接Hologres实例并开发。具体操作，请参见[授予RAM用户权限](/cn.zh-CN/账号与权限管理/授权操作/授予RAM用户权限.md)。
+6.  当您完成RAM用户的STS角色设置之后，还需要为该STS角色授予Hologres实例的权限，该角色才能在权限范围内连接Hologres实例并开发。为STS角色授权的具体操作，请参见[授予RAM用户权限](/cn.zh-CN/账号与权限管理/授权操作/授予RAM用户权限.md)。
 
 
 ## 步骤四：登录阿里云并使用Hologres
