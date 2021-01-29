@@ -19,10 +19,11 @@ keyword: [Hologres, MaxCompute]
 -   支持跨区域导出至MaxCompute，但因为网络原因，同一个区域导出的性能会更好。
 -   当前Hologres仅支持一级分区，但是可以导出至MaxCompute的二级分区，但是需要MaxCompute的分区值与Hologres字段一一对应。同时Hologres的分区表也可以导入至MaxCompute的非分区表。
 -   Hologres的数据类型与MaxCompute的数据类型一一映射，请参见[数据类型汇总](/cn.zh-CN/Hologres SQL/数据类型/数据类型汇总.md)。
+-   目前Hologres不支持将ARRAY、MAP、STRUCT等复杂数据类型导出至MaxCompute中。
 
 ## 操作流程
 
-1.  在Hologres准备一张Hologres内部表（例如：holo\_source）,用于导出数据至MaxCompute。
+1.  在Hologres准备一张Hologres内部表（例如：holo\_source），用于导出数据至MaxCompute。
 2.  在MaxCompute准备一张MaxComute表用于接收数据（例如mc\_sink）。
 3.  在Hologres新建一张外部表，用于映射Hologres内部表（例如 mapping\_foreign\_table）。
 4.  在Hologres通过SQL语句导出数据至MaxCompute。
