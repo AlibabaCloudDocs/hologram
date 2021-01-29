@@ -17,16 +17,31 @@ Hologres可以通过阿里云STS（Security Token Service）进行临时授权�
 
 如下操作步骤将指导您通过创建阿里云STS（Security Token Service）临时授权访问Hologres。
 
--   [步骤一：创建权限策略](#section_13e_84l_yoy)
--   [步骤二：创建RAM角色](#section_xdn_m7m_oxp)
+-   [步骤一：创建RAM角色](#section_nf5_ape_79m)
+-   [步骤二：创建权限策略](#section_13e_84l_yoy)
 -   [步骤三：创建RAM用户并设置STS角色](#section_5jy_62f_8by)
 -   [步骤四：登录阿里云并使用Hologres](#section_dyn_453_xv2)
 
-## 步骤一：创建权限策略
+## 步骤一：创建RAM角色
 
-1.  登录[访问控制](https://ram.console.aliyun.com/roles)，在左侧导航栏选择**权限管理** \> **权限策略管理**，单击**创建权限策略**。
+1.  登录[访问控制](https://ram.console.aliyun.com/roles)在左侧导航栏，单击RAM角色管理。
 
-2.  在新建自定义权限策略页面，配置参数信息。
+2.  在RAM角色管理页面，单击**创建RAM角色**，当前可信实体类型选择阿里云账号。
+
+3.  单击**下一步**，配置角色信息。
+
+    ![创建RAM角色](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0258311161/p228130.png)
+
+    -   角色名称：自定义角色名称。
+    -   选择云账号：选择当前云账号。
+4.  单击**完成**，页面提示角色创建成功完成创建。
+
+5.  单击**为角色授权**在添加权限页面，选择**新建权限策略**，按照[步骤二：创建权限策略](#section_13e_84l_yoy)中的说明添加权限策略。
+
+
+## 步骤二：创建权限策略
+
+1.  选择**新建权限策略**后默认进入[访问控制](https://ram.console.aliyun.com/roles)，的**权限策略管理**页签，新建自定义权限策略页面，配置如下参数信息。
 
     -   策略名称和备注，自定义策略名称和备注信息。
     -   配置模式，选择可视化配置或脚本配置。
@@ -65,24 +80,13 @@ Hologres可以通过阿里云STS（Security Token Service）进行临时授权�
             }
             ```
 
-3.  单击**确定**，完成权限策略配置。
+2.  单击**确定**，完成权限策略配置。
 
+3.  在左侧导航栏，单击进入RAM角色管理页面，单击目标角色操作列的**添加权限**。
 
-## 步骤二：创建RAM角色
+4.  在添加权限页面，单击**自定义策略**，选择创建的权限名称。
 
-1.  登录[访问控制](https://ram.console.aliyun.com/roles)在左侧导航栏，单击RAM角色管理。
-
-2.  在RAM角色管理页面，单击**创建RAM角色**，当前可信实体类型选择阿里云账号。
-
-3.  单击**下一步**，配置角色信息。
-
-    ![创建RAM角色](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0258311161/p228130.png)
-
-    -   角色名称：自定义角色名称。
-    -   选择云账号：选择当前云账号。
-4.  单击**完成**，页面提示角色创建成功完成创建。
-
-5.  单击**为角色授权**在添加权限页面，选择自定义权限策略，添加[步骤一：创建权限策略](#section_13e_84l_yoy)中创建的权限策略。
+5.  单击**确定**，完成角色授权。
 
 
 ## 步骤三：创建RAM用户并设置STS角色
@@ -113,7 +117,7 @@ Hologres可以通过阿里云STS（Security Token Service）进行临时授权�
 2.  在角色转换页面，填写如下信息并单击**切换**。
 
     -   企业别名/默认域名/UID：填写账号ID。账号ID信息，请通过[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)获取。
-    -   角色名：填写[步骤二：创建RAM角色](#section_xdn_m7m_oxp)中创建的角色名称。
+    -   角色名：填写[\#section\_xdn\_m7m\_oxp](#section_xdn_m7m_oxp)中创建的角色名称。
 3.  切换STS角色成功登录阿里云官网后，可以开始使用角色连接Hologres并开发。
 
 
