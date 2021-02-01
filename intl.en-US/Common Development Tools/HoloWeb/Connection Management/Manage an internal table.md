@@ -22,11 +22,13 @@ This topic describes how to use HoloWeb to create, edit, and delete an internal 
 
     2.  Click the required connection and then click **Database**. All the created databases are displayed.
 
-    3.  Click the required database and then click **Schema**. All the available schemas are displayed.
+    3.  Click the required database and then click **Mode**. All the available modes are displayed.
 
     4.  Right-click the required schema and select **New internal table**.
 
 3.  On the **New internal table** tab, set the parameters as required.
+
+    ![New internal table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4099438951/p132195.png)
 
     |Category|Parameter|Description|
     |--------|---------|-----------|
@@ -65,9 +67,9 @@ By default, the system selects all the fields of the **text** type for this para
 
 2.  Click the required connection and then click **Database**. All the created databases are displayed.
 
-3.  Click the required database and then click **Schema**. All the available schemas are displayed.
+3.  Click the required database and then click **Mode**. All the available modes are displayed.
 
-4.  Click the required schema and then click **Table**. All the created internal tables are displayed.
+4.  Click the required mode and then click **Table**. All the created internal tables are displayed.
 
 5.  Right-click the required internal table and select **Edit table**.
 
