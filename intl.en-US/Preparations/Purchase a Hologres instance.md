@@ -27,11 +27,11 @@ You can purchase a Hologres instance as a RAM user only after the required permi
 
 7.  Complete the payment on the **Purchase** page.
 
-    After an instance is purchased, go to the [Hologres console](https://hologram.console.aliyun.com/#/instance) to view the instance information. For more information about how to use the Hologres console, see [Hologres Console Overview](/intl.en-US/Instance Manage/Hologres Console/Hologres Console Overview.md).
+    After an instance is purchased, go to the [Hologres console](https://hologram.console.aliyun.com/#/instance) to view the instance information. For more information about how to use the Hologres console, see [Overview](/intl.en-US/Manage instances/Hologres Console/Overview.md).
 
     Hologres is compatible with PostgreSQL. You can connect to a Hologres instance from the PostgreSQL client for data analytics. You can also use extract, transform, load \(ETL\) or Business Intelligence \(BI\) tools to connect to a Hologres instance.
 
     -   For more information about the PostgreSQL client, see [Use Hologres from the PostgreSQL client](/intl.en-US/Quick Start/Use Hologres from the PostgreSQL client.md).
-    -   For more information about HoloStudio, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md).
-    -   For more information about common development tools, see [Development Tools Overview](/intl.en-US/Common Development Tools/Development Tools Overview.md).
+    -   For more information about HoloStudio, see [Quick start to HoloStudio]().
+    -   For more information about common development tools, see [Overview](/intl.en-US/Common Development Tools/Overview.md).
 
