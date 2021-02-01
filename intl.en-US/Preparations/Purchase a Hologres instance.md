@@ -32,6 +32,5 @@ You can purchase a Hologres instance as a RAM user only after the required permi
     Hologres is compatible with PostgreSQL. You can connect to a Hologres instance from the PostgreSQL client for data analytics. You can also use extract, transform, load \(ETL\) or Business Intelligence \(BI\) tools to connect to a Hologres instance.
 
     -   For more information about the PostgreSQL client, see [Use Hologres from the PostgreSQL client](/intl.en-US/Quick Start/Use Hologres from the PostgreSQL client.md).
-    -   For more information about HoloStudio, see [Quick start to HoloStudio]().
     -   For more information about common development tools, see [Overview](/intl.en-US/Common Development Tools/Overview.md).
 
