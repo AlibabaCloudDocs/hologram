@@ -57,10 +57,10 @@ keyword: [Hologres, psql客户端]
     |Endpoint|Hologres实例的公共网络地址。示例取值`xxx-cn-hangzhou.hologres.aliyuncs.com`。 |
     |Database|Hologres的数据库名称。开通Hologres实例后，系统自动创建**postgres**数据库。
 
-您可以使用**postgres**数据库链接Hologres，但是该数据库分配到的资源较少，开发实际业务建议您新建数据库。详情请参见[创建数据库](/intl.zh-CN/快速入门/创建数据库.md)。
+您可以使用**postgres**数据库链接Hologres，但是该数据库分配到的资源较少，开发实际业务建议您新建数据库。详情请参见[创建数据库](/intl.zh-CN/快速入门/psql快速入门.md)。
 
 示例取值`mydb`。 |
 
 
-成功连接Hologres后，您可以使用标准的PostgreSQL语句，在psql客户端创建数据库，详情请参见[使用psql客户端创建数据库](/intl.zh-CN/快速入门/创建数据库.md)。
+成功连接Hologres后，您可以使用标准的PostgreSQL语句，在psql客户端创建数据库，详情请参见[创建数据库](/intl.zh-CN/快速入门/psql快速入门.md)。
 
