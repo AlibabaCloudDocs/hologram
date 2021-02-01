@@ -27,7 +27,7 @@ This topic describes how to connect to a Hologres instance and use the standard 
 
         Enter the AccessKey secret of your Alibaba Cloud account as prompted.
 
-        ![LIN](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2729189951/p143892.png)
+        ![LIN](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2729189951/p143892.png)
 
     -   Execute the following SQL statement if you are using the macOS operating system:
 
@@ -35,7 +35,7 @@ This topic describes how to connect to a Hologres instance and use the standard 
         PGUSER=<AccessKey ID> PGPASSWORD=<AccessKey Secret> psql -p <Port> -h <Endpoint> -d <Database>
         ```
 
-        ![linux](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3161979951/p137096.png)
+        ![linux](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3161979951/p137096.png)
 
     -   Execute the following SQL statements if you are using the Windows operating system:
 
@@ -47,7 +47,7 @@ This topic describes how to connect to a Hologres instance and use the standard 
         Password of the <AccessKey ID> user: <AccessKey Secret>
         ```
 
-        ![tu](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1379189951/p165824.png)
+        ![tu](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1379189951/p165824.png)
 
     |Parameter|Description|
     |---------|-----------|
