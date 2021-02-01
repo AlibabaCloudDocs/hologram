@@ -15,7 +15,7 @@ SQL Workbench/J is a free, cross-platform SQL query and analysis tool. You can u
 
 2.  Configure the parameters listed in the following table.
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5231013061/p65594.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5231013061/p65594.png)
 
     |Parameter|Description|Example value|
     |---------|-----------|-------------|
@@ -44,7 +44,7 @@ You can view the name of the database on the **Databases** tab of the instance d
 
 3.  Configure extended properties.
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9484903061/p65608.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9484903061/p65608.png)
 
     1.  Click **Extended Properties**. In the Edit extended properties dialog box, set SSL to true.
 
