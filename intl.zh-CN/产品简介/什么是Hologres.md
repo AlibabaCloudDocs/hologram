@@ -14,11 +14,11 @@ Hologres致力于低成本和高性能地大规模计算型存储和强大的查
 
 -   加速查询MaxCompute数据
 
-    Hologres与MaxCompute在底层无缝连接，您无须移动数据，即可使用标准的PostgreSQL语句查询分析MaxCompute中的海量数据，快速获取查询结果。
+    Hologres与MaxCompute在底层无缝连接，您无须移动数据，即可使用标准的PostgreSQL语句查询分析MaxCompute中的海量数据，快速获取查询结果。详情请参见[实时分析海量MaxCompute数据](/intl.zh-CN/最佳实践/数仓搭建/实时分析海量MaxCompute数据.md)。
 
 -   快速搭建实时数据仓库
 
-    Hologres深度集成实时计算Flink版，支持高并发地实时写入和实时查询数据，帮助您快速搭建企业实时数据仓库。
+    Hologres深度集成实时计算Flink版，支持高并发地实时写入和实时查询数据，帮助您快速搭建企业实时数据仓库。详情请参见[快速搭建实时数仓分析大屏](/intl.zh-CN/最佳实践/数仓搭建/快速搭建实时数仓分析大屏.md)。
 
 -   数据仓库服务化
 
@@ -29,6 +29,6 @@ Hologres致力于低成本和高性能地大规模计算型存储和强大的查
     -   支持交互式和服务式的多种查询场景。
 -   无缝对接主流BI工具
 
-    Hologres兼容PostgreSQL协议，提供JDBC或ODBC接口。您可以将查询到的海量数据轻松对接各种BI工具，实现探索式多维分析，无需迁移数据即可支持更丰富的应用场景。
+    Hologres兼容PostgreSQL协议，提供JDBC或ODBC接口。您可以将查询到的海量数据轻松对接各种BI工具，实现探索式多维分析，无需迁移数据即可支持更丰富的应用场景。详情请参见[BI工具概述](/intl.zh-CN/常见BI连接工具/概述.md)。
 
 
