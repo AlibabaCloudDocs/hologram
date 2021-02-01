@@ -74,6 +74,8 @@ If you set the Logon mode parameter to Password logon, you must set this paramet
 
 After a connection is created, the **User Management** module is displayed under the connection.
 
+![User Management](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1416412161/p187322.png)
+
 To manage users for a connection, double-click **User Management** under the connection to go to the **User Management** tab. The following operations are supported:
 
 -   Delete a user on this tab, as shown in the following figure.
