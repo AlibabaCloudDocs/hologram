@@ -10,19 +10,11 @@ In the Hologres console, the Hologres Instances page lists all instances purchas
 
 On the **Hologres Instances** page, you can view all the Hologres instances purchased by using your Alibaba Cloud account and the status of the instances. You can also create instances or modify the configurations of the instances. You can click the name of an instance to go to the instance details page. On the page that appears, you can manage the instance objects such as databases and users in a refined manner.
 
-![660](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5041572061/p94150.png)
-
 The **Hologres Instances** page provides the following features:
 
 -   **Create Instance**
 
     You can click the **Create Instance** button to go to the buy page of Hologres. On the page that appears, you can purchase instances. For more information, see [Purchase a Hologres instance](/intl.en-US/Preparations/Purchase a Hologres instance.md).
-
--   **Go to DataWorks - HoloStudio**
-
-    HoloStudio is an end-to-end data development platform based on Hologres. It is deeply integrated into DataWorks.
-
-    HoloStudio supports data development in a visualized manner and by using SQL statements. You can click **Go to DataWorks - HoloStudio** to use HoloStudio. Before you use HoloStudio, you must bind your Hologres instance to a DataWorks workspace. For more information, see [Bind a Hologres database to a workspace](/intl.en-US/HoloStudio/Bind a Hologres database to a workspace.md).
 
 -   **Search for an instance**
 
