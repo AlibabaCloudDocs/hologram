@@ -12,7 +12,7 @@ This topic describes how to use HoloWeb to view the details of a query task.
 
 1.  Connect the purchased Hologres instance to HoloWeb. For more information, see [Manage a connection](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Manage a connection.md).
 
-2.  On the HoloWeb page, click **Tools** in the top navigation bar.
+2.  On the HoloWeb page, click **System Management** in the top navigation bar.
 
 3.  In the left-navigation pane, choose **Performance Optimization** \> **Active Query**.
 
