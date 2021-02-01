@@ -32,6 +32,5 @@ RAM用户账号经过阿里云主账号授权后才能购买实例，详情请�
     Hologres兼容PostgreSQL，您可以使用psql客户端、ETL（Extract-Transform-Load）或BI（Business Intelligence）工具连接Hologres并进行数据开发，具体如下：
 
     -   使用psql客户端进行数据开发，请参见[psql客户端快速入门]()。
-    -   使用Holostudio进行数据开发，请参见[HoloStudio快速入门](/intl.zh-CN/连接开发工具/基于HoloStudio的开发/HoloStudio快速入门.md)。
     -   更多开发工具请参见[概述](/intl.zh-CN/连接开发工具/概述.md)。
 
