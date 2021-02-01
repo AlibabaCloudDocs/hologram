@@ -48,7 +48,7 @@ If you have set the **Instance name** parameter, the value of the **Host** param
 If you have set the **Instance name** parameter, the value of the **Port** parameter is automatically set to the port number of the specified instance. You can also enter the port number of the Hologres instance.
 
 |Yes|
-    |Logon mode|    -   **Password-free logon**: You can directly connect to the instance by using the current Alibaba Cloud account, without the need to enter the AccessKey ID and AccessKey secret.
+    |Logon Method|    -   **Password-free logon**: You can directly connect to the instance by using the current Alibaba Cloud account, without the need to enter the AccessKey ID and AccessKey secret.
     -   **Password logon**: You can enter the AccessKey ID and AccessKey secret of the current or other Alibaba Cloud account to connect to the instance.
 |Yes|
     |AccessKey ID|The AccessKey ID of the current Alibaba Cloud account.You can obtain the AccessKey ID on the [Security Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.
