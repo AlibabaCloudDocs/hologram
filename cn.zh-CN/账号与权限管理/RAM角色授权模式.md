@@ -181,6 +181,8 @@ RAM角色需要有Hologres实例的开发权限，才能在权限范围内使用
 
     您可以通过SQL方式进行授权，具体请参见[权限管理概述](/cn.zh-CN/账号与权限管理/权限管理概述.md)。
 
+3.  若是通过RAM用户扮演RAM角色，RAM角色默认没有Hologres管理控制台的权限，需要主账号给RAM用户在访问控制页面授予**AliyunRAMReadOnlyAccess**权限，否则RAM角色无法在Hologres管理控制台进行任何操作。详情请参见文档[授予RAM用户权限](/cn.zh-CN/账号与权限管理/授予RAM用户权限.md)。
+
 
 ## 步骤三：登录阿里云并使用Hologres
 
