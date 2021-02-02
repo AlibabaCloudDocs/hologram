@@ -8,7 +8,7 @@ keyword: [实时写入Hologres, 实时计算]
 
 ## 前提条件
 
--   开通Hologres实例并连接开发工具，详情请参见[psql客户端快速入门](/intl.zh-CN/快速入门/通过psql客户端使用Hologres.md)。
+-   开通Hologres实例并连接开发工具，详情请参见[psql快速入门](/intl.zh-CN/快速入门/psql快速入门.md)。
 -   开通实时计算，详情请参见[t40807.md\#](/intl.zh-CN/独享模式/准备工作/开通服务和创建项目.md)。
 
 **说明：**
@@ -51,7 +51,7 @@ keyword: [实时写入Hologres, 实时计算]
       PRIMARY KEY (a)
     ) with (
       type = 'hologres',
-      `endpoint` = '$ip:$port', //当前Hologres实时数据API的VPC网络地址以及端口号。
+      `endpoint` = '$ip:$port', //当前Hologres的VPC网络地址以及端口号。
       `username` = '当前阿里云账号的AccessKey ID',
       `password` = '当前阿里云账号的AccessKey Secret',
       `dbName` = '当前Hologres的数据库名称',
@@ -81,7 +81,7 @@ keyword: [实时写入Hologres, 实时计算]
     ) with (
       type = 'custom',
       tableFactoryClass = 'com.alibaba.blink.connectors.hologres.table.factory.HologresTableFactory',
-      `endpoint` = '$ip:$port', //当前Hologres实时数据API的VPC网络地址以及端口号。
+      `endpoint` = '$ip:$port', //当前Hologres的VPC网络地址以及端口号。
       `username` = '当前阿里云账号的AccessKey ID',
       `password` = '当前阿里云账号的AccessKey Secret',
       `dbName` = '当前Hologres的数据库名称',
@@ -103,7 +103,7 @@ keyword: [实时写入Hologres, 实时计算]
             |type|源表的类型。 **说明：** Blink 3.6及以上版本使用hologres，3.6以下的版本使用custom。
 
 |hologres|
-            |endpoint|$ip:$port当前Hologres实时数据API的VPC网络地址以及端口号。
+            |endpoint|$ip:$port当前Hologres的VPC网络地址以及端口号。
 
 进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)**实例配置**获取Endpoint。
 
@@ -123,7 +123,7 @@ keyword: [实时写入Hologres, 实时计算]
         2.  单击**保存**保存作业。
         3.  单击**上线**，提交作业至生产环境。根据业务情况填写作业的上线配置。
 
-            ![4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5367359951/p84223.png)
+            ![4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5367359951/p84223.png)
 
     3.  启动作业。
 
@@ -131,7 +131,7 @@ keyword: [实时写入Hologres, 实时计算]
 
         在**阿里实时计算开发平台**页面顶部菜单栏右侧，单击**运维**，跳转至运维界面，选择需要启动的作业，单击右上角的**启动**。
 
-        ![6](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5367359951/p84227.png)
+        ![6](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5367359951/p84227.png)
 
 3.  Hologres实时查询。
 
@@ -223,5 +223,5 @@ Blink维表JOIN示例如下：
 
 ## 数据类型映射
 
-实时计算数据类型与Hologres数据类型的映射关系请参见[数据类型](/intl.zh-CN/SQL参考/数据类型.md)。
+实时计算数据类型与Hologres数据类型的映射关系请参见[数据类型汇总](/intl.zh-CN/SQL参考/数据类型/数据类型汇总.md)。
 
