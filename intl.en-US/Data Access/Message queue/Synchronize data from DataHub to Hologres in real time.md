@@ -33,13 +33,13 @@ You can use a connector to synchronize data from a DataHub topic to a Hologres t
         1.  Log on to the [DataHub console](https://dhsnext.console.aliyun.com/cn-hangzhou/projects?spm=5176.cndatahub.0.0.677af05eXclMic). In the left-side navigation pane, click **Project Manager**.
         2.  On the **Project List** page, click **Create Project** in the upper-right corner.
         3.  In the **Create Project** dialog box, set the parameters as required and click **Confirm**.
-        ![a](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6498048951/p129088.png)
+        ![a](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6498048951/p129088.png)
 
     2.  Create a DataHub topic.
 
         1.  On the **Project List** page, find the created project and click the project name.
         2.  On the project details page that appears, click **Create Topic** in the upper-right corner. In the **Create Topic** dialog box, set the parameters as required.
-        ![Create Topic](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6498048951/p129089.png)
+        ![Create Topic](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6498048951/p129089.png)
 
         **Note:** You can only synchronize data of the TUPLE type, namely structured data, from a DataHub topic to a Hologres table.
 
@@ -68,7 +68,7 @@ You can use a connector to synchronize data from a DataHub topic to a Hologres t
 
         Use a service, such as Blink, or an application to write data to the created topic. The following figure shows the data stored in a sample topic.
 
-        ![Write data](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3516821061/p129091.png)
+        ![Write data](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3516821061/p129091.png)
 
 2.  Create a Hologres table to which the data is synchronized.
 
@@ -109,7 +109,7 @@ You can use a connector to synchronize data from a DataHub topic to a Hologres t
 
     3.  In the **Create connector** dialog box, click **Hologres**. In the **Create connector** dialog box, set the parameters as required and click **Create**.
 
-        ![connector](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3516821061/p129426.png)
+        ![connector](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3516821061/p129426.png)
 
         |Parameter|Description|Remarks|
         |---------|-----------|-------|
@@ -125,11 +125,11 @@ You can use a connector to synchronize data from a DataHub topic to a Hologres t
 
     On the topic details page, click the **Connector** tab. Find the created connector and view the status of the connector. The status indicates the progress of the data synchronization.
 
-    ![chakan](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4516821061/p129356.png)
+    ![chakan](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4516821061/p129356.png)
 
 5.  Query the data in Hologres.
 
-    Connect the Hologres instance to a certain development tool and use the tool to check whether the data is synchronized to the Hologres instance in real time. For more information about development tools, see [Development Tools Overview](/intl.en-US/Common Development Tools/Development Tools Overview.md). For example, you can execute the following statement to query the data:
+    Connect the Hologres instance to a certain development tool and use the tool to check whether the data is synchronized to the Hologres instance in real time. For more information about development tools, see [Overview](/intl.en-US/Common Development Tools/Overview.md). For example, you can execute the following statement to query the data:
 
     ```
     SELECT COUNT(*) FROM lineitem;
