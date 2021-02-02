@@ -28,7 +28,7 @@ This topic describes how to use HoloWeb to create, edit, and delete an internal 
 
 3.  On the **New internal table** tab, set the parameters as required.
 
-    ![New internal table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4099438951/p132195.png)
+    ![New internal table](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7003322161/p132195.png)
 
     |Category|Parameter|Description|
     |--------|---------|-----------|
