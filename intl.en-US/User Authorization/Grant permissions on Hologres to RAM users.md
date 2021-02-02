@@ -1,23 +1,23 @@
 ---
-keyword: [grant permissions, RAM]
+keyword: [grant permissions to a RAM user, RAM user]
 ---
 
 # Grant permissions on Hologres to RAM users
 
-This topic describes how to grant permissions on Hologres to Resource Access Management \(RAM\) users of your Alibaba Cloud account. Authorized RAM users can view, purchase, and delete Hologres instances in the Hologres console.
+This topic describes how to grant permissions on Hologres to RAM users that belong to your Alibaba Cloud account. Authorized RAM users can view, purchase, and delete Hologres instances in the Hologres console.
 
-RAM is a permission management system that is provided by Alibaba Cloud.
+Resource Access Management \(RAM\) is a permission management system that is provided by Alibaba Cloud.
 
 RAM is used to control the permissions of accounts.
 
-You can create RAM users within your Alibaba Cloud account and grant them different permissions on Hologres. For example, you can grant RAM users the permissions to purchase or delete instances, upgrade or downgrade instance specifications, modify network configurations of instances, and view instance details.
+You can create RAM users within your Alibaba Cloud account and grant them different permissions on Hologres. For example, you can grant RAM users the permissions to purchase or delete instances, upgrade or downgrade instance specifications, modify the network configurations of instances, and view instance details.
 
-The RAM permissions are different from the development permissions on instances in the following ways:
+When you perform data analytics operations on a Hologres instance as a RAM user, take note of the following rules:
 
--   If you do not grant the required RAM permissions to a RAM user, the RAM user cannot view or manage instances in the Hologres console.
--   You can grant a RAM user the permissions to develop Hologres instances. Even if the RAM user cannot manage instances in the Hologres console, the RAM user can connect to development tools to develop data. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Use Hologres as a RAM user/Grant the development permissions on a Hologres instance to a RAM user.md).
+-   If permissions on Hologres are not granted by the Alibaba Cloud account, the RAM user cannot view or manage instances in the Hologres console.
+-   The RAM user can be granted the development permissions on Hologres instances. Even if the RAM user cannot manage instances in the Hologres console, the RAM user can connect to development tools to perform data analytics operations. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Use Hologres as a RAM user/Grant the development permissions on a Hologres instance to a RAM user.md).
 
-## Grant permissions on Hologres to RAM users
+## Grant permissions on Hologres to a RAM user
 
 1.  Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account.
 
@@ -25,59 +25,61 @@ The RAM permissions are different from the development permissions on instances 
 
     1.  In the left-side navigation pane, click **Users** under **Identities**.
 
-    2.  On the **Users** page, find the RAM user, and click **Add Permissions** in the **Actions** column.
+    2.  On the **Users** page, find the RAM user to which you want to grant permissions and click **Add Permissions** in the **Actions** column.
 
 3.  Grant permissions to the RAM user.
 
-    1.  In the **Add Permissions** dialog box, set the required parameters.
+    1.  In the **Add Permissions** panel, set the parameters as required.
 
-        ![Add permissions](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8504158951/p133226.png)
+        ![Add Permissions](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8504158951/p133226.png)
 
         |Parameter|Description|
         |---------|-----------|
-        |Authorization|The scope of authorization. Valid values:        -   Alibaba Cloud account all resources
+        |Authorization|Valid values:        -   Alibaba Cloud account all resources
         -   Specified Resource Group |
         |Principal|The RAM user to which you want to grant permissions.|
-        |Select Policy|The type of policies that you want to attach to the RAM user. Valid values:        -   System Policy
+        |Select Policy|Valid values:        -   System Policy
         -   Custom Policy
 **Note:**
 
-        -   You can create custom policies based on your business requirements.
-        -   You can add a maximum of five policies at a time. To add more policies, perform the operation multiple times. |
+        -   You can create custom policies based on your business needs.
+        -   You can attach a maximum of five policies at a time. To attach more policies, perform the operation multiple times. |
 
     You can select **System Policy** or **Custom Policy** based on the following descriptions:
 
     -   **System Policy**
 
-        The following table lists the system policies that you can use to grant permissions on Hologres. If you attach all of these system policies to the RAM user, the RAM user is authorized to perform all operations in the Hologres console.
+        The following table describes the system policies that you can use to grant permissions on Hologres. If you attach all of these system policies to the RAM user, the RAM user is authorized to perform all operations in the Hologres console.
 
         |Policy|Description|
         |------|-----------|
-        |AliyunHologresFullAccess|Grants full access permissions on Hologres.If you attach this policy to the RAM user, the RAM user can view the information of all instances and purchase instances in the Hologres console.
+        |AliyunHologresFullAccess|Grants full access permissions on Hologres.If you attach this policy to the RAM user, the RAM user can view the information about all instances and purchase instances in the Hologres console.
 
-**Note:** To view user information on the **Users** page of an instance in the Hologres console, you must attach the **AliyunRAMReadOnlyAccess** policy to the RAM user. |
-        |AliyunBSSOrderAccess|Grants permissions to view, pay for, and cancel orders in the Billing Management console.If you attach this policy to the RAM user, the RAM user can upgrade or downgrade instance specifications and renew instance subscriptions in the Hologres console. |
-        |AliyunRAMReadOnlyAccess|Grants read-only permissions to RAM.If you attach this policy to the RAM user, the RAM user can view the information of the current users, groups, and permissions on the **Users** page of your instance in the Hologres console. |
-        |AliyunHologresReadOnlyAccess|Provides read-only permissions to Hologres.If you attach this policy to the RAM user, the RAM user can view the information of all instances but cannot manage the instances in the Hologres console. For example, the RAM user cannot modify the network configurations of instances. |
+**Note:** To view user information on the **Users** tab of an instance details page in the Hologres console, you must attach the **AliyunRAMReadOnlyAccess** policy to the RAM user. |
+        |AliyunBSSOrderAccess|Grants permissions to view, pay for, and cancel orders in the Billing Management console.If you attach this policy to the RAM user, the RAM user can upgrade or downgrade instance specifications and renew instances in the Hologres console. |
+        |AliyunRAMReadOnlyAccess|Grants read-only permissions on RAM.If you attach this policy to the RAM user, the RAM user can view the information about the current users, groups, and permissions on the **Users** tab of an instance details page in the Hologres console. |
+        |AliyunHologresReadOnlyAccess|Grants read-only permissions on Hologres.If you attach this policy to the RAM user, the RAM user can view the information about all instances but cannot manage the instances in the Hologres console. For example, the RAM user cannot modify the network configurations of instances. |
 
         **Note:**
 
         -   If you use a RAM user to purchase an instance, the RAM user and the Alibaba Cloud account are superusers by default.
-        -   If you use an Alibaba Cloud account to purchase an instance, only the Alibaba Cloud account can use the instance by default. RAM users must be authorized before they can use the instance.
+        -   If you use an Alibaba Cloud account to purchase an instance, only the Alibaba Cloud account can use the instance by default. RAM users must be authorized by the Alibaba Cloud account before they can use the instance.
     -   **Custom Policy**
 
-        You can click **Create Policy** to create a policy based on your business requirements.
+        You can click **Create Policy** to create a custom policy based on your business needs.
 
-        ![Create a policy](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8504158951/p133299.png)
+        ![Create](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8504158951/p133299.png)
 
         On the **Create Custom Policy** page, you can set the configuration mode to **Script**. Then, edit the script of the policy.
 
-        The following statement provides an example to demonstrate how to configure a custom policy:
+        ![jiaoben ](../images/p141598.png)
+
+        Sample statements:
 
         ```
         {
             "Statement": [
-                {   // Grant a RAM user the permissions to perform all operations. After the permissions are granted, the following permissions are not required.
+                {   // Grant a RAM user the permissions to perform all operations. After the permissions are granted, the other permissions are not required.
                     "Effect": "Allow",
                     "Action": "hologram:*", // Indicates that the RAM user has the permissions to perform all operations.
                     "Resource": "acs:hologram:*:<Alibaba Cloud account ID>:instance/*" // Indicates that the RAM user has access to instances in all regions.
@@ -102,7 +104,7 @@ The RAM permissions are different from the development permissions on instances 
                     "Action": "hologram:DescribeInstance",
                     "Resource": "acs:hologram:cn-<region>:<Alibaba Cloud account ID>:instance/*"
                 },
-                {   // Grant a RAM user the permissions to view instances.
+                {   // Grant a RAM user the permissions to view the instance list.
                     "Effect": "Allow",
                     "Action": "hologram:ListInstances",
                     "Resource": "acs:hologram:cn-<region>:<Alibaba Cloud account ID>:instance/*"
@@ -122,7 +124,7 @@ The RAM permissions are different from the development permissions on instances 
                     "Action": "hologram:GetInstanceMetrics",
                     "Resource": "acs:hologram:cn-<region>:<Alibaba Cloud account ID>:instance/*"
                 },
-                {   // Grant a RAM user the permissions to modify the network types of instances.
+                {   // Grant a RAM user the permissions to modify the network configurations of instances.
                     "Effect": "Allow",
                     "Action": "hologram:ModifyInstanceNetworkType",
                     "Resource": "acs:hologram:cn-<region>:<Alibaba Cloud account ID>:instance/*"
@@ -140,7 +142,7 @@ The RAM permissions are different from the development permissions on instances 
         |<Alibaba Cloud account ID\>|The ID of your Alibaba Cloud account.|
         |\*|The IDs of all Hologres instances within your Alibaba Cloud account.You can also replace the asterisk \(\*\) with the ID of a specific Hologres instance. |
 
-        The following statement provides an example to demonstrate how to define permissions on a specified Hologres instance:
+        Sample statement:
 
         ```
         acs:hologram:cn-beijing:4322xxxxx:instance/hhhgggxxxx
@@ -151,58 +153,32 @@ The RAM permissions are different from the development permissions on instances 
 
 ## FAQ
 
-Hologres permissions consist of RAM permissions and instance development permissions. This section provides answers to the frequently asked questions about Hologres permissions.
+Permissions on Hologres consist of permissions that are granted in the RAM console and part of development permissions on instances. This section provides answers to commonly asked questions about permissions on Hologres.
 
--   A RAM user cannot view the instance list and instance IDs.
-    -   Issue
+-   Why am I unable to view the instance list and instance IDs as a RAM user?
+    -   Problem description
 
-        When I logged on to the console as a RAM user and selected a valid region, I could not view the instances that I purchased. The following error message is displayed: **You have no permissions to view the instances, please log on to the RAM console to grant the hologram:ListInstances permission to the current RAM user to access xxx/\***.
-
-    -   Cause
-
-        The current RAM user does not have permissions to view the instance list.
-
-    -   Solution
-
-        Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account and grant the RAM user the **AliyunHologresReadOnlyAccess** permission to view the instance list.
-
--   A superuser cannot add users.
-    -   Issue
-
-        A superuser cannot view the user list or add users on the **Users** tab of the instance details page in the Hologres console. The following error message is displayed: **You have no permissions to view the users, please log on to the RAM console by using your Alibaba Cloud account and grant the ram:ListUsers permission to the current superuser**.
+        When I logged on to the Hologres console as a RAM user and selected a valid region, I could not view the instances that I purchased. The following error message is returned: **You are not authorized to view the purchased instances. Contact the relevant Alibaba Cloud account to grant the hologram:ListInstances permission on xxx/\* to you in the RAM console**.
 
     -   Cause
 
-        The current RAM user does not have permissions to view the user list or add users in the Hologres console.
+        The current RAM user does not have permissions to view the instance list in the Hologres console.
 
     -   Solution
 
-        Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account and grant the RAM user the **AliyunRAMReadOnlyAccess** permission to view the user list.
+        Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account. Attach the **AliyunHologresReadOnlyAccess** policy to the RAM user so that the RAM user can view the instance list.
 
--   A RAM user cannot view the information of the **Users** tab and **Databases** tab.
-    -   Issue
+-   Why am I unable to manage instances as a RAM user?
+    -   Problem description
 
-        When I logged on to the Hologres console as a RAM user, I could not view the information of the **Users**tab and the **Databases** tab. The following error message is displayed: **You have no permissions, please ask a superuser to add the current user to view the instance details**.
+        When I logged on to the Hologres console, I could not purchase an instance, upgrade or downgrade instance specifications, or change the billing method of an instance from pay-as-you-go to subscription. The following error message is returned: **Failed to authenticate the RAM user**.
 
     -   Cause
 
-        The current RAM user does not have development permissions on the instance.
+        The current RAM user does not have permissions to purchase an instance, upgrade or downgrade instance specifications, or change the billing method of an instance. You can perform these operations by using your Alibaba Cloud account.
 
     -   Solution
 
-        Grant the current RAM user the development permissions on the instance by using your Alibaba Cloud account or as a superuser. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Use Hologres as a RAM user/Grant the development permissions on a Hologres instance to a RAM user.md).
-
--   A RAM user does not have permissions to manage the instance.
-    -   Issue
-
-        When I logged on to the Hologres console, I could not purchase, upgrade, or downgrade the instance, or change the billing method from **pay-as-you-go** to **subscription**. The following error message is displayed: **The authentication of the current superuser failed**.
-
-    -   Cause
-
-        The current superuser does not have permissions to purchase, upgrade, or downgrade the instance, or change the billing method of the instance.
-
-    -   Solution
-
-        Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account and grant the superuser the **AliyunHologresFullAccess** and **AliyunBSSOrderAccess** permissions.
+        Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account. Attach the **AliyunHologresFullAccess** and **AliyunBSSOrderAccess** policies to the RAM user so that the RAM user can manage instances.
 
 
