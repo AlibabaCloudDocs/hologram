@@ -47,11 +47,11 @@ SELECT user_display_name(current_user);
 
 The ID of an Alibaba Cloud account is a string of digits, for example, `189813715xxxx`. You can view the account ID on the [Security Settings](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure) page of the Alibaba Cloud official website.
 
-![725](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5574032951/p95289.png)
+![725](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0880522161/p95289.png)
 
 The account ID of a RAM user is the same as the UID of the RAM user. You can view the account ID on the [Users](https://ram.console.aliyun.com/users) page in the RAM console. When you authorize a RAM user by using its UID in Hologres, the UID must be in the `p4_UID` format, such as `p4_12333388xxx`.
 
-![726](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5574032951/p95292.png)
+![726](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0880522161/p95292.png)
 
 The following examples describe how to authorize users in Hologres by using account IDs:
 
