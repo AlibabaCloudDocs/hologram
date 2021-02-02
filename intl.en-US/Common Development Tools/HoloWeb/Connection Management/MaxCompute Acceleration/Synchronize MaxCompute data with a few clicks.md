@@ -18,6 +18,8 @@ HoloWeb allows you to synchronize MaxCompute data with a few clicks. You can imp
 
 3.  On the **Create MaxCompute Data Synchronization Task** page, set the parameters as required.
 
+    ![Create MaxCompute Data Synchronization Task](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7204322161/p186629.png)
+
     The following table describes the parameters.
 
     |Category|Parameter|Description|
