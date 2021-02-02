@@ -13,7 +13,7 @@ To import data to Hologres, you can use only PostgreSQL JDBC Driver version 42.2
 ## Usage notes
 
 -   We recommend that you use a virtual private cloud \(VPC\) network to test data import performance after you connect to Hologres.
--   Hologres does not support multiple inserts in a transaction. Therefore, if you need to write data to Hologres multiple times in a transaction, you must disable the auto-commit mode. If you use PostgreSQL JDBC Driver, the auto-commit mode is disabled by default. Execute the following statement to disable the auto-commit mode:
+-   Hologres does not support multiple inserts in a transaction. Therefore, if you need to write data to Hologres multiple times in a transaction, you must set auto-commit to true. If you use PostgreSQL JDBC Driver, the auto-commit mode is true by default. Execute the following statement to set the auto-commit mode:
 
     ```
     Connection conn = DriverManager.getConnection(url, user, password);
