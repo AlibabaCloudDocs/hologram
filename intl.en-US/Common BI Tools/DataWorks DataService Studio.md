@@ -7,7 +7,7 @@ keyword: [DataService Studio, Hologres, API, BI tool]
 This topic describes how to connect DataWorks DataService Studio to Hologres and how to use DataWorks DataService Studio to create an API.
 
 -   DataWorks is activated. For more information, see [Overview]().
--   A Hologres instance is purchased and bound to a DataWorks workspace. For more information, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md).
+-   A Hologres instance is purchased and bound to a DataWorks workspace.
 
 DataService Studio is designed to build a unified data service bus to help you manage APIs. You can create APIs from tables or register existing APIs with DataService Studio. This helps you manage and publish APIs in a centralized manner.
 
@@ -29,7 +29,7 @@ Hologres is deeply integrated with DataWorks and directly connects to DataServic
 
     7.  In the **Add Hologres data source** dialog box, configure the parameters listed in the following table.
 
-        ![Add Hologres data source](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4073560061/p139621.png)
+        ![Add Hologres data source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4073560061/p139621.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -47,15 +47,15 @@ Hologres is deeply integrated with DataWorks and directly connects to DataServic
 
 2.  Create an API.
 
-    1.  On the **DataWorks** development page, click the ![Icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8421821061/p139848.png) icon in the top navigation bar.
+    1.  On the **DataWorks** development page, click the ![Icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8421821061/p139848.png) icon in the top navigation bar.
 
     2.  Move the pointer over **All Products**. In the **Data Development** section, click **DataService Studio**.
 
-    3.  On the **Service Development** page, move the pointer over the ![Create](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1990723061/p140098.png) icon.
+    3.  On the **Service Development** page, move the pointer over the ![Create](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1990723061/p140098.png) icon.
 
     4.  Choose API \> **Generate API**. In the Generate API dialog box, you can select **Wizard Mode** or **Script Mode** to create an API.
 
-        ![Create an API](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0621013061/p140103.png)
+        ![Create an API](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3661432161/p140103.png)
 
         For more information about how to create an API in **wizard mode**, see [Create an API in the codeless UI]().
 
@@ -67,7 +67,7 @@ Hologres is deeply integrated with DataWorks and directly connects to DataServic
 
     2.  In the **Test APIs** dialog box, specify the values in **Request Parameters** and click **Test**.
 
-        ![Test APIs](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0621013061/p140167.png)
+        ![Test APIs](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3661432161/p140167.png)
 
         If the **Tested successfully** message appears in the lower part of the **Test APIs** dialog box, the API passes the test.
 
