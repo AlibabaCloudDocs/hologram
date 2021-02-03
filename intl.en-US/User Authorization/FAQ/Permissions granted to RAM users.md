@@ -11,8 +11,8 @@ Permissions on Hologres consist of permissions that are granted in the RAM conso
 You can manage Hologres instances only after you are granted permissions to perform operations in the Hologres console. To view answers to commonly asked questions about permissions on Hologres, click the following links:
 
 -   [Why am I unable to view the instance list and instance IDs as a RAM user?](#section_te9_8bd_4iy)
--   [Why am I unable to add users after I am assigned the superuser role as a RAM user?](#section_s67_osb_mgg)
--   [Why am I unable to view the information on the Users tab and Databases tab as a RAM user?](#section_w11_wo8_rwq)
+-   [\#section\_s67\_osb\_mgg](#section_s67_osb_mgg)
+-   [\#section\_w11\_wo8\_rwq](#section_w11_wo8_rwq)
 -   [Why am I unable to manage instances as a RAM user?](#section_ovp_spc_a51)
 
 ## Why am I unable to view the instance list and instance IDs as a RAM user?
@@ -29,10 +29,6 @@ You can manage Hologres instances only after you are granted permissions to perf
 
     Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using your Alibaba Cloud account. Attach the **AliyunHologresReadOnlyAccess** policy to the RAM user so that the RAM user can view the instance list.
 
-
-## Why am I unable to add users after I am assigned the superuser role as a RAM user?
-
-## Why am I unable to view the information on the **Users** tab and **Databases** tab as a RAM user?
 
 ## Why am I unable to manage instances as a RAM user?
 
