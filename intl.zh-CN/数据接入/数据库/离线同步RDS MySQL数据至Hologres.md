@@ -7,7 +7,6 @@ keyword: [数据集成, Hologres, RDS MySQL]
 本文为您介绍如何通过DataWorks的数据集成模块，离线同步RDS MySQL数据至交互式分析Hologres。
 
 -   开通DataWorks，详情请参见[入门概述]()。
--   开通Hologres实例，并绑定至DataWorks工作空间，详情请参见[HoloStudio快速入门](/intl.zh-CN/基于HoloStudio的开发/HoloStudio快速入门.md)。
 -   开通云数据库RDS MySQL，详情请参见[快速入门](/intl.zh-CN/云数据库 RDS 快速入门/快速入门.md)。
 
 **说明：** 跨地域是否可以同步数据，详情请参见[数据源测试连通性]()。
@@ -49,7 +48,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
     7.  配置**新增Hologres数据源**对话框的各项参数。
 
-        ![新增数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139621.png)
+        ![新增数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p139621.png)
 
         |参数|描述|
         |--|--|
@@ -74,7 +73,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
     3.  配置**新增MySQL数据源**对话框的各项参数。
 
-        ![mysql](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p161226.png)
+        ![mysql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p161226.png)
 
         |参数|描述|
         |--|--|
@@ -94,7 +93,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
 4.  新建离线同步任务。
 
-    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
+    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
 
     2.  单击**数据集成**。
 
@@ -102,7 +101,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
     4.  配置**新建节点**对话框的**节点类型**、**节点名称**和**目标文件夹**参数。
 
-        ![参数](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
+        ![参数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
 
         如果您没有已创建的**业务流程**，则配置**新建节点**之前，您需要先新建**业务流程**，详情请参见[创建业务流程]()。
 
@@ -110,7 +109,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
     1.  进入离线同步任务的编辑页面，配置**选择数据源**区域的各项参数。
 
-        ![数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p140870.png)
+        ![数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p140870.png)
 
         |类别|参数|描述|是否必选|
         |--|--|--|----|
@@ -134,7 +133,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 您也可以提前在Hologres中创建用于接收数据的表。
 
 |是|
-        |写入模式|        -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/intl.zh-CN/数据接入/大数据/实时计算Flink版/实时数据API概述.md)。
+        |写入模式|        -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/intl.zh-CN/数据接入/大数据/实时计算Flink版/Blink独享集群（原产品线）/实时数据API.md)。
 
 **说明：** 如果使用**SDK（极速写入）**写入模式同步数据，则必须使用DataWorks的独享数据集成资源组。
 
@@ -150,7 +149,7 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
 
     3.  在**通道控制**区域，配置各项参数。
 
-        ![通道控制](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
+        ![通道控制](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
 
         |参数|描述|是否必选|
         |--|--|----|
@@ -172,9 +171,9 @@ Hologres是实时交互式分析产品，与大数据生态及智能研发平台
             1.  **独享资源组**必须配置为**独享数据集成资源组**。
             2.  同步RDS MySQL数据时，必须为独享资源组配置专有网络，详情请参见[独享资源组模式]()。
             3.  独享资源组的可用区必须与RDS MySQL专有网络的可用区一致。
-    5.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
+    5.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
 
-    6.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
+    6.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
 
 6.  在Hologres中查看已同步的数据。
 
