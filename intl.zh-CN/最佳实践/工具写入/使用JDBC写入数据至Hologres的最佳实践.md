@@ -55,7 +55,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
     |--|--|
     |host|Hologres实例的网络地址。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取网络地址。 |
     |port|Hologres实例的网络端口。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取网络端口。 |
-    |dbname|Hologres实例的数据库名称。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**DB管理**获取数据库名称。 |
+    |dbname|Hologres实例的数据库名称。|
 
 3.  写入数据至Hologres。
 
