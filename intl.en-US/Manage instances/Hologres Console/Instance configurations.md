@@ -33,7 +33,7 @@ The **Connection Methods** section offers different methods for you to use commo
     To connect to a Hologres instance over JDBC or by using an ETL tool or BI tool, use the following connection string:
 
     ```
-    postgres://<AccessId>:<AccessKey>@<Endpoint>:<Port>/<database>? preferQueryMode=simple&tcpKeepAlive=true
+    jdbc:postgresql://<AccessID>:<AccessKey>@<Endpoint>:<Port>/<database>?preferQueryMode=simple&tcpKeepAlive=true
     ```
 
     For more information about the configuration of JDBC, see [JDBC](/intl.en-US/Common Development Tools/JDBC.md).
@@ -57,5 +57,5 @@ The following table describes the parameters in the preceding connection strings
 |<Access Key\>|The AccessKey secret of the current Alibaba Cloud account. You can obtain the AccessKey secret on the [AccessKey Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page of the Alibaba Cloud Management Console. |
 |<Port\>|The port number of the Hologres instance.You can obtain the port number in the **Network Configuration** section of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance). |
 |<Endpoint\>|The endpoint of the Hologres instance.You can obtain the endpoint in the **Network Configuration** section of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance). |
-|<Database\>|The name of the database to which you want to connect.You can obtain the name of the database on the **Databases** page in the [Hologres console](https://hologram.console.aliyun.com/#/instance). If you do not have a database, use the **postgres** database that is allocated by the system. |
+|<Database\>|The name of the database to which you want to connect.If you do not have a database, use the **postgres** database that is allocated by the system. |
 
