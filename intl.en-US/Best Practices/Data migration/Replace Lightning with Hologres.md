@@ -64,10 +64,6 @@ The following figure shows the process of replacing Lightning with Hologres.
 
     After you purchase a Hologres instance, a database named **postgres** is created by default. This database is allocated with a few resources and only used for management purposes. You can create a database based on your business requirements.
 
-    1.  Log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance) and click **Instances** in the left-side navigation pane. On the **Hologres Instances** page, click the name of the target Hologres instance to go to the details page.
-
-    2.  Click **Databases**. On the page that appears, click **Create Database**. In the Create Database dialog box, set **Database Name**, select Enable or Disable for **SPM**, and then click **OK**.
-
 3.  Connect development tools to the Hologres instance.
 
     After you create a database in the Hologres instance, connect the instance to the development tools that are originally connected to Lightning. Replace the port number for connecting Lightning to development tools with the port number of the Hologres instance. Use the public endpoint of the Hologres instance.
@@ -76,27 +72,14 @@ The following figure shows the process of replacing Lightning with Hologres.
 
     For more information about how to connect different development tools to a Hologres instance, see the following documentation:
 
-    -   [HoloStudio of DataWorks](/intl.en-US/Common Development Tools/HoloStudio/Quick start to HoloStudio.md)
     -   [PostgreSQL client](/intl.en-US/Common Development Tools/Connect to a Hologres instance from the PostgreSQL client.md)
     -   [JDBC](/intl.en-US/Common Development Tools/JDBC.md)
+    -   [Quick start](/intl.en-US/Quick Start/Quick start.md)
 4.  Query data from MaxCompute.
 
     To use Hologres to query data from MaxCompute, create a foreign table in Hologres or import data from MaxCompute to Hologres. Perform the following steps:
 
     -   Create a foreign table.
-
-        In this example, create a foreign table in HoloStudio.
-
-        1.  Log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance) and select a region where you purchased a Hologres instance. On the page that appears, click **Instances** in the left-side navigation pane. On the Hologres Instances page, click **Go to DataWorks - HoloStudio**.
-        2.  In HoloStudio, click the **PG Management** icon in the left-side navigation pane. On the page that appears, move the pointer over ![Create](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7395580061/p129075.png) and click **External Table**.
-        3.  On the tab that appears, set parameters as required and click **Commit**.
-
-            |Parameter|Description|
-            |---------|-----------|
-            |Interactive Analytics Database|The name of the Hologres database to be connected to.|
-            |Table Name|The name of the Hologres table for receiving data.|
-            |Type|The type of the foreign table.|
-            |Table|The name of the foreign table.|
 
         After you enter the name of the MaxCompute table to be queried in the Table field, fields in the table appear. You can select part or all of the fields to query as required. For more information, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md).
 
