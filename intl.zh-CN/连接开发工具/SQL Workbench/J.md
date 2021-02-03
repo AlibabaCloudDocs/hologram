@@ -33,9 +33,6 @@ SQL Workbench/J是一款免费的、跨平台的SQL查询分析工具，您可�
 进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取Port。
 
     -   Database：需要连接的Hologres数据库名称。
-
-进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**DB管理**获取数据库名称。
-
 |`jdbc:postgresql://holodemo-cn-hangzhou.aliyun.com:80/postgres`示例仅供参考，实际连接时需要更换为对应项目的实际参数。 |
     |Username|当前Hologres账号的AccessKey ID。您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取用户的AccessKey ID。
 
