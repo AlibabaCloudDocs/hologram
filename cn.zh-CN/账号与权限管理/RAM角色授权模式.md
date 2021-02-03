@@ -23,7 +23,7 @@ Hologres支持如下两种访问方式：
     您也可以通过角色SSO的方式（包括[通过控制台访问阿里云](/cn.zh-CN/单点登录管理（SSO）/角色SSO/进行角色SSO.mdsection_hv1_3yr_bhb)和[使用程序访问阿里云](/cn.zh-CN/单点登录管理（SSO）/角色SSO/进行角色SSO.mdsection_rxk_lyr_bhb)）登录阿里云，并使用Hologres。此时，阿里云访问控制角色（RAM Role）将成为Hologres某个实例的成员，扮演该RAM Role的使用者将拥有和云账号类成员同样的产品使用权限。RAM角色的描述，详情请参见[RAM角色概览](/cn.zh-CN/角色管理/RAM角色概览.md)。
 
 
-对于Hologres来说，RAM角色（RAM Role）和阿里云账号（包括主账号和RAM用户）是同等地位的账号。因此，对于Hologres来说，RAM角色就是一个普通的可登陆账号。Superuser需要对这个RAM角色（而不是背后的云账号）进行授权来赋予这个RAM角色权限（SELECT/INSERT/UPDATE等），这个RAM角色才能在权限范围内使用Hologres。
+对于Hologres来说，RAM角色（RAM Role）和阿里云账号（包括主账号和RAM用户）是同等地位的账号。因此，对于Hologres来说，RAM角色就是一个普通的可登录账号。Superuser需要对这个RAM角色（而不是背后的云账号）进行授权来赋予这个RAM角色权限（SELECT/INSERT/UPDATE等），这个RAM角色才能在权限范围内使用Hologres。
 
 ## RAM角色SSO（STS）介绍
 
