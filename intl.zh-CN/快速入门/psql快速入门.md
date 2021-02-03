@@ -10,7 +10,7 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
 
 本实验以通过psql客户端使用Hologres为例，为您介绍Hologres的基本使用流程。
 
-您也可以使用HoloStudio或HoloWeb，以可视化的方式完成实验。
+您也可以使用HoloWeb，以可视化的方式完成实验。
 
 1.  开通实例。
 
@@ -26,7 +26,7 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
 
         您也可以单击目标实例**操作**列的**管理**，进入实例详情页。
 
-3.  连接psql客户端，详情请参见[psql客户端](/intl.zh-CN/常见开发工具/psql客户端.md)。
+3.  连接psql客户端，详情请参见[psql客户端](/intl.zh-CN/连接开发工具/psql客户端.md)。
 
 4.  创建数据库。
 
@@ -39,13 +39,11 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
     CREATE Database test; //示例创建一个名为test的数据库。
     ```
 
-    您也可以使用Hologres管理控制台创建数据库，详情请参见[创建数据库](/intl.zh-CN/快速入门/创建数据库.md)。
-
 5.  授权子账号。
 
-    1.  创建子账号，详情请参见[创建子账号](/intl.zh-CN/准备工作/子账号使用Hologres.md)。如果您已创建子账号，请跳过该步骤。
+    1.  创建子账号，详情请参见[创建RAM用户](/intl.zh-CN/准备工作/RAM用户使用Hologres.md)。如果您已创建子账号，请跳过该步骤。
 
-    2.  授予子账号实例的开发权限，详情请参见授权子账号实例的开发权限。
+    2.  授予子账号实例的开发权限，详情请参见[授予RAM用户实例的开发权限](/intl.zh-CN/账号与权限管理/授权操作/授予RAM用户实例的开发权限.md)。
 
         如果子账号是普通用户Normal，则子账号被授予实例的开发权限后才能访问Hologres。如果子账号已经被授权为Superuser，请跳过该步骤，直接进行数据开发。
 
@@ -84,8 +82,8 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
     SELECT * FROM nation;
     ```
 
-    您也可以使用HoloStudio或HoloWeb进行数据开发，详情请参见[HoloStudio快速入门](/intl.zh-CN/基于HoloStudio的开发/HoloStudio快速入门.md)或快速入门。
+    您也可以使用HoloWeb进行数据开发，详情请参见[HoloWeb快速入门](/intl.zh-CN/快速入门/HoloWeb快速入门.md)。
 
-    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)或[实时计算实时写入数据至Hologres](/intl.zh-CN/数据接入/大数据/实时计算Flink版/实时计算实时写入数据至Hologres.md)。
+    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)或[实时计算实时写入数据至Hologres]()。
 
 
