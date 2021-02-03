@@ -45,7 +45,7 @@ The complete link for speeding up the query of maxcompute data using hologres is
 
         Log on to [HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect). On the **Connection Management** tab, click **Data Connection**. In the **New Connection** dialog box, set parameters as required and click **OK**.
 
-        ![New Connection](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2560409951/p116502.png)
+        ![New Connection](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1790812161/p116502.png)
 
         |Parameter|Description|Remarks|
         |---------|-----------|-------|
@@ -53,7 +53,7 @@ The complete link for speeding up the query of maxcompute data using hologres is
         |Connection description|The description of the connection.|None|
         |Host|The public endpoint of the Hologres instance.|You can view the public endpoint of the Hologres instance on the **Configuration** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).|
         |Port|The public port number of the Hologres instance.|You can view the port number of the Hologres instance on the **Configuration** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).|
-        |Initialize database|The name of the Hologres database to be connected to HoloWeb.|You can view databases in a Hologres instance on the **Databases** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).|
+        |Initialize database|The name of the Hologres database to be connected to HoloWeb.|NoneYou can view databases in a Hologres instance on the **Databases** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance). |
         |User name|The AccessKey ID of the current Alibaba Cloud account.|You can obtain the AccessKey ID in the [User Management console](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak).|
         |Password|The AccessKey secret of the current Alibaba Cloud account.|You can obtain the AccessKey secret in the [User Management console](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak).|
         |Test connectivity|Check whether the data connection is successful.         -   Successful: The **"Test passed"** message appears.
@@ -144,7 +144,7 @@ The complete link for speeding up the query of maxcompute data using hologres is
 
     1.  Add a connection.
 
-        Log on to the Quick BI console and add a PostgreSQL connection to Hologres. For more information, see [Quick BI](/intl.en-US/Common BI tools/Quick BI.md).
+        Log on to the Quick BI console and add a PostgreSQL connection to Hologres. For more information, see [Quick BI](/intl.en-US/Common BI Tools/Quick BI.md).
 
     2.  Create a dataset.
 
