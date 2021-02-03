@@ -7,7 +7,7 @@ keyword: [数据集成, 导入MaxCompute数据, Hologres, 离线同步]
 本文为您介绍如何使用DataWorks数据集成的离线同步模块，导入MaxCompute的分区表及非分区表数据至Hologres。
 
 -   开通DataWorks，详情请参见[入门概述]()。
--   开通Hologres并绑定至DataWorks的工作空间，详情请参见[HoloStudio快速入门](/cn.zh-CN/基于HoloStudio的开发/HoloStudio快速入门.md)。
+-   开通Hologres并绑定至DataWorks的工作空间，详情请参见[HoloStudio快速入门](/cn.zh-CN/连接开发工具/DataWorks数仓开发/HoloStudio快速入门.md)。
 -   开通MaxCompute，详情请参见[开通MaxCompute](/cn.zh-CN/准备工作/开通MaxCompute.md)。
 
 Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCompute数据至Hologres，建议使用SQL方式，详情请参见[使用SQL导入MaxCompute的数据至Hologres](/cn.zh-CN/数据接入/大数据/MaxCompute/使用SQL导入MaxCompute的数据至Hologres.md)。
@@ -61,7 +61,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     7.  配置**新增Hologres数据源**对话框的各项参数。
 
-        ![新增数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139621.png)
+        ![新增数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p139621.png)
 
         |参数|描述|
         |--|--|
@@ -86,7 +86,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     3.  配置**新增MaxCompute（ODPS）数据源**对话框的各项参数。
 
-        ![mysql](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9730409951/p139801.png)
+        ![mysql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9730409951/p139801.png)
 
         |参数|描述|
         |--|--|
@@ -103,7 +103,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
 4.  新建离线同步任务。
 
-    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
+    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
 
     2.  单击**数据集成**。
 
@@ -111,7 +111,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     4.  配置**新建节点**对话框的**节点类型**、**节点名称**和**目标文件夹**参数。
 
-        ![参数](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
+        ![参数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
 
         如果您没有已创建的**业务流程**，则配置**新建节点**之前，您需要先新建**业务流程**，详情请参见[创建业务流程]()。
 
@@ -119,7 +119,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     1.  进入离线同步任务的编辑页面，配置**选择数据源**区域的各项参数。
 
-        ![数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p140870.png)
+        ![数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p140870.png)
 
         |类别|参数|描述|是否必选|
         |--|--|--|----|
@@ -137,7 +137,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 您也可以提前在Hologres中创建用于接收数据的表。
 
 |是|
-        |写入模式|        -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/实时数据API.md)。
+        |写入模式|        -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/Blink独享集群（原产品线）/实时数据API.md)。
 
 **说明：** 如果使用**SDK（极速写入）**写入模式同步数据，则必须使用DataWorks的独享数据集成资源组。
 
@@ -151,7 +151,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     2.  在**字段映射**区域，您可以选择同步部分或全部字段，示例如下。
 
-        ![740](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4198317951/p96508.png)
+        ![740](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4198317951/p96508.png)
 
         映射类型如下表所示。
 
@@ -164,7 +164,7 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
 
     3.  在**通道控制**区域，配置各项参数。
 
-        ![通道控制](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
+        ![通道控制](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
 
         |参数|描述|是否必选|
         |--|--|----|
@@ -186,11 +186,11 @@ Hologres与MaxCompute在底层无缝连通，如果您需要导入大量的MaxCo
             -   **独享资源组**必须配置为**独享数据集成资源组**。
             -   同步ODPS数据时，必须为独享资源组配置专有网络，详情请参见[独享资源组模式]()。
             -   独享资源组的可用区必须与ODPS专有网络的可用区一致。
-            ![独享资源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
+            ![独享资源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
 
-    5.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
+    5.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
 
-    6.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
+    6.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
 
 6.  在Hologres中查看已同步的数据。
 
@@ -235,7 +235,7 @@ Hologres支持导入MaxCompute的分区表数据，但Hologres的分区与MaxCom
 
     7.  配置**新增Hologres数据源**对话框的各项参数。
 
-        ![新增数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139621.png)
+        ![新增数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p139621.png)
 
         |参数|描述|
         |--|--|
@@ -260,7 +260,7 @@ Hologres支持导入MaxCompute的分区表数据，但Hologres的分区与MaxCom
 
     3.  配置**新增MaxCompute（ODPS）数据源**对话框的各项参数。
 
-        ![mysql](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9730409951/p139801.png)
+        ![mysql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9730409951/p139801.png)
 
         |参数|描述|
         |--|--|
@@ -277,7 +277,7 @@ Hologres支持导入MaxCompute的分区表数据，但Hologres的分区与MaxCom
 
 4.  新建离线同步任务。
 
-    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
+    1.  在**工作管理空间**界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
 
     2.  单击**数据集成**。
 
@@ -285,7 +285,7 @@ Hologres支持导入MaxCompute的分区表数据，但Hologres的分区与MaxCom
 
     4.  配置**新建节点**对话框的**节点类型**、**节点名称**和**目标文件夹**参数。
 
-        ![参数](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
+        ![参数](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139854.png)
 
         如果您没有已创建的**业务流程**，则配置**新建节点**之前，您需要先新建**业务流程**，详情请参见[创建业务流程]()。
 
@@ -296,7 +296,7 @@ Hologres支持导入MaxCompute的分区表数据，但Hologres的分区与MaxCom
     -   导入MaxCompute分区表数据至Hologres分区表。
         1.  进入离线同步任务的编辑页面，配置**选择数据源**区域的各项参数。
 
-            ![750](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5264633061/p96559.png)
+            ![750](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5264633061/p96559.png)
 
             |类别|参数|描述|
             |--|--|--|
@@ -326,7 +326,7 @@ commit;
 
 **说明：** MaxCompute的分区和Hologres的分区并没有强映射关系，并且Hologres当前仅支持一级分区，您可以根据业务情况建立分区。您也可以在Hologres里面提前建好分区父表。 |
             |分区信息|为对应的分区字段赋值。可以赋参数也可以指定固定的值。|
-            |写入模式|            -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/实时数据API.md)。
+            |写入模式|            -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/Blink独享集群（原产品线）/实时数据API.md)。
 
 **说明：** 如果使用**SDK（极速写入）**写入模式同步数据，则必须使用DataWorks的独享数据集成资源组。
 
@@ -337,11 +337,11 @@ commit;
 
         2.  在离线同步任务的编辑页面右侧，单击**调度配置**，根据业务情况配置**参数**，示例如下图。
 
-            ![753](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96565.png)
+            ![753](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96565.png)
 
         3.  在数据集成里，MaxCompute表的分区字段将不会显示在**字段映射**区域，您需要手动添加对应的分区字段并与Hologres的字段一一映射，如下图所示。
 
-            ![749](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96539.png)
+            ![749](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96539.png)
 
             映射类型如下表所示。
 
@@ -354,7 +354,7 @@ commit;
 
         4.  在**通道控制**区域，配置各项参数。
 
-            ![通道控制](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
+            ![通道控制](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
 
             |参数|描述|是否必选|
             |--|--|----|
@@ -375,10 +375,10 @@ commit;
                 -   **独享资源组**必须配置为**独享数据集成资源组**。
                 -   同步ODPS数据时，必须为独享资源组配置专有网络，详情请参见[独享资源组模式]()。
                 -   独享资源组的可用区必须与ODPS专有网络的可用区一致。
-                ![独享资源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
+                ![独享资源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
 
-        6.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
-        7.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
+        6.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
+        7.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
 
             您也可以根据业务情况，选择将作业提交到调度，周期性导入数据，详情请参见[依赖关系]()。
 
@@ -390,12 +390,12 @@ commit;
             SELECT * FROM holo_test_1585817112344
             ```
 
-            ![755](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96577.png)
+            ![755](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96577.png)
 
     -   导入MaxCompute分区表数据至Hologres非分区表。
         1.  进入离线同步任务的编辑页面，配置**选择数据源**区域的各项参数。
 
-            ![750](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5264633061/p96559.png)
+            ![750](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5264633061/p96559.png)
 
             |类别|参数|描述|
             |--|--|--|
@@ -408,7 +408,7 @@ commit;
 
 您也可以提前在Hologres中创建用于接收数据的非分区表。 |
             |分区信息|为对应的分区字段赋值。可以赋参数也可以指定固定的值。|
-            |写入模式|            -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/实时数据API.md)。
+            |写入模式|            -   **SDK（极速写入）**：通过Hologres的实时数据API写入数据，详情请参见[实时数据API](/cn.zh-CN/数据接入/大数据/实时计算Flink版/Blink独享集群（原产品线）/实时数据API.md)。
 
 **说明：** 如果使用**SDK（极速写入）**写入模式同步数据，则必须使用DataWorks的独享数据集成资源组。
 
@@ -421,11 +421,11 @@ commit;
 
         2.  在离线同步任务的编辑页面右侧，单击**调度配置**，根据业务情况配置**参数**，示例如下图。
 
-            ![753](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96565.png)
+            ![753](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96565.png)
 
         3.  在数据集成里，MaxCompute表的分区字段将不会显示在**字段映射**区域，您需要手动添加对应的分区字段并与Hologres的字段一一映射，如下图所示。
 
-            ![749](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96539.png)
+            ![749](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96539.png)
 
             映射类型如下表所示。
 
@@ -438,7 +438,7 @@ commit;
 
         4.  在**通道控制**区域，配置各项参数。
 
-            ![通道控制](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
+            ![通道控制](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7335470061/p140955.png)
 
             |参数|描述|是否必选|
             |--|--|----|
@@ -459,10 +459,10 @@ commit;
                 1.  **独享资源组**必须配置为**独享数据集成资源组**。
                 2.  同步ODPS数据时，必须为独享资源组配置专有网络，详情请参见[独享资源组模式]()。
                 3.  独享资源组的可用区必须与ODPS专有网络的可用区一致。
-                ![独享资源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
+                ![独享资源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p143755.png)
 
-            3.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
-            4.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
+            3.  在任务编辑页面，单击顶部菜单栏的![保存](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140970.png)图标，保存作业。
+            4.  在任务编辑页面，单击顶部菜单栏的![运行](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560129951/p140974.png)图标，运行作业，同步数据。
 
                 您也可以根据业务情况，选择将作业提交到调度，周期性导入数据，详情请参见[依赖关系]()。
 
@@ -474,6 +474,6 @@ commit;
                 SELECT * FROM holo;
                 ```
 
-                ![756](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6198317951/p96587.png)
+                ![756](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6198317951/p96587.png)
 
 
