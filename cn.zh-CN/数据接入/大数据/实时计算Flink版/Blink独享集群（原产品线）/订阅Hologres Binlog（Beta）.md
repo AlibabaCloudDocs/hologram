@@ -55,16 +55,19 @@ Binlog字段由Binlog系统字段和用户Table字段组成，具体字段定义
 |字段名称|字段类型|说明|
 |----|----|--|
 |hg\_binlog\_lsn|BIGINT|Binlog的系统字段，表示Binlog序号。Shard内部单调递增不保证连续，不同Shard之间不保证唯一和有序。|
-|hg\_binlog\_event\_type|BIGINT|Binlog的系统字段，表示当前Record所表示的修改类型。有如下四种取值：-   INSERT=5，表示当前Binlog为插入一条新的记录。
--   DELETE=2，表示当前Binlog为删除一条已有的记录。
--   BEFORE\_UPDATE=3，表示当前Binlog为一条已有记录其更新前的记录。
--   AFTER\_UPDATE=7，表示当前Binlog为一条已有记录其更新后的记录。
-
-**说明：** UPDATE操作会产生两条Binlog记录，分别为更新前和更新后的记录。订阅 Binlog功能会保证这两条记录是连续的且更新前的Binlog记录在前，更新后的 Binlog记录在后。 |
+|hg\_binlog\_event\_type|BIGINT|Binlog的系统字段，表示当前Record所表示的修改类型。|
 |hg\_binlog\_timestamp\_us|BIGINT|Binlog的系统字段，系统时间戳，单位为us。|
 |user\_table\_column\_1|用户自定义|用户Table字段。|
 |...|...|...|
 |user\_table\_column\_n|用户自定义|用户Table字段。|
+
+-   hg\_binlog\_event\_type有如下四种可能的取值：
+    -   INSERT=5，表示当前Binlog为插入一条新的记录。
+    -   DELETE=2，表示当前Binlog为删除一条已有的记录。
+    -   BEFORE\_UPDATE=3，表示当前Binlog为一条已有记录其更新前的记录。
+    -   AFTER\_UPDATE=7，表示当前Binlog为一条已有记录其更新后的记录。
+-   UPDATE操作会产生两条Binlog记录，分别为更新前和更新后的记录。订阅 Binlog功能会保证这两条记录是连续的且更新前的Binlog记录在前，更新后的 Binlog记录在后。
+-   用户字段的顺序与DDL定义的顺序一致。
 
 ## Blink实时消费Binlog
 
