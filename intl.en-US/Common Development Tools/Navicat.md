@@ -24,9 +24,7 @@ Navicat is a multi-connection database development tool that allows you to conne
     |Port|The public port number of the Hologres instance.You can view the public port number of the Hologres instance on the **Configurations** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).
 
 |80|
-    |Initial Database|The name of the Hologres database to which you want to connect.You can view the name of the database on the **Databases** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).
-
-|postgres|
+    |Initial Database|The name of the Hologres database to which you want to connect.|postgres|
     |User Name|The AccessKey ID of your account that is used to access the Hologres instance.You can obtain the AccessKey ID on the [Security Management page](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak).
 
 |None|
@@ -42,5 +40,5 @@ Navicat is a multi-connection database development tool that allows you to conne
     After Navicat 15 for PostgreSQL is connected to Hologres, you can develop data in Navicat 15 for PostgreSQL. For more information, see [Navicat documentation](https://www.navicat.com.cn/manual/online_manual/cn/navicat/mac_manual/#/postgresql_database). Typical use scenarios:
 
     -   Accelerated query of offline data: For more information, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md).
-    -   Real-time data writing: For more information, see [Write data from Realtime Compute to Hologres in real time](/intl.en-US/Data Access/Big Data/Realtime Compute/Write data from Realtime Compute to Hologres in real time.md).
+    -   Real-time data writing: For more information, see [Write data from Realtime Compute to Hologres in real time]().
 
