@@ -15,7 +15,7 @@ You can create RAM users within your Alibaba Cloud account and grant them differ
 When you perform data analytics operations on a Hologres instance as a RAM user, take note of the following rules:
 
 -   If permissions on Hologres are not granted by the Alibaba Cloud account, the RAM user cannot view or manage instances in the Hologres console.
--   The RAM user can be granted the development permissions on Hologres instances. Even if the RAM user cannot manage instances in the Hologres console, the RAM user can connect to development tools to perform data analytics operations. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Use Hologres as a RAM user/Grant the development permissions on a Hologres instance to a RAM user.md).
+-   The RAM user can be granted the development permissions on Hologres instances. Even if the RAM user cannot manage instances in the Hologres console, the RAM user can connect to development tools to perform data analytics operations. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Authorization operations/Grant the development permissions on a Hologres instance to RAM users.md).
 
 ## Grant permissions on Hologres to a RAM user
 
@@ -71,8 +71,6 @@ When you perform data analytics operations on a Hologres instance as a RAM user,
         ![Create](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8504158951/p133299.png)
 
         On the **Create Custom Policy** page, you can set the configuration mode to **Script**. Then, edit the script of the policy.
-
-        ![jiaoben ](../images/p141598.png)
 
         Sample statements:
 
