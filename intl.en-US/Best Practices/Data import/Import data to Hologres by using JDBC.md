@@ -55,7 +55,7 @@ To import data to Hologres, you can use only PostgreSQL JDBC Driver version 42.2
     |---------|-----------|
     |host|The endpoint of the Hologres instance.You can view the endpoint of the Hologres instance on the [Configurations](https://hologram.console.aliyun.com/#/instance) tab of the instance details page in the **Hologres console**. |
     |port|The port number of the Hologres instance.You can view the port number of the Hologres instance on the [Configurations](https://hologram.console.aliyun.com/#/instance) tab of the instance details page in the **Hologres console**. |
-    |dbname|The name of the database to which you want to connect.You can view the database name on the [Databases](https://hologram.console.aliyun.com/#/instance) tab of the instance details page in the **Hologres console**. |
+    |dbname|The name of the database to which you want to connect.|
 
 3.  Import data to Hologres.
 
