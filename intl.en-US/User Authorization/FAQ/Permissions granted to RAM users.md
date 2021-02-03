@@ -11,8 +11,6 @@ Permissions on Hologres consist of permissions that are granted in the RAM conso
 You can manage Hologres instances only after you are granted permissions to perform operations in the Hologres console. To view answers to commonly asked questions about permissions on Hologres, click the following links:
 
 -   [Why am I unable to view the instance list and instance IDs as a RAM user?](#section_te9_8bd_4iy)
--   [\#section\_s67\_osb\_mgg](#section_s67_osb_mgg)
--   [\#section\_w11\_wo8\_rwq](#section_w11_wo8_rwq)
 -   [Why am I unable to manage instances as a RAM user?](#section_ovp_spc_a51)
 
 ## Why am I unable to view the instance list and instance IDs as a RAM user?
