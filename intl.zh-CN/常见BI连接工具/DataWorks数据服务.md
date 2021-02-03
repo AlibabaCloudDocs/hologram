@@ -7,7 +7,7 @@ keyword: [数据服务, Hologres, API, BI工具]
 本文为您介绍交互式分析Hologres如何连接DataWorks数据服务并生成API。
 
 -   开通DataWorks，详情请参见[入门概述]()。
--   开通Hologres实例，并绑定至DataWorks工作空间，详情请参见[HoloStudio快速入门](/intl.zh-CN/基于HoloStudio的开发/HoloStudio快速入门.md)。
+-   开通Hologres实例，并绑定至DataWorks工作空间。
 
 DataWorks数据服务旨在为您搭建统一的数据服务总线，支持快速将数据表生成数据API，并注册现有API至数据服务平台，帮助您统一管理和发布API服务。
 
@@ -29,7 +29,7 @@ Hologres与DataWorks深度集成，支持直接对接DataWorks数据服务，帮
 
     7.  配置**新增Hologres数据源**对话框的各项参数。
 
-        ![新增数据源](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139621.png)
+        ![新增数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p139621.png)
 
         |参数|描述|
         |--|--|
@@ -47,15 +47,15 @@ Hologres与DataWorks深度集成，支持直接对接DataWorks数据服务，帮
 
 2.  生成API。
 
-    1.  在**DataWorks**开发界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
+    1.  在**DataWorks**开发界面，单击顶部菜单栏左侧的![图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4560129951/p139848.png)图标。
 
     2.  鼠标悬停至**全部产品**，在**数据开发**区域，单击**数据服务**。
 
-    3.  在**服务开发**页面，鼠标悬停至![新建](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1771348951/p140098.png)图标。
+    3.  在**服务开发**页面，鼠标悬停至![新建](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1771348951/p140098.png)图标。
 
     4.  鼠标悬停至**生成API**，您可以选择**向导模式**或**脚本模式**生成API。
 
-        ![生成API](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0245470061/p140103.png)
+        ![生成API](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1096705061/p140103.png)
 
         使用**向导模式**生成API，详情请参见[通过向导模式生成API]()。
 
@@ -67,7 +67,7 @@ Hologres与DataWorks深度集成，支持直接对接DataWorks数据服务，帮
 
     2.  在**API测试**对话框，输入**请求参数**，单击**开始测试**。
 
-        ![测试](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2771348951/p140167.png)
+        ![测试](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2771348951/p140167.png)
 
         如果**API测试**对话框页面底部显示**测试成功**，则表示API测试通过。
 
