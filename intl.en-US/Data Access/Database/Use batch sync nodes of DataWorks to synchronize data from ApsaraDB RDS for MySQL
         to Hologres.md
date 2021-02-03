@@ -7,8 +7,7 @@ keyword: [Data Integration, Hologres, ApsaraDB RDS for MySQL]
 This topic describes how to use a batch sync node provided by the Data Integration service of DataWorks to synchronize data from ApsaraDB Relational Database Service \(RDS\) for MySQL to Hologres.
 
 -   DataWorks is activated. For more information, see [Overview]().
--   A Hologres instance is purchased and bound to a DataWorks workspace. For more information, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md).
--   ApsaraDB RDS for MySQL is activated. For more information, see [Quick Start](/intl.en-US/Quick start/Quick Start.md).
+-   ApsaraDB RDS for MySQL is activated. For more information, see [Quick Start](/intl.en-US/Quick Start/Quick Start.md).
 
 **Note:** If the preceding services are activated in different regions, check how to synchronize data across regions. For more information, see [Test data store connectivity]().
 
@@ -49,7 +48,7 @@ Hologres is a real-time interactive analytics engine. It integrates with the big
 
     7.  In the **Add Hologres data source** dialog box, set parameters for the Hologres connection.
 
-        ![Add Hologres data source](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4073560061/p139621.png)
+        ![Add Hologres data source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4073560061/p139621.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -76,7 +75,7 @@ Hologres is a real-time interactive analytics engine. It integrates with the big
 
     3.  In the **Add MySQL data source** dialog box, set parameters for the MySQL connection.
 
-        ![mysql](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6755901061/p139801.png)
+        ![mysql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6755901061/p139801.png)
 
         |Parameter|Description|
         |---------|-----------|
@@ -99,7 +98,7 @@ Hologres is a real-time interactive analytics engine. It integrates with the big
 
 4.  Create a batch sync node in the Data Integration service of DataWorks.
 
-    1.  On the DataOS Panel page of the workspace where you want to create a batch sync node, click the ![Icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8421821061/p139848.png) icon in the upper-left corner.
+    1.  On the DataOS Panel page of the workspace where you want to create a batch sync node, click the ![Icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8421821061/p139848.png) icon in the upper-left corner.
 
     2.  On the menu that appears, choose All Products \> **Data Integration**.
 
@@ -107,7 +106,7 @@ Hologres is a real-time interactive analytics engine. It integrates with the big
 
     4.  In the **New node** dialog box, set **Node type**, **Node name**, and **Destination folder**.
 
-        ![New node](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7755901061/p139854.png)
+        ![New node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7755901061/p139854.png)
 
         If you have not created a workflow, create one before you create a node. For more information, see [Create a workflow]().
 
@@ -115,7 +114,7 @@ Hologres is a real-time interactive analytics engine. It integrates with the big
 
     1.  On the configuration tab of the batch sync node, set the parameters in the **Select data source** step.
 
-        ![Data source](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7755901061/p140870.png)
+        ![Data source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7755901061/p140870.png)
 
         |Section|Parameter|Description|Required|
         |-------|---------|-----------|--------|
@@ -141,7 +140,7 @@ You can also create a table in Hologres in advance for receiving the synchronize
 |Yes|
         |Write mode|        -   The method used to synchronize data to Hologres. Valid values: SDK\(Fast write\) and SQL\(INSERT INTO\).
 
-**SDK\(Fast write\)**: Write data to Hologres by using the HoloHub API. For more information, see [Overview of the HoloHub API](/intl.en-US/Data Access/Big Data/Realtime Compute/Overview of the HoloHub API.md).
+**SDK\(Fast write\)**: Write data to Hologres by using the HoloHub API. For more information, see [Overview of the HoloHub API](/intl.en-US/Data Access/Big Data/Realtime Compute/Blink exclusive/Overview of the HoloHub API.md).
 
 **Note:** If you select **SDK\(Fast write\)**, you must use an exclusive resource group for Data Integration.
 
@@ -159,7 +158,7 @@ You can also create a table in Hologres in advance for receiving the synchronize
 
     3.  In the **Channel control** step, set parameters as needed.
 
-        ![Channel control](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7755901061/p140955.png)
+        ![Channel control](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7755901061/p140955.png)
 
         |Parameter|Description|Required|
         |---------|-----------|--------|
@@ -181,11 +180,11 @@ We recommend that you select **Current limit** and set the maximum transmission 
             **Note:**
 
             1.  If you select **SDK\(Fast write\)** for **Write mode**, you must configure an exclusive resource group for Data Integration.
-            2.  When you use an exclusive resource group to synchronize data from an ApsaraDB RDS for MySQL instance, you must configure a virtual private cloud \(VPC\) for the exclusive resource group. For more information, see [Exclusive resource mode]().
+            2.  When you use an exclusive resource group to synchronize data from an ApsaraDB RDS for MySQL instance, you must configure a virtual private cloud \(VPC\) for the exclusive resource group. For more information, see [Exclusive resource group mode]().
             3.  Make sure that the exclusive resource group resides in the same zones as the VPC of the ApsaraDB RDS for MySQL instance.
-    5.  After you complete the preceding configuration, click the ![Save icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8421821061/p140970.png) icon at the top of the page to save the batch sync node.
+    5.  After you complete the preceding configuration, click the ![Save icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8421821061/p140970.png) icon at the top of the page to save the batch sync node.
 
-    6.  Click the ![Run icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8421821061/p140974.png) icon at the top of the page to run the batch sync node.
+    6.  Click the ![Run icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8421821061/p140974.png) icon at the top of the page to run the batch sync node.
 
 6.  View the synchronized data in Hologres.
 
