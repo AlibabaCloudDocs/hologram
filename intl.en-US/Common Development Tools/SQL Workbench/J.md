@@ -31,9 +31,6 @@ You can view the public endpoint of the Hologres instance on the **Configuration
 You can view the public port number of the Hologres instance on the **Configurations** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).
 
     -   Database: the name of the Hologres database to which you want to connect.
-
-You can view the name of the database on the **Databases** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).
-
 |`jdbc:postgresql://holodemo-cn-hangzhou.aliyun.com:80/postgres`This value is only for reference. |
     |Username|The AccessKey ID of your account that is used to access the Hologres instance.You can obtain the AccessKey ID on the [Security Management page](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak).
 
