@@ -29,11 +29,6 @@ show max_connections;
 
 The data types of Hologres and PostgreSQL are compatible. However, the data types of Hologres are a subset of the data types of PostgreSQL. For more information, see [Data types](/intl.en-US/Hologres SQL/Data types/Data types.md).
 
-## Limits on HoloStudio
-
--   You can create multiple databases for a Hologres instance. You can also bind a Hologres database to multiple workspaces in the same region.
--   On the editing page of the **data analytics node** in HoloStudio, go to the Properties tab. In the Resource Group section, **Shared Resource Group** is specified by default. If you need to configure a **dedicated resource group**, [submit a ticket](https://workorder-intl.console.aliyun.com/).
-
 ## Limits on the purchase of Hologres instances
 
 -   Each Alibaba Cloud account can buy a maximum of three instances per day.
