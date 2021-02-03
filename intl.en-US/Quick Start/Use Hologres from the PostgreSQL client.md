@@ -10,7 +10,7 @@ Hologres is compatible with PostgreSQL and integrates seamlessly with the big da
 
 The following content describes the basic process of using Hologres from the PostgreSQL client.
 
-You can also get started with Hologres in a visualized manner by using HoloStudio in DataWorks or HoloWeb.
+You can also get started with Hologres in a visualized manner by using HoloWeb.
 
 1.  Purchase a Hologres instance.
 
@@ -26,7 +26,7 @@ You can also get started with Hologres in a visualized manner by using HoloStudi
 
         You can also click **Manage** in the **Actions** column of the target instance to go to the instance details page.
 
-3.  Connect to the Hologres instance from the PostgreSQL client. For more information, see [Connect to a Hologres instance from the PostgreSQL client](/intl.en-US/Quick Start/Connect to a Hologres instance from the PostgreSQL client.md).
+3.  Connect to the Hologres instance from the PostgreSQL client. For more information, see [Connect to a Hologres instance from the PostgreSQL client](/intl.en-US/Common Development Tools/Connect to a Hologres instance from the PostgreSQL client.md).
 
 4.  Create a database for your business purposes.
 
@@ -39,13 +39,11 @@ You can also get started with Hologres in a visualized manner by using HoloStudi
     CREATE Database test; // Create a database named test.
     ```
 
-    You can also create a database in the Hologres console. For more information, see [t1878089.md\#](/intl.en-US/Quick Start/Create a database.md).
-
 5.  Authorize a RAM user.
 
     1.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/Preparations/Use Hologres as a RAM user.md). If you have created a RAM user, skip this step.
 
-    2.  Grant the development permissions on the created Hologres instance to the RAM user. For more information, see Grant the development permissions on a Hologres instance to a RAM user.
+    2.  Grant the development permissions on the created Hologres instance to the RAM user. For more information, see [Grant the development permissions on a Hologres instance to RAM users](/intl.en-US/User Authorization/Authorization operations/Grant the development permissions on a Hologres instance to RAM users.md).
 
         If the RAM user is assigned the normal user role, you can use the RAM user to access the Hologres instance only after the development permissions on the instance are granted to the RAM user. If the RAM user is assigned the superuser role, skip this step.
 
@@ -84,8 +82,8 @@ You can also get started with Hologres in a visualized manner by using HoloStudi
     SELECT * FROM nation;
     ```
 
-    You can also use HoloStudio in DataWorks or HoloWeb for data analytics. For more information, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md) or Quick start.
+    You can also use HoloWeb for data analytics. For more information, see [Quick start](/intl.en-US/Quick Start/Quick start.md) .
 
-    For more information about data analytics in Hologres, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md) and [Write data from Realtime Compute to Hologres in real time](/intl.en-US/Data Access/Big Data/Realtime Compute/Write data from Realtime Compute to Hologres in real time.md).
+    For more information about data analytics in Hologres, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md) and [Write data from Realtime Compute to Hologres in real time]().
 
 
