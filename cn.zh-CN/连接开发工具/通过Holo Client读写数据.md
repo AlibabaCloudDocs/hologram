@@ -8,7 +8,7 @@ keyword: [Holo Client, Hologres]
 
 ## 背景信息
 
-为了更高效的支持大批量数据的写入（批量、实时同步至Hologres），以及支持高QPS的点查（维表关联）场景，Hologres在JDBC的基础上自研了一款开发接口Holo Client。您可以通过Holo Clinet实现高性能的批量、实时同步以及高QPS的点查询，自动攒批，提高吞吐。
+为了更高效的支持大批量数据的写入（批量、实时同步至Hologres），以及支持高QPS的点查（维表关联）场景，Hologres在JDBC的基础上自研了一款开发接口Holo Client。您可以通过Holo Client实现高性能的批量、实时同步以及高QPS的点查询，自动攒批，提高吞吐。
 
 ## 注意事项
 
