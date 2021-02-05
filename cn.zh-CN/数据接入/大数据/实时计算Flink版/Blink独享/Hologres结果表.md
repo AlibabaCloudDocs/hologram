@@ -162,7 +162,7 @@ create table Hologres_sink(
 
 对于常见的多个流的数据写入至一张Hologres宽表的场景，具体使用方法如下：
 
-假设Hologres有一张宽表*WIDE\_TABLE*，有A、B、C、D、E几列，其中A字段是主键，Flink一个流包含数据A、B、C，另一个流包含数据A、D、E。
+假设Hologres有一张宽表WIDE\_TABLE，有A、B、C、D、E几列，其中A字段是主键，Flink一个流包含数据A、B、C，另一个流包含数据A、D、E。
 
 1.  使用Flink SQL声明两张Hologres结果表，其中一张表只声明字段A、B、C，另一张表只声明字段A、D、E，这两张表都映射至*WIDE\_TABLE*。
 2.  两张结果表的mutatetype属性都设置成insertorupdate。
