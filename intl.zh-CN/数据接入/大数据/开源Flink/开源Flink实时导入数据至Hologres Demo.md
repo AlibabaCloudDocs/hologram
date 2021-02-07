@@ -25,7 +25,7 @@ keyword: [开源Flink, 实时导入数据]
 
 2.  下载并编译Flink的JAR文件。
 
-    1.  下载并安装Hologres Connector依赖的JAR文件[hologres-flink-connector-1.10-jar-with-dependencies.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/171614/cn_zh/1612665223522/hologres-flink-connector-1.10-jar-with-dependencies.jar)，示例语句如下。
+    1.  下载并安装Hologres Connector依赖的JAR文件[hologres-flink-connector-1.10-jar-with-dependencies.jar](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/171614/cn_zh/1612665223522/hologres-flink-connector-1.10-jar-with-dependencies.jar)，示例语句如下。
 
         ```
         mvn install:install-file -Dfile=hologres-flink-connector-1.10-jar-with-dependencies.jar -DgroupId=org.apache.flink -DartifactId=hologres-flink-connector -Dversion=1.10 -Dpackaging=jar -DgeneratePom=true
