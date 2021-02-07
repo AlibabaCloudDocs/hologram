@@ -24,7 +24,7 @@ This topic describes how to write data from open source Apache Flink to Hologres
 
 2.  Download and compile the Java ARchive \(JAR\) file of Flink.
 
-    1.  Download and install the JAR file named [hologres-flink-connector-1.10-jar-with-dependencies.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/30336/cn_zh/1600398557180/hologres-flink-connector-1.10-jar-with-dependencies.jar) on which the Hologres connector depends. Sample statement:
+    1.  Download and install the JAR file named [hologres-flink-connector-1.10-jar-with-dependencies.jar](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/171614/cn_zh/1612665223522/hologres-flink-connector-1.10-jar-with-dependencies.jar) on which the Hologres connector depends. Sample statement:
 
         ```
         mvn install:install-file -Dfile=hologres-flink-connector-1.10-jar-with-dependencies.jar -DgroupId=org.apache.flink -DartifactId=hologress-flink-connector -Dversion=1.10 -Dpackaging=jar -DgeneratePom=true
