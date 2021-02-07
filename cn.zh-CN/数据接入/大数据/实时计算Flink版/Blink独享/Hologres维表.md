@@ -99,6 +99,8 @@ With参数的描述如下表所示。
 -   true |
 |async|是否异步读取数据。|否|async参数的取值如下： -   false（默认值）
 -   true |
+|cacheempty|是否缓存join结果为空的数据。|否|cacheempty取值如下：-   true（默认值）：表示缓存join结果为空的数据。
+-   false：表示不缓存join结果为空的数据。 |
 
 ## 使用示例
 
