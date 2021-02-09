@@ -63,7 +63,7 @@ create table Hologres_sink(
 |arraydelimiter|Hologres Sink支持将一个STRING字段按照field\_delimiter切分为数组导入Hologres。默认值为\\u0002。
 
 |\\u0002|
-|mutatetype|数据写入模式，详情请参见[流式语义](https://help.aliyun.com/document_detail/178795.html?spm=a2c4g.11186623.6.585.55e45ed16aZMyx#section-yce-507-nhr)默认值为insertorignore。
+|mutatetype|数据写入模式，详情请参见[交互式分析Hologres结果表](/cn.zh-CN/Flink全托管/Flink SQL参考/DDL语句/创建数据结果表/交互式分析Hologres结果表.md)。默认值为insertorignore。
 
 |insertorignore|
 |ignoredelete|是否忽略回撤消息。-   true：忽略回撤消息。
