@@ -27,9 +27,9 @@ When you use these technologies to implement highly efficient data sharing, mini
     |---------|-----------|
     |hg\_anon|The built-in extension function provided by Hologres. To enable the data de-identification feature, you must call this function.|
     |<db\_name\>|The name of the database for which you want to enable the data de-identification feature. Replace <db\_name\> with the name of the database.|
-    |hg\_anon\_enable|Specifies whether to enable or disable the data de-identification feature. Valid values:     -   on: enables the data de-identification feature.
+    |hg\_anon\_enable|Specifies whether to enable or disable the data de-identification feature. Valid values:    -   on: enables the data de-identification feature.
     -   off: disables the data de-identification feature.
- Default value: off.|
+Default value: off.|
 
     For example, you can execute the following statements to enable the data de-identification feature for a database named test:
 
@@ -40,7 +40,7 @@ When you use these technologies to implement highly efficient data sharing, mini
 
 2.  Configure a data de-identification rule.
 
-    Hologres allows you to configure a data de-identification rule for a specified column or a specified user. You can specify a column name or user type, and use the built-in de-identification functions to de-identify data. For more information about the de-identification functions that are supported by Hologres, see [t1962205.md\#section\_lbl\_y6k\_kjx]().
+    Hologres allows you to configure a data de-identification rule for a specified column or a specified user. You can specify a column name or user type, and use the built-in de-identification functions to de-identify data.
 
     -   De-identify a specified column.
 
@@ -101,16 +101,16 @@ When you use these technologies to implement highly efficient data sharing, mini
 
         |Parameter|Description|
         |---------|-----------|
-        |label\_name\|all|The label\_name parameter specifies a built-in de-identification function. For more information, see [De-identification functions](#section_lbl_y6k_kjx). When the label\_name parameter is used, you specify whether to de-identify the columns to which the de-identification rule specified by the label\_name parameter applies for the specified user or user group. When the all keyword is used, you can specify whether to de-identify all columns for the specified user or user group.
+        |label\_name\|all|The label\_name parameter specifies a built-in de-identification function. For more information, see [De-identification functions](#section_lbl_y6k_kjx). When the label\_name parameter is used, you specify whether to de-identify the columns to which the de-identification rule specified by the label\_name parameter applies for the specified user or user group.When the all keyword is used, you can specify whether to de-identify all columns for the specified user or user group.
 
- The label\_name parameter or the all keyword is commonly used together with the masked or unmasked keyword. Examples:
+The label\_name parameter or the all keyword is commonly used together with the masked or unmasked keyword. Examples:
 
         -   `all:masked`: De-identify all columns for the specified user or user group.
         -   `replace:masked`: De-identify the columns to which the replace de-identification function applies for the specified user or user group. The value of the label\_name parameter is a de-identification function that is supported by Hologres. In this example, the replace function is used. |
-        |masked|The masked keyword indicates that the specified columns are de-identified for the specified user or user group. This keyword is commonly used together with the label\_name parameter or the all keyword. For example, when you use `all:masked`, all columns are de-identified for the specified user or user group. |
-        |unmasked|The unmasked keyword indicates that the specified columns are not de-identified for the specified user or user group. This keyword is commonly used together with the label\_name parameter or the all keyword. For example, when you use `all:unmasked`, all columns are not de-identified for the specified user or user group. If the unmasked keyword is not included when you configure a data de-identification rule for the specified user or user group, the masked keyword is used by default.
+        |masked|The masked keyword indicates that the specified columns are de-identified for the specified user or user group. This keyword is commonly used together with the label\_name parameter or the all keyword.For example, when you use `all:masked`, all columns are de-identified for the specified user or user group. |
+        |unmasked|The unmasked keyword indicates that the specified columns are not de-identified for the specified user or user group. This keyword is commonly used together with the label\_name parameter or the all keyword. For example, when you use `all:unmasked`, all columns are not de-identified for the specified user or user group.If the unmasked keyword is not included when you configure a data de-identification rule for the specified user or user group, the masked keyword is used by default.
 
- Assume that you specify the replace de-identification function for the label\_name parameter to de-identify a column. The de-identification effects vary with different settings.
+Assume that you specify the replace de-identification function for the label\_name parameter to de-identify a column. The de-identification effects vary with different settings.
 
         -   When `all:unmasked` is used, all columns are not de-identified. In this case, data in the specified column is displayed in plaintext in a query result for the specified user or user group.
         -   When `all:masked` is used, all columns are de-identified. In this case, data in the specified column is de-identified in a query result for the specified user or user group.
@@ -136,10 +136,6 @@ When you use these technologies to implement highly efficient data sharing, mini
     ```
     SELECT * FROM pg_seclabel;
     ```
-
-    The following figure shows the query result.
-
-    ![View the data de-identification configuration](../images/p173614.png)
 
     The following table describes the parameters.
 
@@ -182,15 +178,11 @@ The following table describes the de-identification functions that are supported
 -   If the number of Chinese characters is greater than or equal to four, replace the first two Chinese characters with `*`.
 -   If the number of Chinese characters is less than or equal to three, replace the first Chinese character with `*`.
 
- For an English name: If the number of fields is greater than or equal to two, replace the first field with `*`.
+For an English name: If the number of fields is greater than or equal to two, replace the first field with `*`.
 
-|-   成吉思汗
--   武则天
--   Willam li
+|-   Willam li
 
-|-   \*思汗
--   \*则天
--   \* li |
+|-   \* li |
 |address|De-identifies an address. Only the province, city, district, and county in the address are displayed in plaintext. The rest characters are replaced by `*`.``|-   Zhangjiang Hi-tech Park, Pudong District, Shanghai
 -   No. 969, Wenyi West Road, Yuhang District, Hangzhou, Zhejiang
 
