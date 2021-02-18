@@ -25,7 +25,7 @@ keyword: [Hologres, MaxCompute]
 
 1.  在Hologres准备一张Hologres内部表（例如：holo\_source），用于导出数据至MaxCompute。
 2.  在MaxCompute准备一张MaxComute表用于接收数据（例如mc\_sink）。
-3.  在Hologres新建一张外部表，用于映射Hologres内部表（例如 mapping\_foreign\_table）。
+3.  在Hologres新建一张外部表，用于映射MaxCompute表（例如 mapping\_foreign\_table）。
 4.  在Hologres通过SQL语句导出数据至MaxCompute。
 
     ```
