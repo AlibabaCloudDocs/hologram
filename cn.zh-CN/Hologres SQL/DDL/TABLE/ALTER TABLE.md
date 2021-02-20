@@ -21,18 +21,19 @@ ALTER TABLE语句可以对表进行重命名，如果目标表不存在，或者
 -   使用语法
 
     ```
-    //将table_name重命名为new_table_name，具体表名称可以根据需求填写
-    ALTER TABLE table_name RENAME TO new_table_name;
-    
-    //将外部表my_foreign_table_name重命名为my_new_foreign_table_name，具体表名称可以根据需求填写
-    ALTER FOREIGN TABLE my_foreign_table_name TO my_new_foreign_table_name;
+    --内部表重命名
+    ALTER TABLE <table_name> RENAME TO <new_table_name>;
+    --外部表重命名
+    ALTER FOREIGN TABLE <foreign_table_name> TO <new_foreign_table_name>;
     ```
 
 -   使用示例
 
     ```
-    ALTER TABLE test RENAME TO holo_test ;//将表test重命名为holo_test
-    ALTER FOREIGN TABLE odps_test TO﻿ my_odps_test;//将外部表odps_test重命名为my_odps_test
+    --将表holo_test重命名为holo_test_1
+    ALTER TABLE holo_test RENAME TO holo_test_1 ;
+    --将外部表foreign_holo_test重命名为foreign_holo_test_1
+    ALTER FOREIGN TABLE foreign_holo_test RENAME TO foreign_holo_test_1;
     ```
 
 
@@ -43,17 +44,40 @@ ALTER TABLE语句可以给表增加列。
 -   使用语法
 
     ```
-    //在表table_name中增加new_column_name data_type列，具体表名称和列名称可以根据需求填写
-    ALTER TABLE IF EXISTS table_name ADD COLUMN new_column_name data_type;
-    
-    //在表table_name中增加列，具体表名称和列名称可以根据需求填写
-    ALTER TABLE IF EXISTS table_name ADD COLUMN col_add_1 data_type, ADD COLUMN col_add_2 TEXT IF NOT EXISTS col_add_2 data_type; 
+    --新增一列
+    ALTER TABLE IF EXISTS <table_name> ADD COLUMN <new_column> <data_type>;
+    --新增多列
+    ALTER TABLE IF EXISTS <table_name> ADD COLUMN <new_column_1> <data_type>, ADD COLUMN <new_column_2> <data_type>; 
     ```
 
 -   使用示例
 
     ```
-    ALTER TABLE IF EXISTS holo_test ADD COLUMN id int;//在表holo_test中增加id列
+    --在表holo_test中增加id列
+    ALTER TABLE IF EXISTS holo_test ADD COLUMN id int;
+    ```
+
+
+## 修改默认值
+
+ALTER TABLE语句支持修改默认值，具体修改方式说明如下：
+
+-   使用语法
+
+    ```
+    --修改表字段的默认值
+    ALTER TABLE <table> ALTER COLUMN <column> SET DEFAULT <expression>;
+    --删除表字段的默认值
+    ALTER TABLE <table> ALTER COLUMN <column> DROP DEFAULT;
+    ```
+
+-   使用示例
+
+    ```
+    --修改表holo_test中id列的默认值为0
+    ALTER TABLE holo_test ALTER COLUMN id SET DEFAULT 0;
+    --删除表holo_test中id列的默认值
+    ALTER TABLE holo_test ALTER COLUMN id DROP DEFAULT;
     ```
 
 
@@ -65,7 +89,11 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
     -   使用语法
 
         ```
-        CALL UPDATE_TABLE_PROPERTY('table_name', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
+        --修改全量，即除了call里面指定的字段修改类型，系统还会把text类型自动设置为dictionary
+        CALL SET_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
+        
+        --修改增量，只修改call里面的指定字段，其余字段不变
+        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         ```
 
     -   参数说明
@@ -78,22 +106,39 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
         |auto|表示自动。如果是设置了auto，Hologres会根据所在列数值的重复程度自动选择是否进行**dictionary\_encoding\_columns**，值的重复度越高，字典编码的收益越大。在Hologres V0.8版本及更早版本中默认所有text列都会被设置为**dictionary\_encoding\_columns**，在Hologres V0.9版本及之后版本，会根据数据特征自动选择是否创建字典编码。|
 
     -   使用示例
+        -   对a列显示创建dictionary，b列自动选择是否创建dictionary，c、d两列不创建dictionary。
 
-        ```
-        CREATE TABLE test (
-         a text NOT NULL,
-         b text NOT NULL,
-         c text NOT NULL,
-         d text
-        );
-        CALL UPDATE_TABLE_PROPERTY('test','dictionary_encoding_columns','a:on,b:auto');
-        ```
+            ```
+            CREATE TABLE holo_test (
+             a text NOT NULL,
+             b text NOT NULL,
+             c text NOT NULL,
+             d text
+            );
+            CALL UPDATE_TABLE_PROPERTY('holo_test','dictionary_encoding_columns','a:on,b:auto');
+            ```
+
+        -   对a列显示关闭dictionary，系统也会自动给b、c、d字段加上dictionary索引。
+
+            ```
+            CREATE TABLE holo_test (
+             a text NOT NULL,
+             b text NOT NULL,
+             c text NOT NULL,
+             d text
+            );
+            CALL SET_TABLE_PROPERTY('holo_test','dictionary_encoding_columns','a:off');
+            ```
 
 -   修改**bitmap\_columns**比特编码列
     -   使用语法
 
         ```
-        CALL UPDATE_TABLE_PROPERTY('table_name', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
+        --修改全量，即除了call里面指定的字段修改类型，系统还会把text类型自动设置为dictionary
+        CALL SET_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
+        
+        --修改增量，只修改call里面的指定字段，其余字段不变
+        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         ```
 
     -   参数说明
@@ -105,22 +150,35 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
         |off|当前字段关闭**bitmap\_columns**。|
 
     -   使用示例
+        -   对a列启动bitmap索引，对b、c、d不启动bitmap索引。
 
-        ```
-        CREATE TABLE test (
-         a text NOT NULL,
-         b text NOT NULL,
-         c text NOT NULL,
-         d text
-        );
-        CALL UPDATE_TABLE_PROPERTY('test','bitmap_columns','a:on,b:off');
-        ```
+            ```
+            CREATE TABLE holo_test (
+             a text NOT NULL,
+             b text NOT NULL,
+             c text NOT NULL,
+             d text
+            );
+            CALL UPDATE_TABLE_PROPERTY('holo_test','bitmap_columns','a:on');
+            ```
+
+        -   对b关闭bitmap索引，系统会自动给a、c、d创建dictionary索引。
+
+            ```
+            CREATE TABLE holo_test_1 (
+             a text NOT NULL,
+             b text NOT NULL,
+             c text NOT NULL,
+             d text
+            );
+            CALL UPDATE_TABLE_PROPERTY('holo_test_1','bitmap_columns','b:off');
+            ```
 
 -   修改表数据的生存时间
     -   使用语法
 
         ```
-        CALL SET_TABLE_PROPERTY('tbl', 'time_to_live_in_seconds', '<non_negative_literal>');
+        call set_table_property('<table_name>', 'time_to_live_in_seconds', '<non_negative_literal>');
         ```
 
     -   参数说明
@@ -134,7 +192,7 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
     -   使用示例
 
         ```
-        CALL SET_TABLE_PROPERTY('tbl', 'time_to_live_in_seconds', '86400');
+        call set_table_property('holo_test', 'time_to_live_in_seconds', '600');
         ```
 
 
