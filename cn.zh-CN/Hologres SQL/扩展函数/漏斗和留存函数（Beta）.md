@@ -262,7 +262,7 @@ keyword: [Hologres, 漏斗函数, 留存函数]
 
     -   使用BI即可得到一张漏斗图。
 
-        ![漏斗图](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4805321161/p229480.png)
+        ![漏斗图](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7928273161/p229480.png)
 
 
 ## 留存函数
@@ -356,7 +356,7 @@ keyword: [Hologres, 漏斗函数, 留存函数]
         (3301,'2019-06-15 23:00:00');
         ```
 
-    -   -   如需查询用户在2019-06-17至2019-06-21流失情况，则SQL语句如下：
+    -   -   如需查询用户在2019-06-17至2019-06-21登录流失情况，则SQL语句如下：
 
     ```
     SELECT
@@ -372,6 +372,8 @@ keyword: [Hologres, 漏斗函数, 留存函数]
     GROUP BY user_id
     ORDER BY user_id ASC;
     ```
+
+-   具体结果如下，其中数组r表示用户每天登录情况，1和0表示该用户登录或未登录，user\_id为4101的用户，在2019-06-17 至 2019-06-21期间有登陆记录，但数据全是0。这是因为在retention\(cond1, cond2, …\) 函数中，第一个表达 cond1 如果不满足，那么后面所有的结果就都是0。由于user\_id为4101的用户2019-06-21当天没登录，所有后面的数据全部为0。
 
     ```
      user_id |      r      
@@ -412,5 +414,38 @@ keyword: [Hologres, 漏斗函数, 留存函数]
         4101 | {1,0,1,1,0,1}
     (4 rows)
     ```
+
+    -   使用留存函数能便捷地计算用户的留存率。例如我们想计算用户的次日留存、3日留存、7日留存，样例SQL如下：
+
+        ```
+        -- 根据计算数组中SUM(r[index])获取2019-06-15活跃用户在第2、3、7日的留存数，以此计算留存率
+        SELECT
+            DATE(TIMESTAMP '2019-06-15 00:00:00') AS first_date,
+            CAST(SUM(r[1]) AS NUMERIC) AS "第一天活跃用户",
+            CAST(SUM(r[2]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "次日留存",
+            CAST(SUM(r[3]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "3日留存",
+            CAST(SUM(r[4]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "7日留存"
+        FROM
+        -- 计算2019-06-15活跃用户在第2、3、7日的登录情况，1/0 => 登录/未登录
+            (
+                WITH 
+                    first_day_table AS ( SELECT TIMESTAMP '2019-06-15 00:00:00' AS first_day)
+                SELECT
+                    user_id,
+                    retention(
+                        DATE(log_time) = (SELECT DATE(first_day) FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '1 day') FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '2 day') FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '6 day') FROM first_day_table)
+                        ) AS r
+        -- 过滤2019-06-15活跃用户在后续 1～7 日登录数据
+                    FROM    login_log
+                    WHERE   (log_time >= TIMESTAMP '2019-06-15 00:00:00')
+                    AND     (log_time <= TIMESTAMP '2019-06-15 00:00:00' + INTERVAL '6 day')
+                    GROUP BY user_id
+                ) AS basic_table
+        GROUP BY first_date
+        ;
+        ```
 
 
