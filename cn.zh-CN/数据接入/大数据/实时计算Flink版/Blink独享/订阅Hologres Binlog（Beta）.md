@@ -42,10 +42,10 @@ keyword: [Hologres, Binlog]
       id int primary key, 
       title text not null, 
       body text);
-    call set_table_property('test_message_src', 'orientation', 'row');//创建行存表test_message_src
-    call set_table_property('test_message_src', 'clustering_key', 'id');//在id列建立聚簇索引
-    call set_table_property('test_message_src', 'binlog.level', 'replica');//设置表属性开启Binlog功能
-    call set_table_property('test_message_src', 'binlog.ttl', '86400');//binlog.ttl,Binlog的TTL，单位为秒
+    call set_table_property('test_message_src', 'orientation', 'row');--创建行存表test_message_src
+    call set_table_property('test_message_src', 'clustering_key', 'id');--在id列建立聚簇索引
+    call set_table_property('test_message_src', 'binlog.level', 'replica');--设置表属性开启Binlog功能
+    call set_table_property('test_message_src', 'binlog.ttl', '86400');--binlog.ttl,Binlog的TTL，单位为秒
     commit;
     ```
 
@@ -88,11 +88,11 @@ Binlog字段由Binlog系统字段和用户Table字段组成，具体字段定义
           body VARCHAR
         ) with (
           type = 'hologres',
-          `endpoint` = 'ip:port',//Hologres的vpc网络地址
-          `username` = 'xxxx',//当前账号的Access ID
-          `password` = 'xxxx',//当前账号的Access Key
-          `dbname` = 'xxxx',//Hologres的DB名
-          `tablename` = 'xxxx',//Hologres的表名
+          `endpoint` = 'ip:port',--Hologres的vpc网络地址
+          `username` = 'xxxx',--当前账号的Access ID
+          `password` = 'xxxx',--当前账号的Access Key
+          `dbname` = 'xxxx',--Hologres的DB名
+          `tablename` = 'xxxx',--Hologres的表名
           `binlog` = 'true',
           `binlogMaxRetryTimes` = '10',
           `binlogRetryIntervalMs` = '500',
@@ -107,7 +107,7 @@ Binlog字段由Binlog系统字段和用户Table字段组成，具体字段定义
         |参数名称|是否必填|说明|
         |----|----|--|
         |type|是|源表类型，值填写为hologres。|
-        |ip:port|是|Hologres对应VPC的区域。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)，获取区域和端口信息。|
+        |endpoint|是|Hologres对应VPC的区域。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)，获取区域和端口信息。|
         |username|是|当前阿里云账号的AccessKey ID。您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey ID。|
         |password|是|当前阿里云账号的AccessKey Secret。您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey Secret。|
         |dbname|是|读取的Hologres DB名称。|
