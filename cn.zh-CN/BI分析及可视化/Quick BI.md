@@ -57,7 +57,7 @@ Hologres与Quick BI高效连通，支持支持通过Hologres数据源直接连�
             |数据库|连接的Hologres实例的数据库名称。
 
 您可以登录[管理控制台](https://hologram.console.aliyun.com/#/instance)，进入实例详情页，从**DB管理**页面获取。 |
-            |Schema|默认为**public** Schema。您也可以使用新创建的Schema。 |
+            |Schema|默认为**public** Schema。您也可以使用新创建的Schema，在数据源配置了Schema后，列表中会展示当前Schema下所有的表。但是在使用即席SQL时，还需要在表名称前手动添加对应的Schema名（即shcema.table），才能正确索引到Schema下面的表。 |
             |用户名|具有当前数据库登录权限账号的AccessKey ID。
 
 您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取AccessKey ID。 |
