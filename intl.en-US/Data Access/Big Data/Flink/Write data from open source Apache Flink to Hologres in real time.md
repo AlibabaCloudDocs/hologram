@@ -6,7 +6,7 @@ keyword: [open source Apache Flink, write data in real time]
 
 This topic describes how to write data from open source Apache Flink to Hologres in real time.
 
--   A Hologres instance is created and the instance is connected to a developer tool. Hologres is connected to the PostgreSQL client in this topic. For more information, see [Use Hologres from the PostgreSQL client](/intl.en-US/Quick Start/Use Hologres from the PostgreSQL client.md).
+-   A Hologres instance is created and the instance is connected to a developer tool. Hologres is connected to the PostgreSQL client in this topic. For more information, see [PSQL quick start](/intl.en-US/Quick Start/PSQL quick start.md).
 -   A Flink cluster is created. You can download a binary file from the Flink official website and create a Flink cluster that is deployed in Standalone mode. For more information about how to create a Flink cluster, see [Local Installation of Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.11/try-flink/local_installation.html). A Flink 1.10 cluster is used in this topic.
 
 ## Procedure
@@ -24,7 +24,7 @@ This topic describes how to write data from open source Apache Flink to Hologres
 
 2.  Download and compile the Java ARchive \(JAR\) file of Flink.
 
-    1.  Download and install the JAR file named [hologres-flink-connector-1.10-jar-with-dependencies.jar](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/171614/cn_zh/1612665223522/hologres-flink-connector-1.10-jar-with-dependencies.jar) on which the Hologres connector depends. Sample statement:
+    1.  Download and install the JAR file named [hologres-flink-connector-1.10-jar-with-dependencies.jar](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/171614/cn_zh/1614066580998/hologres-flink-connector-1.10-jar-with-dependencies.jar) on which the Hologres connector depends. Sample statement:
 
         ```
         mvn install:install-file -Dfile=hologres-flink-connector-1.10-jar-with-dependencies.jar -DgroupId=org.apache.flink -DartifactId=hologress-flink-connector -Dversion=1.10 -Dpackaging=jar -DgeneratePom=true
