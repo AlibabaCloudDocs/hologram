@@ -9,7 +9,7 @@ keyword: [Hologres, Apache Superset, 可视化分析]
 -   开通Hologres，详请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
 -   安装Apache Superset，详请参见[Apache Superset官网](https://superset.apache.org/resources)。
 
-Apache Superset \( incubating \) 是一款数据探索和可视化分析的开源BI工具。Apache Superset基于Pytho开发，使用了Flask、Pandas、SQLAlchemy 等组件。Hologres兼容PostgreSQL，如下示例使用Apache Superset V0.38.0版本连接Apache Superset进行数据分析。
+Apache Superset \( incubating \) 是一款数据探索和可视化分析的开源BI工具。Apache Superset基于Python开发，使用了Flask、Pandas、SQLAlchemy 等组件。Hologres兼容PostgreSQL，如下示例使用Apache Superset V0.38.0版本连接Apache Superset进行数据分析。
 
 1.  登录Superset，在顶部菜单栏选择**Sources** \> **Databases**，进入Databases页面。
 
