@@ -22,7 +22,7 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
 -   函数语法
 
     ```
-    select pg_relation_size('table_name');//返回单位是Byte
+    select pg_relation_size('table_name');--返回单位是Byte
     ```
 
 -   参数说明
@@ -31,14 +31,44 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
     |--|--|
     |table\_name|表示待查询的当前数据库下的表名称。|
 
--   返回值：返回值的单位是 Byte。返回的数据为该表此刻的memtable大小和当前该表的物理磁盘大小。
+-   返回值：返回值的单位是 Byte，类型为字符串。返回的数据为该表此刻的内存所占空间和物理磁盘空间。
 
     如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
 
     ```
-    select pg_size_pretty( pg_relation_size('table_name'));//返回单位是KB或者MB等单位
+    --查看单表存储
+    SELECT pg_size_pretty(pg_relation_size('table_name'));
+    
+    --查看所有表大小
+    SELECT table_schema || '.' || table_name AS table_full_name, pg_size_pretty(pg_relation_size('"' || table_schema || '"."' || table_name || '"')) AS table_size
+    FROM information_schema.tables
+    WHERE table_schema NOT IN ('pg_catalog','information_schema','hologres')
+    ORDER BY table_size DESC;
     ```
 
+
+## 查看schema存储大小
+
+-   使用说明
+
+    您可以通过执行SQL语句查看对应schema下面的所有表的大小。
+
+-   函数语法
+
+    ```
+    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::bigint)) AS schema_size
+    FROM information_schema.tables 
+    WHERE table_schema = 'schema_name'
+    GROUP BY table_schema;
+    ```
+
+-   参数说明
+
+    |参数|说明|
+    |--|--|
+    |schema\_name|表示当前表所对应的schema名称。|
+
+-   返回值：返回值的单位是 Byte。
 
 ## 查看DB的存储大小
 
@@ -49,7 +79,7 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
 -   函数语法
 
     ```
-    select pg_database_size(current_database()); //返回单位是Byte
+    select pg_database_size(current_database()); --返回单位是Byte
     ```
 
 -   参数说明
@@ -63,7 +93,7 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
     如果您需要提高可读性，可以使用pg\_size\_pretty函数进行查询，具体语法如下：
 
     ```
-    select pg_size_pretty(pg_database_size(current_database())); //返回单位是KB或者MB等单位
+    select pg_size_pretty(pg_database_size(current_database())); --返回单位是KB或者MB等单位
     ```
 
 
