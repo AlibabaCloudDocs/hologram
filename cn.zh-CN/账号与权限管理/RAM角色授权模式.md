@@ -59,46 +59,41 @@ Hologres支持如下两种访问方式：
     4.  单击**完成**，页面提示角色创建成功完成创建。
 2.  创建并添加权限策略。
 
-    1.  单击**为角色授权**在添加权限页面，选择**新建权限策略**，
-    2.  选择**新建权限策略**后默认进入[访问控制](https://ram.console.aliyun.com/roles)，的**权限策略管理**页签，新建自定义权限策略页面，配置如下参数信息。
-        -   策略名称和备注，自定义策略名称和备注信息。
-        -   配置模式，选择可视化配置或脚本配置。
-            -   参数说明
+    1.  在RAM角色管理列表页，单击目标角色名称，进入角色信息详情页。
+    2.  单击进入**信任策略管理**页签，修改新任策略为如下脚本内容。
+        -   参数说明
 
-                在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:root`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
+            在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:root`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
 
-            -   脚本配置
+        -   脚本配置
 
-                ```
-                {
-                    "Statement": [
-                        {
-                            "Action": "sts:AssumeRole",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "RAM": [
-                                    "acs:ram::主账号ID:root"
-                                ]
-                            }
-                        },
-                        {
-                            "Action": "sts:AssumeRole",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Service": [
-                                    "dataworks.aliyuncs.com"
-                                ]
-                            }
+            ```
+            {
+                "Statement": [
+                    {
+                        "Action": "sts:AssumeRole",
+                        "Effect": "Allow",
+                        "Principal": {
+                            "RAM": [
+                                "acs:ram::主账号ID:root"
+                            ]
                         }
-                    ],
-                    "Version": "1"
-                }
-                ```
+                    },
+                    {
+                        "Action": "sts:AssumeRole",
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": [
+                                "dataworks.aliyuncs.com"
+                            ]
+                        }
+                    }
+                ],
+                "Version": "1"
+            }
+            ```
 
     3.  单击**确定**，完成权限策略配置。
-    4.  在左侧导航栏，单击进入RAM角色管理页面，单击目标角色操作列的**添加权限**。
-    5.  在添加权限页面，单击**自定义策略**，选择创建的权限名称。
-    6.  单击**确定**，完成角色授权。
 3.  创建RAM用户并授予角色权限。
 
     通过RAM用户来扮演RAM角色，需要创建一个RAM用户并授予扮演角色的权限。
@@ -124,50 +119,46 @@ Hologres支持如下两种访问方式：
     4.  选择身份提供商并查看限制条件后，单击**完成**，页面提示角色创建成功完成创建。
 2.  创建并添加权限策略。
 
-    1.  单击**为角色授权**在添加权限页面，选择**新建权限策略**，
-    2.  选择**新建权限策略**后默认进入[访问控制](https://ram.console.aliyun.com/roles)，的**权限策略管理**页签，新建自定义权限策略页面，配置如下参数信息。
-        -   策略名称和备注，自定义策略名称和备注信息。
-        -   配置模式，选择可视化配置或脚本配置。
-            -   参数说明
+    1.  在RAM角色管理列表页，单击目标角色名称，进入角色信息详情页。
+    2.  单击进入**信任策略管理**页签，修改新任策略为如下脚本内容。
+        -   参数说明
 
-                在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:root`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
+            在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:root`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
 
-            -   脚本配置
+        -   脚本配置
 
-                ```
-                "Statement": [
-                        {
-                            "Action": "sts:AssumeRole",
-                            "Condition": {
-                                "StringEquals": {
-                                    "saml:recipient": "https://signin.aliyun.com/saml-role/sso"
-                                }
-                            },
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": [
-                                    "acs:ram::主账号ID:saml-provider/IDP"
-                                ]
+            ```
+            "Statement": [
+                    {
+                        "Action": "sts:AssumeRole",
+                        "Condition": {
+                            "StringEquals": {
+                                "saml:recipient": "https://signin.aliyun.com/saml-role/sso"
                             }
                         },
-                        {
-                            "Action": "sts:AssumeRole",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Service": [
-                                    "dataworks.aliyuncs.com"
-                                ]
-                            }
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Federated": [
+                                "acs:ram::主账号ID:saml-provider/IDP"
+                            ]
                         }
-                    ],
-                    "Version": "1"
-                }
-                ```
+                    },
+                    {
+                        "Action": "sts:AssumeRole",
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": [
+                                "dataworks.aliyuncs.com"
+                            ]
+                        }
+                    }
+                ],
+                "Version": "1"
+            }
+            }
+            ```
 
     3.  单击**确定**，完成权限策略配置。
-    4.  在左侧导航栏，单击进入RAM角色管理页面，单击目标角色操作列的**添加权限**。
-    5.  在添加权限页面，单击**自定义策略**，选择创建的权限名称。
-    6.  单击**确定**，完成角色授权。
 
 ## 步骤二：添加RAM角色至Hologres实例并授权
 
