@@ -9,7 +9,7 @@ INSERT ON CONFLICT语句用于在指定列插入某行数据时，如果主键�
 ## 使用限制
 
 -   `INSERT ON CONFLICT`语句的条件必须包含所有主键。
--   如果系统提示实例版本过低不支持该功能。您可以执行如下命令或[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)升级实例至0.8版本。
+-   如果系统提示实例版本过低不支持该功能。您可以执行如下命令或[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)升级实例至最新版本。
 
     ```
     set hg_experimental_enable_insert_on_conflict = on; 
@@ -86,18 +86,18 @@ create table conflict_2(
   b int ,
   c int);
 insert into conflict_2 values(1,5,6);
-
-insert into conflict_1 select * from conflict_2 on conflict(a) do update set b = excluded.b; //主键相同时，将表conflict_2的某列数据更新到表conflict_1中。
-
-insert into conflict_1 values(2,7,8) on conflict(a) do update set b = excluded.b, c = excluded.c where conflict_1.c = 4; //主键相同时，将表conflict_2的某一行数据全部插入至表conflict_1中。
-
-insert into conflict_1 select * from conflict_2 on conflict(a) do nothing; //主键相同时，向表conflict_1插入表conflict_2的数据，系统直接跳过表conflict_2的数据（即插入数据失败）。
-
-insert into conflict_1 select * from conflict_2 on conflict do nothing; //do nothing不指定冲突列时，默认冲突列为主键。
-
-insert into conflict_1 select * from conflict_2 on conflict on constraint conflict_1_pkey do update set a = excluded.a; //指定主键constrain的名称。
-
-insert into tmp1_on_conflict values(1,2,3) on conflict(a) do update set (a, b ,c )= ROW(excluded.*); //更新整行数据。
+--主键相同时，将表conflict_2的某列数据更新到表conflict_1中。
+insert into conflict_1（a,b) select a,b from conflict_2 on conflict(a) do update set b = excluded.b; 
+--主键相同时，将表conflict_2的某一行数据全部插入至表conflict_1中。
+insert into conflict_1 values(2,7,8) on conflict(a) do update set b = excluded.b, c = excluded.c where conflict_1.c = 4; 
+--主键相同时，向表conflict_1插入表conflict_2的数据，系统直接跳过表conflict_2的数据（即插入数据失败）。
+insert into conflict_1 select * from conflict_2 on conflict(a) do nothing; 
+--do nothing不指定冲突列时，默认冲突列为主键。
+insert into conflict_1 select * from conflict_2 on conflict do nothing; 
+ --指定主键constrain的名称。
+insert into conflict_1 select * from conflict_2 on conflict on constraint conflict_1_pkey do update set a = excluded.a;
+---更新整行数据。
+insert into tmp1_on_conflict values(1,2,3) on conflict(a) do update set (a, b ,c )= ROW(excluded.*); 
 ```
 
 ![conflict](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2771863061/p174954.png)
