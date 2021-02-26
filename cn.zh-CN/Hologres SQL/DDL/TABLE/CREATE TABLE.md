@@ -317,7 +317,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
 
         -   dictionary\_encoding\_columns：字典编码列，为指定列的值构建字典映射。字典编码可以将字符串的比较转成数字的比较，加速group by、filter等查询。
         -   设置dictionary\_encoding\_columns要求表的存储形式为column，即列存表。
-        -   dictionary\_encoding\_columns指定的列可以为null。型
+        -   dictionary\_encoding\_columns指定的列可以为null。
         -   取值较少的列适合设置dictionary\_encoding\_columns，可以压缩存储。
         -   V0.8及更早版本中默认所有text列都会被隐式地设置到dictionary\_encoding\_columns中。V0.9及之后的版本会根据数据特征自动选择是否创建字典编码。
         -   **可以在事务之外单独使用。表示修改dictionary\_encoding\_columns列，修改之后非立即生效，字典编码构建和删除在后台异步执行。**详请参见[ALTER TABLE](/cn.zh-CN/Hologres SQL/DDL/TABLE/ALTER TABLE.md)。
