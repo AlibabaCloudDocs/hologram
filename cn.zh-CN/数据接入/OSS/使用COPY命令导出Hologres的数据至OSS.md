@@ -128,7 +128,7 @@ COPY (select * from holo_test_1 LIMIT 20) TO PROGRAM 'hg_dump_to_oss --AccessKey
 
 -   `DETAIL: command not found`
 
-    您需要配置`DUMP TO OSS`的**prpgram**为hg\_dump\_to\_oss，否则会出现该报错。
+    您需要配置`DUMP TO OSS`的**program**为hg\_dump\_to\_oss，否则会出现该报错。
 
 -   `ERROR: program "hg_dump_to_oss ...” failed DETAIL: child process exited with exit code 101`
 
