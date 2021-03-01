@@ -8,7 +8,7 @@ This topic describes how to use the simple permission model \(SPM\) in Hologres.
 
 ## Use the SPM to authorize users
 
-When you use the SPM to authorize users in Hologres, you can use the following method:
+When you use the SPM to authorize users of an instance in Hologres, you can use the following method:
 
 -   Execute SQL statements to authorize users
 
@@ -25,11 +25,13 @@ When you use the SPM to authorize users in Hologres, you can use the following m
 
 2.  Enable the SPM.
 
-    By default, the SPM is disabled. You can execute the following statement to enable the SPM for a database: For more information about the spm\_enable function, see [spm\_enable](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.mdsection_3jy_fy7_o1f).
+    By default, the SPM is disabled. You can execute the following statement to enable the SPM for a database. For more information about the spm\_enable function, see [spm\_enable](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.mdsection_3jy_fy7_o1f).
 
     ```
     call spm_enable (); // Enable the SPM for the current database.
     ```
+
+    **Note:** After you enable the SPM for a database, users in the developer group are granted permissions on tables and table-like objects in all schemas in a database.
 
 3.  Switch from the standard PostgreSQL authorization model to the SPM for existing objects.
 
@@ -51,7 +53,7 @@ When you use the SPM to authorize users in Hologres, you can use the following m
 
     ```
     call spm_create_user ('Alibaba Cloud account ID/Alibaba Mail address/RAM user UID'); // Create a user in the Hologres instance. For a RAM user, prefix the UID of the RAM user with p4_ and enclose it in double quotation marks (" "), such as "p4_uid".
-    call spm_create_user ('Alibaba Cloud account ID/Alibaba Mail address/RAM user UID, '<dbname>_[admin|developer|writer|viewer]'); // Create a user in the Hologres instance and add the user to a user group of a database. For a RAM user, prefix the UID of the RAM user with p4_ and enclose it in double quotation marks (" "), such as "p4_uid".
+    call spm_create_user ('Alibaba Cloud account ID/Alibaba Mail address/RAM user UID', '<dbname>_[admin|developer|writer|viewer]'); // Create a user in the Hologres instance and add the user to a user group of a database. For a RAM user, prefix the UID of the RAM user with p4_ and enclose it in double quotation marks (" "), such as "p4_uid".
     ```
 
     **Note:**
@@ -141,7 +143,7 @@ The spm\_migrate function may transfer the ownership of a large number of object
 
 1.  Disable the SPM.
 
-    A superuser can execute the following statement to call the spm\_disable function to disable the SPM for a database: For more information about the spm\_disable function, see [spm\_disable](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.mdsection_13d_pfx_0c1).
+    A superuser can execute the following statement to call the spm\_disable function to disable the SPM for a database. For more information about the spm\_disable function, see [spm\_disable](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.mdsection_13d_pfx_0c1).
 
     ```
     call spm_disable ();
@@ -155,9 +157,9 @@ The spm\_migrate function may transfer the ownership of a large number of object
 
     **Note:** Generally, we recommend that you retain user groups to facilitate user management.
 
-    -   Case 1: Delete user groups of an existing database
+    -   Case 1: Delete the user groups of an existing database
 
-        To delete user groups but retain the database, execute the following statement as a superuser: For more information about the spm\_cleanup function, see [spm\_cleanup](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.md).
+        To delete user groups but retain the database, execute the following statement as a superuser. For more information about the spm\_cleanup function, see [spm\_cleanup](/intl.en-US/User Authorization/Hologres permission models/SPM/Functions of the SPM.md).
 
         ```
         call spm_cleanup ( '{dbname}' );
@@ -167,9 +169,9 @@ The spm\_migrate function may transfer the ownership of a large number of object
 
         This operation may transfer the ownership of a large number of business objects. However, the number of objects for which you can transfer the ownership at a time by calling the spm\_cleanup function is no more than the value of the `max_locks_per_transaction` parameter. As a result, you may need to repeat calling the spm\_cleanup function until the ownership of all objects is transferred and all user groups of the database are deleted.
 
-    -   Case 2: Delete user groups of a deleted database
+    -   Case 2: Delete the user groups of a deleted database
 
-        To delete user groups of a deleted database, execute the following statement in another database such as postgres as a superuser:
+        To delete the user groups of a deleted database, execute the following statement in another database such as postgres as a superuser:
 
         ```
         postgres=# call spm_cleanup ( 'mydb' );
@@ -189,4 +191,17 @@ When you disable the SPM, take note of the following items:
     -   <db\>\_developer: retains the obtained permissions on existing objects and has no permission on new objects.
     -   <db\>\_writer: retains the obtained permissions on existing objects and has no permission on new objects.
     -   <db\>\_viewer: retains the obtained permissions on existing objects and has no permission on new objects.
+
+## Enable the SPM again
+
+Assume that you enabled the SPM for your database before but have switched it to the standard PostgreSQL authorization model for existing objects. If you need to enable the SPM again, execute the following statements:
+
+```
+call spm_enable (); // Enable the SPM for the current database.
+call spm_migrate (); // Transfer the ownership of existing objects in the database to the developers that are specified in the SPM.
+```
+
+**Note:** When you enable the SPM for a database, make sure that no SQL statement is being executed in the database. Otherwise, you may fail to enable the SPM and the business may be affected.
+
+The spm\_migrate function may transfer the ownership of a large number of objects at a time. However, the number of objects for which you can transfer the ownership at a time by calling the spm\_migrate function is no more than the value of the [max\_locks\_per\_transaction](https://www.postgresql.org/docs/9.1/runtime-config-locks.html) parameter. As a result, you may need to repeat calling the spm\_migrate function until the ownership of all objects is transferred.
 
