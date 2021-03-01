@@ -6,69 +6,71 @@ keyword: [周期性调度, Hologres]
 
 HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数据导入Hologres，并基于DataWorks的底层能力，前往DataWorks进行定时调度，实现周期性导入数据至Hologres。本文为您介绍如何将MaxCompute源表数据导入Hologres进行周期性调度。
 
+-   MaxCompute与Hologres的分区无强映射关系，MaxCompute的分区字段映射为Hologres的普通字段。因此，您可以将MaxCompute的分区表或非分区表导入Hologres的分区或非分区表，可以根据实际业务情况选择是否需要分区。
+-   前往Dataworks调度会产生一定的调度费用，详细收费情况，请参见[DataWorks资源组概述]()。
+-   如果需要实现写入更新，您需要使用[INSERT ON CONFLICT](/cn.zh-CN/Hologres SQL/DML&DQL/INSERT ON CONFLICT.md)语法。
+
 1.  准备MaxCompute表数据。
 
-    准备一张MaxCompute数据源表，您可以参考[t11950.dita\#concept\_rkk\_kcy\_5db](/cn.zh-CN/快速入门/创建和查看表.md)进行建表，也可以直接从数据地图中选用一张表。示例选用数据地图中已创建的表，其建表DDL语句如下。
+    准备一张MaxCompute数据源表，您可以参考[t11950.dita\#concept\_rkk\_kcy\_5db](/cn.zh-CN/快速入门/创建和查看表.md)进行建表并导入数据。示例选用MaxCompute公共数据集**public\_data**的分区表dwd\_ product\_movie\_basic\_info表，您可以参照[使用公开数据集](/cn.zh-CN/公开数据集/概述.md)描述，登录并查询数据集。其建表DDL语句如下：
 
     ```
-    CREATE TABLE IF NOT EXISTS bank_data_odps
-    (
-     age             BIGINT COMMENT '年龄',
-     job             STRING COMMENT '工作类型',
-     marital         STRING COMMENT '婚否',
-     education       STRING COMMENT '教育程度',
-     card         STRING COMMENT '是否有信用卡',
-     housing         STRING COMMENT '房贷',
-     loan            STRING COMMENT '贷款',
-     contact         STRING COMMENT '联系途径',
-     month           STRING COMMENT '月份',
-     day_of_week     STRING COMMENT '星期几',
-     duration        STRING COMMENT '持续时间',
-     campaign        BIGINT COMMENT '本次活动联系的次数',
-     pdays           DOUBLE COMMENT '与上一次联系的时间间隔',
-     previous        DOUBLE COMMENT '之前与客户联系的次数',
-     poutcome        STRING COMMENT '之前市场活动的结果',
-     emp_var_rate    DOUBLE COMMENT '就业变化速率',
-     cons_price_idx  DOUBLE COMMENT '消费者物价指数',
-     cons_conf_idx   DOUBLE COMMENT '消费者信心指数',
-     euribor3m       DOUBLE COMMENT '欧元存款利率',
-     nr_employed     DOUBLE COMMENT '职工人数',
-     y               BIGINT COMMENT '是否有定期存款'
-    );
+    --MaxCompute分区表DDL
+    CREATE TABLE IF NOT EXISTS public_data.dwd_product_movie_basic_info(
+      movie_name STRING COMMENT '电影名称',
+      dirctor STRING COMMENT '导演',
+      scriptwriter STRING COMMENT '编剧',
+      area STRING COMMENT '制片地区/国家',
+      actors STRING COMMENT '主演',
+      `type` STRING COMMENT '类型',
+      movie_length STRING COMMENT '电影长度',
+      movie_date STRING COMMENT '上映日期',
+      movie_language STRING COMMENT '语言',
+      imdb_url STRING COMMENT 'imdb号'
+    ) 
+    PARTITIONED BY (ds STRING) STORED AS ALIORC;
+    
+    --查看分区表的某个分区数据
+    SELECT * FROM public_data.dwd_product_movie_basic_info WHERE ds = '20170112';
     ```
+
+    查询数据显示如下图所示。
+
+    ![movie_basic](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8079404161/p242606.png)
 
 2.  新建外部表。
 
-    进入HoloStudio，在PG管理或SQL Console中新建一张外部表，用于映射MaxCompute源表数据。示例新建外部表的SQL语句如下。
+    进入HoloStudio，在SQL Console中新建一张外部表，用于映射MaxCompute源表数据。外部表的字段顺序和字段类型需要和MaxCompute一一对应。示例新建外部表的SQL语句如下：
 
     ```
-    begin;
-    CREATE FOREIGN TABLE "public"."bank_data_foreign_holo" (
-     "age" int8,
-     "job" text,
-     "marital" text,
-     "education" text,
-     "card" text,
-     "housing" text,
-     "loan" text,
-     "contact" text,
-     "month" text,
-     "day_of_week" text,
-     "duration" text,
-     "campaign" int8,
-     "pdays" float8,
-     "previous" float8,
-     "poutcome" text,
-     "emp_var_rate" float8,
-     "cons_price_idx" float8,
-     "cons_conf_idx" float8,
-     "euribor3m" float8,
-     "nr_employed" float8,
-     "y" int8
+    BEGIN;
+    CREATE FOREIGN TABLE public.foreign_dwd_product_movie_basic_info (
+        "movie_name" text,
+        "dirctor" text,
+        "scriptwriter" text,
+        "area" text,
+        "actors" text,
+        "type" text,
+        "movie_length" text,
+        "movie_date" text,
+        "movie_language" text,
+        "imdb_url" text,
+        "ds" text
     )
     SERVER odps_server
-    OPTIONS (project_name 'odps_4_holoworkshop_dev', table_name 'bank_data_odps');
+    OPTIONS (project_name 'public_data', table_name 'dwd_product_movie_basic_info');
+    comment on column public.foreign_dwd_product_movie_basic_info."movie_name" is '电影名称';
+    comment on column public.foreign_dwd_product_movie_basic_info."dirctor" is '导演';
+    comment on column public.foreign_dwd_product_movie_basic_info."scriptwriter" is '编剧';
+    comment on column public.foreign_dwd_product_movie_basic_info."area" is '制片地区/国家';
+    comment on column public.foreign_dwd_product_movie_basic_info."actors" is '主演';
+    comment on column public.foreign_dwd_product_movie_basic_info."type" is '类型';
+    comment on column public.foreign_dwd_product_movie_basic_info."movie_length" is '电影长度';
+    comment on column public.foreign_dwd_product_movie_basic_info."movie_date" is '上映日期';
+    comment on column public.foreign_dwd_product_movie_basic_info."movie_language" is '语言';
+    comment on column public.foreign_dwd_product_movie_basic_info."imdb_url" is 'imdb号';
     COMMIT;
+                        
     ```
 
     OPTIONS的连接参数说明如下表所示。
@@ -80,41 +82,46 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
 3.  新建存储表。
 
-    在HoloStudio中新建一张用于接收并存储数据的真实存储表。字段类型需要与外部表保持一致。示例DDL语句如下。
+    在HoloStudio中新建一张用于接收并存储数据的真实存储表。由于本次示例是将MaxCompute分区表导入Hologres分区表，因此需要在Hologres中创建一张分区表。
+
+    该示例建表DDL仅是简单示例，实际建表DDL请根据实际业务需要创建，并给表设置合理的索引，以达到更优的查询性能，DDL示例如下：
 
     ```
-    begin;
-    create table if not exists bank_data_holo (
-     age int8,
-     job text,
-     marital text,
-     education text,
-     card text,
-     housing text,
-     loan text,
-     contact text,
-     month text,
-     day_of_week text,
-     duration text,
-     campaign int8,
-     pdays float8,
-     previous float8,
-     poutcome text,
-     emp_var_rate float8,
-     cons_price_idx float8,
-     cons_conf_idx float8,
-     euribor3m float8,
-     nr_employed float8,
-     y int8,
-     ds text not null
+    BEGIN;
+    CREATE TABLE "public"."holo_dwd_product_movie_basic_info" (
+     "movie_name" text,
+     "dirctor" text,
+     "scriptwriter" text,
+     "area" text,
+     "actors" text,
+     "type" text,
+     "movie_length" text,
+     "movie_date" text,
+     "movie_language" text,
+     "imdb_url" text,
+     "ds" text
     )
-    partition by list(ds);
-    call set_table_property('bank_data_holo', 'orientation', 'column');
-    call set_table_property('bank_data_holo', 'time_to_live_in_seconds', '700000');
-    commit;
+    PARTITION BY LIST (ds);
+    CALL SET_TABLE_PROPERTY('"public"."holo_dwd_product_movie_basic_info"', 'orientation', 'column');
+    CALL SET_TABLE_PROPERTY('"public"."holo_dwd_product_movie_basic_info"', 'bitmap_columns', '"movie_name","dirctor","scriptwriter","area","actors","type","movie_length","movie_date","movie_language","imdb_url","ds"');
+    CALL SET_TABLE_PROPERTY('"public"."holo_dwd_product_movie_basic_info"', 'dictionary_encoding_columns', '"movie_name:auto","dirctor:auto","scriptwriter:auto","area:auto","actors:auto","type:auto","movie_length:auto","movie_date:auto","movie_language:auto","imdb_url:auto","ds:auto"');
+    CALL SET_TABLE_PROPERTY('"public"."holo_dwd_product_movie_basic_info"', 'time_to_live_in_seconds', '3153600000');
+    comment on column "public"."holo_dwd_product_movie_basic_info"."movie_name" is '电影名称';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."dirctor" is '导演';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."scriptwriter" is '编剧';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."area" is '制片地区/国家';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."actors" is '主演';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."type" is '类型';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."movie_length" is '电影长度';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."movie_date" is '上映日期';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."movie_language" is '语言';
+    comment on column "public"."holo_dwd_product_movie_basic_info"."imdb_url" is 'imdb号';
+    COMMIT;
     ```
 
-4.  新建分区表的数据开发。
+4.  新建分区子表的数据开发。
+
+    由于本示例是将MaxCompute分区表数据导入Hologres分区表，因此需要在Hologres中创建对应的分区键值的分区子表。然后将分区数据导入对应的分区子表。这里通过\{bizdate\}参数控制分区键值，在调度系统中自动赋值完成周期性调度。关于参数的配置，请参见DataWorks文档[DataWorks调度配置]()。其中，insert的分区数据必须和分区键（本文示例为ds）的值保持一致，否则会报错。
 
     1.  在HoloStudio中，单击左侧导航栏的![数据开发](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6596744061/p178952.png)图标，进入数据开发页面。
 
@@ -129,41 +136,35 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
     5.  在新建的Hologres开发节点的编辑界面，输入如下创建分区表的数据开发语句。
 
         ```
-        create table if not exists bank_data_holo_1_${bizdate} partition of bank_data_holo
-          for values in ('${bizdate}');
+        --创建分区子表
+        DROP TABLE IF EXISTS "public".holo_dwd_product_movie_basic_info_${bizdate};
         
-        insert into bank_data_holo_1_${bizdate}
-        select 
-            age as age,
-            job as job,
-            marital as marital,
-            education as education,
-            card as card,
-             housing as housing,
-            loan as loan,
-            contact as contact,
-            month as month,
-            day_of_week as day_of_week,
-             duration as duration,
-            campaign as campaign,
-             pdays as pdays,
-            previous as previous,
-            poutcome as poutcome,
-             emp_var_rate as emp_var_rate,
-            cons_price_idx as cons_price_idx,
-            cons_conf_idx as cons_conf_idx,
-            euribor3m as euribor3m,
-            nr_employed as nr_employed,
-            y as y,
-            '${bizdate}' as ds 
-        from bank_data_foreign_holo;
+        CREATE TABLE IF NOT EXISTS "public".holo_dwd_product_movie_basic_info_${bizdate} PARTITION OF "public".holo_dwd_product_movie_basic_info FOR VALUES IN ('${bizdate}');
+        
+        
+        --导入指定分区数据
+        INSERT INTO "public".holo_dwd_product_movie_basic_info_${bizdate}
+        SELECT 
+            "movie_name",
+            "dirctor",
+            "scriptwriter",
+            "area",
+            "actors",
+            "type",
+            "movie_length",
+            "movie_date",
+            "movie_language",
+            "imdb_url",
+            "ds"
+        FROM "public".foreign_dwd_product_movie_basic_info
+        WHERE ds='${bizdate}';
         ```
 
     6.  单击顶部菜单栏左侧的![保存](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6596744061/p179028.png)，保存Hologres开发。
 
     7.  单击顶部菜单栏右侧的**前往DataWorks调度**，进入调度页面。
 
-        ![前往调度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179031.png)
+        ![前往调度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0732504161/p179031.png)
 
 5.  新建分区表的调度作业。
 
@@ -177,11 +178,11 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
     2.  在新建的节点页面，单击**更新节点版本**，将分区表的信息同步至该节点。
 
-        ![同步数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179073.png)
+        ![同步数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0732504161/p179073.png)
 
 6.  配置调度信息。
 
-    在新建的节点页面，单击右侧导航栏的**调度配置**，配置调度参数。详情请参见[调度参数]()。
+    在新建的节点页面，单击右侧导航栏的**调度配置**，配置调度参数。详情请参见[调度参数]()。本次示例选择的是日调度，因此将会每天自动生成一张分区子表，并导入对应的数据，以此来实现增量数据周期性调度。更多的调度逻辑（包括调度周期、调度参数、调度上下游等）请参见[DataWorks调度配置]()。
 
     具体配置如下所示：
 
@@ -189,13 +190,13 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
         在**基础属性**区域，将**参数**赋值为时间节点。
 
-        ![基础属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179120.png)
+        ![基础属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0732504161/p179120.png)
 
     2.  配置时间属性。
 
         在**时间属性**区域，配置**时间属性**为**正常调度**。其余参数请根据业务实际情况配置，详情请参见[配置时间属性]()。
 
-        ![时间属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179125.png)
+        ![时间属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0732504161/p179125.png)
 
     3.  配置调度依赖。
 
@@ -203,7 +204,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
         1.  将**自动解析**配置为**是**。
         2.  单击**使用工作空间根节点**，自动解析出root节点。
-        3.  再将**自动解析**配置为**否**，详情请参见[依赖关系]()。
+        3.  再将**自动解析**配置为**否**，详情请参见[配置调度依赖]()。
         ![调度依赖](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179148.png)
 
         您也可以根据业务逻辑选择已有的父节点。
@@ -214,36 +215,27 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
     2.  在新建节点页面的顶部菜单栏左侧，单击![提交](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179178.png)图标，提交调度信息。
 
-    3.  在新建节点页面的顶部菜单栏右侧，单击**发布**，前往任务发布页面。
+    3.  发布包提交成功后，单击**任务发布**页面顶部菜单栏右侧的**运维中心**，进入运维中心。
 
-    4.  在任务发布页面，选中当前任务，单击目标任务**操作**列的**发布**。
+    4.  在左侧导航栏，单击**周期任务运维** \> **周期任务**，勾选并单击目标任务名称。
 
-    5.  在**确认发布**对话框，单击**发布**。
-
-        ![确认发布](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179190.png)
-
-    6.  发布包提交成功后，单击**任务发布**页面顶部菜单栏右侧的**运维中心**，进入运维中心。
-
-    7.  在左侧导航栏，单击**周期任务运维** \> **周期任务**，勾选并单击目标任务名称。
-
-    8.  在右侧编辑界面，鼠标右键单击目标任务节点，选择**补数据** \> **当前节点**。
+    5.  在右侧编辑界面，鼠标右键单击目标任务节点，选择**补数据** \> **当前节点**。
 
         ![补数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179195.png)
 
-    9.  根据业务实际情况，配置**补数据**对话框的各项参数。完成调度任务的发布。
+    6.  根据业务实际情况，配置**补数据**对话框的各项参数。完成调度任务的发布。
 
-        ![补数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179196.png)
+8.  任务执行成功后，您可以通过如下方式查询数据。
 
-8.  任务执行成功后，返回HoloStudio。单击新建节点的![刷新](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179202.png)图标，刷新当前页面。您可以在**PG管理**模块找到目标分区表，查看调度成功的分区表数据。
+    -   您可以返回Hologres中，通过标准SQL查看父表或分区表的数据，示例如下。
 
-    双击目标表名称，在表编辑页面单击**数据预览**，即可看到已成功导入的数据。
+        ```
+        --查看分区子表数据
+        select * from holo_dwd_product_movie_basic_info_20170112;
+        
+        --查看分区父表总数据
+        select count (*) from holo_dwd_product_movie_basic_info;
+        ```
 
-    ![数据预览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8596744061/p179203.png)
-
-    您也可以使用SQL语句查看父表或分区表的数据，示例如下。
-
-    ```
-    SELECT * FROM  bank_data_holo;
-    ```
-
+    -   返回HoloStudio。单击新建节点的![刷新](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7596744061/p179202.png)图标，刷新当前页面。您可以在**PG管理**模块找到目标分区表，查看调度成功的分区表数据。双击目标表名称，在表编辑页面单击**数据预览**，即可看到已成功导入的数据。
 
