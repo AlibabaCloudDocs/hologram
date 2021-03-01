@@ -24,11 +24,11 @@ WHERE [condition];
 1.  创建内部表，示例语句如下。
 
     ```
-    create table t2_holo (
+    create table holo_test (
       amount decimal(10, 2), 
       rate decimal(10, 2)
     );
-    insert into t2_holo values 
+    insert into holo_test values 
     (12.12,13.13),
     (14.14,15.15),
     (16.16,17.17),
@@ -39,9 +39,9 @@ WHERE [condition];
 2.  基于内部表创建视图并查询表数据，示例语句如下。
 
     ```
-    create view view2 as select * from t2_holo;
+    create view holo_view as select * from holo_test;
     
-    select * from view2;
+    select * from holo_view;
      amount | rate
     --------+-------
       12.12 | 13.13
@@ -58,21 +58,22 @@ WHERE [condition];
 1.  创建外部表，示例语句如下。
 
     ```
-    create foreign table if not exists t1_foreign (
+    create foreign table if not exists holo_foreign_test (
       amount decimal(10, 2), 
       rate decimal(10, 2)) 
-      server odps_server options(project_name '<projectname>', table_name '<odps_name>')
+      server odps_server 
+      options(project_name '<projectname>', table_name '<odps_name>')
       );
       
-    select * from t1_foreign limit 2;
+    select * from holo_foreign_test limit 2;
     ```
 
 2.  基于外部表创建视图并查询表数据，示例语句如下。
 
     ```
-    create view view1 as select * from t1_foreign;
+    create view foreign_view as select * from holo_foreign_test;
     
-    select * from view1 limit 2;
+    select * from foreign_view limit 2;
      amount | rate
     --------+-------
       12.12 | 13.13
@@ -85,9 +86,9 @@ WHERE [condition];
 1.  基于内部表和外部表创建联合视图并查询表数据，示例语句如下。
 
     ```
-    create view view3 as select * from t2_holo union all  select * from t1_foreign;
+    create view view1 as select * from holo_view union all  select * from foreign_view;
     
-    select * from view3;
+    select * from view1;
      amount | rate
     --------+-------
       12.12 | 13.13
@@ -120,5 +121,32 @@ WHERE [condition];
 
 ```
 drop view <view_name>;
+```
+
+## 查看所有视图和视图的DDL
+
+您可以执行如下命令查看所有视图，如果您通过psql客户端查看所有视图，也可以执行`\dv`进行查看。
+
+```
+--sql命令
+SELECT n.nspname as "Schema",
+  c.relname as "Name",
+  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 's' THEN 'special' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'table' WHEN 'I' THEN 'index' END as "Type",
+  pg_catalog.pg_get_userbyid(c.relowner) as "Owner"
+FROM pg_catalog.pg_class c
+     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+WHERE c.relkind IN ('v','')
+      AND n.nspname <> 'pg_catalog'
+      AND n.nspname <> 'information_schema'
+      AND n.nspname !~ '^pg_toast'
+  AND pg_catalog.pg_table_is_visible(c.oid)
+ORDER BY 1,2;
+```
+
+您可以执行如下命令查看VIEW的具体DDL：
+
+```
+create extension hg_toolkit;
+select hg_dump_script('viewname');
 ```
 
