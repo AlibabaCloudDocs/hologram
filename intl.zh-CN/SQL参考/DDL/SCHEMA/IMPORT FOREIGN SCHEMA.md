@@ -61,5 +61,5 @@ IMPORT FOREIGN SCHEMA <odpsproject_name> LIMIT TO (customer) FROM server odps_se
 
 ## 数据类型映射
 
-批量创建的MaxCompute外部表与Hologres的数据类型映射，详情请参见[批量创建MaxCompute外部表与Hologres的数据类型映射](/intl.zh-CN/SQL参考/数据类型.md)。
+批量创建的MaxCompute外部表与Hologres的数据类型映射，详情请参见[批量创建MaxCompute外部表与Hologres的数据类型映射](/intl.zh-CN/SQL参考/数据类型/数据类型汇总.md)。
 
