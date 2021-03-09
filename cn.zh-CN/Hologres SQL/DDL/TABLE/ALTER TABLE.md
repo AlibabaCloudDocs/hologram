@@ -11,7 +11,6 @@ ALTER TABLE语句用于修改表。本文为您介绍ALTER TABLE的用法。
 Hologres当前对表的修改有如下注意事项：
 
 -   支持对表进行重命名和增加列的操作。
--   对于外部表\(foreign table\)没有操作限制。
 -   针对Hologres的分区表，还支持ATTACH PARTITION和DETACH PARTITION两种修改。
 
 ## 重命名
