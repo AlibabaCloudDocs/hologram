@@ -133,7 +133,7 @@ Hologres allows you to call the set\_table\_property function to set table prope
     |---------|---------------------|------------------|
     |orientation|Default value: column.|row|
     |distribution\_key|By default, the primary key is used as the distribution key. We recommend that you use the primary key.|By default, the primary key is used as the distribution key. We recommend that you use the primary key.|
-    |clustering\_key|By default, this parameter is empty.|By default, the primary key is used as the clustering key. We recommend that you do not use the primary key.|
+    |clustering\_key|By default, this parameter is empty.|By default, the primary key is used as the clustering key. We recommend that you use the primary key.|
     |event\_time\_column|By default, the first non-null timestamp field is used as the event time column.|You cannot specify the primary key as the event time column.|
     |bitmap\_columns|Set this parameter based as needed.|Not supported|
     |dictionary\_encoding\_columns|Set this parameter based as needed.|Not supported|
