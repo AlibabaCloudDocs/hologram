@@ -123,7 +123,7 @@ Hologres支持如下两种访问方式：
     2.  单击进入**信任策略管理**页签，修改新任策略为如下脚本内容。
         -   参数说明
 
-            在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:root`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
+            在策略配置时，您需要将如下脚本中的`acs:ram::主账号ID:saml-provider/IDP`信息中的主账号ID，替换为需要授权的账号信息。请前往[用户信息页面](https://account.console.aliyun.com/?spm=5176.cngpdb.amxosvpfn.21.4ad17cacTR7tmU#/secure)，获取账号ID。
 
         -   脚本配置
 
