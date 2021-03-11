@@ -286,7 +286,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         -   使用示例
 
             ```
-            //创建tbl并设置bitmap索引
+            --创建tbl并设置bitmap索引
             begin;
             create table tbl (
               a int not null, 
@@ -294,9 +294,9 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             call set_table_property('tbl', 'bitmap_columns', 'a:on,b:off');
             commit;
             
-            //全量修改bitmap索引（除了call里面设定的字段，其余text字段会自动设置为bitmap索引）
+            --全量修改bitmap索引（除了call里面设定的字段，其余text字段会自动设置为bitmap索引）
             call set_table_property('tbl', 'bitmap_columns', 'a:off');
-            //增量修改bitmap索引（只修改指定的字段是否为bitmap）
+            --增量修改bitmap索引（只修改指定的字段是否为bitmap）
             call update_table_property('tbl', 'bitmap_columns', 'b:off');
             ```
 
@@ -324,7 +324,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         -   使用示例
 
             ```
-            //创建表tbl并设置dictionary_encoding_columns索引
+            --创建表tbl并设置dictionary_encoding_columns索引
             begin;
             create table tbl (
               a int not null, 
@@ -334,9 +334,9 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             call set_table_property('tbl', 'dictionary_encoding_columns', 'a:on,b:off,c:auto');
             commit;
             
-            //全量修改dictionary_encoding_columns索引（除了call里面设定的字段，其余text字段会自动设置为dictionary_encoding_columns索引）
+            --全量修改dictionary_encoding_columns索引（除了call里面设定的字段，其余text字段会自动设置为dictionary_encoding_columns索引）
             call set_table_property('tbl', 'dictionary_encoding_columns', 'a:off');
-            //增量修改dictionary_encoding_columns索引（只修改指定的字段是否为dictionary_encoding_columns）
+            --增量修改dictionary_encoding_columns索引（只修改指定的字段是否为dictionary_encoding_columns）
             call update_table_property('tbl', 'dictionary_encoding_columns', 'b:off');
             ```
 
@@ -356,7 +356,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             call set_table_property('tbl', 'time_to_live_in_seconds', '3.14159');
             commit;
             
-            //修改TTL
+            --修改TTL
             call set_table_property('tbl', 'time_to_live_in_seconds', '86400');
             ```
 
@@ -381,4 +381,15 @@ COMMENT ON FOREIGN TABLE foreign_table IS ' comments on my foreign table';
 ```
 
 更多关于注释的用法请参见[PostgreSQL comment](https://www.postgresql.org/docs/11/sql-comment.html)。
+
+## 查看表结构
+
+您可以执行如下命令查看TABLE的具体DDL：
+
+```
+--该命令是DB级别，一个DB执行一次即可
+create extension hg_toolkit;
+--您可以将tablename替换为实际的表名称
+select hg_dump_script('tablename');
+```
 
