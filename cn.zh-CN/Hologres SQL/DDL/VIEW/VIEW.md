@@ -147,6 +147,6 @@ ORDER BY 1,2;
 
 ```
 create extension hg_toolkit;
-select hg_dump_script('viewname');
+select public.hg_dump_script('viewname');
 ```
 
