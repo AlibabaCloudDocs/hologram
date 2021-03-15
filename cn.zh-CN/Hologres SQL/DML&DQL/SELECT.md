@@ -79,13 +79,6 @@ SELECT的常用方法如下：
 
         CTE之间通过逗号分隔，后面出现的CTE定义可以引用前面定义的CTE，但是目前暂时不支持递归的CTE调用，在之后的查询中，可以直接将`with_query_name`作为一个视图（view）出现在查询中，如果没有指定`column_name`列表，该view的`column_name`为对应子查询返回列的列名，如果指定`column_name`列表，则需要使用定义`column_name`，并且`column_name`列表需要和SELECT返回值列表个数相同。
 
-    -   使用示例
-
-        ```
-        WITH distributor_name(name) AS SELECT name from distributors
-        SELECT name FROM distributor_name ORDER BY name;
-        ```
-
 -   **SELECT列表**
     -   命令简介
 
@@ -177,14 +170,6 @@ SELECT的常用方法如下：
 
         所有的聚集函数都是在HAVING子句或者 SELECT列表中的任何“标量“表达式之前被计算。 这意味着一个CASE表达式不能被用来跳过一个聚集表达式的计算。
 
-    -   使用示例
-
-        GROUP BY分组：
-
-        ```
-        SELECT kind, sum(length) AS total FROM films GROUP BY kind;
-        ```
-
 -   **CUBE子句**
     -   命令简介
         -   CUBE
@@ -211,60 +196,20 @@ SELECT的常用方法如下：
             GROUPING SETS ( grouping_element [, …] ) 
             ```
 
-    -   使用示例
-        -   GROUP BY CUBE：
-
-            ```
-            SELECT  l_returnflag
-                    ,l_shipmode
-                    ,SUM(l_quantity)
-            FROM    public.lineitem
-            GROUP BY cube((l_returnflag),(l_shipmode))
-            ORDER BY l_returnflag
-                     ,l_shipmode
-            ```
-
-        -   GROUP BY ROLLUP：
-
-            ```
-            SELECT  l_returnflag
-                    ,l_shipmode
-                    ,SUM(l_quantity)
-            FROM    public.lineitem
-            GROUP BY ROLLUP ((l_returnflag),(l_shipmode))
-            ORDER BY l_returnflag
-                     ,l_shipmode
-            ```
-
-        -   GROUP BY GROUPING SETS：
-
-            ```
-            SELECT  l_returnflag
-                    ,l_shipmode
-                    ,SUM(l_quantity)
-            FROM    public.lineitem
-            GROUP BY GROUPING SETS ((l_returnflag,l_shipmode),())
-            ORDER BY l_returnflag
-                     ,l_shipmode
-            ```
-
 -   **DISTINCT子句**
-    -   命令简介
 
-        如果指定了SELECT DISTINCT，所有重复的行会被从结果集中移除（为每一组重复的行保留一行）。
+    如果指定了SELECT DISTINCT，所有重复的行会被从结果集中移除（为每一组重复的行保留一行）。
 
-    -   使用示例
-
-        ```
-        SELECT DISTINCT accountid FROM table;
-        ```
+    ```
+    SELECT DISTINCT accountid FROM table;
+    ```
 
 -   **COUNT DISTINCT子句**
     -   命令简介
 
         `COUNT DISTINCT`支持计算去重之后的某一个column的个数，对于该列中出现多次的值只会被计算一次，和COUNT的计算类似，如果该列包含NULL值，它将不会计算在内。
 
-    -   使用示例
+    -   语法说明
         -   精确计算的语法示例如下：
 
             ```
@@ -374,12 +319,6 @@ EXCEPT的结果不会包含重复行，除非指定了 ALL选项。如果有ALL�
 
         字符串数据会被根据引用到被排序列上的排序规则排序。根据需要可以通过在 expression中包括一个 COLLATE子句来覆盖，例如`ORDER BY mycolumn COLLATE “en_US“`。
 
-    -   使用示例
-
-        ```
-        SELECT * FROM distributors ORDER BY name;
-        ```
-
 -   **LIMIT子句**
     -   命令简介
 
@@ -401,5 +340,77 @@ EXCEPT的结果不会包含重复行，除非指定了 ALL选项。如果有ALL�
         查询规划器在生成一个查询计划时会考虑LIMIT，因此根据使用的LIMIT和OFFSET，很可能得到不同的计划（得到不同的行序）。所以，使用不同的LIMIT/OFFSET值来选择一个查询结果的不同子集将会给出不一致的结果，除非用ORDER BY强制一种可预测的结果顺序。这不是一个缺陷，它是SQL不承诺以任何特定顺序（除非使用`ORDER BY`来约束顺序）给出一个查询结果这一事实造成的必然后果。
 
         如果没有一个`ORDER BY`来强制选择一个确定的子集， 重复执行同样的LIMIT查询甚至可能会返回一个表中行的不同子集。同样，这也不是一种缺陷，再这样一种情况下也无法保证结果的确定性。
+
+
+## 使用示例
+
+-   两表JOIN
+
+    ```
+    SELECT f.title, f.did, d.name, f.date_prod, f.kind FROM 
+    distributors d, films f WHERE f.did = d.did
+    ```
+
+-   WITH子句
+
+    ```
+    WITH distributor_name(name) AS SELECT name from distributors
+    SELECT name FROM distributor_name ORDER BY name;
+    ```
+
+-   GROUP BY分组
+
+    ```
+    SELECT kind, sum(length) AS total FROM films GROUP BY kind;
+    ```
+
+-   HAVING过滤
+
+    ```
+    SELECT kind, sum(length) AS total FROM films GROUP BY kind 
+    HAVING sum(length) < interval '5 hours';
+    ```
+
+-   GROUP BY CUBE
+
+    ```
+    SELECT  l_returnflag
+            ,l_shipmode
+            ,SUM(l_quantity)
+    FROM    public.lineitem
+    GROUP BY cube((l_returnflag),(l_shipmode))
+    ORDER BY l_returnflag
+             ,l_shipmode
+    ```
+
+-   GROUP BY ROLLUP
+
+    ```
+    SELECT  l_returnflag
+            ,l_shipmode
+            ,SUM(l_quantity)
+    FROM    public.lineitem
+    GROUP BY ROLLUP ((l_returnflag),(l_shipmode))
+    ORDER BY l_returnflag
+             ,l_shipmode
+    ```
+
+-   GROUP BY GROUPING SETS
+
+    ```
+    SELECT  l_returnflag
+            ,l_shipmode
+            ,SUM(l_quantity)
+    FROM    public.lineitem
+    GROUP BY GROUPING SETS ((l_returnflag,l_shipmode),())
+    ORDER BY l_returnflag
+             ,l_shipmode
+    ```
+
+-   ORDER BY
+
+    ```
+    SELECT * FROM distributors ORDER BY name;
+    ```
 
 
