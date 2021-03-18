@@ -15,7 +15,7 @@ Apache Superset \( incubating \) 是一款数据探索和可视化分析的开�
 
     ![databases](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7412260161/p224572.png)
 
-2.  在页面右上角单击![添加](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7412260161/p224576.png)按钮，进入Add Databases页面配置如下参数，添加数据源。
+2.  在页面右上角单击![添加](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7412260161/p224576.png)按钮，进入Add Database页面配置如下参数，添加数据源。
 
     ![添加数据源](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7412260161/p224628.png)
 
@@ -29,7 +29,7 @@ postgresql+psycopg2://{AccessKey ID}:{AccessKey Secret}@{host}:{port}/{database}
 其中，各参数说明如下所示：    -   AccessKey ID和AccessKey Secret：当前阿里云账号的AccessKey ID和AccessKey Secret。获取方式请参见[创建访问密钥](/cn.zh-CN/准备工作/准备阿里云账号.md)。
     -   host：Hologres实例的公共网络地址。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从实例配置页签获取公共网络地址。
     -   port：Hologres实例的端口。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从实例配置页签获取实例端口。
-    -   database：Hologres创建的数据库名称。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从DB管理页签获取数据库名称。
+    -   database：Hologres创建的数据库名称。
 更多有关连接信息的说明，请参见[SQLAlchemy](https://docs.sqlalchemy.org/en/12/core/engines.html#postgresql)。|
 
 3.  单击**Test Connection**按钮以确认可以成功连接和验证。
