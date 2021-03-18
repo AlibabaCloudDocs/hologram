@@ -102,7 +102,7 @@ Flink全托管产品（Flink Serverless）是基于Apache Flink构建的全托�
 
 Flink VVP-2.4及以上版本，Hologres Connector支持实时消费Binlog，使用方法如下。
 
--   开启Binlog
+-   **开启Binlog**
     -   功能简介
 
         Hologres中，Binlog功能默认关闭，您可以通过设置表属性binlog.level和binlog.ttl开启该功能。如果您对表格的更新比较频繁，理论上列存表开启Binlog功能的成本要大于行存表。因此，建议您使用行存表开启Binlog功能。
@@ -130,7 +130,7 @@ Flink VVP-2.4及以上版本，Hologres Connector支持实时消费Binlog，使�
         commit;
         ```
 
--   Binlog格式
+-   **Binlog格式**
 
     Binlog字段由Binlog系统字段和用户Table字段组成，具体字段定义如下表。
 
@@ -150,7 +150,7 @@ Flink VVP-2.4及以上版本，Hologres Connector支持实时消费Binlog，使�
         -   AFTER\_UPDATE=7，表示当前Binlog为一条已有记录其更新后的记录。
     -   UPDATE操作会产生两条Binlog记录，分别为更新前和更新后的记录。订阅 Binlog功能会保证这两条记录是连续的且更新前的Binlog记录在前，更新后的 Binlog记录在后。
     -   用户字段的顺序与DDL定义的顺序一致。
--   源表 DDL（非CDC模式）
+-   **源表 DDL（非CDC模式）**
 
     该模式下Source消费的Binlog数据是作为普通的Flink数据传递给下游节点的，即所有数据都是作为Insert类型的数据，可以根据业务情况选择如何处理特定`hg_binlog_event_type`类型的数据，具体示例如下。
 
@@ -178,7 +178,7 @@ Flink VVP-2.4及以上版本，Hologres Connector支持实时消费Binlog，使�
 
     在语法示例中，hg\_binlog\_xxx开头的三个字段表示Binlog的系统字段，命名和类型不支持修改。其余字段需要和用户字段一一对应，且必须为小写。
 
--   源表 DDL（CDC模式）
+-   **源表 DDL（CDC模式）**
 
     该模式下Source消费的Binlog数据，将根据`hg_binlog_event_type`自动为每行数据设置准确的Flink RowKind类型（INTERT、DELETE、UPDATE\_BEFORE、UPDATE\_AFTER\)，这样就能完成表的数据的镜像同步，类似MySQL和Postgres的CDC功能，具体示例如下。
 
