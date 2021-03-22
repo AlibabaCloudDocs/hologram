@@ -59,7 +59,7 @@ With参数的描述如下表所示。
 |否|
 |endpoint|Hologres的VPC网络地址。您可以登录[Hologres管控台](https://hologram.console.aliyun.com/#/instance)，进入目标实例的详情页，在**实例配置**中获取Endpoint。Endpoint需包含端口号，格式为ip:port。
 
-**说明：** 如果Flink与Hologres实例部署在同一个地域，请使用VPC网络的网络地址。如果在不同地域，则请使用公共网络的网络地址。
+**说明：** 如果Flink与Hologres实例部署在同一个地域，请使用VPC网络的网络地址。如果在不同地域，请使用公共网络的网络地址，并确保Flink集群能正常访问公网（公网网络延迟较高）。
 
 |是|
 |useRpcMode|从VVP 2.4版本开始，Hologres Connector默认使用JDBC实现，可以通过该选项切换至老版本的Connector实现方式。JDBC实现会占用SQL连接，如果想降低连接数，可打开该开关。默认值为false。
