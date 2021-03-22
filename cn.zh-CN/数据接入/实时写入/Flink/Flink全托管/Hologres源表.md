@@ -54,7 +54,7 @@ Flink全托管产品（Flink Serverless）是基于Apache Flink构建的全托�
 |是|
     |endpoint|Hologres的VPC网络地址。您可以登录[Hologres管控台](https://hologram.console.aliyun.com/#/instance)，进入目标实例的详情页，在**实例配置**中获取Endpoint。Endpoint需包含端口号，格式为ip:port。
 
-**说明：** 如果Flink与Hologres实例部署在同一个地域，请使用VPC网络的网络地址。如果在不同地域，则请使用公共网络的网络地址。
+**说明：** 如果Flink与Hologres实例部署在同一个地域，请使用VPC网络的网络地址。如果在不同地域，请使用公共网络的网络地址，并确保Flink集群能正常访问公网（公网网络延迟较高）。
 
 |是|
     |field\_delimiter|导出数据时，不同行之间使用的分隔符。默认值为"\\u0002"。
