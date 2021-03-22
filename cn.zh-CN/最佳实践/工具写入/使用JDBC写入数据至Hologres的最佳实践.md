@@ -8,19 +8,19 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
 ## 使用限制
 
-通过JDBC写入数据至Hologres需要使用42.2.2及以上的Postgres JDBC Driver。
+通过JDBC写入数据至Hologres需要使用42.2.18及以上的Postgres JDBC Driver。
 
 ## 注意事项
 
 -   使用JDBC连接Hologres后，如果您需要测试写入数据的性能，建议使用VPC网络。公共网络由于自身原因，无法达到性能测试的目标。
--   Hologres当前不支持在一个事务中多次写入，因此需要关闭autoCommit（JDBC的autoCommit默认关闭），关闭autoCommit的语句如下。
+-   Hologres当前不支持在一个事务中多次写入，因此需要设置autoCommit为true（JDBC的autoCommit默认为true），不要显示的在代码里面进行Commit动作。
+
+    如果出现`ERROR: INSERT in transaction is not supported now`报错，则需要设置autoCommit为true。
 
     ```
     Connection conn = DriverManager.getConnection(url, user, password);
     conn.setAutoCommit(true);
     ```
-
-    如果出现`ERROR: INSERT in transaction is not supported now`报错，则需要关闭autoCommit。
 
 
 ## 通过JDBC连接Hologres
@@ -29,13 +29,13 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
     Hologres兼容PostgreSQL 11生态，您可以通过Postgres的[JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql?spm=a2c4g.11186623.2.10.4d6430edjM1H06)连接Hologres的服务。
 
-    建议您选择40.2.x以上的JDBC Driver版本。示例在pom.xml文件中添加42.2.5版本的JDBC Driver。
+    建议您选择40.2.18及以上的JDBC Driver版本。示例在pom.xml文件中添加42.2.18版本的JDBC Driver。
 
     ```
     <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.2.5</version>
+        <version>42.2.18</version>
     </dependency>
     ```
 
@@ -80,7 +80,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
                     Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
                     stmt.setTimestamp( 3, new java.sql.Timestamp(parsedDate.getTime()));
                     stmt.setDouble( 4 , 0.1 );
-        		    stmt.addBatch();
+                    stmt.addBatch();
                 }
                 stmt.executeBatch();
             }
@@ -142,7 +142,7 @@ public class WriteHolo {
                 Date parsedDate = dateFormat.parse("1990-11-11 00:00:00");
                 stmt.setTimestamp( 3, new java.sql.Timestamp(parsedDate.getTime()));
                 stmt.setDouble( 4, 0.1);
-			    stmt.addBatch();
+                stmt.addBatch();
             }
             stmt.executeBatch();
         }
