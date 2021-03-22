@@ -9,6 +9,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 -   MaxCompute与Hologres的分区无强映射关系，MaxCompute的分区字段映射为Hologres的普通字段。因此，您可以将MaxCompute的分区表或非分区表导入Hologres的分区或非分区表，可以根据实际业务情况选择是否需要分区。
 -   前往Dataworks调度会产生一定的调度费用，详细收费情况，请参见[DataWorks资源组概述]()。
 -   如果需要实现写入更新，您需要使用[INSERT ON CONFLICT](/cn.zh-CN/Hologres SQL/DML&DQL/INSERT ON CONFLICT.md)语法。
+-   如果MaxCompute数据会定期更新，建议您在Hologres导入数据时，使用[IMPORT FOREIGN SCHEMA](/cn.zh-CN/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)语句来更新外部表，以便于及时获取MaxCompute的元数据。
 
 1.  准备MaxCompute表数据。
 
@@ -141,6 +142,11 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
         
         CREATE TABLE IF NOT EXISTS "public".holo_dwd_product_movie_basic_info_${bizdate} PARTITION OF "public".holo_dwd_product_movie_basic_info FOR VALUES IN ('${bizdate}');
         
+        --更新外表数据
+        import foreign schema public_data limit to (ads_hm_wms_whs_sku_cost_monitor) from server odps_server into hmads options(if_table_exist 'update');
+        
+        --等待30s再导入Hologres，以防Hologres meta信息更新缓存慢导致数据不一致而同步不成功
+        select pg_sleep(30); 
         
         --导入指定分区数据
         INSERT INTO "public".holo_dwd_product_movie_basic_info_${bizdate}
@@ -182,7 +188,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
 6.  配置调度信息。
 
-    在新建的节点页面，单击右侧导航栏的**调度配置**，配置调度参数。详情请参见[调度参数]()。本次示例选择的是日调度，因此将会每天自动生成一张分区子表，并导入对应的数据，以此来实现增量数据周期性调度。更多的调度逻辑（包括调度周期、调度参数、调度上下游等）请参见[DataWorks调度配置]()。
+    在新建的节点页面，单击右侧导航栏的**调度配置**，配置调度参数。详情请参见[基础属性：调度参数]()。本次示例选择的是日调度，因此将会每天自动生成一张分区子表，并导入对应的数据，以此来实现增量数据周期性调度。更多的调度逻辑（包括调度周期、调度参数、调度上下游等）请参见[DataWorks调度配置]()。
 
     具体配置如下所示：
 
