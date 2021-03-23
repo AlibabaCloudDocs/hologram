@@ -45,7 +45,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
     ```
     BEGIN;
-    CREATE FOREIGN TABLE public.foreign_dwd_product_movie_basic_info (
+    CREATE FOREIGN TABLE public.dwd_product_movie_basic_info (
         "movie_name" text,
         "dirctor" text,
         "scriptwriter" text,
@@ -60,18 +60,18 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
     )
     SERVER odps_server
     OPTIONS (project_name 'public_data', table_name 'dwd_product_movie_basic_info');
-    comment on column public.foreign_dwd_product_movie_basic_info."movie_name" is '电影名称';
-    comment on column public.foreign_dwd_product_movie_basic_info."dirctor" is '导演';
-    comment on column public.foreign_dwd_product_movie_basic_info."scriptwriter" is '编剧';
-    comment on column public.foreign_dwd_product_movie_basic_info."area" is '制片地区/国家';
-    comment on column public.foreign_dwd_product_movie_basic_info."actors" is '主演';
-    comment on column public.foreign_dwd_product_movie_basic_info."type" is '类型';
-    comment on column public.foreign_dwd_product_movie_basic_info."movie_length" is '电影长度';
-    comment on column public.foreign_dwd_product_movie_basic_info."movie_date" is '上映日期';
-    comment on column public.foreign_dwd_product_movie_basic_info."movie_language" is '语言';
-    comment on column public.foreign_dwd_product_movie_basic_info."imdb_url" is 'imdb号';
+    comment on column public.dwd_product_movie_basic_info."movie_name" is '电影名称';
+    comment on column public.dwd_product_movie_basic_info."dirctor" is '导演';
+    comment on column public.dwd_product_movie_basic_info."scriptwriter" is '编剧';
+    comment on column public.dwd_product_movie_basic_info."area" is '制片地区/国家';
+    comment on column public.dwd_product_movie_basic_info."actors" is '主演';
+    comment on column public.dwd_product_movie_basic_info."type" is '类型';
+    comment on column public.dwd_product_movie_basic_info."movie_length" is '电影长度';
+    comment on column public.dwd_product_movie_basic_info."movie_date" is '上映日期';
+    comment on column public.dwd_product_movie_basic_info."movie_language" is '语言';
+    comment on column public.dwd_product_movie_basic_info."imdb_url" is 'imdb号';
     COMMIT;
-                        
+           
     ```
 
     OPTIONS的连接参数说明如下表所示。
@@ -143,9 +143,9 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
         CREATE TABLE IF NOT EXISTS "public".holo_dwd_product_movie_basic_info_${bizdate} PARTITION OF "public".holo_dwd_product_movie_basic_info FOR VALUES IN ('${bizdate}');
         
         --更新外表数据
-        import foreign schema public_data limit to (ads_hm_wms_whs_sku_cost_monitor) from server odps_server into hmads options(if_table_exist 'update');
+        import foreign schema public_data limit to (dwd_product_movie_basic_info) from server odps_server into hmads options(if_table_exist 'update');
         
-        --等待30s再导入Hologres，以防Hologres meta信息更新缓存慢导致数据不一致而同步不成功
+        --等待30s再导入Hologres，以防Hologres meta信息更新缓存慢导致的数据不一致而同步不成功
         select pg_sleep(30); 
         
         --导入指定分区数据
@@ -170,7 +170,7 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 
     7.  单击顶部菜单栏右侧的**前往DataWorks调度**，进入调度页面。
 
-        ![前往调度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0732504161/p179031.png)
+        ![前往调度](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1343846161/p179031.png)
 
 5.  新建分区表的调度作业。
 
