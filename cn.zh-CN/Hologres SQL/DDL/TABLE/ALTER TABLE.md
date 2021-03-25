@@ -170,7 +170,7 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
              c text NOT NULL,
              d text
             );
-            CALL UPDATE_TABLE_PROPERTY('holo_test_1','bitmap_columns','b:off');
+            CALL SET_TABLE_PROPERTY('holo_test_1','bitmap_columns','b:off');
             ```
 
 -   修改表数据的生存时间
