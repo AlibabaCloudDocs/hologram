@@ -74,7 +74,7 @@ When you create a table, you can select an appropriate distribution key based on
 
 -   Select a join condition column during a JOIN operation as the distribution key.
 
-    If the MOTION operation is time-consuming, you can use the colocate\_with property to place multiple tables in the same table group. In addition, set the join key as the distribution key to avoid additional overhead that is caused by data redistribution when multiple tables are joined. For more information, see [t1884404.dita\#concept\_2479327](/intl.en-US/Best Practices/Performance optimization/Specify the table group and shard count.md).
+    If the MOTION operation is time-consuming, you can use the colocate\_with property to place multiple tables in the same table group. In addition, set the join key as the distribution key to avoid additional overhead that is caused by data redistribution when multiple tables are joined.
 
     ![motion](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9855013061/p163980.png)
 
