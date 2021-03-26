@@ -1,17 +1,20 @@
+---
+keyword: [SET\_TABLE\_PROPERTY, set table properties, Hologres]
+---
+
 # SET\_TABLE\_PROPERTY
 
-This topic describes the syntax of the SET\_TABLE\_PROPERTY function in Hologres.
+This topic describes how to use the SET\_TABLE\_PROPERTY function in Hologres.
 
-## Introduction
+## Overview
 
-`set_table_property`: sets a property for a table, such as the index, distribution column, storage model, and time-to-live \(TTL\) of the table.
+The SET\_TABLE\_PROPERTY function is used to set table properties. For example, you can use this function to create indexes, set distribution keys, specify whether a table is row-oriented or column-oriented, or set the time to live \(TTL\) of a table. To modify or update data in a table or delete a table, execute the [ALTER TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/ALTER TABLE.md) or [DROP TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/DROP TABLE.md) statement.
 
-## Synopsis
+## Syntax
 
 ```
 CALL SET_TABLE_PROPERTY ( table_name, property, value )
-
-where property in
+WHERE PROPERTY IN
     orientation
   clustering_key
   segment_key
@@ -23,16 +26,24 @@ where property in
 
 ## Parameters
 
--   ***table\_name***: the name of the table for which you want to set a property. The table name can be schema-qualified. The name can contain only case-insensitive letters, digits, and underscores `(_)`, and must start with a letter. If the name contains any special characters, enclose the name in double quotation marks `(" ")`.``````
--   ***property***: the name of the property to be set.
--   ***orientation property***: Indicates columnar or row store. Should be specified in the same transaction of creating table.
--   ***clustering\_key property***: Creating clustering index on specified columns. Should be specified in the same transaction of creating table .
--   ***segment\_key property***:Segment key is used to split the data into files. Specifying a column\(Ex: event\_time\) as segment key could benefit the queries which has a where clause on the segment key. Should be specified in the same transaction of creating table..
--   ***bitmap\_columns property***: Create bitmap index on specified columns. It benefits the filtering on the columns on which have it. Can be a stand alone command.
--   ***dictionary\_encoding\_columns property***: Create a mapping dictionary for specified columns. It benefits filtering comparison, aggregation, joins. Can be a stand alone command.
--   ***distribution\_key property*** :Declares the distribution policy. Should be specified in the same transaction of creating table.
--   ***time\_to\_live\_in\_seconds property*** :specifies the TTL of data in a table, which is represented in seconds. It must be a non-negative number, which can be an integer or a floating-point number. This property can be set in a single transaction.
--   ***value***: the value of the property. If the value contains a column name and the column name contains any uppercase letters, enclose the value in double quotation marks \(" "\).
+The following table describes the parameters in the SET\_TABLE\_PROPERTY function.
+
+|Parameter|Description|
+|---------|-----------|
+|table\_name|The name of the table. The table name can be schema-qualified.The name can contain only lowercase letters, uppercase letters, digits, and underscores \(\_\). It must start with a letter.
+
+If the name contains special characters, enclose the name in double quotation marks \(`" "`\). Uppercase letters are treated as lowercase letters because the value is not case-sensitive. |
+|property|The name of the property.|
+|orientation|The storage type of tables in the specified database. Two storage types are supported: column-oriented storage and row-oriented storage.Specify this parameter only in the same transaction as the CREATE TABLE statement. |
+|clustering\_key|A clustered index that you want to create for a specified field.Specify this parameter only in the same transaction as the CREATE TABLE statement. |
+|segment\_key|A segment key that you want to create based on one or more specified fields. For example, you can specify the field that contains time data as the segment key.If the segment key is involved in query conditions, Hologres can find the storage location of data based on the segment key.
+
+Specify this parameter only in the same transaction as the CREATE TABLE statement. |
+|bitmap\_columns|A bitmap index that you want to create for a specified field. The bitmap index can be used to filter data in a segment. This parameter can be specified separately.|
+|dictionary\_encoding\_columns|A dictionary mapping that you want to create for the values of a specified field.Dictionary encoding can convert string comparisons into numeric comparisons. This can accelerate queries, such as queries that involve GROUP BY and FILTER statements. This parameter can be specified separately. |
+|distribution\_key|The distribution strategy of tables in the specified database.Specify this parameter only in the same transaction as the CREATE TABLE statement. |
+|time\_to\_live\_in\_seconds|The TTL of the table. Unit: seconds.The value of this parameter must be a non-negative integer or floating-point number. This parameter can be specified separately. |
+|value|The value of the property. If the value of this parameter contains a field name and the field name contains uppercase letters, enclose the value in double quotation marks \(`" "`\).|
 
 ## Examples
 
