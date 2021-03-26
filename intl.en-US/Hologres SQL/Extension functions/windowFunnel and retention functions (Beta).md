@@ -30,7 +30,7 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
     windowFunnel(window, mode, timestamp, cond1, cond2, ..., condN)
     ```
 
--   Parameter description
+-   Parameters
 
     |Parameter|Description|
     |---------|-----------|
@@ -39,7 +39,7 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
     |timestamp|The column that contains time values. Supported data types are TIMESTAMP, INT, and BIGINT.|
     |cond|An event in the query condition.|
 
--   Example
+-   Examples
 
     Before you proceed to the usage example, you must execute the following statement to enable extension. After that, you can call the windowFunnel function by using a statement. Extension is a database-level feature. For each database, you need to enable the feature only once.
 
@@ -135,7 +135,7 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
             (6 rows)
             ```
 
-        -   To analyze the data from 11:00:00 to 12:00:00 on January 31, 2021, use the following SQL statement:
+        -   To analyze the data from 11:00:00 to 12:00:00 on January 31, 2021, execute the following SQL statement:
 
             ```
             SELECT
@@ -277,14 +277,14 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
     retention(cond1, cond2, ..., cond32);
     ```
 
--   Parameter description
+-   Parameters
 
     |Parameter|Description|
     |---------|-----------|
     |cond|A conditional expression that returns a result. Valid values:    -   1: The condition is met.
     -   0: The condition is not met. |
 
--   Example
+-   Examples
     -   Create a table. In this example, the table contains the data of user logon to an application. Use the following SQL statement:
 
         ```
@@ -356,7 +356,7 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
         (3301,'2019-06-15 23:00:00');
         ```
 
-    -   -   To obtain information about user churn from June 17 to June 21, 2019, use the following SQL statement:
+    -   -   To obtain information about user churn from June 17 to June 21, 2019, execute the following SQL statement:
 
     ```
     SELECT
@@ -373,6 +373,8 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
     ORDER BY user_id ASC;
     ```
 
+-   In the following return results, each value of the array r indicates the logon records of a user. The element 1 indicates that the user logged on that day. The element 0 indicates that the user did not log on that day. However, User 4101 logged on in four days from June 17 to June 21, 2019, but the elements of the corresponding array are all 0. This is because in the function retention\(cond1, cond2, …\), if the condition in the first expression cond1 is not met, the results of the other expressions are all 0. User 4101 did not log on on June 21, 2019. The first condition is not met, so the results of the other expressions are also 0.
+
     ```
      user_id |      r      
     ---------+-------------
@@ -383,7 +385,7 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
     (4 rows)
     ```
 
--   To avoid the preceding invalid results, you only need to set cond1 to true.
+-   To avoid the preceding invalid results, you need only to set cond1 to true.
 
     ```
     SELECT
@@ -412,5 +414,38 @@ Only Hologres V0.9 and later allow you to use the windowFunnel function and the 
         4101 | {1,0,1,1,0,1}
     (4 rows)
     ```
+
+    -   You can use the retention function to calculate user retention rates. For example, you can calculate the second-day user retention rate, third-day user retention rate, and seventh-day user retention rate. Use the following sample statements:
+
+        ```
+        -- Use SUM(r[index]) to obtain user logon records on the second, third, and seventh days, starting from June 15, 2019, and then calculate user retention rates.
+        SELECT
+            DATE(TIMESTAMP '2019-06-15 00:00:00') AS first_date,
+            CAST(SUM(r[1]) AS NUMERIC) AS "Active users on the first day",
+            CAST(SUM(r[2]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "Second-day retention rate",
+            CAST(SUM(r[3]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "Third-day retention rate",
+            CAST(SUM(r[4]) AS NUMERIC)/CAST(SUM(r[1]) AS NUMERIC) AS "Seventh-day retention rate"
+        FROM
+        -- Use the retention function to obtain arrays that show the second-day, third-day, and seventh-day logon records of users who logged on on June 15, 2019. The element 1 indicates that a user logged on. The element 0 indicates that a user did not log on.
+            (
+                WITH 
+                    first_day_table AS ( SELECT TIMESTAMP '2019-06-15 00:00:00' AS first_day)
+                SELECT
+                    user_id,
+                    retention(
+                        DATE(log_time) = (SELECT DATE(first_day) FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '1 day') FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '2 day') FROM first_day_table),
+                        DATE(log_time) = (SELECT DATE(first_day + INTERVAL '6 day') FROM first_day_table)
+                        ) AS r
+        -- Query the logon records of users who logged on on June 15, 2019 from June 15 to June 21, 2019.
+                    FROM    login_log
+                    WHERE   (log_time >= TIMESTAMP '2019-06-15 00:00:00')
+                    AND     (log_time <= TIMESTAMP '2019-06-15 00:00:00' + INTERVAL '6 day')
+                    GROUP BY user_id
+                ) AS basic_table
+        GROUP BY first_date
+        ;
+        ```
 
 
