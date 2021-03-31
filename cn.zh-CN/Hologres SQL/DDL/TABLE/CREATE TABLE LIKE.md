@@ -23,8 +23,15 @@ CREATE TABLE LIKE语句用于创建一个同Select Query结果相同的表。本
     **说明：** 通过调用hg\_create\_table\_like，系统会根据selec\_query结果的schema创建一个表名为table\_name的表，但不会插入任何数据。
 
 2.  **参数说明**
-    -   table\_name：要创建表的表名，只支持固定字符串，不支持字符拼接或函数生成等。
-    -   select\_query：select格式的查询语句。只支持固定字符串，不支持字符拼接或函数生成等。
+    -   table\_name：要创建表的表名（不支持创建外部表），只支持固定字符串，不支持字符拼接或函数生成等。
+    -   select\_query：查询的SQL语句串。如果SQL语句中有较多单引号，可以将$$符号置于SQL语句前后，通过`$$query_sql$$`改写（推荐使用该用法，操作更简便）自动实现单引号转义，用法如下：
+
+        ```
+        CALL HG_CREATE_TABLE_LIKE ('table_name', $$query_sql$$ [, 'partition_clause'])
+        ```
+
+        **说明：** 该种用法Holoweb中的query查询窗口暂不支持，请使用终端或者JDBC等开发工具。
+
 3.  **使用示例**
 
     在交互式分析中create table like的示例用法如下：
@@ -36,8 +43,6 @@ CREATE TABLE LIKE语句用于创建一个同Select Query结果相同的表。本
         CALL hg_create_table_like('new_table', 'select * from src_table');
         ```
 
-        ![643](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6999029951/p91113.png)
-
     2.  创建一个在源表的基础上再增加字段的表
 
         ```
@@ -45,8 +50,6 @@ CREATE TABLE LIKE语句用于创建一个同Select Query结果相同的表。本
         
         CALL hg_create_table_like('holo_table', 'select *, 1 as c, ''a'' as d from test_table');
         ```
-
-        ![644](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6999029951/p91114.png)
 
 
 ## 分区表
@@ -60,9 +63,9 @@ CREATE TABLE LIKE语句用于创建一个同Select Query结果相同的表。本
     ```
 
 2.  **参数说明**
-    -   table\_nameL：要创建表的表名，只支持固定字符串，不支持字符拼接或函数生成等。
+    -   table\_nameL：要创建表的表名（不支持创建外部表），只支持固定字符串，不支持字符拼接或函数生成等。
     -   select\_query：select格式的查询语句。只支持固定字符串，不支持字符拼接或函数生成等。
-    -   partition\_clause：分区相关的语法定义
+    -   partition\_clause：分区相关的语法定义。
 3.  **使用示例**
 
     使用create table like 创建一张分区表示例如下：
@@ -77,8 +80,6 @@ CREATE TABLE LIKE语句用于创建一个同Select Query结果相同的表。本
     
     \d new_table_child1 
     ```
-
-    ![645](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6999029951/p91115.png)
 
 
 ## 设置表属性
@@ -100,8 +101,6 @@ COMMIT;
 \d new_table
 ```
 
-![646](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6999029951/p91116.png)
-
 更多关于表属性的设置可以参见[设置表属性](/cn.zh-CN/Hologres SQL/DDL/TABLE/CREATE TABLE.md)。
 
 ## 使用限制
@@ -119,6 +118,4 @@ CONTEXT:  SQL statement "create table new_table (
 );"
 PL/pgSQL function hg_create_table_like(text,text) line 22 at EXECUTE
 ```
-
-![647](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6999029951/p91117.png)
 
