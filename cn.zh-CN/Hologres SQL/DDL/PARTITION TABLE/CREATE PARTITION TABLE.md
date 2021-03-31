@@ -92,14 +92,37 @@ create table [if not exists] [schema_name.]table_name partition of parent_table
       b int, 
       c timestamp, 
       d text,
-      primary key(a,b)
+      ds text
+      primary key(ds,b)
       )
-      partition by list(a);
+      partition by list(ds);
     call set_table_property('public.hologres_parent_2', 'orientation', 'column');
-    create table public.holo_child_1 partition of public.hologres_parent_2 for values in('v1');
-    create table public.holo_child_2 partition of public.hologres_parent_2 for values in('v2');
-    create table public.holo_child_3 partition of public.hologres_parent_2 for values in('v3');
+    create table public.holo_child_1 partition of public.hologres_parent_2 for values in('20201215');
+    create table public.holo_child_2 partition of public.hologres_parent_2 for values in('20201216');
+    create table public.holo_child_3 partition of public.hologres_parent_2 for values in('20201217');
     commit;
+    ```
+
+
+## 查看所有分区子表
+
+您可以通过如下两种方法查看当前分区父表下所有的分区子表：
+
+-   通过HoloWeb可视化查看，HoloWeb会展示分区父表下面的所有分区子表。
+-   通过执行如下命令语句，查看当前分区父表下所有的分区子表。其中，您可以将parent\_table\_name修改为实际的父表名称。
+
+    ```
+    SELECT
+        nmsp_parent.nspname AS parent_schema,
+        parent.relname      AS parent,
+        nmsp_child.nspname  AS child_schema,
+        child.relname       AS child
+    FROM pg_inherits
+        JOIN pg_class parent            ON pg_inherits.inhparent = parent.oid
+        JOIN pg_class child             ON pg_inherits.inhrelid   = child.oid
+        JOIN pg_namespace nmsp_parent   ON nmsp_parent.oid  = parent.relnamespace
+        JOIN pg_namespace nmsp_child    ON nmsp_child.oid   = child.relnamespace
+    WHERE parent.relname='parent_table_name'; 
     ```
 
 
