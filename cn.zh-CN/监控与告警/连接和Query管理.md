@@ -15,6 +15,7 @@ Hologres兼容PostgreSQL，可以通过[查询pg\_stat\_activity视图信息](#s
 -   [终止连接](#section_0zu_02u_kie)：当系统连接数达到上限时，您可以终止空闲连接。
 -   [查看SQL运行信息](#section_hne_4no_4cb)：查看SQL运行信息，更好的管理SQL语句。
 -   [查看耗时较长的SQL](#section_mc3_bcb_4dj)：查看当前实例耗时较长的SQL。
+-   [终止Query](#section_ny7_vf5_lpe)：终止当前不符合预期的Query。
 
 ## 查询pg\_stat\_activity视图信息
 
@@ -134,23 +135,6 @@ select pg_cancel_backend(<pid>);
 --结束对应的后台连接进程    
 select pg_terminate_backend(<pid>); 
 
---批量取消Query
-SELECT pg_cancel_backend(pid)
-        ,query
-        ,datname
-        ,usename
-        ,application_name
-        ,client_addr
-        ,client_port
-        ,backend_start
-        ,state
-FROM    pg_stat_activity
-WHERE   length(query) > 0
-AND     pid != pg_backend_pid()
-AND     backend_type = 'client backend'
-AND     application_name != 'hologres'
-AND     usename != 'holo_admin';
-
 --批量终止后台idle连接进程，释放连接
 SELECT pg_terminate_backend(pid)
         ,query
@@ -177,15 +161,15 @@ Superuser可以查看所有用户的SQL运行信息，RAM用户只能查看自�
 1.  您可以通过如下语句查看当前实例内用户的SQL运行信息。
 
     ```
-    SELECT datname,usename,query FROM pg_stat_activity ;
+    SELECT datname,usename,query,pid ,state FROM pg_stat_activity ;
     ```
 
 2.  您可以执行如下语句查看当前正在运行的SQL信息。
 
     ```
-    SELECT datname,usename,query
+    SELECT datname,usename,query,pid,state
        FROM pg_stat_activity
-       WHERE state != 'idel' ;
+       WHERE state != 'idle' ;
     ```
 
 
@@ -194,22 +178,61 @@ Superuser可以查看所有用户的SQL运行信息，RAM用户只能查看自�
 您可以通过如下语句查看当前实例耗时较长的SQL。更多关于参数的说明，请参见[表 参数说明](#table_0qg_o57_hp7)。
 
 ```
-select current_timestamp - query_start as runtime, datname, usename, query
+select current_timestamp - query_start as runtime, datname, usename, query,pid
     from pg_stat_activity
-    where state != 'idel'
+    where state != 'idle'
     order by 1 desc;
 ```
 
 示例执行结果如下所示，该示例中可以看到耗时较久的语句为UPDATE。
 
 ```
-runtime     |    datname     | usename  |      current_query
+runtime     |    datname     | usename  | pid    |      current_query
 -----------------+----------------+----------+------------------------------------
- 00:00:24.258388 | holotest  | 123xxx   | UPDATE holo_order 
-                                        :     set gmt = now(),
-                                        :         trade_id = $1,
-                                        :         trade_create_time = $2;
- 00:00:1.186394  | testdb    | 156xx    | select * from oder;
+ 00:00:24.258388 | holotest  | 123xxx   | 1267xx | UPDATE holo_order 
+                                                   : set gmt = now(),
+                                                   : trade_id = $1,
+                                                   : trade_create_time = $2;
+ 00:00:1.186394  | testdb    | 156xx    | 1783xx | select * from oder;
 (2 rows)
 ```
+
+## 终止Query
+
+如果当前存在不符合预期的Query，您可以根据实际情况通过如下命令进行终止。
+
+-   使用可视化方式终止Query。
+
+    您可以在HoloWeb中通过可视化的方式一键终止活跃Query，具体操作请参见[查看活跃Query](/cn.zh-CN/连接开发工具/HoloWeb/系统管理/查看活跃Query.md)。
+
+-   使用SQL语句终止Query。
+
+    更多关于参数的说明，请参见[表 参数说明](#table_0qg_o57_hp7)。
+
+    -   取消当前连接上的Query。
+
+        ```
+        select pg_cancel_backend(<pid>);
+        ```
+
+    -   批量取消Query。
+
+        ```
+        SELECT pg_cancel_backend(pid)
+                ,query
+                ,datname
+                ,usename
+                ,application_name
+                ,client_addr
+                ,client_port
+                ,backend_start
+                ,state
+        FROM    pg_stat_activity
+        WHERE   length(query) > 0
+        AND     pid != pg_backend_pid()
+        AND     backend_type = 'client backend'
+        AND     application_name != 'hologres'
+        AND     usename != 'holo_admin';
+        ```
+
 
