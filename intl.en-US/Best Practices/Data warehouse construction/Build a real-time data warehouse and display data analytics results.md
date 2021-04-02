@@ -6,8 +6,8 @@ keyword: [real-time data warehouse, best practice, Hologres]
 
 This topic describes how to connect Hologres to Realtime Compute to build a real-time data warehouse and then connect Hologres to a Business Intelligence \(BI\) tool to display data analytics results.
 
--   A Hologres instance is purchased and a development tool is connected to the instance. For more information, see [Quick start to HoloStudio](/intl.en-US/HoloStudio/Quick start to HoloStudio.md) or Quick start to HoloWeb.
--   Realtime Compute is activated. For more information, see [Activate Realtime Compute and create a project](/intl.en-US/Exclusive Mode/Preparation/Activate Realtime Compute and create a project.md).
+-   A Hologres instance is purchased and a development tool is connected to the instance. For more information, see Quick start to HoloWeb.
+-   Realtime Compute is activated.
 
     **Note:** Make sure that you activate the Realtime Compute and Hologres services in the same region.
 
@@ -21,7 +21,7 @@ This topic uses an e-commerce store as an example to describe how to display ope
 
 The following figure shows the process of using Hologres to display operating metrics on a dashboard in real time.
 
-![a](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2929670061/p120681.png)
+![a](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2929670061/p120681.png)
 
 -   Source data is collected and written to Realtime Compute in real time for cleansing and aggregation.
 -   Data processed by Realtime Compute is written to Hologres for interactive searches.
@@ -126,19 +126,19 @@ The following figure shows the process of using Hologres to display operating me
 
         Log on to the [Realtime Compute console](https://account.alibabacloud.com/login/login.htm?oauth_callback=http://stream-ap-southeast-3.console.aliyun.com/). In the left-side navigation pane, click **Resources**. On the page that appears, click **Create Resource**. In the **Upload Resource** dialog box, set parameters as required to upload a Realtime Compute resource package. To obtain a sample Realtime Compute resource package, click [Blink](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/170591/cn_zh/1591698479126/blink-connector-hologres-07-demo%281%29.jar).
 
-        ![a](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2929670061/p118229.png)
+        ![a](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2929670061/p118229.png)
 
     2.  Publish the job.
 
         After a resource package is referenced, click Save and then **Publish**. Set resource parameters as required and publish the job to the production environment.
 
-        ![b](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2929670061/p118230.png)
+        ![b](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2929670061/p118230.png)
 
     3.  Start the job.
 
         After the job is published, go to Administration page to start the job. The job then enters the Running state, as shown in the following figure.
 
-        ![v](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2929670061/p118232.png)
+        ![v](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2929670061/p118232.png)
 
 5.  Use Hologres to query data in real time.
 
