@@ -11,6 +11,8 @@ Hologres是一款服务分析一体化的实时数仓，支持海量数据集（
 创建点查场景的表时，您需要注意如下几点：
 
 -   Key/Value点查的Key字段需要设置为主键（Primary Key）。
+-   Primary Key与Clustering Key保持一致。
+-   需要将查询条件中的列设置为Distribution Key，一般默认主键为Distribution Key。
 -   表的存储类型需要设置为行存。
 -   建议连接Hologres实例时使用VPC网络的域名。
 
@@ -20,10 +22,12 @@ Hologres是一款服务分析一体化的实时数仓，支持海量数据集（
 --创建一张行存表test_kv_table并将key字段设置为主键
 begin;
 create table test_kv_table(
-    key text primary key,
-    value text
+  key text primary key,
+  value text
 );
 call set_table_property('test_kv_table', 'orientation', 'row');
+call set_table_property('test_kv_table', 'clustering_key', 'key');
+call set_table_property('test_kv_table', 'distribution_key', 'key');
 commit;
 ```
 
@@ -69,6 +73,40 @@ commit;
                 }
             }
         }
+    ```
+
+-   使用HoloClient查询
+
+    HoloClient会将多个查询合并为一个SQL语句，简化开发复杂度，示例如下。
+
+    ```
+    <dependency>
+      <groupId>com.alibaba.hologres</groupId>
+      <artifactId>holo-client</artifactId>
+      <version>1.2.10.2</version>
+    </dependency>
+    
+    
+    // 配置参数,url格式为 jdbc:postgresql://host:port/db
+    HoloConfig config = new HoloConfig();
+    config.setJdbcUrl(url);
+    config.setUsername(username);
+    config.setPassword(password);
+    config.setReadThreadCount(10);//读并发，最多占用10个jdbc连接
+    try (HoloClient client = new HoloClient(config)) {
+        //create table t0(id int not null,name0 text,address text,primary key(id))
+        TableSchema schema0 = client.getTableSchema("t0");
+        
+        Get get = Get.newBuilder(schema).setPrimaryKey("id", 0).build(); // where id=0;
+        client.get(get).thenAcceptAsync((record)->{
+            // do something after get result
+        });
+        Get get1 = Get.newBuilder(schema).setPrimaryKey("id", 1).build(); // where id=1;
+        client.get(get1).thenAcceptAsync((record)->{
+            // do something after get result
+        });
+    catch(HoloClientException e){
+    }
     ```
 
 
