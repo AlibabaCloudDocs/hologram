@@ -8,7 +8,7 @@ This topic shows you how to export data to MaxCompute by executing SQL statement
 
 ## Prerequisites
 
--   MaxCompute is activated. A development tool is connected to MaxCompute. For more information, see [Get started with MaxCompute]().
+-   MaxCompute is activated. A development tool is connected to MaxCompute.
 -   A Hologres instance is purchased. A development tool is connected to the instance. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/HoloWeb quick start.md).
 
 ## Notes
