@@ -8,7 +8,7 @@ keyword: [IP地址解析, Hologres]
 
 ## 前提条件
 
-在使用IP地址解析相关函数之前，您需要开通Hologres实例并连接开发工具，操作示例请参见[基于Hologres实例使用HoloWeb]()。
+在使用IP地址解析相关函数之前，您需要开通Hologres实例并连接开发工具，操作示例请参见[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 
 ## 函数概述
 
