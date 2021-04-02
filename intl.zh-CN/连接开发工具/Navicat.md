@@ -42,5 +42,4 @@ Navicat可以在一个应用程序中连接多个数据库，帮助您轻松创�
     Navicat成功连接Hologres后，您可以进行数据开发，详情请参见[Navicat帮助文档](https://www.navicat.com.cn/manual/online_manual/cn/navicat/mac_manual/#/postgresql_database)。Hologres的典型应用场景如下：
 
     -   直接加速查询离线数据，详情请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/离线同步/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)。
-    -   实时写入实时数据，详情请参见[实时计算实时写入数据至Hologres]()。
 
