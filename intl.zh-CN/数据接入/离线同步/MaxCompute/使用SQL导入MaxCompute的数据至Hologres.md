@@ -167,7 +167,7 @@ keyword: [SQL, Hologres, 分区表, 非分区表]
 
     在MaxCompute中创建一张分区数据表，详情请参见[分区和列操作](/intl.zh-CN/开发/SQL及函数/DDL语句/分区和列操作.md)。您也可以选取已创建的分区表。
 
-    示例选取MaxCompute公共数据集**public\_data**的ods\_enterprise\_share\_trade\_h表，您可以参照[t12301.md\#section\_9hk\_a70\_qsg](/intl.zh-CN/公开数据集/概述.md)描述，登录并查询数据集。其表DDL以及数据如下。。
+    示例选取MaxCompute公共数据集**public\_data**的ods\_enterprise\_share\_trade\_h表，您可以参照[t12301.md\#section\_9hk\_a70\_qsg](/intl.zh-CN/公开数据集/概述.md)描述，登录并查询数据集。其表DDL以及数据如下。
 
     ```
     --公共数据集下表的DDL
