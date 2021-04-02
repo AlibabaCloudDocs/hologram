@@ -84,6 +84,6 @@ Hologres兼容PostgreSQL，与大数据生态无缝连接，支持直接查询�
 
     您也可以使用HoloWeb进行数据开发，详情请参见[HoloWeb快速入门](/intl.zh-CN/快速入门/HoloWeb快速入门.md)。
 
-    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)或[实时计算实时写入数据至Hologres]()。
+    更多关于Hologres的数据开发，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/离线同步/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)。
 
 
