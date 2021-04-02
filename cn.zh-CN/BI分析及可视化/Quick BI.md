@@ -9,7 +9,7 @@ Quick BI为您提供海量数据的实时在线分析服务以及丰富的可视
 -   开通Hologres，详情请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。
 -   开通Quick BI，详情请参见[Quick BI购买、升级、降级、续费、欠费]()。
 
-Hologres与Quick BI高效连通，支持支持通过Hologres数据源直接连接Quick BI，将Hologres高效查询的数据直接进行可视化分析。
+Hologres与Quick BI高效连通，支持通过Hologres数据源直接连接Quick BI，将Hologres高效查询的数据直接进行可视化分析。
 
 **说明：** 当前Quick BI高级版和专业版支持Hologres数据源，其余版本请使用PostgreSQL数据源，更多关于PostgreSQL数据源的操作请参见[云数据源PostgreSQL]()。
 
