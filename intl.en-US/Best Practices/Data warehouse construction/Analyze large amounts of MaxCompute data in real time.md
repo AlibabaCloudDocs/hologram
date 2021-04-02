@@ -144,7 +144,7 @@ The complete link for speeding up the query of maxcompute data using hologres is
 
     1.  Add a connection.
 
-        Log on to the Quick BI console and add a PostgreSQL connection to Hologres. For more information, see [Quick BI](/intl.en-US/Common BI Tools/Quick BI.md).
+        Log on to the Quick BI console and add a PostgreSQL connection to Hologres. For more information, see [t1841752.md\#](/intl.en-US/Common BI Tools/Quick BI.md).
 
     2.  Create a dataset.
 
