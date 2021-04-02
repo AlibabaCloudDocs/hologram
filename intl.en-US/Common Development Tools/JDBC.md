@@ -37,6 +37,6 @@ Hologres provides the Java Database Connectivity \(JDBC\) or Open Database Conne
 
     After you connect to Hologres by using JDBC, you can use standard SQL statements to analyze data. The typical data analytics scenarios include:
 
-    -   Accelerated query of offline data: [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md)
-    -   Real-time data writing: [Write data from Realtime Compute to Hologres in real time](/intl.en-US/Data Access/Big Data/Realtime Compute/Write data from Realtime Compute to Hologres in real time.md)
+    -   Accelerated query of offline data: [Create a foreign table in Hologres to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Batch synchronization/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md)
+    -   Real-time data writing: [Write data from Realtime Compute to Hologres in real time]()
 
