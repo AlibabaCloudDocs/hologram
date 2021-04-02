@@ -28,7 +28,7 @@ HoloWeb是基于交互式分析Hologres引擎，使用可视化方式开发和�
 
     1.  单击**连接管理** \> **数据连接**。
 
-        ![数据连接](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0057818061/p116500.png)
+        ![数据连接](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1570812161/p116500.png)
 
     2.  配置**新建连接**弹框的参数，单击**确认**。
 
@@ -75,7 +75,7 @@ HoloWeb是基于交互式分析Hologres引擎，使用可视化方式开发和�
 
     1.  单击**连接管理** \> **数据库**。
 
-        ![数据库](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4724918061/p118032.png)
+        ![数据库](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1570812161/p118032.png)
 
     2.  配置**新建数据库**的参数，单击**确认**。
 
@@ -92,8 +92,6 @@ HoloWeb是基于交互式分析Hologres引擎，使用可视化方式开发和�
     成功连接Hologres实例后，您可以在**SQL编辑器**模块，使用标准的PostgreSQL语言进行开发。具体操作步骤如下：
 
     1.  单击**SQL编辑器** \> **新增SQL窗口**。
-
-        ![sql](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4724918061/p118146.png)
 
         您也可以在左侧导航栏，鼠标右键单击**我的SQL查询**，选择**新建SQL查询**。具体操作请参见[SQL窗口](/cn.zh-CN/连接开发工具/HoloWeb/SQL编辑器/SQL窗口.md)。
 
@@ -144,7 +142,7 @@ HoloWeb是基于交互式分析Hologres引擎，使用可视化方式开发和�
 
     1.  单击**连接管理** \> **MaxCompute加速** \> **创建外部表**。
 
-        ![o](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4724918061/p118150.png)
+        ![o](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2570812161/p118150.png)
 
     2.  配置**新建外部表**的各项参数，单击**提交表**。
 
@@ -165,6 +163,6 @@ HoloWeb是基于交互式分析Hologres引擎，使用可视化方式开发和�
 
     3.  成功新建外部表后，选择左侧导航栏**连接管理** \> **我的连接**。双击目标外部表，在外部表的编辑界面单击**数据预览**，加速查询MaxCompute数据，示例如下。
 
-        ![预览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5724918061/p118166.png)
+        ![预览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2570812161/p118166.png)
 
 
