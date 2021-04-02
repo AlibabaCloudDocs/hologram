@@ -71,6 +71,6 @@ Hologres为您提供完全兼容PostgreSQL的连接（JDBC/ODBC）接口，您�
 
     JDBC成功连接Hologres后，您可以使用标准的开发语句进行数据开发。典型的应用场景示例如下。
 
-    -   直接加速查询离线数据，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/大数据/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)。
-    -   实时写入实时数据，请参见[实时计算实时写入数据至Hologres](/intl.zh-CN/数据接入/大数据/实时计算Flink版/实时计算实时写入数据至Hologres.md)。
+    -   直接加速查询离线数据，请参见[通过创建外部表加速查询MaxCompute数据](/intl.zh-CN/数据接入/离线同步/MaxCompute/通过创建外部表加速查询MaxCompute数据.md)。
+    -   实时写入实时数据，请参见[实时计算实时写入数据至Hologres]()。
 
