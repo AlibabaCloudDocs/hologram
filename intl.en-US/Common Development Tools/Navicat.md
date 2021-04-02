@@ -39,6 +39,6 @@ Navicat is a multi-connection database development tool that allows you to conne
 
     After Navicat 15 for PostgreSQL is connected to Hologres, you can develop data in Navicat 15 for PostgreSQL. For more information, see [Navicat documentation](https://www.navicat.com.cn/manual/online_manual/cn/navicat/mac_manual/#/postgresql_database). Typical use scenarios:
 
-    -   Accelerated query of offline data: For more information, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md).
+    -   Accelerated query of offline data: For more information, see [Create a foreign table in Hologres to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Batch synchronization/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md).
     -   Real-time data writing: For more information, see [Write data from Realtime Compute to Hologres in real time]().
 
