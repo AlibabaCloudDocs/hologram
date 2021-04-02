@@ -10,7 +10,7 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
 
 在Hologres中查看表和DB的存储大小需要注意如下事项：
 
--   在查看表和DB的存储规格之前，您需要开通Hologres实例并连接开发工具，操作示例请参见[基于Hologres实例使用HoloWeb]()。
+-   在查看表和DB的存储规格之前，您需要开通Hologres实例并连接开发工具，操作示例请参见[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 -   仅Hologres V0.9及以上版本支持查看对象的存储大小，如果您的实例是V0.9以下版本，请您[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)升级实例。
 
 ## 查看表的存储大小
