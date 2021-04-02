@@ -8,7 +8,7 @@ This topic describes the Hologres functions that are used to resolve IP addresse
 
 ## Prerequisites
 
-A Hologres instance is purchased. A development tool is connected to the instance. For more information, see [Use HoloWeb to develop data in a Hologres instance]().
+A Hologres instance is purchased. A development tool is connected to the instance. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/HoloWeb quick start.md).
 
 ## Overview
 
