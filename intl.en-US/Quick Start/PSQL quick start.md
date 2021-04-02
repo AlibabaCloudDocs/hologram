@@ -82,8 +82,8 @@ You can also get started with Hologres in a visualized manner by using HoloWeb.
     SELECT * FROM nation;
     ```
 
-    You can also use HoloWeb for data analytics. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/Quick start.md) .
+    You can also use HoloWeb for data analytics. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/HoloWeb quick start.md) .
 
-    For more information about data analytics in Hologres, see [Create a foreign table to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Big Data/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md) and [Write data from Realtime Compute to Hologres in real time]().
+    For more information about data analytics in Hologres, see [Create a foreign table in Hologres to accelerate queries of MaxCompute data](/intl.en-US/Data Access/Batch synchronization/MaxCompute/Create a foreign table to accelerate queries of MaxCompute data.md) and [Write data from Realtime Compute to Hologres in real time]().
 
 
