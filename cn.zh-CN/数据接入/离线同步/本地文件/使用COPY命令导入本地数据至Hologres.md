@@ -10,7 +10,7 @@ keyword: [COPY, 导入客户端数据, Hologres]
 
 使用COPY命令导入数据至Hologres的限制说明如下：
 
--   当前支持的数据类型包括：int4、int8、float4、float8、boolean、text。
+-   当前COPY命令支持的数据类型与Hologres引擎支持的数据类型一致，详情参见[数据类型汇总](/cn.zh-CN/Hologres SQL/数据类型/数据类型汇总.md)
 -   如果导入的是分区表数据，则Hologres只支持导入数据至分区表子表，不支持导入数据至分区表父表。
 -   Hologres仅支持使用`COPY FROM STDIN`命令导入数据，不支持使用`COPY TO`命令导入。
 
