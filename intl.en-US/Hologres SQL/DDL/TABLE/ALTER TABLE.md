@@ -11,7 +11,6 @@ You can execute the ALTER TABLE statement to modify data in a table. This topic 
 When you modify data in a Hologres table, take note of the following items:
 
 -   You can rename the table or create fields in the table.
--   Operations on a foreign table are subjected to no limits.
 -   You can also execute the ATTACH PARTITION and DETACH PARTITION statements to modify data in partitioned Hologres tables.
 
 ## Rename a table
@@ -60,7 +59,7 @@ You can execute the ALTER TABLE statement to create fields in a table.
 
 ## Manage the default values of fields
 
-You can execute the ALTER TABLE statement to manage the default values of fields in a table.
+You can execute the ALTER TABLE statement to manage the default values of fields in a table that is created in Hologres V0.9.23 or later. Specifically, you can use the following syntax:
 
 -   Syntax
 
@@ -90,10 +89,10 @@ Hologres allows you to modify table properties by executing SQL statements to mo
 
         ```
         -- Full modification: In addition to modifying the dictionary encoding property of the fields that you specify in the CALL statement, Hologres automatically enables dictionary encoding for fields of the TEXT data type.
-        CALL SET_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]') ;
+        CALL SET_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         
         -- Incremental modification: The dictionary encoding property of only fields that you specify in the CALL statement is modified. The dictionary encoding property of other fields remains unchanged.
-        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]') ;
+        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         ```
 
     -   Parameters
@@ -135,10 +134,10 @@ Hologres allows you to modify table properties by executing SQL statements to mo
 
         ```
         -- Full modification: In addition to modifying the bitmap index property of the fields that you specify in the CALL statement, Hologres automatically enables dictionary encoding for fields of the TEXT data type.
-        CALL SET_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]') ;
+        CALL SET_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         
         -- Incremental modification: The bitmap index property of only fields that you specify in the CALL statement is modified. The bitmap index property of other fields remains unchanged.
-        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]') ;
+        CALL UPDATE_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         ```
 
     -   Parameters
