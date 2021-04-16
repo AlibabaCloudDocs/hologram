@@ -59,13 +59,7 @@ Hologres的PARTITION仅支持LIST类型，并且PARTITION LIST只能取类型为
 |EXPLAIN|无|
 |INSERT|无|
 |ROLLBACK|无|
-|SELECT|Hologres仅支持PostgreSQL中`SELECT`语句的部分语句功能。其中，不支持的功能如下：-   CUBE SET UP
--   GROUPING SET UP
--   CUBE ROLL UP
--   GROUPING ROLL UP
--   递归查询
--   NULL FIRST或NULL LAST
--   INTERSECT或EXCEPT
+|SELECT|Hologres仅支持PostgreSQL中`SELECT`语句的部分语句功能。其中，不支持的功能如下：-   递归查询
 -   TABLESAMPLE
 -   LOCKING
 -   ONLY |
