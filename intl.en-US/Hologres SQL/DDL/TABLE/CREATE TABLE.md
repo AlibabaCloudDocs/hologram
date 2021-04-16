@@ -10,7 +10,7 @@ You can execute the CREATE TABLE statement to create a table. This topic describ
 
 1.  **Syntax**
 
-    The CREATE TABLE statement in Hologres only supports specific features of the CREATE TABLE statement in PostgreSQL. The CREATE TABLE statement in Hologres uses the following syntax:
+    The CREATE TABLE statement in Hologres supports only specific features of the CREATE TABLE statement in PostgreSQL. The following syntax applies when you execute the CREATE TABLE statement in Hologres:
 
     ```
     begin;
@@ -40,7 +40,7 @@ You can execute the CREATE TABLE statement to create a table. This topic describ
 
     3.  You can call the set\_table\_property function to set properties for the table. For more information, see [Set table properties](#section_l9q_k83_z01).
 3.  **Limits**
-    1.  When you configure the primary key of a table, you can specify multiple columns to constitute a composite primary key. The columns that constitute the primary key must be unique and cannot be null. In addition, you must specify all these columns in one CREATE TABLE statement. The primary key does not support columns of the following data types: FLOAT, DOUBLE, NUMERIC, ARRAY, JSON, and specific complex data types. The following sample code shows you how to specify the id and ds columns to constitute the primary key of a table:
+    1.  When you configure the primary key of a table, you can specify multiple columns to constitute a composite primary key. The values of the columns that constitute the primary key must be unique and cannot be null. In addition, you must specify all these columns in one CREATE TABLE statement. The primary key does not support columns of the following data types: FLOAT, DOUBLE, NUMERIC, ARRAY, JSON, and specific complex data types. The following sample code shows you how to specify the id and ds columns to constitute the primary key of a table:
 
         ```
         BEGIN;
@@ -53,7 +53,7 @@ You can execute the CREATE TABLE statement to create a table. This topic describ
         COMMIT;
         ```
 
-    2.  Table names and column names are not case-sensitive. To define an uppercase table or column name or a table or column name with special characters, you can enclose the name in double quotation marks \(" "\) to escape it. Sample code:
+    2.  Table names and column names are not case-sensitive. To define a table or column name that is in upper case or has special characters, you can enclose the name in double quotation marks \("\) to escape it. The following sample code shows you how to specify table names and column names in the CREATE TABLE statement:
 
         ```
         create table "TBL"(a int);
@@ -103,7 +103,7 @@ You can execute the CREATE TABLE statement to create a table. This topic describ
 
 ## Set table properties
 
-Hologres allows you to call the set\_table\_property function to set table properties. Proper settings of table properties help Hologres efficiently sort and query data. When you execute the CREATE TABLE statement to create a table, the parameters related to the data storage layout of the table must be executed at the same time. In the current Hologres version, the orientation, distribution\_key, clustering\_key, and event\_time\_column parameters cannot be modified after a table is created.
+Hologres allows you to call the set\_table\_property function to set table properties. Proper settings of table properties help Hologres efficiently sort and query data. If you want to configure properties related to the data storage layout, you must execute related statements together with the CREATE TABLE statement. In the current Hologres version, the orientation, distribution\_key, clustering\_key, and event\_time\_column parameters cannot be modified after a table is created.
 
 1.  **Syntax**
 
@@ -132,12 +132,12 @@ Hologres allows you to call the set\_table\_property function to set table prope
     |Parameter|Column-oriented table|Row-oriented table|
     |---------|---------------------|------------------|
     |orientation|Default value: column.|row|
-    |distribution\_key|By default, the primary key is used as the distribution key. We recommend that you use the primary key.|By default, the primary key is used as the distribution key. We recommend that you use the primary key.|
-    |clustering\_key|By default, this parameter is empty.|By default, the primary key is used as the clustering key. We recommend that you use the primary key.|
-    |event\_time\_column|By default, the first non-null timestamp field is used as the event time column.|You cannot specify the primary key as the event time column.|
-    |bitmap\_columns|Set this parameter based as needed.|Not supported|
-    |dictionary\_encoding\_columns|Set this parameter based as needed.|Not supported|
-    |time\_to\_live\_in\_seconds|Set this parameter based as needed.|Set this parameter based as needed.|
+    |distribution\_key|By default, the primary key is used as the distribution key. You can modify it as required.|By default, the primary key is used as the distribution key.|
+    |clustering\_key|By default, this parameter is empty.|By default, the primary key is used as the clustering key.|
+    |event\_time\_column|By default, the first non-null timestamp field is used as the event time column.|Not supported|
+    |bitmap\_columns|Set this parameter as needed.|Not supported|
+    |dictionary\_encoding\_columns|Set this parameter as needed.|Not supported|
+    |time\_to\_live\_in\_seconds|Set this parameter as needed.|Set this parameter as needed.|
 
     1.  **orientation**
 
@@ -166,7 +166,7 @@ Hologres allows you to call the set\_table\_property function to set table prope
     2.  **distribution\_key**
 
         ```
-        call set_table_property('<table_name>', 'distribution_key', '[columnName[,...]]') ;
+        call set_table_property('<table_name>', 'distribution_key', '[columnName[,...]]');
         ```
 
         -   The distribution\_key property specifies one or more columns that constitute a distribution key, which is used to distribute data in a table. Hologres distributes data to each shard based on the distribution key. Entries with the same distribution key value are distributed to the same shard.
@@ -200,15 +200,15 @@ Hologres allows you to call the set\_table\_property function to set table prope
     3.  **clustering\_key**
 
         ```
-        call set_table_property('<table_name>', 'clustering_key', '[columnName{:[desc|asc]} [,...]]') ;
+        call set_table_property('<table_name>', 'clustering_key', '[columnName{:[desc|asc]} [,...]]');
         ```
 
-        -   The clustering\_key property specifies the columns for Hologres to create clustered indexes. Hologres sorts data based on clustered indexes. Hologres allows you to use clustered indexes to accelerate range and filter queries on indexed columns.
+        -   The clustering\_key property specifies the columns for Hologres to create clustered indexes. Hologres sorts data based on clustered indexes. Hologres allows you to use clustered indexes to accelerate RANGE and FILTER queries on indexed columns.
         -   The columns that constitute the clustering key must meet the NOT NULL constraint. The clustering key does not support columns of the following data types: FLOAT, DOUBLE, ARRAY, JSON, and specific complex data types.
         -   When you use the clustering\_key property to specify a column, you can append `desc` or `asc` to the column name to specify a sorting order for the indexes to be built. By default, the ascending order `asc` is used.
-        -   By default, the clustering key of a column-oriented table is null. By default, the clustering key of a row-oriented table is the primary key. No clustering key is specified in the versions earlier than Hologres version 0.9. If the clustering key is not the primary key of a table, Hologres generates two sorting orders for this table: sorting based on the primary key and sorting based on the clustering key. This causes redundant data.
+        -   By default, the clustering key of a column-oriented table is null and that of a row-oriented table is the primary key. No clustering key is specified in the versions earlier than Hologres 0.9. If the clustering key is not the primary key of a table, Hologres generates two sorting orders for this table: sorting based on the primary key and sorting based on the clustering key. This causes redundant data.
         -   The clustering key is used for sorting. In this case, the first column among the columns that constitute the clustering key has the highest priority. We recommend that you retain only one or two columns to constitute the clustering key.
-        -   The clustering key allows you to accelerate range and filter queries on the first few columns in a clustered index. **Queries must follow the leftmost matching principle. Otherwise, you cannot use the clustering key to accelerate the queries**.
+        -   The clustering key allows you to accelerate RANGE and FILTER queries on the first few columns in a clustered index. **Queries must follow the leftmost matching principle. Otherwise, you cannot use the clustering key to accelerate the queries**.
 
             Assume that the clustering\_key property of Table table1 specifies Column col1 and Column col2 as indexed columns. The following examples are some queries that can be accelerated and some that cannot:
 
@@ -242,13 +242,13 @@ Hologres allows you to call the set\_table\_property function to set table prope
     4.  **event\_time\_column**
 
         ```
-        call set_table_property('<table_name>', 'event_time_column', '[columnName{:[desc|asc]} [,...]]') ;
+        call set_table_property('<table_name>', 'event_time_column', '[columnName{:[desc|asc]} [,...]]');
         ```
 
-        -   The segment\_key property is renamed to the event\_time\_column property in Hologres version 0.9. However, this property can still be used in Hologres version 0.9. The event\_time\_column property allows you to specify whether to use specific columns as event time columns. For example, you can specify a column of the TIME data type as an event time column. Hologres can quickly find the storage location of the corresponding data based on an event time column.
-        -   Before you set the event\_time\_column property, make sure that orientation is set to column. This way, the table uses the column-oriented storage model.
+        -   The segment\_key property is renamed event\_time\_column in Hologres 0.9. However, this property can still be used in Hologres 0.9. The event\_time\_column property allows you to specify whether to use specific columns as event time columns. For example, you can specify a column of the TIME data type as an event time column. This can help Hologres can find the storage location of the corresponding data.
+        -   Before you set the event\_time\_column property, make sure that the orientation property is set to column. This way, the table uses the column-oriented storage model.
         -   The columns that are specified as event time columns must meet the NOT NULL constraint. You cannot specify a column of one of the following data types as an event time column: FLOAT, DOUBLE, ARRAY, JSON, and specific complex data types.
-        -   By default, the first non-null TIMESTAMP or TIMESTAMPTZ field in the schema of a column-oriented table is used as an event time column. If no such field exists, the first non-null DATE field is used as an event time column. By default, no event time column is specified for a table in the versions earlier than Hologres version 0.9.
+        -   By default, the first non-null TIMESTAMP or TIMESTAMPTZ field in the schema of a column-oriented table is used as an event time column. If no such field exists, the first non-null DATE field is used as an event time column. By default, no event time column is specified for a table in the versions earlier than Hologres 0.9.
         Examples
 
         ```
@@ -266,7 +266,7 @@ Hologres allows you to call the set\_table\_property function to set table prope
     5.  **bitmap\_columns**
 
         ```
-        call set_table_property('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]') ;
+        call set_table_property('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         ```
 
         The following table describes the required parameters.
@@ -275,18 +275,18 @@ Hologres allows you to call the set\_table\_property function to set table prope
         |---------|-----------|
         |table\_name|The name of the table. The case of the table name must be same as that of a table name to be modified. The table name can contain the schema information of the table.|
         |on|Indicates that a bitmap index is built for the current field.|
-        |off|Indicates that a bitmap index is not built for the current field.|
+        |off|Indicates that no bitmap index is built for the current field.|
 
-        -   The bitmap\_columns property allows you to specify whether to build bitmap indexes for specific columns. Bitmaps can help quickly filter data in a stored file. Therefore, we recommend that you convert filter conditions to bitmaps.
-        -   Before you set the bitmap\_columns property, make sure that orientation is set to column. This way, the table uses the column-oriented storage model.
+        -   The bitmap\_columns property allows you to specify whether to build bitmap indexes for specific columns. Bitmaps can help filter data in a stored file. Therefore, we recommend that you convert filter conditions to bitmaps.
+        -   Before you set the bitmap\_columns property, make sure that the orientation property is set to column. This way, the table uses the column-oriented storage model.
         -   We recommend that you build bitmap indexes only for columns with a few values. This way, a binary string is constructed for each value to indicate the bitmap where the value is located.
         -   The columns specified by the bitmap\_columns property can be null.
-        -   By default, the bitmap\_columns property implicitly builds bitmap indexes for all TEXT columns in both Hologres version 0.8 and Hologres version 0.9.
-        -   **You can call the set\_table\_property function for the bitmap\_columns property outside the transaction of CREATE TABLE to modify the property. The modified columns do not take effect immediately and bitmap indexes are asynchronously built and deleted in the background.** For more information, see [ALTER TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/ALTER TABLE.md).
+        -   By default, the bitmap\_columns property implicitly builds bitmap indexes for all TEXT columns in both Hologres 0.8 and Hologres 0.9.
+        -   **You can call the set\_table\_property function for the bitmap\_columns property outside the transaction of CREATE TABLE to modify the property. The modified columns do not immediately take effect and bitmap indexes are asynchronously built and deleted in the background.** For more information, see [ALTER TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/ALTER TABLE.md).
         -   Examples
 
             ```
-            // Create a table named tbl and configure bitmap indexes.
+            -- Create a table named tbl and configure bitmap indexes.
             begin;
             create table tbl (
               a int not null, 
@@ -294,16 +294,16 @@ Hologres allows you to call the set\_table\_property function to set table prope
             call set_table_property('tbl', 'bitmap_columns', 'a:on,b:off');
             commit;
             
-            // Modify the bitmap indexes for all fields. Bitmap indexes are automatically built for all TEXT fields, excluding the fields specified in the CALL statement.
+            -- Modify the bitmap indexes for all fields. Bitmap indexes are automatically built for all TEXT fields, excluding the fields specified in the CALL statement.
             call set_table_property('tbl', 'bitmap_columns', 'a:off');
-            // Modify the bitmap indexes in an incremental manner. Specify only whether to build bitmap indexes for specific fields.
+            -- Modify the bitmap indexes in an incremental manner. Specify only whether to build bitmap indexes for specific fields.
             call update_table_property('tbl', 'bitmap_columns', 'b:off');
             ```
 
     6.  **dictionary\_encoding\_columns**
 
         ```
-        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off]}[,...]]') ;
+        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off]}[,...]]');
         ```
 
         The following table describes the required parameters.
@@ -313,18 +313,18 @@ Hologres allows you to call the set\_table\_property function to set table prope
         |table\_name|The name of the table. The case of the table name must be same as that of a table name to be modified. The table name can contain the schema information of the table.|
         |on|Indicates that dictionary mappings are built for the current field.|
         |off|Indicates that dictionary mappings are not built for the current field.|
-        |auto|Indicates that Hologres automatically determines whether to build dictionary mappings for the current field. If you select the auto keyword for a field, Hologres automatically determines whether to build dictionary mappings for the field based on the duplication degree of values. More duplicate values ensure a higher efficiency of dictionary mappings. By default, dictionary mappings are built for all TEXT columns in Hologres version 0.8 and earlier. In Hologres version 0.9 and later, Hologres can automatically determine whether to build dictionary mappings for a field based on the characteristics of data.|
+        |auto|Indicates that Hologres automatically determines whether to build dictionary mappings for the current field. If you select the auto keyword for a field, Hologres automatically determines whether to build dictionary mappings for the field based on the duplication degree of values. More duplicate values ensure a higher efficiency of dictionary mappings. By default, dictionary mappings are built for all TEXT columns in Hologres 0.8 and earlier. In Hologres 0.9 and later, Hologres can automatically determine whether to build dictionary mappings for a field based on the characteristics of data.|
 
-        -   The dictionary\_encoding\_columns property allows you to specify whether to build dictionary mappings for specific columns. If you select the on keyword for a column, Hologres builds dictionary mappings for the values in the column. Dictionary mappings can convert string comparisons to numeric comparisons to accelerate queries such as GROUP BY and FILTER.
-        -   Before you set the dictionary\_encoding\_columns property, make sure that orientation is set to column. This way, the table uses the column-oriented storage model.
+        -   The dictionary\_encoding\_columns property allows you to specify whether to build dictionary mappings for specific columns. Dictionary mappings can convert string comparisons to numeric comparisons to accelerate queries such as GROUP BY and FILTER.
+        -   Before you set the dictionary\_encoding\_columns property, make sure that the orientation property is set to column. This way, the table uses the column-oriented storage model.
         -   The columns specified by the dictionary\_encoding\_columns property can be null.
         -   We recommend that you build dictionary mappings only for columns with a few values. This can help compress storage.
-        -   By default, the dictionary\_encoding\_columns property implicitly builds dictionary mappings for all TEXT columns in Hologres version 0.8 and earlier. In Hologres version 0.9 and later, Hologres can automatically determine whether to build dictionary mappings for a field based on the characteristics of data.
-        -   **You can call the set\_table\_property function for the dictionary\_encoding\_columns property outside the transaction of CREATE TABLE to modify the property. The modified columns do not take effect immediately and dictionary mappings are asynchronously built and deleted in the background.** For more information, see [ALTER TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/ALTER TABLE.md).
+        -   By default, the dictionary\_encoding\_columns property implicitly builds dictionary mappings for all TEXT columns in Hologres 0.8 and earlier. In Hologres 0.9 and later, Hologres can automatically determine whether to build dictionary mappings for a field based on the characteristics of data.
+        -   **You can call the set\_table\_property function for the dictionary\_encoding\_columns property outside the transaction of CREATE TABLE to modify the property. The modified columns do not immediately take effect and dictionary mappings are asynchronously built and deleted in the background.** For more information, see [ALTER TABLE](/intl.en-US/Hologres SQL/DDL/TABLE/ALTER TABLE.md).
         -   Examples
 
             ```
-            // Create a table named tbl and configure dictionary mappings.
+            -- Create a table named tbl and configure dictionary mappings.
             begin;
             create table tbl (
               a int not null, 
@@ -334,9 +334,9 @@ Hologres allows you to call the set\_table\_property function to set table prope
             call set_table_property('tbl', 'dictionary_encoding_columns', 'a:on,b:off,c:auto');
             commit;
             
-            // Modify the dictionary mappings for all fields. Dictionary mappings are automatically built for all TEXT fields, excluding the fields specified in the CALL statement.
+            -- Modify the dictionary mappings for all fields. Dictionary mappings are automatically built for all TEXT fields, excluding the fields specified in the CALL statement.
             call set_table_property('tbl', 'dictionary_encoding_columns', 'a:off');
-            // Modify the dictionary mappings in an incremental manner. Specify only whether to build dictionary mappings for specific fields.
+            -- Modify the dictionary mappings in an incremental manner. Specify only whether to build dictionary mappings for specific fields.
             call update_table_property('tbl', 'dictionary_encoding_columns', 'b:off');
             ```
 
@@ -356,7 +356,7 @@ Hologres allows you to call the set\_table\_property function to set table prope
             call set_table_property('tbl', 'time_to_live_in_seconds', '3.14159');
             commit;
             
-            // Modify the TTL.
+            -- Modify the TTL.
             call set_table_property('tbl', 'time_to_live_in_seconds', '86400');
             ```
 
@@ -367,11 +367,11 @@ Hologres allows you to call the set\_table\_property function to set table prope
 
 Hologres allows you to add comments to internal tables, foreign tables, and columns.
 
-The following examples show you how to add comments:
+The following sample code shows you how to add comments:
 
 ```
 -- Add a comment to an internal table.
-COMMENT ON TABLE table_name IS 'my comments on table table_name.' ;
+COMMENT ON TABLE table_name IS 'my comments on table table_name.';
 
 -- Add a comment to a column.
 COMMENT ON COLUMN table_name.col1 IS 'This my first col1';
@@ -381,4 +381,15 @@ COMMENT ON FOREIGN TABLE foreign_table IS ' comments on my foreign table';
 ```
 
 For more information, see [PostgreSQL comment](https://www.postgresql.org/docs/11/sql-comment.html).
+
+## Query the DDL statement of a table
+
+You can use the following syntax to query the DDL statement of a table:
+
+```
+-- This statement takes effect only in the current database.
+create extension hg_toolkit;
+-- You can replace tablename in the statement with the name of the table.
+select hg_dump_script('tablename');
+```
 
