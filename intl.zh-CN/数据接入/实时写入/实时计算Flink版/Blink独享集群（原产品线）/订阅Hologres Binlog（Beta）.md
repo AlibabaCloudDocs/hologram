@@ -16,8 +16,8 @@ keyword: [Hologres, Binlog]
     |Flink分类|Hologres行存表Binlog|Hologres 列存表Binlog|
     |-------|-----------------|------------------|
     |实时计算Blink|支持|支持|
-    |全托管Flink|不支持|不支持|
-    |开源Flink|不支持|不支持|
+    |全托管Flink|VVP-2.4支持|VVP-2.4支持|
+    |开源Flink|Flink 1.12开始支持|Flink 1.12支持|
 
 
 ## 开启Binlog
@@ -119,10 +119,10 @@ Binlog字段由Binlog系统字段和用户Table字段组成，具体字段定义
 
 2.  配置Binlog并发
 
-    Binlog订阅的并发等于Hologres中Table的shard个数，请执行如下语句查看shard数。其中，`$table`请替换为您实际的Table名称。Binlog并发建议执行计划配置，将其并发数与Binlog对应的Hologres中Table的shard数保持一致。
+    Binlog订阅的并发等于Hologres中Table的shard个数，请执行如下语句查看shard数。其中，`<tablename>`请替换为您实际的Table名称。Binlog并发建议执行计划配置，将其并发数与Binlog对应的Hologres中Table的shard数保持一致。
 
     ```
-    select tg.property_value from hologres.hg_table_properties tb join hologres.hg_table_group_properties tg on tb.property_value = tg.tablegroup_name where tb.property_key = 'table_group' and tg.property_key = 'shard_count' and table_name = '$table';
+    select tg.property_value from hologres.hg_table_properties tb join hologres.hg_table_group_properties tg on tb.property_value = tg.tablegroup_name where tb.property_key = 'table_group' and tg.property_key = 'shard_count' and table_name = '<tablename>';
     ```
 
 
