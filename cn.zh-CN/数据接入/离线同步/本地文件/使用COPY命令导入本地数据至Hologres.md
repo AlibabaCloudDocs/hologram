@@ -95,15 +95,34 @@ COPY table_name [ ( column_name [, ...] ) ]
     SELECT * FROM partsupp;
     ```
 
-    **说明：** HoloStudio及HoloWeb暂不支持使用命令行方式通过STDIN导入CSV格式的文件。
+    **说明：** psql客户端支持使用STDIN导入数据，HoloStudio及HoloWeb暂不支持使用命令行方式通过STDIN导入CSV格式的文件。
 
--   导入本地文件，命令如下。
+-   导入本地文件至Hologres，命令如下。
 
     ```
-    psql -p <port> -h <endpoint> -d <database> -c "COPY <table> from stdin with delimiter '|' csv;" <<filename>;
+    psql -U <username> -p <port> -h <endpoint> -d <databasename> -c "COPY <table> from stdin with delimiter '|' csv;" <<filename>;
     ```
 
-    **说明：** HoloStudio及HoloWeb暂不支持使用命令行方式通过STDIN导入本地文件。
+    **说明：** psql客户端支持使用STDIN导入数据，HoloStudio及HoloWeb暂不支持使用命令行方式通过STDIN导入本地文件。由于psql客户端仅支持STDIN（标准输入）方式导入数据，需要将文件数据转换为标准输入格式。
+
+    如下示例将指导您在终端执行命令导入本地文件至Hologres。
+
+    -   输入命令导入本地文件copy\_test至Hologres。
+
+        ![执行命令](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0202658161/p264751.png)
+
+        其中，插入的标准文件内容如下：
+
+        ```
+        01,01,name1
+        02,01,name2
+        03,01,name3
+        04,01,name4
+        ```
+
+    -   执行完成后，回到psql客户端可以查询新插入的数据，如下图所示。
+
+        ![查询结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0202658161/p264730.png)
 
 -   使用CopyManager导入JDBC客户端的文件至Hologres，命令如下。
 
