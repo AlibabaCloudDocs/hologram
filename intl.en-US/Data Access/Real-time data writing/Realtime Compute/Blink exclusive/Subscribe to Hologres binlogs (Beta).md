@@ -1,5 +1,5 @@
 ---
-keyword: [Hologres, binlog]
+keyword: [Hologres, Binlog]
 ---
 
 # Subscribe to Hologres binlogs \(Beta\)
@@ -10,14 +10,14 @@ This topic describes how to subscribe to Hologres binlogs.
 
 Before you subscribe to binlogs in Hologres, take note of the following items:
 
--   Only Hologres V0.9 and later support binlog subscription. If the version of your Hologres instance is earlier than V0.9, [提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)[submit a ticket](https://workorder-intl.console.aliyun.com/) or join the Hologres DingTalk group for technical support.
+-   Only Hologres V0.9 and later support binlog subscription. If the version of your Hologres instance is earlier than V0.9, [submit a ticket](https://workorder-intl.console.aliyun.com/) or join the Hologres DingTalk group for technical support.
 -   Hologres supports subscription to the binlogs of a single table for both row-oriented tables and column-oriented tables. The following table describes the types of Hologres binlog subscription that are supported for different versions of Flink.
 
     |Flink version|Subscription to Hologres binlogs of row-oriented tables|Subscription to Hologres binlogs of column-oriented tables|
     |-------------|-------------------------------------------------------|----------------------------------------------------------|
     |Blink-based Realtime Compute|Supported|Supported|
-    |Fully managed Flink|Not supported|Not supported|
-    |Open source Flink|Not supported|Not supported|
+    |Fully managed Flink|Supported from VVP 2.4|Supported from VVP 2.4|
+    |Open source Flink|Supported from Flink 1.12|Supported from Flink 1.12|
 
 
 ## Enable binary logging
@@ -28,7 +28,7 @@ Before you subscribe to binlogs in Hologres, take note of the following items:
 
 -   Limits
 
-    You cannot enable binary logging by modifying the table properties of an existing table. You must create another table.
+    You cannot enable binary logging by modifying the table properties of an existing table. To enable binary logging for a table, you must enable the feature when you create the table.
 
     Blink-based Realtime Compute does not support Hologres binlogs that contain data of the TIMESTAMP type. When you create a table in Hologres, specify the TIMESTAMPTZ data type for related fields.
 
@@ -42,10 +42,10 @@ Before you subscribe to binlogs in Hologres, take note of the following items:
       id int primary key, 
       title text not null, 
       body text);
-    call set_table_property('test_message_src', 'orientation', 'row'); // Create a row-oriented table named test_message_src.
-    call set_table_property('test_message_src', 'clustering_key', 'id'); // Create a clustered index for the id column.
-    call set_table_property('test_message_src', 'binlog.level', 'replica'); // Set the binlog.level property to enable binary logging.
-    call set_table_property('test_message_src', 'binlog.ttl', '86400'); // Use the binlog.ttl property to set the time to live (TTL) of binlogs. Unit: seconds.
+    call set_table_property('test_message_src', 'orientation', 'row'); -- Create a row-oriented table named test_message_src.
+    call set_table_property('test_message_src', 'clustering_key', 'id'); -- Create a clustered index for the id column.
+    call set_table_property('test_message_src', 'binlog.level', 'replica'); -- Set the binlog.level property to enable binary logging.
+    call set_table_property('test_message_src', 'binlog.ttl', '86400'); -- Use the binlog.ttl property to set the time to live (TTL) of binlogs. Unit: seconds.
     commit;
     ```
 
@@ -88,11 +88,11 @@ Blink V3.7 and later allow Holo-blink connectors to consume binlogs in real time
           body VARCHAR
         ) with (
           type = 'hologres',
-          `endpoint` = 'ip:port', // The virtual private cloud (VPC) endpoint of your Hologres instance.
-          `username` = 'xxxx', // The AccessKey ID of your Alibaba Cloud account.
-          `password` = 'xxxx', // The AccessKey secret of your Alibaba Cloud account.
-          `dbname` = 'xxxx', // The name of the Hologres database that you want to read.
-          `tablename` = 'xxxx', // The name of the Hologres table that you want to read.
+          `endpoint` = 'ip:port', -- The virtual private cloud (VPC) endpoint of your Hologres instance.
+          `username` = 'xxxx', -- The AccessKey ID of your Alibaba Cloud account.
+          `password` = 'xxxx', -- The AccessKey secret of your Alibaba Cloud account.
+          `dbname` = 'xxxx', -- The name of the Hologres database that you want to read.
+          `tablename` = 'xxxx', -- The name of the Hologres table that you want to read.
           `binlog` = 'true',
           `binlogMaxRetryTimes` = '10',
           `binlogRetryIntervalMs` = '500',
@@ -107,9 +107,9 @@ Blink V3.7 and later allow Holo-blink connectors to consume binlogs in real time
         |Parameter|Required|Description|
         |---------|--------|-----------|
         |type|Yes|The type of the source table. Set the value to hologres.|
-        |ip:port|Yes|The VPC endpoint of your Hologres instance. You can obtain the VPC endpoint and port number from the [Hologres console](https://hologram.console.aliyun.com/#/instance).|
-        |username|Yes|The AccessKey ID of your Alibaba Cloud account. You can obtain the AccessKey ID from the [AccessKey Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|
-        |password|Yes|The AccessKey secret of your Alibaba Cloud account. You can obtain the AccessKey secret from the [AccessKey Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|
+        |endpoint|Yes|The VPC endpoint of your Hologres instance. You can obtain the VPC endpoint and port number from the [Hologres console](https://hologram.console.aliyun.com/#/instance).|
+        |username|Yes|The AccessKey ID of your Alibaba Cloud account. You can obtain the AccessKey ID from the [Security Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|
+        |password|Yes|The AccessKey secret of your Alibaba Cloud account. You can obtain the AccessKey secret from the [Security Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|
         |dbname|Yes|The name of the Hologres database that you want to read.|
         |tablename|Yes|The name of the Hologres table that you want to read.|
         |binlog|Yes|Specifies whether the current table serves as a source for binlogs. If so, set this parameter to true.|
@@ -119,10 +119,10 @@ Blink V3.7 and later allow Holo-blink connectors to consume binlogs in real time
 
 2.  Set a concurrency for binlog subscription.
 
-    The concurrency of binlog subscription equals the number of shards in the Hologres table. You can execute a statement to query the number of shards, as shown in the following code snippet. Replace `$table` in the statement with the name of your table. When you set a concurrency for binlog subscription, we recommend that you set the concurrency to the number of shards in the relevant Hologres table.
+    The concurrency of binlog subscription equals the number of shards in the Hologres table. You can execute a statement to query the number of shards, as shown in the following code snippet. Replace `<tablename>` in the statement with the name of your table. When you set a concurrency for binlog subscription, we recommend that you set the concurrency to the number of shards in the relevant Hologres table.
 
     ```
-    select tg.property_value from hologres.hg_table_properties tb join hologres.hg_table_group_properties tg on tb.property_value = tg.tablegroup_name where tb.property_key = 'table_group' and tg.property_key = 'shard_count' and table_name = '$table';
+    select tg.property_value from hologres.hg_table_properties tb join hologres.hg_table_group_properties tg on tb.property_value = tg.tablegroup_name where tb.property_key = 'table_group' and tg.property_key = 'shard_count' and table_name = '<tablename>';
     ```
 
 
