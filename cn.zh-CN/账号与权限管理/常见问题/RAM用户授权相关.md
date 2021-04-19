@@ -10,10 +10,17 @@ Hologres管理控制台主要集成了RAM鉴权和实例的部分开发权限，
 
 您需要具备Hologres管理控制台操作权限，才能管理Hologres实例时。与Hologres管理控制台权限相关的常见问题，请单击如下链接查看解决方法。
 
+-   [RAM用户如何购买交互式分析Hologres](#section_3he_p1t_efq)
 -   [RAM用户无法查看实例列表及实例ID](#section_te9_8bd_4iy)
 -   [被授权为Superuser的RAM用户无法新增用户](#section_s67_osb_mgg)
 -   [无法查看用户管理和DB管理模块的信息](#section_w11_wo8_rwq)
 -   [RAM用户无实例的操作权限](#section_ovp_spc_a51)
+
+## RAM用户如何购买交互式分析Hologres
+
+RAM用户需要被主账号授权，才可以购买Hologres实例，详情请参见[授予RAM用户权限](/cn.zh-CN/账号与权限管理/授予RAM用户权限.md)。
+
+**说明：** RAM用户成功购买实例后，您还需要使用主账号授予RAM用户实例的开发权限，才能正常使用实例，详情请参见[授予RAM用户实例的开发权限](/cn.zh-CN/账号与权限管理/授权操作/授予RAM用户实例的开发权限.md)。
 
 ## RAM用户无法查看实例列表及实例ID
 
