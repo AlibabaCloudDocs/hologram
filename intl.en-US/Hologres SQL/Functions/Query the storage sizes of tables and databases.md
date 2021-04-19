@@ -10,7 +10,7 @@ Hologres is compatible with PostgreSQL. You can use PostgreSQL functions to quer
 
 When you query the storage sizes of tables and databases in Hologres, take note of the following items:
 
--   Before you query the storage sizes of tables and databases, you must create a Hologres instance and connect the instance to a development tool. For more information, see [Use HoloWeb to develop data in a Hologres instance]().
+-   Before you query the storage sizes of tables and databases, you must create a Hologres instance and connect the instance to a development tool. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/HoloWeb quick start.md).
 -   Only Hologres V0.9 and later allow you to query the storage sizes of objects. If the version of your Hologres instance is earlier than V0.9, [submit a ticket](https://workorder-intl.console.aliyun.com/) to upgrade your instance.
 
 ## Query the storage size of a table
