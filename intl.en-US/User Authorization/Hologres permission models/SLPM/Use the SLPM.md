@@ -73,7 +73,6 @@ After you connect a Hologres instance to a development tool, you can enable the 
     **Note:**
 
     -   When you call the `slpm_create_user` function to add a RAM user to a Hologres instance, prefix the UID of the RAM user with p4\_ and enclose it in double quotation marks \(" "\), such as "p4\_uid". To obtain the UID of the RAM user, go to the [Users](https://ram.console.aliyun.com/users) page in the RAM console. For more information about the formats of display names for RAM users in Hologres, see [Account overview](/intl.en-US/User Authorization/Account overview.md).
-    -   To create multiple users in a Hologres instance at a time, you can log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance), go to the details page of the instance, and then add multiple users at a time on the **Users** tab. For more information, see [Users Management]().
 5.  Add a user to a user group.
 
     After you create a user in the Hologres instance, add the user to a user group in a database to authorize the user. If you have specified a user group for a user when you create the user, skip this step.
