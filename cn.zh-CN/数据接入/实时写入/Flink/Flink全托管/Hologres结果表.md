@@ -125,7 +125,7 @@ With参数的描述如下表所示。
 
 假设Hologres有一张宽表**WIDE\_TABLE**，有A、B、C、D、E几列，其中A字段是主键，Flink一个流包含数据A、B、C，另一个流包含数据A、D、E。
 
-1.  使用Flink SQL声明两张Hologres结果表，其中一张表只声明字段A、B、C，另一张表只声明字段A、D、E，这两张表都映射至*WIDE\_TABLE*。
+1.  使用Flink SQL声明两张Hologres结果表，其中一张表只声明字段A、B、C，另一张表只声明字段A、D、E，这两张表都映射至**WIDE\_TABLE**。
 2.  两张结果表的mutatetype属性都设置成insertorupdate。
 3.  两张结果表的ignoredelete属性都设置成true，防止回撤消息产生Delete请求。
 4.  将两个流的数据分别Insert至两张结果表中。
