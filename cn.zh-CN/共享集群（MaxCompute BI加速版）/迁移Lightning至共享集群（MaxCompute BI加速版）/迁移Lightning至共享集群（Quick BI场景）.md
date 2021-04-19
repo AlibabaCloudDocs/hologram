@@ -131,7 +131,7 @@ keyword: [迁移Lightning至MaxCompute BI加速版, 最佳实践, Hologres]
     |端口|连接的Hologres的端口地址。目前仅支持公网和内网，进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取。|
     |数据库|填写创建完成的目标数据库名称。|
     |Schema|默认为**public**，您也可以使用其他创建的Schema。|
-    |用户名|当前账号的的Access ID，您也可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)获取AccessKey ID。|
+    |用户名|当前账号的Access ID，您也可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)获取AccessKey ID。|
     |密码|当前账号的Access Key，您也可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)获取AccessKey ID。|
 
 5.  单击**确定**完成数据源切换。
