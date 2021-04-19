@@ -14,7 +14,7 @@ Metabase is an open source business intelligence \(BI\) tool that allows you to 
 
 2.  Connect to Hologres.
 
-    1.  Log on to Metabase. In the upper-right corner of the top navigation bar, click the ![Settings](../images/p254220.png) icon and select **Admin** from the shortcut menu.
+    1.  Log on to Metabase. In the upper-right corner of the top navigation bar, click the ![Settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1504188161/p254220.png) icon and select **Admin** from the shortcut menu.
 
         ![Administrator](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6147038161/p254226.png)
 
