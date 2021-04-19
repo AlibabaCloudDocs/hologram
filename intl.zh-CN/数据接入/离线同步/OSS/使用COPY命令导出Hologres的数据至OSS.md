@@ -52,7 +52,7 @@ keyword: [COPY命令, Hologres, 导出数据至OSS, hg\_dump\_to\_oss]
 
     |参数|描述|
     |--|--|
-    |query|输入的查询语句。查询语句前后的的圆括号必需保留。|
+    |query|输入的查询语句。查询语句前后的圆括号必需保留。|
     |PROGRAM|一个要执行的命令，输出会写入到该命令的标准输入。|
     |STDOUT|指定输出，该输出将同步到到客户端应用。|
     |FORMAT|选择数据格式，其格式可以为text，csv 或者binary。默认为text。|
