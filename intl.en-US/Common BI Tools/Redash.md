@@ -14,7 +14,7 @@ Redash is an open source business intelligence \(BI\) tool that is used for data
 
 2.  Connect Redash to your Hologres instance.
 
-    1.  Log on to Redash. Click the ![Settings icon](../images/p245041.png) icon in the upper-right corner and select Data Sources.
+    1.  Log on to Redash. Click the ![Settings icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7793188161/p245041.png) icon in the upper-right corner and select Data Sources.
 
         ![data source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7250887161/p248958.png)
 
