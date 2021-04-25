@@ -8,6 +8,14 @@ keyword: [Power BI, Hologres, 可视化分析]
 
 Power BI是微软知名的BI软件。Hologres兼容PostgreSQL，支持直接连接Power BI Desktop进行数据分析。若是业务有需要您也可以将Power BI Desktop的报表发布至Power BI Service或者Power BI Report Server查看分析结果。
 
+## 注意事项
+
+Power BI默认不同步Hologres中的外部表，您需要在连接Hologres后，在数据库中执行如下SQL命令，才可以在Power BI中同步Hologres的外部表信息。
+
+```
+CREATE EXTENSION foreign_table_exposer;
+```
+
 ## Power BI Desktop连接Hologres
 
 1.  安装Power BI Desktop
