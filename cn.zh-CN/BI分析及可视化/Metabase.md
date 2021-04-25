@@ -6,6 +6,10 @@ keyword: [Metabase, Hologres, 可视化分析]
 
 Metabase是一个开源的商业智能工具，您可以通过它理解数据、分析数据，进行数据查询并获取格式化结果（图形化视图），以数据驱动决策。Hologres兼容PostgreSQL，支持直接连接Metabase进行数据分析。本文为您介绍Metabase如何连接Hologres并可视化分析数据。
 
+## 注意事项
+
+当Metabase成功连接Hologres读取数据库元数据时，会自动过滤没有任何表的Schema，该Schema不会展示在数据列表中。
+
 ## 操作步骤
 
 1.  安装Metabase
@@ -43,5 +47,7 @@ Metabase是一个开源的商业智能工具，您可以通过它理解数据、
     完成配置之后，您即可开始连接Hologres进行数据分析，更多关于数据分析的操作请参见[Metabase官方文档](https://www.metabase.com/docs/latest/)。
 
     ![数据分析](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1706946161/p254241.png)
+
+    **说明：**
 
 
