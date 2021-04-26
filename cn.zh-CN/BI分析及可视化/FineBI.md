@@ -35,7 +35,7 @@ FineBI是帆软软件有限公司推出的一款商业智能（Business Intellig
         |参数|说明|
         |--|--|
         |数据连接名称|您可以输入数据连接的名称。如Hologres。|
-        |驱动|驱动选择`org.postgresql.Driver`|
+        |驱动|驱动选择`org.postgresql.Driver`。|
         |数据库名称|Hologres的数据库名称。|
         |主机|Hologres实例的公共网络地址。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从实例配置页签获取网络地址。|
         |端口|Hologres的实例端口。您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从实例配置页签获取实例端口。|
@@ -58,7 +58,7 @@ FineBI是帆软软件有限公司推出的一款商业智能（Business Intellig
 
     1.  在左侧导航栏单击数据准备，进入数据列表页。
 
-    2.  单击进入目标业务包详情页，单击**添加表**
+    2.  单击进入目标业务包详情页，单击**添加表**。
 
         ![添加表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9153249161/p268362.png)
 
