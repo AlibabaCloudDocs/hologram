@@ -44,7 +44,7 @@ FineBI是帆软软件有限公司推出的一款商业智能（Business Intellig
         |数据连接URL|数据连接URL，填写格式为`jdbc:postgresql://<host>:<port>/<databasename>`，其中各参数解释如下所示：        -   host：主机，Hologres实例的公共网络地址。
         -   port：端口，Hologres实例的端口。
         -   databasename：数据库名称，Hologres创建的数据库名称。 |
-        |高级设置|该示例不涉及高级设置。如业务涉及配置，激怒提内容请参见[FineBI官方文档](http://help.finebi.com/doc-view-94.html)|
+        |高级设置|该示例不涉及高级设置。如业务涉及配置，更多内容请参见[FineBI官方文档](http://help.finebi.com/doc-view-94.html)。|
 
     4.  配置完以上参数，在页面中单击**点击连接数据库**，读取模式列表并从下拉列表中选择您需要使用的Schema。
 
