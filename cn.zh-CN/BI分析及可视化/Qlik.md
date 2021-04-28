@@ -54,7 +54,7 @@ Qilk暂不支持可视化显示Hologres的外部表，但是您可以在**数据
         -   在Tables区域选择需要分析的表。
     7.  单击下方的**添加数据**，添加数据执行完毕后，Qlik Sense会将数据从Hologres导入Qlik Sense，您可以在Qilk查看Hologres中的数据。
 
-        **说明：** 使用该模式QlikView会将数据全部加载到QlikView的引擎中，并非根据页面操作实时发送查询到数据库。
+        **说明：** 使用该模式Qlik Sense会将数据全部加载到Qlik Sense的引擎中，并非根据页面操作实时发送查询到数据库。
 
 3.  配置Direct Query模式
 
@@ -126,5 +126,58 @@ Qilk暂不支持可视化显示Hologres的外部表，但是您可以在**数据
         ![编辑工作表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9504815161/p242974.png)
 
     更多关于Qlik Sense对数据操作和分析的介绍，请参见[Qlik官方文档](https://help.qlik.com/zh-CN/sense/November2020/Subsystems/Hub/Content/Sense_Hub/Introduction/install-desktop.htm)。
+
+
+## 使用自定义ODBC连接Hologres
+
+1.  安装PostgreSQL ODBC驱动
+
+    您可以从PostgreSQL官方[下载PostgreSQL ODBC驱动](https://www.postgresql.org/ftp/odbc/versions/msi/)，请务必安装**psqlodbc\_11\_01\_0000**以上的版本。
+
+2.  配置DSN
+
+    1.  打开计算机的**控制面板**，在页面右上方将查看方式切换为**大图标**，选择**管理工具**。
+
+    2.  双击打开**ODBC 数据源（64位）**管理工具，单击进入系统DSN页签。
+
+        **说明：** 用户DSN只有特定的用户可以调用，而系统DSN对该系统的所有登录用户可用。如果用户需要在Web BI Server通过ODBC访问Hologres，应使用系统DSN。
+
+    3.  单击**添加**，在创建新数据源弹框选择**PostgreSQL Unicode\(x64\)**。
+
+    4.  单击**完成**，在弹框内完成如下参数配置。
+
+        ![DSN配置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0672514161/p243140.png)
+
+        |参数|描述|
+        |--|--|
+        |Database|Hologres创建的数据库名称。|
+        |Server|Hologres实例的公共网络地址。进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取公共网络地址。|
+        |Port|Hologres的实例端口。进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取端口。|
+        |User Name|当前阿里云账号的AccessKey ID。获取方式请参见[创建访问密钥](/cn.zh-CN/准备工作/准备阿里云账号.md)。|
+        |Password|当前阿里云账号的AccessKey Secret。获取方式请参见[创建访问密钥](/cn.zh-CN/准备工作/准备阿里云账号.md)。|
+
+    5.  单击**Test**，如果页面提示`Connection successful`，则表示连接成功。您可以单击弹框右下角的**Save**，保存该DSN。
+
+3.  连接Hologres
+
+    1.  打开Qlik Sense Desktop，在页面选择一个应用程序并在对应页面添加数据，单击**从文件和其他源添加数据**。
+
+        ![添加数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7236159161/p268935.png)
+
+    2.  在弹框中选择ODBC创建新的连接。
+
+    3.  从列表中选择此前创建的DSN，并填写连接的名称，如Hologres。单击**创建**，以保存新的连接信息。
+
+        ![ODBC](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7236159161/p268938.png)
+
+    4.  配置ODBC数据连接。
+
+        ![ODBC数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7236159161/p268948.png)
+
+        -   选择目标Owner（即Hologres中的Schema），此处您可以选择public。使用该连接方式即可读取外部表的Schema。
+        -   在Tables区域选择需要分析的表。
+    5.  数据加载完毕之后，数据已导入至Qlik Sense，您可以开始创建报告。
+
+        使用该模式Qlik Sense会将数据全部加载Qlik Sense 的引擎中，并非根据页面操作实时发送查询到数据库。
 
 
