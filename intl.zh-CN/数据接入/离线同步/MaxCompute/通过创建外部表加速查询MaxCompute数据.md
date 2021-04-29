@@ -16,14 +16,24 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
 
 -   在Hologres中直接查询MaxCompute的数据。
 
-    该方式适用于查询数据量小于100GB的场景。
+    该方式适用于查询数据量小于200GB的场景。
 
-    **说明：** 数据量小于100GB指经过分区过滤后，命中分区的数据量大小，与查询相关字段的大小无关。
+    **说明：** 数据量小于200GB指经过分区过滤后，命中分区的数据量大小，与查询相关字段的大小无关。
 
 -   导入MaxCompute的数据至Hologres后再进行查询。
 
-    该方式适用于单张表数据量大于100GB的查询、复杂查询、包含索引的查询和涉及UPDATE及INSERT等操作的场景。
+    该方式适用于单张表数据量大于200GB的查询、复杂查询、包含索引的查询和涉及UPDATE及INSERT等操作的场景。
 
+
+## 注意事项
+
+通过创建外部表加速查询MaxCompute数据时，您需要注意如下内容：
+
+-   Hologres只能加速查询MaxCompute的内部表，不能查询MaxCompute的外部表和VIEW。
+-   MaxCompute的表数据更新之后，在Hologres存在缓存（一般为5分钟内）才能加速更新后的数据，如果您需要实时查询更新后的数据，可以使用[IMPORT FOREIGN SCHEMA](/intl.zh-CN/SQL参考/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)语法更新外部表，就能实时查询更新后的数据。
+-   MaxCompute的Schema更新之后，Hologres不会自动更新，需要手动更新。
+-   MaxCompute的分区与Hologres无强映射关系，映射至hologres之后均为普通字段。
+-   MaxCompute与Hologres数据类型一一映射，建表时您可以查看映射关系，详情请参见[数据类型汇总](/intl.zh-CN/SQL参考/数据类型/数据类型汇总.md)。
 
 ## 查询MaxCompute非分区表数据
 
@@ -36,8 +46,8 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
     ```
     CREATE TABLE weather (
         city            STRING ,
-        temp_lo         int,           //最低温度
-        temp_hi         int           //最高温度
+        temp_lo         int,           --最低温度
+        temp_hi         int           --最高温度
     );
     INSERT INTO weather VALUES 
     ('beijing',40,50),
@@ -68,8 +78,8 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
 
     **说明：** ：
 
-    -   Hologres的字段类型必须与MaxCompute的字段类型保持一致，数据类型的映射关系请参见[MaxCompute与Hologres的数据类型映射](/intl.zh-CN/SQL参考/数据类型/数据类型汇总.md)。
-    -   Hologres支持使用`IMPORT FOREIGN SCHEMA`语句批量创建外部表，详情请参见[IMPORT FOREIGN SCHEMA](/intl.zh-CN/SQL参考/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)。您也可以在**数据开发**中执行该语句，并配置调度，实现更新MaxCompute表时，Hologres外部表也同步更新，详情请参见[Hologres开发：周期性调度]()。
+    -   Hologres的字段类型必须与MaxCompute的字段类型保持一致，数据类型的映射关系请参见[MaxCompute与Hologres的数据类型映射](/intl.zh-CN/SQL参考/数据类型/数据类型汇总.mdsection_w14_cec_th7)。
+    -   Hologres支持使用`IMPORT FOREIGN SCHEMA`语句批量创建外部表，详情请参见[IMPORT FOREIGN SCHEMA](/intl.zh-CN/SQL参考/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)。
     -   Hologres仅支持加速查询MaxCompute的内部表数据，不支持加速查询MaxCompute的外部表和视图。
 3.  查询外部表数据。
 
@@ -133,4 +143,11 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
     WHERE sale_date = '2013';
     ```
 
+
+## 批量创建外部表
+
+如果您需要加速查询大批量的MaxCompute表，可以通过批量创建外部表的方式来实现。在Hologres您可以使用SQL语句或者管理控制台可视化的方式批量创建外表。
+
+-   Hologres支持使用`IMPORT FOREIGN SCHEMA`语句批量创建外部表，详情请参见[IMPORT FOREIGN SCHEMA](/intl.zh-CN/SQL参考/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)。
+-   通过HoloWeb批量创建外部表，详请请参见[批量创建外部表](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/MaxCompute加速/批量创建外部表.md)。
 
