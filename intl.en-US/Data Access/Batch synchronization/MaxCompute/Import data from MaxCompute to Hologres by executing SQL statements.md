@@ -347,5 +347,4 @@ When you import data from MaxCompute to Hologres by executing SQL statements, ta
 You can synchronize a large amount of data at a time to Hologres by using a visualization tool or by periodic scheduling.
 
 -   HoloWeb: You can use HoloWeb to synchronize MaxCompute data to Hologres without the need to execute SQL statements. However, HoloWeb does not support scheduling. For more information about how to use HoloWeb, see [Synchronize MaxCompute data with a few clicks](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/MaxCompute Acceleration/Synchronize MaxCompute data with a few clicks.md).
--   DataWorks: You can use the scheduling feature of DataWorks to regularly import data from MaxCompute to Hologres. For more information, see [Hologres Data Analytics]().
 
