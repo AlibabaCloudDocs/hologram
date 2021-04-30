@@ -32,6 +32,5 @@ A RAM user must be authorized by the Alibaba Cloud account before the RAM user c
     Hologres is compatible with PostgreSQL. You can connect to a Hologres instance from the PostgreSQL client for data analytics. You can also use extract, transform, load \(ETL\) or business intelligence \(BI\) tools to connect to a Hologres instance.
 
     -   For more information about the PostgreSQL client, see [Quick start to the PostgreSQL client]().
-    -   For more information about HoloStudio, see [Quick start to HoloStudio]().
     -   For more information about common development tools, see [Overview](/intl.en-US/Common Development Tools/Overview.md).
 
