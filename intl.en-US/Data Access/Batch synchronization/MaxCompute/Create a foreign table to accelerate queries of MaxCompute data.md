@@ -69,7 +69,7 @@ You can select one of the following query methods based on the business features
     **Note:** :
 
     -   The data types of the fields in the foreign table must map those in the MaxCompute table. For more information about the mappings between data types, see [Data type mappings between MaxCompute and Hologres when you create a foreign table](/intl.en-US/Hologres SQL/Data types/Data types.md).
-    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md). You can also create a node in the **Data Analytics** module of HoloStudio to execute the statement as scheduled. This way, the foreign table in Hologres can be synchronously updated when the MaxCompute table is updated. For more information, see [Hologres Data Analytics]().
+    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md). You can also create a node in the **Data Analytics** module of HoloStudio to execute the statement as scheduled.
     -   You can use Hologres to accelerate queries of only internal tables of MaxCompute. Queries of foreign tables and views of MaxCompute cannot be accelerated.
 3.  Query data of the non-partitioned table by using the foreign table.
 
