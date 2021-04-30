@@ -347,5 +347,4 @@ keyword: [SQL, Hologres, 分区表, 非分区表]
 如果您需要一次性同步大数据量，可以通过可视化工具或者调度任务来实现。
 
 -   Holoweb一键同步表数据：通过Holoweb可以实现一键同步MaxCompute数据，无需SQL语句就能实现数据同步，但是Holoweb无法配置调度任务。更多关于Holoweb的操作，请参见[一键同步MaxCompute数据](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/MaxCompute加速/一键同步MaxCompute数据.md)。
--   DataWorks调度任务同步：通过DataWorks实现周期性的MaxCompute数据导入，请参见[Hologres开发：周期性调度]()。
 
