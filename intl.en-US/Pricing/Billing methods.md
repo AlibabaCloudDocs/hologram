@@ -48,6 +48,7 @@ The following table describes how to calculate fees of Hologres instances in bot
 -   Hong Kong \(China\): USD 30.194030 per CU per month
 -   US: USD 29.432836 per CU per month
 -   Kuala Lumpur: USD 35.268657 per CU per month
+-   Japan: USD 30.194030 per CU per month
 -   Indonesia: USD 39.642985 per CU per month
 -   India: USD 34.723134 per CU per month
 
@@ -56,6 +57,7 @@ One CU represents 1 CPU core and 4 GB memory.|The fee is prepaid. When you purch
 -   Hong Kong \(China\): USD 0.174627 per GB per month
 -   US: USD 0.171642 per GB per month
 -   Kuala Lumpur: USD 0.197015 per GB per month
+-   Japan: USD 0.177612 per GB per month
 -   Indonesia: USD 0.223970 per GB per month
 -   India: USD 0.202567 per GB per month
 
@@ -66,6 +68,7 @@ You can also delete the data that exceeds the purchased storage space. Then, the
 -   Hong Kong \(China\): USD 0.062904 per CU per hour
 -   US: USD 0.061318 per CU per hour
 -   Kuala Lumpur: USD 0.073476 per CU per hour
+-   Japan: USD 0.062904 per CU per hour
 -   Indonesia: USD 0.082590 per CU per hour
 -   India: USD 0.072340 per CU per hour
 
@@ -74,6 +77,7 @@ You can also delete the data that exceeds the purchased storage space. Then, the
 -   Hong Kong \(China\): USD 0.000364 per GB per hour
 -   US: USD 0.000358 per GB per hour
 -   Kuala Lumpur: USD 0.000410 per GB per hour
+-   Japan: USD 0.000370 per GB per hour
 -   Indonesia: USD 0.000467 per GB per hour
 -   India: USD 0.000422 per GB per hour
 
