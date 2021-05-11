@@ -30,6 +30,7 @@ The following table describes how the Hologres instance fee is calculated in pay
 -   Hong Kong \(China\): USD 0.062904 per CU per hour
 -   US: USD 0.061318 per CU per hour
 -   Kuala Lumpur: USD 0.073476 per CU per hour
+-   Japan: USD 0.062904 per CU per hour
 -   Indonesia: USD 0.082590 per CU per hour
 -   India: USD 0.072340 per CU per hour
 
@@ -38,6 +39,7 @@ The following table describes how the Hologres instance fee is calculated in pay
 -   Hong Kong \(China\): USD 0.000364 per GB per hour
 -   US: USD 0.000358 per GB per hour
 -   Kuala Lumpur: USD 0.000410 per GB per hour
+-   Japan: USD 0.000370 per GB per hour
 -   Indonesia: USD 0.000467 per GB per hour
 -   India: USD 0.000422 per GB per hour
 
