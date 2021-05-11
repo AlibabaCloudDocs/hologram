@@ -33,6 +33,7 @@ The following table describes the billable items and pricing when you purchase a
 -   Hong Kong \(China\): USD 30.194030 per CU per month
 -   US: USD 29.432836 per CU per month
 -   Kuala Lumpur: USD 35.268657 per CU per month
+-   Japan: USD 30.194030 per CU per month
 -   Indonesia: USD 39.642985 per CU per month
 -   India: USD 34.723134 per CU per month
 
@@ -41,6 +42,7 @@ One CU represents 1 CPU core and 4 GB memory.|
 -   Hong Kong \(China\): USD 0.174627 per GB per month
 -   US: USD 0.171642 per GB per month
 -   Kuala Lumpur: USD 0.197015 per GB per month
+-   Japan: USD 0.177612 per GB per month
 -   Indonesia: USD 0.223970 per GB per month
 -   India: USD 0.202567 per GB per month |
 
