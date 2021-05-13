@@ -119,8 +119,8 @@ This section describes the billing cycles for Hologres instances.
 
 Hologres supports two billing methods. You can select one based on your business needs.
 
--   The subscription billing method is suitable for developers and analysts. If you want to perform data analytics from time to time and the amount of data to be analyzed is small, we recommend that you select this method. The subscription billing method helps you limit the computing and storage resources that can be used. This way, costs can be effectively reduced.
--   If you want to regularly perform data analytics in the production environment, we recommend that you select the pay-as-you-go billing method to prevent idle resources.
+-   The pay-as-you-go billing method is suitable for developers and analysts. If you want to perform data analytics from time to time and the amount of data to be analyzed is small, we recommend that you select this method. The subscription billing method helps you limit the computing and storage resources that can be used. This way, costs can be effectively reduced.
+-   If you want to regularly perform data analytics in the production environment, we recommend that you select the subscription billing method to prevent idle resources.
 
 **Note:** If you are a new user, we recommend that you select the pay-as-you-go billing method. When you use Hologres in the initial stage, you may use only a few resources. If you purchase reserved resources by CU, such resources may be left unused. The cost is relatively lower if you select the pay-as-you-go billing method.
 
