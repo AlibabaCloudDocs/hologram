@@ -68,7 +68,7 @@
         -   off：关闭read replica功能。 |
         |hg\_set\_table\_group\_property|修改Table Group的replica\_count。        -   table\_group\_name：请输入您需要修改的Table Group名称。
         -   replica\_count：设置目标Table Group的副本数量。
-        -   设置是否开启Replication：1为默认值，表示不启用read replica功能。2表示启用read replica功能。 |
+        -   设置是否开启Replication：1为默认值，表示不启用read replica功能。大于1的数值表示启用read replica功能。 |
 
 -   **高可用查询**
 
@@ -119,6 +119,6 @@
         |--|--|
         |hg\_set\_table\_group\_property|修改Table Group的replica\_count。        -   table\_group\_name：请输入您需要修改的Table Group名称。
         -   replica\_count：设置目标Table Group的副本数量。
-        -   设置是否开启Replication：1为默认值，表示不启用read replica功能。2表示启用read replica功能。 |
+        -   设置是否开启Replication：1为默认值，表示不启用read replica功能。大于1的数值表示启用read replica功能。 |
 
 
