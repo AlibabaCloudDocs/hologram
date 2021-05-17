@@ -69,11 +69,11 @@ Hologres与MaxCompute在底层资源无缝打通，您可以通过以下方式�
 
 ## 合理配置资源
 
-成功购买Hologres实例后，系统会按照实例规格分配资源。您可以联系技术支持或[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)，根据业务需求合理配置资源。
+成功购买Hologres实例后，系统会按照实例规格分配资源。如果您的业务场景全是MaxCompute外部表加速场景，可以联系技术支持或[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)，根据业务需求重新配置资源，以适应当前业务场景。
 
 ## 合理配置参数
 
-通过合理配置如下参数，优化查询外部表数据的性能（一般情况下，如下参数无需调整）。
+查询外部表时，Hologres会设置一些默认的参数来提高读取数据的并发度，从而提高查询效率。如果您具有有特殊需求，可以按照业务场景合理配置如下参数（如下参数是经过内部调校和实验的最佳规格，一般情况下，不太建议更改）。
 
 ```
 --调整每次读取MaxCompute表batch的大小，默认8192。
@@ -85,4 +85,25 @@ set hg_experimental_foreign_table_split_size = xx
 --设置MaxCompute执行的最大并发度，默认为128，建议数值设置小一些，避免一个Query影响其它Query，导致系统繁忙导致报错。
 set hg_experimental_foreign_table_executor_max_dop = 64;
 ```
+
+## 采用全新外部表查询引擎（Beta）
+
+从Hologres V0.10版本开始，将会采用全新的MaxCompute查询引擎，相比低于V0.10版本的实例，查询性能约有 30% ~ 100%的提升。
+
+-   **使用限制**
+    -   该功能仅Hologres V0.10及以上版本支持，请在Hologres管理控制台的实例详情页查看当前实例版本，如果您的实例是V0.10以下版本，请您[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)升级实例。
+    -   当前仅对MaxCompute ORC类型的表有加速效果，暂不支持对Cfile等文件进行加速。
+    -   请确保[MaxCompute与Hologres的数据类型映射](/cn.zh-CN/Hologres SQL/数据类型/数据类型汇总.md)正确，否则加速效果不明显。
+-   **使用方式**
+
+    Hologres实例升级到V0.10版本之后，您可以使用如下开关参数开启全新外表查询引擎。
+
+    ```
+    --session级别
+    set hg_experimental_enable_access_odps_orc_via_holo = on;
+    
+    --DB级别
+    alter database <databasename> set hg_experimental_enable_access_odps_orc_via_holo = on;
+    ```
+
 
