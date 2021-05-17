@@ -10,11 +10,11 @@ This topic describes how to use the COPY statement to import on-premises data to
 
 When you use the COPY statement to import data to Hologres, pay attention to the following points:
 
--   You can use the COPY statement to import only the following types of data to Hologres: INT4, INT8, FLOAT4, FLOAT8, Boolean, and TEXT.
+-   The COPY statement supports the data types supported by Hologres. For more information, see [Data types](/intl.en-US/Hologres SQL/Data types/Data types.md).
 -   To use the COPY statement to import data from a partitioned table to Hologres, you can import the data only to child partitioned tables rather than parent partitioned tables.
--   You can use only the `COPY FROM STDIN` statement to import data to Hologres. The `COPY TO` statement is not supported.
+-   You must execute the `COPY FROM STDIN` statement to import data to Hologres. The `COPY TO` statement is not supported.
 
-For more information about the `COPY` statement, see [COPY](https://www.postgresql.org/docs/9.2/sql-copy.html) in the PostgreSQL documentation.
+For more information about the `COPY` statement, see [COPY](https://www.postgresql.org/docs/9.2/sql-copy.html) in PostgreSQL documentation.
 
 ## Syntax
 
@@ -48,28 +48,28 @@ The following table describes the parameters in the syntax.
 |table\_name|The name of the Hologres table that is used to receive data.|
 |STDIN|Specifies to import data from stdin of the client.|
 |FORMAT|The type of the data to be imported. Valid values: text and csv. Default value: text. |
-|DELIMITER|The delimiter that is used to separate columns. The default delimiter is a tab character in text format or a comma \(,\) in CSV format. Example: `DELIMITER AS ','`. |
+|DELIMITER|The delimiter that is used to separate columns. The default delimiter is a tab character in the text format or a comma \(,\) in the CSV format. Example: `DELIMITER AS ','`. |
 
 ## Examples
 
 -   Import data from stdin to Hologres by executing the following statements:
 
     ```
-    -- Create a table in Hologres.
+    -- Create a table in Hologres. 
     CREATE TABLE copy_test (
       id    int,
       age   int,
       name  text
     ) ;
     
-    -- Import data to the created Hologres table.
+    -- Import data to the created Hologres table. 
     COPY copy_test FROM STDIN WITH DELIMITER AS ',' NULL AS '';
     53444,24,wangming
     55444,38,ligang
     55444,38,luyong
     \.
     
-    -- Query data in the Hologres table.
+    -- Query data in the Hologres table. 
     SELECT * FROM copy_test;
     ```
 
@@ -78,32 +78,51 @@ The following table describes the parameters in the syntax.
 -   Import a CSV file from stdin to Hologres by executing the following statements:
 
     ```
-    -- Create a table in Hologres.
+    -- Create a table in Hologres. 
     CREATE TABLE partsupp ( ps_partkey          integer not null,
                             ps_suppkey     integer not null,
                             ps_availqty    integer not null,     
                             ps_supplycost  float  not null,
                             ps_comment     text not null );
     
-    -- Import a CSV file to the created Hologres table.
+    -- Import a CSV file to the created Hologres table. 
     COPY partsupp FROM STDIN WITH DELIMITER '|' CSV;  
     1|2|3325|771.64|final theodolites 
     1|25002|8076|993.49|ven ideas
     \.
     
-    -- Query data in the Hologres table.
+    -- Query data in the Hologres table. 
     SELECT * FROM partsupp;
     ```
 
-    **Note:** HoloStudio and HoloWeb do not allow you to use command lines to import CSV files from stdin to Hologres.
+    **Note:** A PostgreSQL client allows you to import data from stdin. HoloStudio and HoloWeb do not allow you to use command lines to import a CSV file from stdin to Hologres.
 
--   Import an on-premises file to Hologres by executing the following statements:
+-   Import an on-premises file to Hologres by executing the following statement:
 
     ```
-    psql -p <port> -h <endpoint> -d <database> -c "COPY <table> from stdin with delimiter '|' csv;" <<filename>;
+    psql -U <username> -p <port> -h <endpoint> -d <databasename> -c "COPY <table> from stdin with delimiter '|' csv;" <<filename>;
     ```
 
-    **Note:** HoloStudio and HoloWeb do not allow you to use command lines to import on-premises files from stdin to Hologres.
+    **Note:** A PostgreSQL client allows you to import data from stdin. HoloStudio and HoloWeb do not allow you to use command lines to import an on-premises file from stdin to Hologres. When you use a PostgreSQL client, you can import data only from stdin. Therefore, you must convert the format of the data in the imported file to the standard input format.
+
+    The following example shows you how to execute a statement to import an on-premises file from stdin to Hologres:
+
+    -   Execute the statement to import the on-premises file named copy\_test from stdin to Hologres.
+
+        ![Execute the statement](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7771290261/p264751.png)
+
+        The imported standard file includes the following content:
+
+        ```
+        01,01,name1
+        02,01,name2
+        03,01,name3
+        04,01,name4
+        ```
+
+    -   After the statement is executed, go back to the PostgreSQL client. Then, you can query newly imported data, as shown in the following figure.
+
+        ![Query results](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7771290261/p264730.png)
 
 -   Use CopyManager to import a Java Database Connectivity \(JDBC\) client file to Hologres by executing the following statements:
 
@@ -130,14 +149,14 @@ The following table describes the parameters in the syntax.
             String url = "jdbc:postgresql://endpoint:port/dbname";
             Properties props = new Properties();
         //set db user
-            props.setProperty("user", "AAA");// The AccessKey ID of the account that is used to connect to Hologres.
+            props.setProperty("user", "AAA");// The AccessKey ID of your Alibaba Cloud account. 
         //set db password
-            props.setProperty("password", "BBB");// The AccessKey secret of the account that is used to connect to Hologres.
+            props.setProperty("password", "BBB");// The AccessKey secret of your Alibaba Cloud account. 
             return DriverManager.getConnection(url, props);
         }
     
         /**
-         * Import the file to the Hologres database.
+         * Import the file to the Hologres database. 
          * 
          * @param connection
          * @param filePath
