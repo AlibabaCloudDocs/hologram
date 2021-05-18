@@ -56,7 +56,7 @@ When you query the storage sizes of tables and databases in Hologres, take note 
 -   Syntax
 
     ```
-    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::bigint)) AS schema_size
+    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::decimal)) AS schema_size
     FROM information_schema.tables 
     WHERE table_schema = 'schema_name'
     GROUP BY table_schema;
