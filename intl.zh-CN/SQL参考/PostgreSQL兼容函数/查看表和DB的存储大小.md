@@ -56,7 +56,7 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
 -   函数语法
 
     ```
-    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::bigint)) AS schema_size
+    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::decimal)) AS schema_size
     FROM information_schema.tables 
     WHERE table_schema = 'schema_name'
     GROUP BY table_schema;
