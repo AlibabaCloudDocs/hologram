@@ -27,7 +27,7 @@ Hologres兼容Postgres，通过创建外部表的方式访问OSS数据的原理�
 
 -   目前只支持部分数据类型，具体包括：string、text、bigint、int、float、double、boolean、date。
 -   目前查询数据不支持跳过头部N行。
--   目前仅支持通过创建外部表的方式查询OSS数据，如果您需要将OSS数据导入到Hologres，建议使用数据集成方式，详请参见[Hologres Reader]()。
+-   如果您需要将Hologres数据导出到OSS，详请参见[使用COPY命令导出Hologres的数据至OSS](/cn.zh-CN/数据接入/离线同步/OSS/使用COPY命令导出Hologres的数据至OSS.md)。
 
 ## 创建外部表直接访问OSS数据
 
