@@ -57,10 +57,10 @@ This topic describes how to connect to a Hologres instance and use the standard 
     |Endpoint|The public endpoint of the Hologres instance.Example: `xxx-cn-hangzhou.hologres.aliyuncs.com`. |
     |Database|The name of the database that you want to access from the PostgreSQL client.After you purchase a Hologres instance, a database named **postgres** is created by default.
 
-You can connect to the **postgres** database, but limited resources are allocated to this database. We recommend that you go to the Hologres console and create a database for business purposes. For more information, see [Creat a database](/intl.en-US/Quick Start/Use Hologres from the PostgreSQL client.md).
+You can connect to the **postgres** database, but limited resources are allocated to this database. We recommend that you go to the Hologres console and create a database for business purposes. For more information, see [create a database](/intl.en-US/Quick Start/PSQL quick start.md).
 
 Example: `mydb`. |
 
 
-After you connect to the Hologres instance from the PostgreSQL client, you can create databases from the client by using the standard PostgreSQL statements. For more information, see [Creat a database](/intl.en-US/Quick Start/Use Hologres from the PostgreSQL client.md).
+After you connect to the Hologres instance from the PostgreSQL client, you can create databases from the client by using the standard PostgreSQL statements. For more information, see [create a database](/intl.en-US/Quick Start/PSQL quick start.md).
 
