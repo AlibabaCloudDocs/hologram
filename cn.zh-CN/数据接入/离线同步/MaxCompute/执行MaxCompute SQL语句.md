@@ -54,7 +54,7 @@
 
 |`'CREATE TABLE IF EXISTS MC_TBL ;'`|
     |timeout\_ms|执行超时时间，单位ms。|缺省或者小于0的情况下会将该参数值设置为60000ms。超过超时时间将会退出，同时向MaxCompute发送一个取消指令。|50000|
-    |options|使用DataWorks或者MaxCompute客户端提交SQL时，通常需要设置的SQL Flag。|具体的配置项请参见[SET操作](/cn.zh-CN/开发/常用命令/SET操作.md)，若是有多个flag需要设置，需要将字段类型改成json格式。|`{"odps.sql.type.system.odps2":"true"}`或者`{ "odps.sql.type.system.odps2":"true", "odps.sql.decimal.odps2=true":"true"}`|
+    |options|使用DataWorks或者MaxCompute客户端提交SQL时，通常需要设置的SQL Flag。|具体的配置项请参见[SET操作](/cn.zh-CN/开发/常用命令/SET操作.md)，若是有多个flag需要设置，需要将字段类型改成Json格式。|`{"odps.sql.type.system.odps2":"true"}`或者`{ "odps.sql.type.system.odps2":"true", "odps.sql.decimal.odps2=true":"true"}`|
 
 
 ## 使用示例
@@ -117,14 +117,14 @@
 
 -   **示例五：配合“通过SQL方式导出MaxCompute”功能使用**
 
-    从Hologres V0.9版本开始，Hologres支持[通过SQL导出数据至MaxCompute（Beta）](/cn.zh-CN/数据接入/离线同步/MaxCompute/通过SQL导出数据至MaxCompute（Beta）.md)，但是该方法需要在MaxCompute中提前创建接收数据的表，操作比较麻烦。从Hologres V0.10版本开始，通过在Hologres中执行MaxCompute SQL，即可创建表，再将数据导出，支持一站式开发。
+    从Hologres V0.9版本开始，Hologres支持[通过SQL导出数据至MaxCompute](/cn.zh-CN/数据接入/离线同步/MaxCompute/通过SQL导出数据至MaxCompute.md)，但是该方法需要在MaxCompute中提前创建接收数据的表，操作比较麻烦。从Hologres V0.10版本开始，通过在Hologres中执行MaxCompute SQL，即可创建表，再将数据导出，支持一站式开发。
 
     示例操作将Hologres中非分区数据导入至MaxCompute非分区表。具体如下：
 
     1.  在Hologres准备一张Hologres内部表（例如：holo\_source），用于导出数据至MaxCompute，示例DDL和数据如下：
 
         ```
-        creat table "public"."holo_table" (
+        create table "public"."holo_table" (
          "id" int4,
          "name" text
         );
@@ -177,6 +177,6 @@
             select name from holo_table;
             ```
 
-        更多关于数据导出的操作说明请参见[通过SQL导出数据至MaxCompute（Beta）](/cn.zh-CN/数据接入/离线同步/MaxCompute/通过SQL导出数据至MaxCompute（Beta）.md)。
+        更多关于数据导出的操作说明请参见[通过SQL导出数据至MaxCompute](/cn.zh-CN/数据接入/离线同步/MaxCompute/通过SQL导出数据至MaxCompute.md)。
 
 
