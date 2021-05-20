@@ -8,7 +8,7 @@ keyword: [Hologres, 基于Schema级别的简单权限模型, 使用方法, SLPM]
 
 ## SLPM的使用限制
 
-由于SLPM是基于Schema级别严格进行权限管控的，因此在授权和使用时需要您注意如下的限制条件。
+由于SLPM是基于Schema级别严格进行权限管控的，因此在授权和使用时需要您注意如下的限制条件：
 
 -   **当您创建一个View或者Rule，引用了跨Schema的两个或多个表时，由于Schema间权限不通的原因，此View或者Rule将无法被访问。因此不建议您在SLPM管理的DB中创建跨Schema的View或Rule对象。**
 -   开启SLPM之后，只会开放特定的权限，开放权限请参见[基于Schema级别的简单权限模型授权](#step_23c_pnm_ph7)。以下表格中的DDL功能将不能在SLPM使用，请您使用对应的SLPM语句执行相关操作，具体函数说明请参见[基于Schema级别的简单权限模型函数说明](/cn.zh-CN/账号与权限管理/Hologres权限模型/基于Schema级别的简单权限模型/基于Schema级别的简单权限模型函数说明.md)。
@@ -49,7 +49,9 @@ keyword: [Hologres, 基于Schema级别的简单权限模型, 使用方法, SLPM]
 
 3.  专家权限模型切换为SLPM。
 
-    您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**DB管理**页签查看当前使用的权限模型。如果您的DB使用的是专家权限模型，并且DB中包含一定数量的表、视图或外表等对象。此时，如果您需要开启SLPM进行权限管理，可以通过调用slpm\_migrate函数将原用户的权限由专家模型权限切换为SLPM。
+    您可以进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)，从**DB授权**页面查看当前使用的权限模型。
+
+    如果您的DB使用的是专家权限模型，并且DB中包含一定数量的表、视图或外表等对象。此时，如果您需要开启SLPM进行权限管理，可以通过调用slpm\_migrate函数将原用户的权限由专家模型权限切换为SLPM。
 
     ```
     call slpm_migrate ();  // 将DB中已有的对象change owner到develoepr，使用SLPM管理。
@@ -73,7 +75,7 @@ keyword: [Hologres, 基于Schema级别的简单权限模型, 使用方法, SLPM]
     **说明：**
 
     -   如果使用RAM用户UID账号进行授权，执行`slpm_create_user`时需要在UID前加p4\_，即“p4\_UID”。在Hologres中，请前往[用户页面](https://ram.console.aliyun.com/users)获取UID账号。更多RAM账号表达格式请参见[账号概述](/cn.zh-CN/账号与权限管理/账号概述.md)。
-    -   如果您需要批量创建用户至当前实例，请前往[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，通过**用户管理**页签批量新增用户。请参见[新增用户](/cn.zh-CN/了解控制台/Hologres管理控制台/用户管理.md)。
+    -   如果您需要批量创建用户至当前实例，请前往[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)，通过**用户管理**页签批量新增用户。请参见[新增用户](/cn.zh-CN/实例管理/Hologres管理控制台/用户管理.md)。
 5.  授权新用户。
 
     成功将新用户创建至实例后，必须在对应的DB内将新用户加入相应的用户组，以完成授权操作。如果是在创建用户的同时已经加入对应的用户组则不需要再次授权。
