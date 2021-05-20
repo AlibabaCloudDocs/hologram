@@ -155,7 +155,7 @@ oss-cn-shanghai-internal.aliyuncs.com
         from server dlf_server  into public options(if_table_exist 'update');
         ```
 
-        将DLF元数据库dlfpro中所有的表都映射至Hologres的public schema，将会在Hologers中批量创建同名外部表。
+        将DLF元数据库dlfpro中所有的表都映射至Hologres的public schema，将会在Hologres中批量创建同名外部表。
 
         ```
         import foreign schema dlfpro 
