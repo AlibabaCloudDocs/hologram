@@ -18,7 +18,7 @@ keyword: [同步数据, DataHub, Hologres]
 
 数据总线（DataHub）支持发布、订阅和分发流式数据 ，帮助您轻松构建基于流式数据的业务应用。
 
-Hologers是实时交互式分析产品，兼容PostgreSQL协议，与大数据生态无缝打通，支持高并发和低延时地分析处理万亿级数据。
+Hologres是实时交互式分析产品，兼容PostgreSQL协议，与大数据生态无缝打通，支持高并发和低延时地分析处理万亿级数据。
 
 您可以使用DataHub的数据同步功能，通过Connector实时同步DataHub中的数据至Hologres。方便您在Hologres中多维分析和实时处理数据。
 
@@ -115,7 +115,7 @@ Hologers是实时交互式分析产品，兼容PostgreSQL协议，与大数据�
         |--|--|--|
         |Instance|Hologres实例的ID。|进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的，获取**实例ID**。|
         |Project|Hologres的数据库名称。|无|
-        |Topic|Hologers用于接收数据的表名称。|无|
+        |Topic|Hologres用于接收数据的表名称。|无|
         |导入字段|需要导入Hologres的字段。|可以根据实际业务需求选择导入部分或全部字段。|
         |鉴权模式|默认为AK。|无|
         |AccessId|访问Hologres实例的AccessKey ID。|您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取用户的AccessKey ID。|
