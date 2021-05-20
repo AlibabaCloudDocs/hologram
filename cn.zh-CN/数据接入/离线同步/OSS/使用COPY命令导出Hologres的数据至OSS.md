@@ -22,12 +22,12 @@ keyword: [COPY命令, Hologres, 导出数据至OSS, hg\_dump\_to\_oss]
 
 ## 命令介绍
 
--   [COPY命令](#section_k09_6g7_6q9)：`COPY`命令是PostgresSQL表和标准文件系统之间移动数据的工具，Hologres支持`COPY`命令。`COPY TO`语句将SELECT查询的结果内容复制到一个文件或者其他输出介质中。`COPY FROM`语句用于从一个文件复制数据到一个表。
+-   [COPY命令](#section_k09_6g7_6q9)：`COPY`命令是PostgreSQL表和标准文件系统之间移动数据的工具，Hologres支持`COPY`命令。`COPY TO`语句将SELECT查询的结果内容复制到一个文件或者其他输出介质中。`COPY FROM`语句用于从一个文件复制数据到一个表。
 -   [hg\_dump\_to\_oss命令](#section_i1y_s65_h1e)：用于将在Hologres中查询的结果dump到指定的OSS。
 
 ## COPY命令
 
-如下内容将为您介绍`COPY TO`命令的具体语法格式和参数说明。
+如下内容将为您介绍`COPY TO`命令的具体语法格式和参数说明：
 
 -   命令格式
 
@@ -99,7 +99,7 @@ keyword: [COPY命令, Hologres, 导出数据至OSS, hg\_dump\_to\_oss]
 
 ## 使用示例
 
-在Hologres中`hg_dump_to_oss`命令与`COPY TO`命令的使用示例如下。
+在Hologres中`hg_dump_to_oss`命令与`COPY TO`命令的使用示例如下：
 
 ```
 --将Hologres内部表数据dump到指定OSS
