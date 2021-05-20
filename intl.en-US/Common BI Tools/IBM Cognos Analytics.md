@@ -61,7 +61,7 @@ IBM Cognos Analytics can access and process data with ease and implement data vi
 
         ![data module](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2848890261/p265216.png)
 
-    2.  On the Select sources page, click the ![data servers](../images/p265217.png) icon on the left side. Then, the Data servers tab appears. Click the connection that you have created.
+    2.  On the Select sources page, click the ![data servers](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9693941261/p265217.png) icon on the left side. Then, the Data servers tab appears. Click the connection that you have created.
 
         ![Select a dataset](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2848890261/p265220.png)
 
