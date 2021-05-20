@@ -141,7 +141,7 @@ Example
 
 Hologres is compatible with the PostgreSQL ecosystem and provides the JDBC or Open Database Connectivity \(ODBC\) drivers. You can use the JDBC driver to import Spark data to Hologres.
 
-Before you use the JDBC driver to import data, download the [PostgresSQL JDBC version 42.2.xx or later](https://jdbc.postgresql.org/download.html) from the official website of PostgresSQL JDBC. Then, run the following command in the Spark shell to import data:
+Before you use the JDBC driver to import data, download the [PostgreSQL JDBC version 42.2.xx or later](https://jdbc.postgresql.org/download.html) from the official website of PostgreSQL JDBC. Then, run the following command in the Spark shell to import data:
 
 ```
 ./bin/spark-shell --jars /path/to/postgresql-42.2.14.jar
