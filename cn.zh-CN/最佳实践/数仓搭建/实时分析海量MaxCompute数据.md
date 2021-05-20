@@ -1,5 +1,5 @@
 ---
-keyword: [Hologres, 实时分析, 最佳实践]
+keyword: [Hologres, 实时分析, 最佳实践, MaxCompute加速]
 ---
 
 # 实时分析海量MaxCompute数据
@@ -15,16 +15,16 @@ keyword: [Hologres, 实时分析, 最佳实践]
 
 Hologres是兼容PostgreSQL协议的实时交互式分析产品，在底层与MaxCompute无缝连接。
 
-Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
+Hologres支持使用创建外部表的方式，实现MaxCompute加速查询，查看MaxComppute的数据。
 
 本文以搭建访问某淘宝店铺的客户画像为例，展示客户所在城市、客户年龄、首选客户和出生于1980~1990年的首选客户所在城市人数的分布情况。
 
 使用Hologres加速查询MaxCompute数据的完整链图如下所示。
 
-![q](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560409951/p120709.png)
+![q](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5560409951/p120709.png)
 
 1.  访问店铺的客户数据存储在MaxCompute表中。
-2.  使用Hologres的创建外部表方式加速查询MaxCompute数据。
+2.  使用Hologres的创建外部表方式，实现MaxCompute加速查询。
 3.  Hologres对接数据大屏Quick BI，使用可视化方式展示客户画像。
 
 1.  准备MaxCompute数据源。
@@ -41,13 +41,13 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
 2.  Hologres创建外部表并查询表数据。
 
-    通过使用[HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect)创建外部表，加速查询MaxCompute的数据。操作步骤如下：
+    通过使用[HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect)创建外部表，实现MaxCompute加速查询。操作步骤如下：
 
-    1.  Holoweb连接Hologers实例。
+    1.  Holoweb连接Hologres实例。
 
         登录[HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect)，单击**连接管理** \> **数据连接**，配置**新建连接**的参数，单击**确认**。
 
-        ![新建连接](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/5560409951/p116502.png)
+        ![新建连接](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8413376061/p116502.png)
 
         |参数名称|说明|备注|
         |----|--|--|
@@ -55,7 +55,7 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
         |连接描述|连接的描述信息。|无|
         |主机|Hologres实例的公共网络域名。|进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取主机。|
         |端口|Hologres实例的公共网络端口。|进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**实例配置**获取端口。|
-        |初始化数据库|Hologres实例中创建的数据库名称。|进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**DB管理**获取初始化数据库。|
+        |初始化数据库|Hologres实例中创建的数据库名称。|进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)的实例详情页，从**DB管理**获取初始化数据库。 |
         |用户名|当前账号的AccessKey ID。|您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取用户名。|
         |密码|当前账号的AccessKey Secret。|您可以单击[AccessKey 管理](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak)，获取密码。|
         |测试连通性|检测数据连接是否成功：         -   成功：显示**测试通过**。
@@ -71,8 +71,8 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
         **说明：**
 
         -   目前暂不支持跨地域查询MaxCompute表的数据。
-        -   建外部查询MaxCompute通过外部服务器来实现，您可以直接调用Hologres底层已创建的名为**odps\_server**的外部表服务器。其详细原理请参见[Postgres FDW](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k)。
-        ![表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6560409951/p120737.png)
+        -   创建外部查询MaxCompute数据是通过外部服务器来实现的，您可以直接调用Hologres底层已创建的名为**odps\_server**的外部表服务器。其详细原理请参见[Postgres FDW](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k)。
+        ![表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1180579061/p120737.png)
 
         您也可以使用SQL语句批量创建外部表。
 
@@ -95,13 +95,13 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
         **数据预览**只展示部分数据。
 
-        ![预览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1015631061/p118166.png)
+        ![预览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2570812161/p118166.png)
 
     4.  查询外部表数据。
 
         选择外部表所在的**连接名**和**数据库**。使用SQL命令在**Query查询**模块中查询所有数据。
 
-        ![l](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6560409951/p120761.png)
+        ![l](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6560409951/p120761.png)
 
         示例SQL语句如下。
 
@@ -152,7 +152,7 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
     1.  添加数据源。
 
-        进入[Quick BI控制台](https://www.aliyun.com/product/bigdata/bi?spm=a2c4g.11174283.h2v3icoap.176.1432729fes4mKL)首页，选择PostgreSQL数据源，并填写配置信息，详情请参见[t1841752.md\#](/cn.zh-CN/常见BI连接工具/Quick BI.md)。
+        进入[Quick BI控制台](https://www.aliyun.com/product/bigdata/bi?spm=a2c4g.11174283.h2v3icoap.176.1432729fes4mKL)首页，选择PostgreSQL数据源，并填写配置信息，详情请参见[Quick BI](/cn.zh-CN/BI分析及可视化/Quick BI.md)。
 
     2.  创建数据集。
 
@@ -160,12 +160,12 @@ Hologres支持使用创建外部表的方式加速查询MaxComppute的数据。
 
         本次试验使用**即席查询SQL**的方式来创建数据集，如下图所示。
 
-        ![b](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6560409951/p120765.png)
+        ![b](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6560409951/p120765.png)
 
     3.  使用可视化方式展示客户画像。
 
         根据业务需求展示报表。示例所配置的报表展示如下。
 
-        ![a](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6560409951/p120766.png)
+        ![a](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6560409951/p120766.png)
 
 
