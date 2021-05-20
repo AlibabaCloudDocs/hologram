@@ -14,7 +14,7 @@ This topic describes how to use HoloWeb to create, rename, and delete a folder i
 
 1.  Connect the purchased Hologres instance to HoloWeb. For more information, see [Manage a connection](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Manage a connection.md).
 
-2.  In the top navigation bar of the HoloWeb page, choose **SQL Editor** \> **Creat folder**.
+2.  In the top navigation bar of the HoloWeb page, choose **SQL Editor** \> **Create folder**.
 
     You can also right-click **My SQL query** in the left-side navigation pane and select **New folder**. HoloWeb allows you to create a subfolder in an existing folder.
 
