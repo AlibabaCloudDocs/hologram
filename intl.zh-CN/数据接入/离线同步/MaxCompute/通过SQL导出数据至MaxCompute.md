@@ -78,7 +78,7 @@ keyword: [Hologres, MaxCompute]
 
 2.  创建MaxCompute目标表。
 
-    在MaxCompute中创建一张目标表，用于接收数据，字段顺序与字段类型需要与Hologers表一一映射。其建表语法，请参见[表操作](/intl.zh-CN/开发/SQL及函数/DDL语句/表操作.md)。
+    在MaxCompute中创建一张目标表，用于接收数据，字段顺序与字段类型需要与Hologres表一一映射。其建表语法，请参见[表操作](/intl.zh-CN/开发/SQL及函数/DDL语句/表操作.md)。
 
     ```
     CREATE TABLE IF NOT EXISTS mc_bank
@@ -202,7 +202,7 @@ keyword: [Hologres, MaxCompute]
 
 2.  创建MaxCompute目标表。
 
-    在MaxCompute中创建一张目标表，用于接收数据，表可以是一级分区，也可以是二级分区。字段顺序与字段类型需要与Hologers表一一映射。其建表语法，请参见[表操作](/intl.zh-CN/开发/SQL及函数/DDL语句/表操作.md)。
+    在MaxCompute中创建一张目标表，用于接收数据，表可以是一级分区，也可以是二级分区。字段顺序与字段类型需要与Hologres表一一映射。其建表语法，请参见[表操作](/intl.zh-CN/开发/SQL及函数/DDL语句/表操作.md)。
 
     ```
     //情况1:MaxCompute表是一级分区
