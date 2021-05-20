@@ -6,7 +6,7 @@ keyword: [Hologres, 实时分析, 最佳实践, MaxCompute加速]
 
 本文为您介绍交互式分析Hologres如何实时查询海量MaxCompute数据，并以可视化方式分析和展现查询结果的最佳实践。
 
--   开通MaxCompute，详情请参见[开通MaxCompute](/intl.zh-CN/准备工作/开通MaxCompute.md)。
+-   开通MaxCompute，详情请参见[开通MaxCompute和DataWorks](/intl.zh-CN/准备工作/开通MaxCompute.md)。
 
     **说明：** 请确保MaxCompute和Hologres的地域相同。
 
@@ -41,7 +41,7 @@ Hologres支持使用创建外部表的方式，实现MaxCompute加速查询，�
 
     通过使用[HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect)创建外部表，实现MaxCompute加速查询。操作步骤如下：
 
-    1.  Holoweb连接Hologers实例。
+    1.  Holoweb连接Hologres实例。
 
         登录[HoloWeb](https://holoweb-cn-shanghai.data.aliyun.com/connect)，单击**连接管理** \> **数据连接**，配置**新建连接**的参数，单击**确认**。
 
