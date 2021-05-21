@@ -4,30 +4,27 @@ keyword: [创建数据库, Hologres, 用户授权, 删除数据库]
 
 # DB管理
 
-本文为您介绍在交互式分析Hologres管理控制台的DB管理页面，如何创建并删除数据库，并为用户授权。
+本文为您介绍在交互式分析Hologres管理控制台的Database管理页面，如何创建并删除数据库，并为数据库选择对应的权限策略。
 
-您可以在**DB管理**页面，创建及删除数据库，并为数据库选择对应的权限策略。
+## 授权数据库
 
-![查看DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3469875061/p168566.png)
+您可以在DB管理页面，使用可视化方式创建数据库。
 
-**说明：** 成功购买实例后，系统默认生成一个名为**postgres**的数据库，该数据库分配的资源较少，仅用于管理，不会显示在DB管理页面。处理实际业务请您新建数据库。
+1.  在**DB授权**页面选择目标实例名称，在页面右上角单击**新增数据库**。
 
-## 创建数据库
+2.  在**新增数据库**对话框，选择目标实例名称，输入**数据库名称**，并根据业务需求选择**简单权限策略**。
 
-您可以在DB管理页面，使用可视化方式创建数据库，步骤如下：
+    ![新增DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3447041261/p275264.png)
 
-1.  单击**DB管理**页面的**新增Database**。
+    为了简化授权操作，建议您开启简单权限模型（SPM）。
 
-2.  在**新增Database**对话框，输入**Database名称**，并根据业务需求选择**简单权限模型**。
-
-    ![新增DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2664633061/p168567.png)
-
-    为了简化授权操作，建议您开启简单权限模型。
-
-    Hologres为您提供的两套方便且完善的授权体系如下：
+    Hologres为您提供的方便且完善的授权体系如下：
 
     -   专家模式：Hologres兼容PostgreSQL，使用与Postgres完全一致的授权体系（简称专家模式）。您可以按照标准的PostgreSQL授权语句为子账号授权，详情请参见[专家权限模型](/cn.zh-CN/账号与权限管理/Hologres权限模型/专家权限模型.md)。
-    -   简单权限模型：Hologres在PostgresSQL的基础上，为提升您的体验，抽象出一种粗粒度的简单权限模型（Simple Permission Model，SPM），通过将用户加入用户组的方式完成授权，详情请参见[简单权限模型概述](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型概述.md)。
+    -   简单权限模型（SPM）：Hologres在PostgresSQL的基础上，为提升您的体验，抽象出一种粗粒度的简单权限模型，通过将用户加入用户组的方式完成授权，详情请参见[简单权限模型概述](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型概述.md)。
+    -   基于Schema的简单权限模型（SLPM）：该权限模型基于Schema划分，相比于简单权限模型更为细粒度，若是对权限有严格划分且又希望授权操作简便可以使用该权限模型，详情请参见[基于Schema级别的简单权限模型概述](/cn.zh-CN/账号与权限管理/Hologres权限模型/基于Schema级别的简单权限模型/基于Schema级别的简单权限模型概述.md)。
+    **说明：** 成功购买实例后，系统默认生成一个名为**postgres**的数据库，该数据库分配的资源较少，仅用于管理，不会显示在DB管理页面。处理实际业务请您新建数据库。
+
 
 ## 用户授权
 
@@ -35,11 +32,11 @@ keyword: [创建数据库, Hologres, 用户授权, 删除数据库]
 
 1.  在**DB管理**页面，单击目标数据库**操作**列的**用户授权**，进入**权限管理**页面。
 
-2.  在目标数据库的**权限管理**页面，单击**新增授权**。
+2.  在目标数据库的**用户授权**页面，单击**新增授权**。
 
 3.  在**新增授权**对话框，选择**被授权账号**及**用户组**。
 
-    ![新增授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2664633061/p168568.png)
+    ![新增授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3447041261/p275312.png)
 
     用户组取值如下：
 
@@ -56,20 +53,20 @@ keyword: [创建数据库, Hologres, 用户授权, 删除数据库]
 
 如果您当前使用的数据库开启了简单权限模型，需要使用可视化方式对子账号撤销授权，步骤如下：
 
-1.  在**DB管理**页面，单击目标数据库**操作**列的**用户授权**，进入**权限管理**页面。
+1.  在**DB授权**页面，单击目标数据库**操作**列的**用户授权**，进入**用户授权**页面。
 
 2.  在目标用户的**操作**列，单击**撤销授权**。
 
-    ![撤销授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2664633061/p168570.png)
+    ![撤销授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3447041261/p275314.png)
 
 3.  单击**确定**。
 
-    关于撤销权限后子账号拥有的权限，详情请参见[简单权限模型的使用](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型的使用.md)。
+    关于撤销权限后RAM用户拥有的权限，详情请参见[简单权限模型的使用](/cn.zh-CN/账号与权限管理/Hologres权限模型/简单权限模型/简单权限模型的使用.md)。
 
 
 ## 删除数据库
 
-在**DB管理**页面，您可以单击目标数据库**操作**列的**删除**，直接删除数据库。删除数据库后，数据库中的数据将会同时删除，并且不能恢复。
+在**DB授权**页面，您可以单击目标数据库**操作**列的**删除**，直接删除数据库。删除数据库后，数据库中的数据将会同时删除，并且不能恢复。
 
-![删除DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3469875061/p168574.png)
+![删除DB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3447041261/p275319.png)
 
