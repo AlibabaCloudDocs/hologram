@@ -200,12 +200,12 @@ Hologres allows you to call the set\_table\_property function to set table prope
     3.  **clustering\_key**
 
         ```
-        call set_table_property('<table_name>', 'clustering_key', '[columnName{:[desc|asc]} [,...]]');
+        call set_table_property('<table_name>', 'clustering_key', '[columnName{:[asc]} [,...]]');
         ```
 
         -   The clustering\_key property specifies the columns for Hologres to create clustered indexes. Hologres sorts data based on clustered indexes. Hologres allows you to use clustered indexes to accelerate RANGE and FILTER queries on indexed columns.
         -   The columns that constitute the clustering key must meet the NOT NULL constraint. The clustering key does not support columns of the following data types: FLOAT, DOUBLE, ARRAY, JSON, and specific complex data types.
-        -   When you use the clustering\_key property to specify a column, you can append `desc` or `asc` to the column name to specify a sorting order for the indexes to be built. By default, the ascending order `asc` is used.
+        -   When you use the clustering\_key property to specify a column, you can append `asc` to the column name to specify a sorting order for the indexes to be built. By default, the ascending order `asc` is used.
         -   By default, the clustering key of a column-oriented table is null and that of a row-oriented table is the primary key. No clustering key is specified in the versions earlier than Hologres 0.9. If the clustering key is not the primary key of a table, Hologres generates two sorting orders for this table: sorting based on the primary key and sorting based on the clustering key. This causes redundant data.
         -   The clustering key is used for sorting. In this case, the first column among the columns that constitute the clustering key has the highest priority. We recommend that you retain only one or two columns to constitute the clustering key.
         -   The clustering key allows you to accelerate RANGE and FILTER queries on the first few columns in a clustered index. **Queries must follow the leftmost matching principle. Otherwise, you cannot use the clustering key to accelerate the queries**.
@@ -235,7 +235,7 @@ Hologres allows you to call the set\_table\_property function to set table prope
             -------------------------------------------------------------
             begin;
             create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'clustering_key', 'a:desc,b:asc');
+            call set_table_property('tbl', 'clustering_key', 'asc');
             commit;
             ```
 
