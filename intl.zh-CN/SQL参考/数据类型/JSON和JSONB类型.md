@@ -63,7 +63,6 @@ JSON数据类型用来存储JSON数据，这种数据也可以被存储为TEXT�
 |to\_json\(anyelement\)|此函数可以将该值返回为JSON。数组和组合会被（递归）转换成数组和对象，对于不是数组和组合的值，如果有从该类型到JSON的造型，造型函数将被用来执行该转换，否则将产生一个标量值。对于任何不是数字、布尔、空值的标量类型，将使用文本表达，使其是一个有效的JSON值。|`select to_json('Fred said "Hi."'::text)`|`"Fred said \"Hi.\""`|
 |to\_jsonb\(anyelement\)|
 |array\_to\_json\(anyarray \[, pretty\_bool\]\)|此函数可以将数组作为一个JSON数组返回。一个PostgreSQL多维数组会成为一个数组的JSON数组。如果pretty\_bool为真，将在第1维度的元素之间增加换行。|`select array_to_json('{{1,5},{99,100}}'::int[])`|`[[1,5],[99,100]]`|
-|row\_to\_json\(record \[, pretty\_bool\]\)|此函数可以将行作为一个 JSON对象返回。如果pretty\_bool为真，将在第1层元素之间增加换行。|`select row_to_json(row(1,'foo'))`|`{"f1":1,"f2":"foo"}`|
 |json\_build\_array\(VARIADIC "any"\)|此函数可以从一个可变参数列表构造一个可能包含异质类型的JSON数组。|`select json_build_array(1,2,'3',4,5)`|`[1, 2, "3", 4, 5]`|
 |jsonb\_build\_array\(VARIADIC "any"\)|
 |json\_build\_object\(VARIADIC "any"\)|此函数可以从一个可变参数列表构造一个JSON对象。通过转换，该参数列表由交替出现的键和值构成。|`select json_build_object('foo',1,'bar',2)`|`{"foo": 1, "bar": 2}`|
