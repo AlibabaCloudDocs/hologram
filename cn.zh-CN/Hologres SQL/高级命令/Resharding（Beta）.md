@@ -6,9 +6,9 @@ Resharding功能用于修改Shard数后，自动实现Rebalance的功能，无�
 
 在Hologres中，Shard用于提升数据处理的并发度，合理的设置Shard数，有利于提高查询或者写入的性能。一般情况下，Hologres实例默认的Shard数已经能满足大部分场景，无需再手动修改。
 
-当实例扩容后，建议增加Shard数，以获取更好的性能，例如32core扩容到128core。实例规格与Shard的相关描述，请参见[实例规格概述](/cn.zh-CN/实例管理/实例规格概述.md)。
+当实例扩容后，例如32core扩容到128core，该DB的Shard数不会随着扩容默认更改，因此建议您针对该DB增加Shard数，以获取更好的性能。如果是该实例下新建的DB，其Shard数为当前规格的默认数量。实例规格与Shard的相关描述，请参见[实例规格概述](/cn.zh-CN/实例管理/实例规格概述.md)。
 
-当实例扩容或者缩容后，Shard数不会自动随之增加或减少，需要通过命令语句设置Shard数，并重新进行数据导入。Resharding功能用于修改Shard数后，自动实现Rebalance的功能，无需再重新建表导数据，即可将原来的表和数据Resharding到各Shard上，简化操作步骤，实现最优性能。
+当实例扩容或者缩容后，其之前DB的Shard数不会自动随之增加或减少，需要通过命令语句设置Shard数，并重新进行数据导入。Resharding功能用于修改Shard数后，自动实现Rebalance的功能，无需再重新建表导数据，即可将原来的表和数据Resharding到各Shard上，简化操作步骤，实现最优性能。
 
 ## 使用限制
 
@@ -80,7 +80,7 @@ Resharding功能用于修改Shard数后，自动实现Rebalance的功能，无�
 
         |参数|说明|示例|
         |--|--|--|
-        |table\_name|需要迁移的表名。一次命令仅支持单表迁移，若是有多个表，需要多次执行。更多关于表的查询，请参见[（可选）查看Table Group](#section_3nz_ej4_s2d)。|new\_table|
+        |table\_name|需要迁移的表名。一次命令仅支持单表迁移，若是有多个表，需要多次执行。分区表只需要操作父表即可。更多关于表的查询，请参见[（可选）查看Table Group](#section_3nz_ej4_s2d)。|new\_table|
         |table\_group\_name|新的Table Group名。|new\_tg|
 
 
