@@ -141,7 +141,7 @@ Hologres支持使用内置的Spark Connector将Spark数据写入Hologres，相�
 
 Hologres兼容PostgreSQL生态，提供JDBC/ODBC Driver，因此Spark也可以通过JDBC的方式写入数据至Hologres。
 
-使用JDBC方式导入数据之前，您需要前往官网下载[PostgresSQL JDBC JAR](https://jdbc.postgresql.org/download.html)文件（请下载42.2.18及以上版本），在Spark Shell中执行如下命令启动该JAR。
+使用JDBC方式导入数据之前，您需要前往官网下载[PostgreSQL JDBC JAR](https://jdbc.postgresql.org/download.html)文件（请下载42.2.18及以上版本），在Spark Shell中执行如下命令启动该JAR。
 
 ```
 ./bin/spark-shell --jars /path/to/postgresql-42.2.18.jar
