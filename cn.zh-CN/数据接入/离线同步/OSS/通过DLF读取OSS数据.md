@@ -28,9 +28,8 @@ DLF使用阿里云对象存储（Object Storage Service，OSS）作为云上数�
     ```
 
 -   当前仅支持读取同一个地域的数据，暂不支持跨地域读取。
--   目前支持的OSS文件格式为：Text（CSV）、SqueenceFile、Parquet和ORC格式。
+-   目前支持的OSS文件格式为：Text（CSV）、SquenceFile、Parquet和ORC格式。
 -   创建server时，DLF和OSS的网络类型都需要使用经典网络。
--   目前仅支持通过DLF读取OSS数据，暂不支持将数据写入Hologres。
 
 ## 通过DLF读取OSS数据
 
