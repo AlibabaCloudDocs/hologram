@@ -40,10 +40,12 @@ When you query the storage sizes of tables and databases in Hologres, take note 
     SELECT pg_size_pretty(pg_relation_size('table_name'));
     
     --Query the storage sizes of all the tables in the current database.
-    SELECT table_schema || '.' || table_name AS table_full_name, pg_size_pretty(pg_relation_size('"' || table_schema || '"."' || table_name || '"')) AS table_size
+    SELECT table_schema || '.' || table_name AS table_full_name, 
+    pg_size_pretty(pg_relation_size('"' || table_schema || '"."' || table_name || '"')) AS table_size,
+    pg_relation_size('"' || table_schema || '"."' || table_name || '"') AS  order_size
     FROM information_schema.tables
     WHERE table_schema NOT IN ('pg_catalog','information_schema','hologres')
-    ORDER BY table_size DESC;
+    ORDER BY order_size DESC;
     ```
 
 
@@ -56,7 +58,7 @@ When you query the storage sizes of tables and databases in Hologres, take note 
 -   Syntax
 
     ```
-    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::decimal)) AS schema_size
+    SELECT table_schema, pg_size_pretty(SUM(pg_relation_size( table_schema  || '.' || table_name)::bigint)) AS schema_size
     FROM information_schema.tables 
     WHERE table_schema = 'schema_name'
     GROUP BY table_schema;
