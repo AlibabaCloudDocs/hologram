@@ -8,15 +8,16 @@ ALTER TABLE语句用于修改表。本文为您介绍ALTER TABLE的用法。
 
 ## 使用限制
 
-Hologres当前对表目前仅支持如下修改，其他类型的修改暂不支持：
+Hologres当前对表目前仅支持如下修改，针对表数据类型、表字段名等内容的修改暂不支持：
 
 -   目前支持对表进行重命名、增加列和修改表数据生存时间的操作。
 -   支持修改字段的默认值、dictionary\_encoding\_columns和bitmap\_columns属性。
--   针对Hologres的分区表，还支持ATTACH PARTITION和DETACH PARTITION两种修改。
 
 ## 重命名
 
 ALTER TABLE语句可以对表进行重命名，如果目标表不存在，或者重命名目标表为已存在的表名称，系统均会返回异常。
+
+**说明：** 目前不支持跨Schema对表进行重名命操作。
 
 -   使用语法
 
