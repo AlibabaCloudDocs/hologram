@@ -12,7 +12,7 @@ keyword: [开源Flink, 实时导入数据]
 
 ## Flink SQL写入数据至Hologres代码示例
 
-您可以参照如下代码示例，通过将Flink SQL将数据写入Hologres。其中，更多详细的代码示例请参见[Hologers GitHub官方库](https://github.com/aliyun/alibabacloud-hologres-connectors/tree/master/hologres-connector-example/src/main/java/com/alibaba/ververica/connectors/hologres/example)。
+您可以参照如下代码示例，通过将Flink SQL将数据写入Hologres。其中，更多详细的代码示例请参见[Hologres GitHub官方库](https://github.com/aliyun/alibabacloud-hologres-connectors/tree/master/hologres-connector-example/src/main/java/com/alibaba/ververica/connectors/hologres/example)。
 
 ```
         String createHologresTable =
