@@ -17,9 +17,9 @@ FineReport is an enterprise-level web report software. It is professional, simpl
 
     |Parameter|Description|Example value|
     |---------|-----------|-------------|
-    |DB|You must set this parameter to **Postgre** when you connect FineReport to Hologres.
+    |DB|You must set this parameter to **Postgres** when you connect FineReport to Hologres.
 
-|**Postgre**|
+|**Postgres**|
     |Driver|The driver used to connect to Hologres. Select the built-in driver `org.postgresql.Driver`.After you add a database to FineReport, a driver is automatically generated.
 
 |None|
@@ -57,9 +57,9 @@ FineReport is an enterprise-level web report software. It is professional, simpl
 
         Click the **Data** tab and configure the Category and Value parameters to specify the X axis and Y axis. In this example, set Category to job and Value to age. Configure the parameters on the **Style** and **Special Effect** tabs as required.
 
-    5.  Click the ![Save](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2181013061/p168552.png) icon in the upper-left corner to save the settings.
+    5.  Click the ![Save](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2181013061/p168552.png) icon in the upper-left corner to save the settings.
 
-    6.  Click the ![Preview](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2181013061/p168553.png) icon to view the report.
+    6.  Click the ![Preview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2181013061/p168553.png) icon to view the report.
 
         The following figure shows the report created based on the external table of Hologres.For more information about the operations in FineReport, visit the [FineReport official website](https://www.fanruan.com/).
 
