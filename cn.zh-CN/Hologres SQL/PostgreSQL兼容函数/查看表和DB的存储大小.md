@@ -40,10 +40,12 @@ Hologres兼容PostgreSQL，当前支持查看表或者DB的存储大小。本文
     SELECT pg_size_pretty(pg_relation_size('table_name'));
     
     --查看所有表大小
-    SELECT table_schema || '.' || table_name AS table_full_name, pg_size_pretty(pg_relation_size('"' || table_schema || '"."' || table_name || '"')) AS table_size
+    SELECT table_schema || '.' || table_name AS table_full_name, 
+    pg_size_pretty(pg_relation_size('"' || table_schema || '"."' || table_name || '"')) AS table_size,
+    pg_relation_size('"' || table_schema || '"."' || table_name || '"') AS  order_size
     FROM information_schema.tables
     WHERE table_schema NOT IN ('pg_catalog','information_schema','hologres')
-    ORDER BY table_size DESC;
+    ORDER BY order_size DESC;
     ```
 
 
