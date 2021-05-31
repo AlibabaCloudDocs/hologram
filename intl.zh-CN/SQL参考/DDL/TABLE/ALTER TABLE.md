@@ -6,16 +6,18 @@ keyword: [修改表, Hologres, DDL, ALTER TABLE]
 
 ALTER TABLE语句用于修改表。本文为您介绍ALTER TABLE的用法。
 
-## 注意事项
+## 使用限制
 
-Hologres当前对表的修改有如下注意事项：
+Hologres当前对表目前仅支持如下修改，针对表数据类型、表字段名等内容的修改暂不支持：
 
--   支持对表进行重命名和增加列的操作。
--   针对Hologres的分区表，还支持ATTACH PARTITION和DETACH PARTITION两种修改。
+-   目前支持对表进行重命名、增加列和修改表数据生存时间的操作。
+-   支持修改字段的默认值、dictionary\_encoding\_columns和bitmap\_columns属性。
 
 ## 重命名
 
 ALTER TABLE语句可以对表进行重命名，如果目标表不存在，或者重命名目标表为已存在的表名称，系统均会返回异常。
+
+**说明：** 目前不支持跨Schema对表进行重名命操作。
 
 -   使用语法
 
@@ -88,7 +90,7 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
     -   使用语法
 
         ```
-        --修改全量，即除了call里面指定的字段修改类型，系统还会把text类型自动设置为dictionary
+        --修改全量
         CALL SET_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         
         --修改增量，只修改call里面的指定字段，其余字段不变
@@ -133,7 +135,7 @@ Hologres支持通过执行语句修改参数，达到修改表属性的目的。
     -   使用语法
 
         ```
-        --修改全量，即除了call里面指定的字段修改类型，系统还会把text类型自动设置为dictionary
+        --修改全量
         CALL SET_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         
         --修改增量，只修改call里面的指定字段，其余字段不变
