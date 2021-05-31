@@ -83,7 +83,7 @@ commit;
     <dependency>
       <groupId>com.alibaba.hologres</groupId>
       <artifactId>holo-client</artifactId>
-      <version>1.2.10.2</version>
+      <version>1.2.13.5</version>
     </dependency>
     
     
