@@ -13,6 +13,7 @@ Hologres兼容PostgreSQL，可以通过[查询pg\_stat\_activity视图信息](#s
 -   [查询连接信息](#section_1vp_j4t_t8w)：通过查询实例、DB的连接数以及每个连接状态，更好的管理实例。
 -   [管理员预留连接](#section_y7v_7vh_mut)：用于在连接数达到最大时对连接进行管理操作。
 -   [终止连接](#section_0zu_02u_kie)：当系统连接数达到上限时，您可以终止空闲连接。
+-   [单个用户连接数限制](#section_kvj_5uv_cfu)：为单个用户设置连接数上限，以防止某个用户占用过多连接造成资源浪费。
 -   [查看SQL运行信息](#section_hne_4no_4cb)：查看SQL运行信息，更好的管理SQL语句。
 -   [查看耗时较长的SQL](#section_mc3_bcb_4dj)：查看当前实例耗时较长的SQL。
 -   [终止Query](#section_ny7_vf5_lpe)：终止当前不符合预期的Query。
@@ -153,6 +154,50 @@ AND     state = 'idle'
 AND     application_name != 'hologres'
 AND     usename != 'holo_admin';
 ```
+
+## 单个用户连接数限制
+
+由于Hologres兼容PostgreSQL，因此支持为单个用户设置连接数上限，以防止某个用户占用过多连接造成资源浪费。
+
+1.  限制单个用户连接数。
+    -   语法示例
+
+        ```
+        ALTER ROLE "云账号ID" CONNECTION LIMIT <number>; 
+        ```
+
+    -   参数说明
+
+        |参数|说明|
+        |--|--|
+        |云账号ID|需要限制的账号ID，如果为RAM用户，需要在账号UID前加p4\_。更多关于账号的说明，请参见[账号概述](/cn.zh-CN/账号与权限管理/账号概述.md)。|
+        |number|限制的连接数个数。|
+
+    -   使用示例
+
+        如下示例限制RAM用户283813xxxx，最多只有一个1连接。
+
+        ```
+        ALTER ROLE "p4_283813xxxx" CONNECTION LIMIT 1; 
+        ```
+
+2.  您可以执行如下语句查看当前已经为实例用户设置的限制连接数。
+
+    ```
+    SELECT rolname, rolconnlimit
+    FROM pg_roles
+    WHERE rolconnlimit <> -1;
+    ```
+
+    查询示例结果如下：
+
+    ```
+           rolname | rolconnlimit 
+    ---------------+--------------
+     p4_283813xxxx |      1
+    (1 row)
+    ```
+
 
 ## 查看SQL运行信息
 
