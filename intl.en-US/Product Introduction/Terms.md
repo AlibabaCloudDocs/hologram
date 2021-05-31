@@ -8,7 +8,7 @@ This topic describes terms that are commonly used in Hologres, such as account, 
 
 ## Account management
 
-Hologres is deeply integrated with the Alibaba Cloud account system. Hologres accounts include Alibaba Cloud accounts and RAM users, as described in the following table. When you grant permissions on a Hologres instance to Alibaba Cloud accounts and RAM users, you must use their logon accounts or account IDs. For more information, see [\#d7e67](#d7e67) and [\#d7e168](#d7e168).
+Hologres is deeply integrated with the Alibaba Cloud account system. Hologres accounts include Alibaba Cloud accounts and RAM users, as described in the following table. When you grant permissions on a Hologres instance to Alibaba Cloud accounts and RAM users, you must use their logon accounts or account IDs. For more information, see [Logon account](/intl.en-US/User Authorization/Account overview.md) and [Account ID](/intl.en-US/User Authorization/Account overview.md).
 
 |Account type|Description|
 |------------|-----------|
