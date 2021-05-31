@@ -6,16 +6,17 @@ keyword: [modify data in a table, Hologres, DDL, ALTER TABLE]
 
 You can execute the ALTER TABLE statement to modify data in a table. This topic describes how to execute the ALTER TABLE statement.
 
-## Usage notes
+## Limits
 
-When you modify data in a Hologres table, take note of the following items:
+When you execute the ALTER TABLE statement to modify data in a Hologres table, take note of the following items:
 
--   You can rename the table or create fields in the table.
--   You can also execute the ATTACH PARTITION and DETACH PARTITION statements to modify data in partitioned Hologres tables.
+-   You can rename a table, create fields in the table, or modify the time-to-live \(TTL\) of the table.
+-   You can configure the DEFAULT constraint for a field. You can also modify the dictionary\_encoding\_columns and bitmap\_columns properties for a field.
+-   You can add the ATTACH PARTITION and DETACH PARTITION clauses to the ALTER TABLE statement to modify data in partitioned Hologres tables.
 
 ## Rename a table
 
-You can execute the ALTER TABLE statement to rename a specified table. If the specified table does not exist or the new table name is the same as an existing table, an error is thrown.
+You can execute the ALTER TABLE statement to rename a specified table. If the specified table does not exist or the new table name is the same as an existing table name, an error is thrown.
 
 -   Syntax
 
@@ -57,41 +58,41 @@ You can execute the ALTER TABLE statement to create fields in a table.
     ```
 
 
-## Manage the default values of fields
+## Configure the DEFAULT constraint for a field
 
-You can execute the ALTER TABLE statement to manage the default values of fields in a table that is created in Hologres V0.9.23 or later. Specifically, you can use the following syntax:
+You can execute the ALTER TABLE statement to configure the DEFAULT constraint for a field in a table that is created in Hologres V0.9.23 or later. In this scenario, the ALTER TABLE statement uses the following syntax:
 
 -   Syntax
 
     ```
-    -- Modify the default value of a field in a table.
+    -- Specify a DEFAULT constraint for a field in a table.
     ALTER TABLE <table> ALTER COLUMN <column> SET DEFAULT <expression>;
-    -- Delete the default value of a field in a table.
+    -- Remove the DEFAULT constraint for a field in a table.
     ALTER TABLE <table> ALTER COLUMN <column> DROP DEFAULT;
     ```
 
 -   Examples
 
     ```
-    -- Modify the default value of the id field in the table named holo_test and set the default value to 0.
+    -- Specify a DEFAULT constraint for the id field in the table named holo_test to set the default value to 0.
     ALTER TABLE holo_test ALTER COLUMN id SET DEFAULT 0;
-    -- Delete the default value of the id field in the table named holo_test.
+    -- Remove the DEFAULT constraint for the id field in the table named holo_test.
     ALTER TABLE holo_test ALTER COLUMN id DROP DEFAULT;
     ```
 
 
 ## Modify the properties of a table
 
-Hologres allows you to modify table properties by executing SQL statements to modify the relevant parameters. Specifically, you can modify the following properties:
+Hologres allows you to modify table properties by modifying relevant function parameters. You can modify the following properties:
 
--   You can modify the dictionary encoding property of fields in a table.
+-   **dictionary\_encoding\_columns**
     -   Syntax
 
         ```
-        -- Full modification: In addition to modifying the dictionary encoding property of the fields that you specify in the CALL statement, Hologres automatically enables dictionary encoding for fields of the TEXT data type.
+        -- Set the dictionary encoding property for all fields.
         CALL SET_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         
-        -- Incremental modification: The dictionary encoding property of only fields that you specify in the CALL statement is modified. The dictionary encoding property of other fields remains unchanged.
+        -- Modify the dictionary encoding property only for the fields that you specify in the CALL statement. The dictionary encoding property remains unchanged for other fields.
         CALL UPDATE_TABLE_PROPERTY('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         ```
 
@@ -100,12 +101,12 @@ Hologres allows you to modify table properties by executing SQL statements to mo
         |Parameter|Description|
         |---------|-----------|
         |table\_name|The name of the table to be modified. Pay attention to the case sensitivity. The table name can contain the schema information about the table.|
-        |on|Enables dictionary encoding for the current field.|
-        |off|Disables dictionary encoding for the current field.|
-        |auto|Specifies that Hologres determines whether to enable or disable dictionary encoding for the current field. If you set this parameter for a field, Hologres determines whether to enable dictionary encoding for the field based on the recurrences of the values of this field. Higher recurrences of field values indicate that dictionary encoding is more suitable for the field. By default, Hologres V0.8 and earlier automatically enable dictionary encoding for all fields of the TEXT data type. Hologres V0.9 and later determine whether to enable dictionary encoding for a field based on the characteristics of the values of the field.|
+        |on|Enables dictionary encoding for the field.|
+        |off|Disables dictionary encoding for the field.|
+        |auto|Specifies that Hologres determines whether to enable or disable dictionary encoding for the field. If you use this keyword for a field, Hologres determines whether to enable dictionary encoding for the field based on the recurrences of the values of this field. Dictionary encoding is more suitable for the fields that have higher recurrences of field values. By default, Hologres V0.8 and earlier enable dictionary encoding for all fields of the TEXT data type. Hologres V0.9 and later determine whether to enable dictionary encoding for a field based on the characteristics of the values of the field.|
 
     -   Examples
-        -   In the following sample statements, dictionary encoding is enabled for the a field. Whether to enable dictionary encoding for the b field is determined by Hologres. Dictionary encoding is disabled for the c and d fields.
+        -   In the following sample statements, dictionary encoding is enabled for the a field. Hologres determines whether to enable dictionary encoding for the b field. The dictionary encoding property remains unchanged for the c and d fields.
 
             ```
             CREATE TABLE holo_test (
@@ -117,7 +118,7 @@ Hologres allows you to modify table properties by executing SQL statements to mo
             CALL UPDATE_TABLE_PROPERTY('holo_test','dictionary_encoding_columns','a:on,b:auto');
             ```
 
-        -   In the following sample statements, dictionary encoding is disabled for the a field. Whether to enable dictionary encoding for the b, c, and d fields is determined by Hologres.
+        -   In the following sample statements, dictionary encoding is disabled for the a field. Hologres automatically enables dictionary encoding for the b, c, and d fields.
 
             ```
             CREATE TABLE holo_test (
@@ -129,14 +130,14 @@ Hologres allows you to modify table properties by executing SQL statements to mo
             CALL SET_TABLE_PROPERTY('holo_test','dictionary_encoding_columns','a:off');
             ```
 
--   You can modify the bitmap index property of fields in a table.
+-   **bitmap\_columns**
     -   Syntax
 
         ```
-        -- Full modification: In addition to modifying the bitmap index property of the fields that you specify in the CALL statement, Hologres automatically enables dictionary encoding for fields of the TEXT data type.
+        -- Set the bitmap index property for all fields.
         CALL SET_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         
-        -- Incremental modification: The bitmap index property of only fields that you specify in the CALL statement is modified. The bitmap index property of other fields remains unchanged.
+        -- Modify the bitmap index property only for the fields that you specify in the CALL statement. The bitmap index property remains unchanged for other fields.
         CALL UPDATE_TABLE_PROPERTY('<table_name>', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
         ```
 
@@ -145,11 +146,11 @@ Hologres allows you to modify table properties by executing SQL statements to mo
         |Parameter|Description|
         |---------|-----------|
         |table\_name|The name of the table to be modified. Pay attention to the case sensitivity. The table name can contain the schema information about the table.|
-        |on|Creates a bitmap index for the current field.|
-        |off|Does not create a bitmap index for the current field.|
+        |on|Creates a bitmap index for the field.|
+        |off|Does not create a bitmap index for the field.|
 
     -   Examples
-        -   In the following sample statements, a bitmap index is created for the a field. No bitmap index is created for the b, c, or d field.
+        -   In the following sample statements, a bitmap index is created for the a field. The bitmap index property remains unchanged for the b, c, and d fields.
 
             ```
             CREATE TABLE holo_test (
@@ -161,7 +162,7 @@ Hologres allows you to modify table properties by executing SQL statements to mo
             CALL UPDATE_TABLE_PROPERTY('holo_test','bitmap_columns','a:on');
             ```
 
-        -   In the following sample statements, no bitmap index is created for the b field. Hologres automatically enables dictionary encoding for the a, c, and d fields.
+        -   In the following sample statements, no bitmap index is created for the b field. Hologres automatically creates bitmap indexes for the a, c, and d fields.
 
             ```
             CREATE TABLE holo_test_1 (
@@ -173,7 +174,7 @@ Hologres allows you to modify table properties by executing SQL statements to mo
             CALL SET_TABLE_PROPERTY('holo_test_1','bitmap_columns','b:off');
             ```
 
--   You can modify the time to live \(TTL\) of a table.
+-   time\_to\_live\_in\_seconds
     -   Syntax
 
         ```
@@ -184,7 +185,7 @@ Hologres allows you to modify table properties by executing SQL statements to mo
 
         |Parameter|Description|
         |---------|-----------|
-        |time\_to\_live\_in\_seconds|The TTL that you want to set for the table. Unit: seconds. The value must be a non-negative integer or floating-point number.|
+        |time\_to\_live\_in\_seconds|The property to be modified. This property specifies the TTL of the table, in seconds. The value must be a non-negative integer or floating-point number.|
 
         **Note:** The TTL of a Hologres table starts from the time when data is written to the table. If no operation is performed on the table within the specified TTL, the table is deleted sometime after it expires.
 
