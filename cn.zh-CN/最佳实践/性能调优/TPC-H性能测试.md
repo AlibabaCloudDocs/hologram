@@ -445,7 +445,7 @@ Key/Value点查场景测试，您需要创建表并导入数据。数据导入�
     您可以使用如下方式导入数据：
 
     -   COPY方式导入数据
-        -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/cn.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#d6e123)中生成的TPC-H数据。
+        -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/cn.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#table_8lb_57o_71n)中生成的TPC-H数据。
         -   您也可以在数据生成工具的目录中，使用如下shell脚本导入数据。更多关于参数的说明，请参见[参数说明](/cn.zh-CN/连接开发工具/psql客户端.md)。
 
             ```
