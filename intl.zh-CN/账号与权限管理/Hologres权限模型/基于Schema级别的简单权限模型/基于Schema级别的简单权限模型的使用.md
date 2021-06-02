@@ -10,7 +10,7 @@ keyword: [Hologres, 基于Schema级别的简单权限模型, 使用方法, SLPM]
 
 由于SLPM是基于Schema级别严格进行权限管控的，因此在授权和使用时需要您注意如下的限制条件：
 
--   **当您创建一个View或者Rule，引用了跨Schema的两个或多个表时，由于Schema间权限不通的原因，此View或者Rule将无法被访问。因此不建议您在SLPM管理的DB中创建跨Schema的View或Rule对象。**
+-   **当您创建一个View或者Rule，引用了跨Schema的两个或多个表时，由于Schema间权限不互通的原因，此View或者Rule将无法被访问。因此不建议您在SLPM管理的DB中创建跨Schema的View或Rule对象。**
 -   开启SLPM之后，只会开放特定的权限，开放权限请参见[基于Schema级别的简单权限模型授权](#step_23c_pnm_ph7)。以下表格中的DDL功能将不能在SLPM使用，请您使用对应的SLPM语句执行相关操作，具体函数说明请参见[基于Schema级别的简单权限模型函数说明](/intl.zh-CN/账号与权限管理/Hologres权限模型/基于Schema级别的简单权限模型/基于Schema级别的简单权限模型函数说明.md)。
 
     |命令语句|说明|SLPM语句|
