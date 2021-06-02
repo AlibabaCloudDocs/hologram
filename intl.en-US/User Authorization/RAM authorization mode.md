@@ -20,7 +20,7 @@ Hologres supports two access methods:
 
 -   Log on to Hologres by using role-based SSO.
 
-    You can also log on to Alibaba Cloud and have access to Hologres by using role-based SSO. For more information, see [Access Alibaba Cloud by using the console](/intl.en-US/SSO Management/Role-based SSO/Overview of role-based SSO.mdsection_hv1_3yr_bhb) and [Access Alibaba Cloud by using a program](/intl.en-US/SSO Management/Role-based SSO/Overview of role-based SSO.mdsection_rxk_lyr_bhb). In this case, the RAM role becomes a member of a Hologres instance. The user that assumes this RAM role has the same permissions as an Alibaba Cloud account or a RAM user. For information about RAM roles, see [RAM role overview](/intl.en-US/RAM Role Management/RAM role overview.md).
+    You can also log on to Alibaba Cloud and have access to Hologres by using role-based SSO. For more information, see [SAML response for role-based SSO](/intl.en-US/SSO Management/Role-based SSO/SAML response for role-based SSO.md). In this case, the RAM role becomes a member of a Hologres instance. The user that assumes this RAM role has the same permissions as an Alibaba Cloud account or a RAM user. For information about RAM roles, see [RAM role overview](/intl.en-US/RAM Role Management/RAM role overview.md).
 
 
 In Hologres, RAM roles have equal status with Alibaba Cloud accounts and RAM users. Therefore, in Hologres, a RAM role is regarded as an ordinary available account. For each RAM role, the superuser must grant permissions, such as the SELECT, INSERT, and UPDATE permissions, to the RAM role, not the Alibaba Cloud account or RAM user that assumes the role. After that, the RAM role can use Hologres based on the granted permissions.
@@ -99,7 +99,7 @@ If you want a RAM user to assume a RAM role by switching the identity in the Ali
     To assign a RAM role to a RAM user, you must first create a RAM user and grant the RAM user the permission to assume a role.
 
     1.  Log on to the [RAM console](https://ram.console.aliyun.com/roles). In the left-side navigation pane, choose **Identities** \> **Users**.
-    2.  Optional. If you already have a RAM user, skip this step.On the Users page, click **Create User**. You can create multiple RAM users at a time. On the Create User page, select Programmatic Access for the Access Mode parameter and set other parameters. Click **OK**.
+    2.  Optional. If you already have a RAM user, skip this step. On the Users page, click **Create User**. You can create multiple RAM users at a time. On the Create User page, select Programmatic Access for the Access Mode parameter and set other parameters. Click **OK**.
     3.  On the Users page, find the RAM user that you created and click **Add Permissions** in the Actions column.
     4.  In the Add Permissions panel, attach the AliyunSTSAssumeRoleAccess policy to the RAM user that you created. After that, the RAM user has the permission to call the AssumeRole operation of STS.
 
