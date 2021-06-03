@@ -64,7 +64,7 @@ You can use the following methods to optimize MaxCompute tables to improve the p
     explain analyze <query>;
     ```
 
-    The file\_count parameter in the output indicates the number of MaxCompute files that match the query. If large numbers of small files are matched, you can merge the small files. For more information, see [Merge small files]().
+    The file\_count parameter in the output indicates the number of MaxCompute files that match the query. If large numbers of small files are matched, you can merge the small files.
 
 
 ## Allocate appropriate resources
