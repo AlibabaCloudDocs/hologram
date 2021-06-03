@@ -10,7 +10,7 @@ Flink全托管产品（Flink Serverless）是基于Apache Flink构建的全托�
 
 1.  建议使用Hologres的行存表，列存表对于点查场景性能开销较大。
 
-    创建行存储表时必须设置主键，并且将主键配置为clustering key时才可以工作，示例语句如下。
+    创建行存储表时必须设置主键，并且将主键配置为clustering key时性能较好，示例语句如下。
 
     ```
     begin;
