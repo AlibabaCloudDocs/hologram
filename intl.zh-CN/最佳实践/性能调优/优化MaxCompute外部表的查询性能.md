@@ -64,7 +64,7 @@ Hologres与MaxCompute在底层资源无缝打通，您可以通过以下方式�
     explain analyze <query>;
     ```
 
-    查询结果中的file\_count表示MaxCompute中的文件数。如果当前小文件数量较多，影响查询速度，您可以在MaxCompute中对小文件进行合并，具体操作请参见[合并小文件]()。
+    查询结果中的file\_count表示MaxCompute中的文件数。如果当前小文件数量较多，影响查询速度，您可以在MaxCompute中对小文件进行合并。
 
 
 ## 合理配置资源
