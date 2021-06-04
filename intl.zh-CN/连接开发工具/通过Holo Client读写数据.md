@@ -4,11 +4,7 @@ keyword: [Holo Client, Hologres]
 
 # 通过Holo Client读写数据
 
-本文将会为您介绍Holo Client的使用。
-
-## 背景信息
-
-为了更高效的支持大批量数据的写入（批量、实时同步至Hologres），以及支持高QPS的点查（维表关联）场景，Hologres在JDBC的基础上自研了一款开发接口Holo Client。您可以通过Holo Client实现高性能的批量、实时同步以及高QPS的点查询，自动攒批，提高吞吐。
+为了更高效的支持大批量数据的写入（批量、实时同步至Hologres），以及支持高QPS的点查（维表关联）场景，Hologres在JDBC的基础上自研了一款开发接口Holo Client。您可以通过Holo Client实现高性能的批量、实时同步以及高QPS的点查询，自动攒批，提高吞吐。本文将为您介绍Holo Client的使用。
 
 ## 注意事项
 
@@ -16,13 +12,13 @@ keyword: [Holo Client, Hologres]
 
 -   仅Hologres V0.9及以上版本支持通过Holo Client读写数据，如果您的实例是V0.9以下版本，请您[提交工单](https://workorder-intl.console.aliyun.com/)或加入在线支持钉钉群申请升级实例。
 -   Holo Client基于JDBC实现，使用时您可以使用如下方式确认实例剩余可用连接数。
-    -   查看最大连接数
+    -   查看最大连接数。
 
         ```
         show max_connections;
         ```
 
-    -   查看已使用连接数
+    -   查看已使用连接数。
 
         ```
         select count(*) from pg_stat_activity where backend_type='client backend';
@@ -39,20 +35,28 @@ Holo Client依赖特殊的Postgres JDBC版本，再使用之前您需要确认�
     <dependency>
       <groupId>com.alibaba.hologres</groupId>
       <artifactId>holo-client</artifactId>
-      <version>1.2.10.2</version>
+      <version>1.2.13.5</version>
     </dependency>
     ```
 
 -   Gradle
 
     ```
-    implementation 'com.alibaba.hologres:holo-client:1.2.10.2'
+    implementation 'com.alibaba.hologres:holo-client:1.2.13.5'
     ```
 
 
+## Holo Client已知版本限制
+
+-   Holo Client 1.2.8版本，引入`INSERT_OR_IGNORE`和`INSERT_OR_UPDATE`模式下，INSERT和DELETE不保证排序的问题。 当前问题在1.2.10.3版本完成修复。
+-   Holo Client 1.2.6版本，引入`GetBuilder.withSelectedColumns`不生效，每次仍会获取所有列的问题。 当前问题在1.2.12.1版本完成修复。
+-   Holo Client 1.2.9.1版本，引入Scan如果设置了`withSelectedColumn`无法查询的问题。 当前问题在1.2.12.1版本完成修复。
+-   Holo Client 1.2.0版本，引入当主键包含bytea列时，GET请求无法返回结果，PUT请求无法保证排序的问题。 当前问题在1.2.12.1版本完成修复。
+-   Holo Client 1.2.0版本，引入当PK的Hash为`Integer.MIN_VALUE`时将写入失败的问题。 当前问题在1.2.12.1版本完成修复。
+
 ## 连接数说明
 
--   HoloClient最多会同时启动Max\(writeThreadSize,readThreadSize\)个连接。
+-   Holo Client最多会同时启动Max\(writeThreadSize,readThreadSize\)个连接。
 -   连接的idle时间超过connectionMaxIdleMs时该连接会被释放。
 -   当实例剩余的连接数不足以处理当前请求量时，会自动创建新连接。
 
@@ -89,7 +93,7 @@ Holo Client依赖特殊的Postgres JDBC版本，再使用之前您需要确认�
 -   **写入分区表**
     -   若分区已存在，不论DynamicPartition为何值，写入数据都将自动路由到正确的分区表中。
     -   若分区不存在，DynamicPartition设置为true时，将会自动创建不存在的分区，否则抛出异常。
-    -   写入分区表在Hologres V0.9及以上版本正式发布并有才能获得较好的性能，V0.8版本的实例为灰度测试，若是0.8版本想要实现较好的写入性能，建议先写到临时表，再通过insert into xxx select ...的方式写入到分区表。
+    -   写入分区表在Hologres V0.9及以上版本正式发布并有才能获得较好的性能，如果为V0.8版本想要实现较好的写入性能，建议先写到临时表，再通过`insert into xxx select ...`的方式写入到分区表。
         -   语法示例
 
             ```
@@ -216,8 +220,18 @@ Holo Client目前支持基于完整主键的查询和Scan查询。
             TableSchema schema0 = client.getTableSchema("t0");
             
             Scan scan = Scan.newBuilder(schema).addEqualFilter("id", 102).addRangeFilter("name", "3", "4").withSelectedColumn("address").build();
-            //等同于select address from t0 where id=102 and name>=3 and name<4; 
+            //等同于select address from t0 where id=102 and name>=3 and name<4 order by id;
             int size = 0;
+            try (RecordScanner rs = client.scan(scan)) {
+                while (rs.next()) {
+                    Record record = rs.getRecord();
+                    //handle record
+                }
+            }
+            //不排序
+            scan = Scan.newBuilder(schema).addEqualFilter("id", 102).addRangeFilter("name", "3", "4").withSelectedColumn("address").setSortKeys(SortKeys.NONE).build();
+            //等同于select address from t0 where id=102 and name>=3 and name<4; 
+            size = 0;
             try (RecordScanner rs = client.scan(scan)) {
                 while (rs.next()) {
                     Record record = rs.getRecord();
@@ -241,11 +255,11 @@ Holo Client目前支持基于完整主键的查询和Scan查询。
     config.setPassword(password);
     try (HoloClient client = new HoloClient(config)) {
         client.sql(conn -> {
-    				try (Statement stat = conn.createStatement()) {
-    					stat.execute("create table t0(id int)");
-    				}
-    				return null;
-    			}).get();
+                    try (Statement stat = conn.createStatement()) {
+                        stat.execute("create table t0(id int)");
+                    }
+                    return null;
+                }).get();
     catch(HoloClientException e){
     }
     ```
@@ -333,6 +347,7 @@ public void doFlush(HoloClient client) throws HoloClientException {
     -   Date/timestamp/timestamptz默认为1970-01-01 00:00:00
 |1.2.6|
     |defaultTimeStampText|null|当enableDefaultForNotNullColumn=true时，Date/timestamp/timestamptz的默认值。|1.2.6|
+    |reWriteBatchedDeletes|true|当reWriteBatchedDeletes=true时，会将多条DELETE请求合并为一条SQL语句提升性能。|1.2.12.1|
 
 -   **查询配置**
 
