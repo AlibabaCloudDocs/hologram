@@ -39,7 +39,7 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
 
 1.  准备MaxCompute非分区表数据。
 
-    创建MaxCompute非分区表并导入数据，详情请参见[创建和查看表](/intl.zh-CN/快速入门/创建和查看表.md)。您也可以选择已创建的MaxCompute非分区表。
+    创建MaxCompute非分区表并导入数据，详情请参见[创建表](/intl.zh-CN/快速入门/通过MaxCompute客户端使用MaxCompute/创建和查看表.md)。您也可以选择已创建的MaxCompute非分区表。
 
     本实验选用已创建的MaxCompute表，示例SQL语句如下。
 
@@ -99,16 +99,13 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
     本实验选用数据地图已创建的分区表，示例语句如下。
 
     ```
-    CREATE TABLE odps_test
+    create table odps_test
     (
         shop_name     string,
         customer_id   string,
         total_price   INT 
     )
-    PARTITIONED BY  (sale_date string);
-    INSERT  OVERWRITE TABLE odps_test PARTITION  (sale_date='2013') VALUES ('shop', '1234', 12);
-    INSERT  OVERWRITE TABLE odps_test PARTITION  (sale_date='2014')VALUES ('rest', '1111', 13);
-    INSERT  OVERWRITE TABLE odps_test PARTITION (sale_date='2015')VALUES ('texy', '2222', 14);
+    partitioned by (sale_date string);
     ```
 
 2.  Hologres创建外部表。
@@ -150,4 +147,8 @@ Hologres是兼容PostgreSQL协议的实时交互式分析数据仓库，在底�
 
 -   Hologres支持使用`IMPORT FOREIGN SCHEMA`语句批量创建外部表，详情请参见[IMPORT FOREIGN SCHEMA](/intl.zh-CN/SQL参考/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)。
 -   通过HoloWeb批量创建外部表，详请请参见[批量创建外部表](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/MaxCompute加速/批量创建外部表.md)。
+
+## 外部表查询性能优化
+
+当外部表查询性能不满足当前查询时，您可以通过MaxCompute合并小文件，优化Hologres SQL等标准手段进行优化，以提升查询性能。从Hologres V0.10版本开始，Hologres采用全新外部表加速引擎，相比低于V0.10版本实例，查询MaxCompute表性能提升30%~100%左右。详情请参见[优化MaxCompute外部表的查询性能](/intl.zh-CN/最佳实践/性能调优/优化MaxCompute外部表的查询性能.md)。
 
