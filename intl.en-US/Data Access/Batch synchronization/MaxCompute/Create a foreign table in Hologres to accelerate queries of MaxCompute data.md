@@ -8,7 +8,7 @@ This topic describes how to create a foreign table in Hologres to achieve accele
 
 MaxCompute is a fast and fully managed computing platform for large-scale data warehousing. It can process exabytes of data. MaxCompute is used to store and compute large amounts of structured data at a time. It provides various data warehousing solutions as well as big data analytics and modeling services.
 
-Hologres is a real-time interactive analytics data warehouse that is compatible with PostgreSQL. Hologres seamlessly integrates with MaxCompute at the underlying layer. Hologres allows you to performaccelerated queries of MaxCompute databy creating foreign tables, without the need to store data in Hologres or import data to and export data from Hologres.
+Hologres is a real-time interactive analytics data warehouse that is compatible with PostgreSQL. Hologres seamlessly integrates with MaxCompute at the underlying layer. Hologres allows you to perform accelerated queries of MaxCompute data by creating foreign tables, without the need to store data in Hologres or import data to and export data from Hologres.
 
 You can also import data to Hologres and query the data. Compared with other similar services that are not oriented for the big data ecosystem, Hologres offers higher performance and faster data import and export.
 
@@ -79,7 +79,7 @@ When you create a foreign table in Hologres to accelerate queries of MaxCompute 
     **Note:** :
 
     -   The data types of the fields in the foreign table must map those in the MaxCompute table. For more information about the mappings between data types, see [Data type mappings between MaxCompute and Hologres when you create a foreign table](/intl.en-US/Hologres SQL/Data types/Data types.mdsection_w14_cec_th7).
-    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md). You can also create a node in the **Data Analytics** module of HoloStudio to execute the statement as scheduled. This way, the foreign table in Hologres can be synchronously updated when the MaxCompute table is updated. For more information, see [Hologres Data Analytics]().
+    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md). .
     -   Hologres allows you to accelerate queries of only internal tables in MaxCompute. Queries of foreign tables and views in MaxCompute cannot be accelerated.
 3.  Query data in the non-partitioned MaxCompute table by using the foreign table in Hologres.
 
