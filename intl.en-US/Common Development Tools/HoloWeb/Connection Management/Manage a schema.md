@@ -1,57 +1,64 @@
 ---
-keyword: [HoloWeb, schema]
+keyword: [HoloWeb, schema, manage a schema]
 ---
 
 # Manage a schema
 
 This topic describes how to use HoloWeb to create, edit, and delete a schema in Hologres.
 
--   An Alibaba Cloud account is created.
--   Real-name verification is completed.
--   A Hologres instance is purchased. For more information, see [Purchase a Hologres instance](/intl.en-US/Preparations/Purchase a Hologres instance.md).
+You have logged on to a Hologres instance. For more information, see [Log on to an instance](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Log on to an instance.md).
 
 ## Create a schema
 
-1.  Connect the purchased Hologres instance to HoloWeb. For more information, see [Manage a connection](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/Manage a connection.md).
+1.  Log on to the [Hologres console](https://hologram.console.aliyun.com/#/instance).
 
-2.  On the HoloWeb page, choose **Connection Management** \> **Mode**.
+2.  In the top navigation bar, select a region from the drop-down list.
 
-    You can also click **My connection** on the **Connection Management** page. Click the required connection and then click Database. Right-click the required database and select New mode, or click the database, right-click **Schema**, and then select **New mode**.
+    ![Region](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8398778061/p141749.png)
 
-3.  Set the **Connection name**, **Database name**, and **Pattern name** parameters, and click **OK**.
+3.  On the **Hologres Instances** page, click **Go to HoloWeb** to go to the HoloWeb console.
 
-    ![New mode](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5699438951/p132147.png)
+4.  In the HoloWeb console, find the left-side **Instances Connected** list on the **Metadata Management** tab. Click the instance that you want to manage. Log on to the database that you want to manage, right-click the database, and then select **Create Schema**.
 
+    ![Manage a schema](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5429393261/p273740.png)
 
-## Edit a schema
+5.  In the New Schema dialog box, set the **Schema name** parameter and click **OK**. By default, the names of the current instance and database are entered in the **Instance Name** and **Database Name** fields. You do not need to modify the settings.
 
-1.  Choose **Connection Management** \> **My connection**. All the available connections are displayed.
+    ![Create a schema](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5429393261/p273741.png)
 
-2.  Click the required connection and then click **Database**. All the created databases are displayed.
-
-3.  Click the required database and then click **Schema**. All the created schemas are displayed.
-
-    **Note:** After a database is created, a schema named **public** is automatically created.
-
-4.  Right-click the required schema and select **Edit mode**.
-
-5.  Change the value of the **Pattern name** parameter based on your business requirements.
-
-    ![Edit mode](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5699438951/p132174.png)
-
-    **Note:** In the **Edit mode** dialog box, you can only change the value of the **Pattern name** parameter.
+    The created schema is displayed under the current database in the left-side Instances Connected list.
 
 
-## Delete a schema
+## Manage a schema
 
-1.  Choose **Connection Management** \> **My connection**. All the available connections are displayed.
+To manage a schema, you can refresh information, edit or delete the schema, create an internal table, create a foreign table, or create multiple foreign tables at a time.
 
-2.  Click the required connection and then click **Database**. All the created databases are displayed.
+1.  Go to the HoloWeb console. On the **Metadata Management** tab, find the left-side **Instances Connected** list. All the connected instances are displayed.
 
-3.  Click the required database and then click **Schema**. All the created schemas are displayed.
+2.  Click the instance that you want to manage and click the database that you want to manage. All the created schemas are displayed.
 
-4.  Right-click the required schema and select **Delete mode**.
+    **Note:** After you log on to a database, a schema named **public** is automatically created.
 
-5.  Click **OK**.
+3.  Right-click the schema that you want to manage and manage the schema based on your business requirements.
+
+    ![Manage a schema](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5429393261/p273747.png)
+
+    You can perform the following operations:
+
+    -   **Refresh information**
+
+        After you edit the schema, refresh the information about the schema.
+
+    -   **Edit a schema**
+
+        Right-click the schema and select **Edit Schema**. You can modify only the **Schema name** parameter.
+
+    -   **Create an internal table, create a foreign table, or create multiple foreign tables at a time**
+
+        Right-click the schema and select the type of table that you want to create. On the tab that appears, set the parameters as required. For more information about how to configure each type of table, see the topics of [MaxCompute acceleration](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/MaxCompute Acceleration/Manage a foreign table.md).
+
+    -   **Delete a schema**
+
+        Right-click the schema and select **Delete Schema**. In the Delete mode message, click **OK**.
 
 
