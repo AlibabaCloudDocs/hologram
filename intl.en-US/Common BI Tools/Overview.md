@@ -17,7 +17,6 @@ The following table describes the common BI tools that you can connect to Hologr
 |[Dataiku](/intl.en-US/Common BI Tools/Dataiku.md)|Yes\(limited support\)|
 |[DataV](/intl.en-US/Common BI Tools/DataV.md)|Yes|
 |[DataWorks DataService Studio](/intl.en-US/Common BI Tools/DataWorks DataService Studio.md)|Yes|
-|[FineReport](/intl.en-US/Common BI Tools/FineReport.md)|Yes|
 |[Grafana](/intl.en-US/Common BI Tools/Grafana.md)|Yes|
 |[IBM Cognos Analytics](/intl.en-US/Common BI Tools/IBM Cognos Analytics.md)|Yes|
 |[Metabase](/intl.en-US/Common BI Tools/Metabase.md)|Yes|
