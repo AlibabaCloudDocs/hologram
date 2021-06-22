@@ -36,7 +36,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         |null|支持|-|
         |unique|不支持|不支持|
         |check|不支持|不支持|
-        |default|不支持|不支持|
+        |default|支持|不支持|
 
     3.  set\_table\_property为表设置属性，详请参见[设置表属性](#section_l9q_k83_z01)。
 3.  **使用限制**
@@ -120,8 +120,8 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     call set_table_property('table_name', 'distribution_key', '[columnName[,...]]');
     call set_table_property('table_name', 'clustering_key', '[columnName{:[desc|asc]} [,...]]'); 
     call set_table_property('table_name', 'event_time_column', '[columnName [,...]]');
-    call set_table_property('table_name', 'bitmap_columns', '[columnName [,...]]');
-    call set_table_property('table_name', 'dictionary_encoding_columns', '[columnName [,...]]');
+    call set_table_property('table_name', 'bitmap_columns', '[columnName{:[on|off]}[,...]]');
+    call set_table_property('table_name', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
     call set_table_property('table_name', 'time_to_live_in_seconds', '<non_negative_literal>');
     ```
 
@@ -146,7 +146,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         ```
 
         -   orientation：指定了数据库表在Hologres中的存储模式是列存还是行存，当前版本仅支持一种数据存储方式。
-        -   在Hologres中表默认为列存（column store）形式。**列存对于OLAP场景较为友好，适合各种复杂查询，行存对于kv场景比较友好，适合基于primary key的点查和扫描scan**。
+        -   在Hologres中表默认为列存（column store）形式。**列存对于OLAP场景较为友好，适合各种复杂查询、数据关联、扫描、过滤、统计。行存对于key-value场景比较友好，适合基于primary key的点查和扫描scan**。列存会默认创建更多的索引，包括对字符串类型创建bitmap索引，这些索引可以显著加速查询过滤和统计，因此列比较多的表，会占用更多的存储空间，您可以通过关闭这些默认创建的索引，释放空间。行存默认仅对主键创建索引，仅支持主键的快速查询，因此使用的存储空间更少，但使用场景也受到限制。
         -   使用示例
 
             ```
@@ -173,7 +173,10 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
         -   columnName部分如设置单列，不要有多余空格。如设置多列，则以逗号分隔，同样不要有多余的空格。
         -   distribution\_key指定的列或列组合不支持Float、Double、Numeric、Array、Json及其他复杂数据类型。
         -   当表中有primary key时，distribution\_key默认为primary key。distribution\_key必须为primary key或者primary key中的部分字段（不能为空），同一记录的数据只能属于一个shard。当表中没有primary key时，对distribution\_key没有限制，可以为空（不指定任何列）。如果distribution\_key为空，即随机shuffle，数据随机分布到不同shard上。当distribution\_key对应列的值为空时，当作“”（空串）看待。
-        -   Hologres中，数据库表默认为随机分布形式。数据将被随机分配到各个shard上。如果制定了分布列，数据将按照指定列，将数据shuffle到各个shard，同样的数值肯定会在同样的shard中。当以分布列做过滤条件时，Hologres可以直接筛选出数据相关的shard进行扫描。当以分布列做join条件时，Hologres不需要再次将数据shuffle到其他计算节点，直接在本节点join本节点数据即可，可以大大提高执行效率。
+        -   Hologres中，distribution\_key是非常重要的分布式概念。合理的设置distribution\_key可以达到如下效果：
+            -   提高性能。不同的Shard可以进行并行计算，从而提高性能。
+            -   提高QPS。当您以distribution\_key做过滤条件时，Hologres可以直接筛选出数据相关的Shard进行扫描。否则，Hologres需要让所有的Shard参与计算，会影响QPS。
+            -   提高Join性能。当两张表在同一个Table Group内，并且Join key是distribution\_key时，那么数据分布已保证表A一个Shard内的数据和表B同一Shard内的数据对应，只需要直接在本节点Join本节点数据（Local Join）即可，可以大大提高执行效率。
         -   使用示例
 
             ```
@@ -200,12 +203,12 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     3.  **clustering\_key**
 
         ```
-        call set_table_property('<table_name>', 'clustering_key', '[columnName{:[asc]} [,...]]');
+        call set_table_property('tbl', 'clustering_key', '[columnName{:[desc|asc]} [,...]]');
         ```
 
         -   clustering\_key：在指定的列上建立聚簇索引。Hologres会在聚簇索引上对数据进行排序，建立聚簇索引能够加速在索引列上的range和filter查询。
         -   clustering\_key指定的列必须满足非空约束（not null），不支持Float、Double、Array、Json及其他复杂数据类型。
-        -   clustering\_key指定列时，可在列名后添加 ：`asc`来表明构建索引时的排序方式。`asc`表示升序。
+        -   clustering\_key指定列时，可在列名后添加 ：`asc`或`desc`来表明构建索引时的排序方式。`asc`表示升序，为默认方式，`desc`表示降序。
         -   列存表的clustering\_key默认为空。行存表的clustering\_key默认为主键 （V0.9之前的版本默认不设置）。如果clustering\_key的设和主键不同的，那么Hologres会为这张表生成两个排序（primary key排序和clustering\_key排序），会造成数据冗余。
         -   由于clustering\_key用于排序，所以clustering key里的列组合排在前面的优先级更高，clustering\_key建议仅保留1～2列。
         -   clustering\_key可以用于在clustering index最开始几列的range和filter的加速查询，即**查询具备左匹配原则，不匹配则无法利用clustering\_key查询加速**。
@@ -235,17 +238,17 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             -------------------------------------------------------------
             begin;
             create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'clustering_key', 'asc');
+            call set_table_property('tbl', 'clustering_key', 'a:desc,b:asc');
             commit;
             ```
 
     4.  **event\_time\_column**
 
         ```
-        call set_table_property('<table_name>', 'event_time_column', '[columnName{:[desc|asc]} [,...]]');
+        call set_table_property('table_name', 'event_time_column', '[columnName [,...]]');
         ```
 
-        -   event\_time\_column：原名为segment\_key，在 V0.9 版本默认改名为event\_time\_column，segment\_key依旧向下兼容使用。其用途为指定一些列（例如，时间列）作为分段键，当查询条件包含分段列时，查询可以通过event\_time\_column快速找到相应数据对应的存储位置。
+        -   event\_time\_column：原名为segment\_key，在 V0.9 版本默认改名为event\_time\_column，segment\_key依旧向下兼容使用。其用途为指定时间列作为分段键，必须为时间类型强相关的列 （如果数据有更新的话，需要和update time强相关）。当查询条件包含event\_time\_column时，查询可以通过event\_time\_column快速找到相应数据对应的存储位置。适用于日志、流量等和时间强相关的数据，合理设置可极大提升性能。
         -   设置event\_time\_column要求orientation为column，即列存表。
         -   event\_time\_column指定的列必须满足非空约束（not null），不支持Float、Double、Array、Json及其他复杂数据类型。
         -   列存表默认将table schema中的第一个非空的timestamp/timestamptz的字段作为event\_time\_column，如果不存在这样的字段，则默认将第一个非空的date类型的字段作为event\_time\_column （V0.9之前的版本默认为空）。
@@ -303,7 +306,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     6.  **dictionary\_encoding\_columns**
 
         ```
-        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off]}[,...]]');
+        call set_table_property('<table_name>', 'dictionary_encoding_columns', '[columnName{:[on|off|auto]}[,...]]');
         ```
 
         其中，参数说明如下表所示：
