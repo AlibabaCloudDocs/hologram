@@ -25,7 +25,7 @@ When you create a foreign table in Hologres to access OSS data, take note of the
     create extension oss_fdw;
     ```
 
--   Only specific data types are supported, including STRING, TEXT, BIGINT, INT, FLOAT, DOUBLE, BOOLEAN, and DATE.
+-   Only specific data types are supported, including STRING, TEXT, BIGINT, INT, FLOAT, DOUBLE PRECISION, BOOLEAN, and DATE.
 -   When you query data in a table, the first N rows of the table cannot be skipped.
 -   Hologres allows you to query OSS data by creating foreign tables. If you need to import OSS data to Hologres, we recommend that you use the data integration feature. For more information, see [Hologres Reader]().
 
