@@ -4,11 +4,7 @@ keyword: [Holo Client, Hologres]
 
 # Read and write data by using Holo Client
 
-This topic describes how to use Holo Client.
-
-## Background information
-
-Holo Client is developed by the Hologres team based on Java Database Connectivity \(JDBC\). Holo Client allows you to write a large amount of data at a time and perform point queries that support high QPS. For example, you can use Holo Client to synchronize a large amount of data to Hologres in real time or query data in a table that is associated with a dimension table. Holo Client automatically collects data in batches to improve the read/write performance and throughput.
+Holo Client is developed by the Hologres team based on Java Database Connectivity \(JDBC\). Holo Client allows you to write a large amount of data at a time and perform point queries that support high queries per second \(QPS\). For example, you can use Holo Client to synchronize a large amount of data to Hologres in real time or query data in a table that is associated with a dimension table. Holo Client automatically collects data in batches to improve the read/write performance and throughput. This topic describes how to use Holo Client.
 
 ## Usage notes
 
@@ -39,21 +35,29 @@ Holo Client depends on a special version of the PostgreSQL JDBC driver. Before y
     <dependency>
       <groupId>com.alibaba.hologres</groupId>
       <artifactId>holo-client</artifactId>
-      <version>1.2.10.2</version>
+      <version>1.2.13.5</version>
     </dependency>
     ```
 
 -   Gradle
 
     ```
-    implementation 'com.alibaba.hologres:holo-client:1.2.10.2'
+    implementation 'com.alibaba.hologres:holo-client:1.2.13.5'
     ```
 
+
+## Known issues in Holo Client versions
+
+-   In Holo Client V1.2.8, if the `INSERT_OR_IGNORE` or `INSERT_OR_UPDATE` policy is used, data may not be sorted for INSERT and DELETE operations. This issue is fixed in V1.2.10.3.
+-   In Holo Client V1.2.6, the `GetBuilder.withSelectedColumns` method does not take effect. All columns instead of selected columns are specified each time. This issue is fixed in V1.2.12.1.
+-   In Holo Client V1.2.9.1, if `withSelectedColumn` is specified for the SCAN operation, data cannot be queried. This issue is fixed in V1.2.12.1.
+-   In Holo Client V1.2.0, if the primary key contains columns of the BYTEA type, results cannot be returned for GET requests and data may not be sorted for PUT requests. This issue is fixed in V1.2.12.1.
+-   In Holo Client V1.2.0, if the value of a hash partition key is `Integer.MIN_VALUE`, data may fail to be written. This issue is fixed in V1.2.12.1.
 
 ## Limits on connections
 
 -   The number of connections that Holo Client establishes at a time cannot exceed the result of the Max\(writeThreadSize,readThreadSize\) function.
--   A connection is released if it does not send or receive data by the time the idle timeout period specified by the connectionMaxIdleMs parameter elapses.
+-   A connection is released if it does not send or receive data by the time the idle timeout period that is specified by the connectionMaxIdleMs parameter elapses.
 -   If the remaining quota of connections for your Hologres instance is insufficient, Holo Client automatically creates connections to meet your business needs.
 
 ## Write data
@@ -66,7 +70,7 @@ We recommend that you use Holo Client in a singleton pattern and manage the conc
     -   Sample code
 
         ```
-        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
         HoloConfig config = new HoloConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -89,11 +93,11 @@ We recommend that you use Holo Client in a singleton pattern and manage the conc
 -   **Write data to a partitioned table**
     -   If partitions exist, Holo Client routes data to the corresponding partitions in the partitioned table, regardless of the value of the DynamicPartition parameter.
     -   If partitions do not exist and the DynamicPartition parameter is set to true, Holo Client creates the required partitions. If partitions do not exist and the DynamicPartition parameter is set to false, an error is returned.
-    -   You can obtain favorable performance when you write data to a partitioned table in an instance of Hologres V0.9 or a later version that is officially released. Hologres V0.8 is released in canary release mode. If you want to write data to a partitioned table in an instance of Hologres V0.8, we recommend that you write the data to a temporary table, and then execute the INSERT INTO SELECT statement to write the data to the partitioned table. This ensures favorable write performance.
+    -   You can obtain favorable performance when you write data to a partitioned table in an instance of Hologres V0.9 or a later version that is officially released. If you want to write data to a partitioned table in an instance of Hologres V0.8, we recommend that you write the data to a temporary table, and then execute the `INSERT INTO SELECT` statement to write the data to the partitioned table. This ensures favorable write performance.
         -   Sample code
 
             ```
-            // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+            // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
             HoloConfig config = new HoloConfig();
             config.setJdbcUrl(url);
             config.setUsername(username);
@@ -120,7 +124,7 @@ We recommend that you use Holo Client in a singleton pattern and manage the conc
     -   Sample code
 
         ```
-        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
         HoloConfig config = new HoloConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -153,7 +157,7 @@ We recommend that you use Holo Client in a singleton pattern and manage the conc
     -   Sample code
 
         ```
-        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
         HoloConfig config = new HoloConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -184,7 +188,7 @@ Holo Client allows you to read data based on a complete primary key or by perfor
     -   Sample code
 
         ```
-        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
         HoloConfig config = new HoloConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -206,7 +210,7 @@ Holo Client allows you to read data based on a complete primary key or by perfor
     -   Sample code
 
         ```
-        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db. Replace host:port with an endpoint of the destination Hologres instance and db with the name of the destination Hologres database.
+        // Set the parameters. Specify the JDBC URL in the format of jdbc:postgresql://host:port/db.
         HoloConfig config = new HoloConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -216,8 +220,18 @@ Holo Client allows you to read data based on a complete primary key or by perfor
             TableSchema schema0 = client.getTableSchema("t0");
             
             Scan scan = Scan.newBuilder(schema).addEqualFilter("id", 102).addRangeFilter("name", "3", "4").withSelectedColumn("address").build();
-            // This statement is equivalent to the select address from t0 where id=102 and name>=3 and name<4 statement. 
+            // This statement is equivalent to the select address from t0 where id=102 and name>=3 and name<4 order by id; statement.
             int size = 0;
+            try (RecordScanner rs = client.scan(scan)) {
+                while (rs.next()) {
+                    Record record = rs.getRecord();
+                    //handle record
+                }
+            }
+            // Data is not sorted.
+            scan = Scan.newBuilder(schema).addEqualFilter("id", 102).addRangeFilter("name", "3", "4").withSelectedColumn("address").setSortKeys(SortKeys.NONE).build();
+            // This statement is equivalent to the select address from t0 where id=102 and name>=3 and name<4; statement. 
+            size = 0;
             try (RecordScanner rs = client.scan(scan)) {
                 while (rs.next()) {
                     Record record = rs.getRecord();
@@ -302,7 +316,7 @@ The sample code in this topic involves the parameters in the HoloConfig object. 
     |---------|--------|-----------|-------|
     |jdbcUrl|Yes|The URL of the JDBC connection. The URL is in the format of `jdbc:postgresql://host:port/db` and includes the following variables:    -   `host:port`: the endpoint of the destination Hologres instance.
     -   `db`: the name of the destination Hologres database.
-You can view the required information from the **Configurations** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).|1.2.3|
+You can view the required information on the **Configurations** tab of the instance details page in the [Hologres console](https://hologram.console.aliyun.com/#/instance).|1.2.3|
     |username|Yes|The AccessKey ID of your Alibaba Cloud account. You can obtain the AccessKey ID from the [Security Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|1.2.3|
     |password|Yes|The AccessKey secret of your Alibaba Cloud account. You can obtain the AccessKey secret from the [Security Management](https://usercenter.console.aliyun.com/?spm=5176.2020520153.nav-right.dak.3bcf415dCWGUBj#/manage/ak) page.|1.2.3|
     |appName|No|The name of the application that uses the JBDC connection. Default value: `holo-client`.|1.2.9.1|
@@ -333,6 +347,7 @@ You can view the required information from the **Configurations** tab of the ins
     -   If the destination column is of the DATE, TIMESTAMP, or TIMESTAMPTZ type, the null value is converted to 1970-01-01 00:00:00.
 |1.2.6|
     |defaultTimeStampText|null|The default value that is used to replace the null value to be written to a column of the DATE, TIMESTAMP, or TIMESTAMPTZ type. This parameter takes effect when the enableDefaultForNotNullColumn parameter is set to true.|1.2.6|
+    |reWriteBatchedDeletes|true|Specifies whether to combine multiple DELETE requests in an SQL statement to improve performance.|1.2.12.1|
 
 -   **Data reading configurations**
 
@@ -341,7 +356,7 @@ You can view the required information from the **Configurations** tab of the ins
     |readThreadSize|1|The number of concurrent threads to perform a point query. Each thread occupies one connection.|1.2.4|
     |readBatchSize|128|The maximum number of requests allowed in a batch in a thread to perform a point query.|1.2.3|
     |readBatchQueueSize|256|The maximum number of queued requests allowed in a thread to perform a point query.|1.2.4|
-    |scanFetchSize|256|The number of rows of data fetched by performing a SCAN operation.|1.2.9.1|
+    |scanFetchSize|256|The number of rows of data fetched after a SCAN operation is performed.|1.2.9.1|
     |scanTimeoutSeconds|256|The maximum period of time to wait for a SCAN operation to complete.|1.2.9.1|
 
 -   **Connection configurations**
