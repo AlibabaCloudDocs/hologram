@@ -10,7 +10,7 @@ keyword: [Hologres, IP白名单, Holoweb]
 
 在Holoweb中设置IP白名单之前，您需要注意如下事项：
 
--   仅Hologres V0.9及以上版本支持设置IP白名单，如果您的实例是V0.9以下版本，请您[提交工单](https://workorder-intl.console.aliyun.com/)或加入在线支持钉钉群申请升级实例。
+-   仅Hologres V0.10.14及以上版本支持设置IP白名单，如果您的实例是V0.10.14以下版本，请您[提交工单](https://workorder-intl.console.aliyun.com/)或加入在线支持钉钉群申请升级实例。
 -   [购买Hologres](/intl.zh-CN/准备工作/购买Hologres.md)实例成功后，若是没有设置IP白名单， 则默认对所有网络开放。
 -   仅支持实例管理员（Superuser）设置IP白名单。
 -   在Holoweb配置数据连接时，需要将连接的登录方式设置为当前用户免密登录，才可以为当前连接配置IP白名单。连接Hologres实例配置操作指导，请参见[连接Hologres实例](/intl.zh-CN/快速入门/HoloWeb快速入门.md)。
