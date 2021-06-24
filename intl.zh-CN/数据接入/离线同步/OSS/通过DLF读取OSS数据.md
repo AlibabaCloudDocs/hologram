@@ -8,9 +8,9 @@ keyword: [Hologres, DLF]
 
 -   您已开通Hologres实例并连接开发工具，并保证Hologres实例为V0.10及以上版本。本文以连接HoloWeb为例，详请参见[HoloWeb快速入门](/intl.zh-CN/快速入门/HoloWeb快速入门.md)。
 -   您已开通OSS并上传数据，详请参见[开始使用OSS](/intl.zh-CN/快速入门/开始使用OSS.md)。
--   您已开通DLF，详请参见[快速入门]()。
+-   您已开通DLF。
 
-阿里云数据湖构建（Data Lake Formation，DLF）是一款全托管的快速帮助用户构建云上数据湖的服务，产品提供了云上数据湖统一的权限管理、数据湖元数据管理和元数据自动抽取能力，更多关于DLF介绍请参见[DLF产品简介]()。
+阿里云数据湖构建（Data Lake Formation，DLF）是一款全托管的快速帮助用户构建云上数据湖的服务，产品提供了云上数据湖统一的权限管理、数据湖元数据管理和元数据自动抽取能力。
 
 DLF使用阿里云对象存储（Object Storage Service，OSS）作为云上数据湖的统一存储，从Hologres V0.10版本开始，支持以外表方式通过DLF读取OSS中的数据，方便快捷，降低开发的复杂度和运维成本。
 
@@ -33,7 +33,7 @@ DLF使用阿里云对象存储（Object Storage Service，OSS）作为云上数�
 
 ## 通过DLF读取OSS数据
 
-在开始之前，您需要在DLF中准备元数据表，并保证该表中已抽取数据，详请参见[元数据管理]()。在Hologres中以外部表方式通过DLF访问OSS的数据操作步骤如下：
+在开始之前，您需要在DLF中准备元数据表，并保证该表中已抽取数据。在Hologres中以外部表方式通过DLF访问OSS的数据操作步骤如下：
 
 1.  创建extension
 
