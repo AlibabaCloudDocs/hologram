@@ -82,7 +82,7 @@ The **QPS** metric indicates the average number of SQL statements that are execu
 
 ## Query Latency \(ms\)
 
-The **Query Latency \(ms\)** metric indicates the average RT of SQL statements. This includes the SELECT, INSERT, UPDATE, and DELETE statements. You can query slow query logs to analyze the query latency. For more information, see [t2069482.md\#]().
+The **Query Latency \(ms\)** metric indicates the average RT of SQL statements. This includes the SELECT, INSERT, UPDATE, and DELETE statements. You can query slow query logs to analyze the query latency. For more information, see [Query and analyze slow query logs \(beta\)](/intl.en-US/Monitoring And Alerting/Query and analyze slow query logs (beta).md).
 
 ## Real-time Import \(RPS\)
 
