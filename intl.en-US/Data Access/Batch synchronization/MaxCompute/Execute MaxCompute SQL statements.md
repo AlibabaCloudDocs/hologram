@@ -124,7 +124,7 @@ You can execute MaxCompute SQL statements in Hologres. If you execute the CREATE
     1.  Create a Hologres internal table whose data is to be exported to MaxCompute. For example, use the following DDL statements to create a table named holo\_table and insert the sample data into the table:
 
         ```
-        creat table "public"."holo_table" (
+        create table "public"."holo_table" (
          "id" int4,
          "name" text
         );
