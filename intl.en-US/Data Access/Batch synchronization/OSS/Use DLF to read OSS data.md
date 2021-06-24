@@ -8,9 +8,9 @@ This topic describes how to use Data Lake Formation \(DLF\) to read Object Stora
 
 -   Hologres is activated. The version of your Hologres instance is V0.10 or later. A development tool is connected to your Hologres instance. In this example, HoloWeb is used. For more information, see [HoloWeb quick start](/intl.en-US/Quick Start/HoloWeb quick start.md).
 -   OSS is activated. Data is uploaded to an OSS bucket. For more information, see [Get started with OSS](/intl.en-US/Quick Start/Get started with OSS.md).
--   DLF is activated. For more information, see [Quick start]().
+-   DLF is activated.
 
-Alibaba Cloud DLF is a fully managed service that helps you build data lakes in the cloud. The service provides unified permission management, unified metadata management, and automatic metadata extraction capabilities for data lakes in the cloud. For more information about DLF, see [Product introduction]().
+Alibaba Cloud DLF is a fully managed service that helps you build data lakes in the cloud. The service provides unified permission management, unified metadata management, and automatic metadata extraction capabilities for data lakes in the cloud.
 
 DLF uses Alibaba Cloud OSS as the data store of data lakes in the cloud. In Hologres V0.10 and later, Hologres allows you to use DLF to read OSS data by creating foreign tables in a convenient and fast way. This simplifies data development and reduces O&M costs.
 
@@ -33,7 +33,7 @@ When you use DLF to read OSS data by creating a foreign table in Hologres, take 
 
 ## Use DLF to read OSS data
 
-Before you start, you must prepare a metadata table in DLF and ensure that the metadata is extracted in the table. For more information, see [Metadata management](). To use DLF to read OSS data by creating a foreign table in Hologres, perform the following steps:
+Before you start, you must prepare a metadata table in DLF and ensure that the metadata is extracted in the table. To use DLF to read OSS data by creating a foreign table in Hologres, perform the following steps:
 
 1.  Install an extension.
 
