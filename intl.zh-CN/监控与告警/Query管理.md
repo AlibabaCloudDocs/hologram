@@ -33,7 +33,7 @@ pg\_stat\_activity视图的参数说明如下所示：
 |datname|Hologres后端连接到的数据库的名称。|
 |pid|Hologres后端的进程ID。|
 |usesysid|登录到Hologres后端的用户OID。|
-|usename|当前连接的用户名。`holo_admin`是Hologres内置的服务账号，运行结果显示为PSQL，该连接是必要的。如果您的连接数未超出当前实例的最大限度，不需要针对此连接进行优化。连接数查询方式，请参见[\#d7e214](#d7e214)。 |
+|usename|当前连接的用户名。`holo_admin`是Hologres内置的服务账号，运行结果显示为PSQL，该连接是必要的。如果您的连接数未超出当前实例的最大限度，不需要针对此连接进行优化。连接数查询方式，请参见[查询连接信息](/intl.zh-CN/监控与告警/连接数管理.md)。 |
 |application\_name|客户端的应用类型。|
 |client\_addr|客户端的IP地址。显示的IP地址可能是被解析过的，不保证一定是源端IP。 |
 |client\_hostname|客户端的主机名。|
@@ -64,7 +64,7 @@ pg\_stat\_activity视图的参数说明如下所示：
 
 ## 查看SQL运行信息
 
-Superuser可以查看所有用户的SQL运行信息，RAM用户只能查看自己的SQL运行信息。更多关于参数的说明，请参见[表 参数说明](#table_0qg_o57_hp7)。
+Superuser可以查看所有用户的SQL运行信息，RAM用户只能查看自己的SQL运行信息。更多关于参数的说明，请参见[参数说明](#section_gnd_zky_4q7)。
 
 1.  您可以通过如下语句查看当前实例内用户的SQL运行信息。
 
@@ -83,7 +83,7 @@ Superuser可以查看所有用户的SQL运行信息，RAM用户只能查看自�
 
 ## 查看耗时较长的SQL
 
-您可以通过如下语句查看当前实例耗时较长的SQL。更多关于参数的说明，请参见[表 参数说明](#table_0qg_o57_hp7)。
+您可以通过如下语句查看当前实例耗时较长的SQL。更多关于参数的说明，请参见[参数说明](#section_gnd_zky_4q7)。
 
 ```
 select current_timestamp - query_start as runtime, datname, usename, query,pid
@@ -115,7 +115,7 @@ runtime     |    datname     | usename  | pid    |      current_query
 
 -   使用SQL语句终止Query。
 
-    更多关于参数的说明，请参见[表 参数说明](#table_0qg_o57_hp7)。
+    更多关于参数的说明，请参见[参数说明](#section_gnd_zky_4q7)。
 
     -   取消当前连接上的Query。
 
