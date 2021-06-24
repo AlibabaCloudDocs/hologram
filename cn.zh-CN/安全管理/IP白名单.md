@@ -10,21 +10,20 @@ keyword: [Hologres, IP白名单, Holoweb]
 
 在Holoweb中设置IP白名单之前，您需要注意如下事项：
 
--   仅Hologres V0.10.14及以上版本支持设置IP白名单，如果您的实例是V0.10.14以下版本，请您[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)或加入在线支持钉钉群申请升级实例。
+-   仅Hologres V0.10.14及以上版本支持设置IP白名单，请在Hologres管理控制台的实例详情页或者执行命令`select hg_version()`查看当前实例版本。如果您的实例是V0.10.14以下版本，可以[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)或加入在线支持钉钉群申请升级实例。
 -   [购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)实例成功后，若是没有设置IP白名单， 则默认对所有网络开放。
 -   仅支持实例管理员（Superuser）设置IP白名单。
 -   在Holoweb配置数据连接时，需要将连接的登录方式设置为当前用户免密登录，才可以为当前连接配置IP白名单。连接Hologres实例配置操作指导，请参见[连接Hologres实例](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 
     ![当前用户免密登录](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9962371161/p232918.png)
 
--   为避免设置白名单之后，Hologres管理控制台、HoloStudio或Holoweb不能访问。因此，您需要按照[新增IP白名单](#section_hsq_vod_xpd)的操作指导，将其对应的分组加入到IP白名单，保证正常访问。
+-   设置白名单之后，HoloStudio将不能访问。因此，您需要按照[新增IP白名单](#section_hsq_vod_xpd)的操作指导，将其对应的分组加入到IP白名单，保证正常访问。
 
     |分组|说明|
     |--|--|
-    |HologresConsoleGroup|加入该分组后可以访问Hologres管理控制台。|
     |HoloStudioGroup|加入该分组后可以访问HoloStduio。|
-    |HoloWebGroup\_xxxx|加入该分组后可以访问HoloWeb。|
 
+-   如果DataWorks数据集成资源组和Hologres实例网络已连通，但资源组仍然无法访问您的Hologres，则需要获取资源组的IP地址与网段，添加至数据库的白名单中，获取资源组的IP地址与网段，请参见[添加白名单]()。
 
 ## 新增IP白名单
 
