@@ -283,5 +283,5 @@ If queries do not meet your expectations, you can cancel them as needed by using
 
 ## Query slow query logs
 
-In Hologres V0.10 and later, you can query slow query logs. For more information, see [t2069482.md\#]().
+In Hologres V0.10 and later, you can query slow query logs. For more information, see [Query and analyze slow query logs \(beta\)](/intl.en-US/Monitoring And Alerting/Query and analyze slow query logs (beta).md).
 
