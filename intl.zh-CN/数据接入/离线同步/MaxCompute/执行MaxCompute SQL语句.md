@@ -5,7 +5,7 @@
 ## 前提条件
 
 -   已开通Hologres并连接开发工具，本文使用HoloWeb，详请参见[HoloWeb快速入门](/intl.zh-CN/快速入门/HoloWeb快速入门.md)。
--   已开通MaxCompute，详请参见[通过查询编辑器使用MaxCompute]()。
+-   已开通MaxCompute，详请参见[开通MaxCompute和DataWorks](/intl.zh-CN/准备工作/开通MaxCompute.md)。
 -   在Hologres中执行MaxCompute SQL需要当前用户具有在MaxCompute中执行SQL的权限。关于MaxCompute的权限，详请参见[用户与权限管理](/intl.zh-CN/安全管理/安全管理基础/用户与权限管理.md)。
 
 ## 使用限制
