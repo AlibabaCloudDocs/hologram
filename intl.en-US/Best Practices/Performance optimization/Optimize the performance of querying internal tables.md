@@ -1,5 +1,5 @@
 ---
-keyword: [best practice, optimize the performance of querying internal tables, Hologres]
+keyword: [best practices, optimize the performance of querying internal tables, Hologres]
 ---
 
 # Optimize the performance of querying internal tables
@@ -55,7 +55,7 @@ We recommend that you run the `analyze` command in the following scenarios:
 
 You can check whether statistics information is updated by using one of the following methods:
 
--   Query the settings in the analyze\_tuple column in the system table named hologres.hg\_table\_properties to check whether the number of rows is correct. Alternatively, you can view the value of the rows parameter in the Scan node.
+-   Query the settings of the analyze\_tuple column in the system table named hologres.hg\_table\_properties to check whether the number of rows is correct. Alternatively, you can view the value of the rows parameter in the Scan node.
 -   Query the system table named hologres.hg\_stats and display its information, such as the histogram of each column, average width, and number of distinct values, as shown in the following figure.
 
     ![Others](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9855013061/p162996.png)
@@ -65,7 +65,7 @@ You can check whether statistics information is updated by using one of the foll
 
 The number of shards affects the DOP of queries. Its setting is critical to query performance. If only a few shards are available, the DOP is low. Excessive shards may lead to increased query startup overhead and reduced query efficiency. You can improve query efficiency by setting an appropriate number of shards based on the instance specifications.
 
-The number of shards is pre-allocated based on the instance type of a Hologres instance. The default number of shards for an instance equals the number of CPU cores that are used for core queries in the instance. The number of CPU cores that are used for core queries is slightly smaller than the number of purchased CPU cores. The purchased CPU cores are allocated to different nodes such as query nodes, access nodes, control nodes, and scheduling nodes. For more information about the default numbers of shards for instances of different instance types, see [Instance types](/intl.en-US/Manage Instances/Instance types.md). After an instance is scaled up, the number of shards is not automatically changed. You can change the number of shards based on your business requirements.
+The number of shards is pre-allocated based on the instance type of a Hologres instance. The default number of shards for an instance equals the number of CPU cores that are used for core queries in the instance. The number of CPU cores that are used for core queries is slightly smaller than the number of purchased CPU cores. The purchased CPU cores are allocated to different nodes such as query nodes, access nodes, control nodes, and scheduling nodes. For more information about the default numbers of shards for instances of different instance types, see [Instance types](/intl.en-US/Manage Instances/Instance types.md). After an instance is scaled up, the number of shards is not automatically changed for a database created before the instance is scaled up. You must change the number of shards based on your business requirements. For a database created after the instance is scaled up, the number of shards is determined based on the new instance type.
 
 You must change the number of shards in the following scenarios:
 
@@ -92,7 +92,7 @@ To change the number of shards, perform the followings steps:
     select * from hologres.hg_table_group_properties;
     ```
 
-    ![Number of shards](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1307790261/p239859.png)
+    ![shard_count](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1307790261/p239859.png)
 
 3.  Change the number of shards.
 
@@ -114,7 +114,7 @@ A distribution key is used to evenly divide data into multiple shards. This can 
 
 -   Specify the join keys as the distribution keys.
 
-    For example, the execution result of the explain command indicates that the execution plan for querying Table tmp and Table tmp1 contains a redistribution operation, but no local JOIN operation. As a result, query efficiency is low. You need to re-create the two tables and specify the distribution keys as the join keys. This avoids the extra overhead caused by data redistribution when multiple tables are joined.
+    For example, the execution result of the explain command indicates that the execution plan for querying Table tmp and Table tmp1 contains a redistribution operation, but no local JOIN operation. As a result, query efficiency is low. You must re-create the two tables and specify the distribution keys as the join keys. This avoids additional overhead caused by data redistribution when multiple tables are joined.
 
     ![motion](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9855013061/p163980.png)
 
@@ -275,9 +275,9 @@ commit;
     |Bitmap Columns|Bitmap index|Used in files. Bitmaps are created for data in a file based on this index. For equivalent queries, Hologres can encode data of each row by value, and perform bit operations to find the rows where data resides. The time complexity is O\(1\).
 
 |Use an equivalent query column as the bitmap index.|`select * from tb1 where a =100;`|
-    |Segment\_key \(also known as event\_time\_column\)|Segment key|A file-level index. Data is written to files in Append Only mode. Then, small files are merged based on the index. A segment key identifies the boundary of a file. You use the segment key to find the required file.
+    |Segment\_key \(also known as event\_time\_column\)|Segment key|A file-level index. Data is written to files in Append Only mode. Then, small files are merged based on the index. A segment key identifies the boundary of a file. You can use the segment key to find the required file.
 
-A segment key is designed for ordered, range-specific data such as timestamps and dates. Therefore, it has a strong correlation with the time when data is written.
+A segment key is designed for ordered, range-specific data such as timestamps and dates. Therefore, the segment key has a strong correlation with the time when data is written.
 
 |Use this index to filter files. Then, use the bitmap index or clustered index for range or equivalent queries in files. Index-based data filtering complies with the leftmost prefix matching principle. We recommend that you specify only one column. We recommend that you specify the first non-empty timestamp field as the segment key.
 
