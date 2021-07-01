@@ -5,7 +5,7 @@
 ## 前提条件
 
 -   已开通Hologres并连接开发工具，本文使用HoloWeb，详请参见[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
--   已开通MaxCompute，详请参见[快速体验MaxCompute](/cn.zh-CN/快速入门/快速体验MaxCompute.md)。
+-   已开通MaxCompute，详请参见[通过查询编辑器使用MaxCompute](/cn.zh-CN/快速入门/通过查询编辑器使用MaxCompute.md)。
 -   在Hologres中执行MaxCompute SQL需要当前用户具有在MaxCompute中执行SQL的权限。关于MaxCompute的权限，详请参见[用户与权限管理](/cn.zh-CN/安全管理/安全管理基础/用户与权限管理.md)。
 
 ## 使用限制
@@ -121,7 +121,7 @@
 
     示例操作将Hologres中非分区数据导入至MaxCompute非分区表。具体如下：
 
-    1.  在Hologres准备一张Hologres内部表（例如：holo\_source），用于导出数据至MaxCompute，示例DDL和数据如下：
+    1.  在Hologres准备一张Hologres内部表（例如：holo\_table），用于导出数据至MaxCompute，示例DDL和数据如下：
 
         ```
         create table "public"."holo_table" (
