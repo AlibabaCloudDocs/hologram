@@ -8,7 +8,7 @@ keyword: [Hologres, DLF]
 
 -   您已开通Hologres实例并连接开发工具，并保证Hologres实例为V0.10及以上版本。本文以连接HoloWeb为例，详请参见[HoloWeb快速入门](/cn.zh-CN/快速入门/HoloWeb快速入门.md)。
 -   您已开通OSS并上传数据，详请参见[开始使用OSS](/cn.zh-CN/快速入门/开始使用OSS.md)。
--   您已开通OSS，详请参见[快速入门]()。
+-   您已开通DLF，详请参见[快速入门]()。
 
 阿里云数据湖构建（Data Lake Formation，DLF）是一款全托管的快速帮助用户构建云上数据湖的服务，产品提供了云上数据湖统一的权限管理、数据湖元数据管理和元数据自动抽取能力，更多关于DLF介绍请参见[DLF产品简介]()。
 
