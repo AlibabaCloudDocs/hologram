@@ -8,7 +8,7 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
 ## 使用限制
 
-通过JDBC写入数据至Hologres需要使用42.2.2及以上的Postgres JDBC Driver。
+通过JDBC写入数据至Hologres需要使用42.2.18及以上的Postgres JDBC Driver。
 
 ## 注意事项
 
@@ -29,13 +29,13 @@ keyword: [最佳实践, JDBC, 写入Hologres]
 
     Hologres兼容PostgreSQL 11生态，您可以通过Postgres的[JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql?spm=a2c4g.11186623.2.10.4d6430edjM1H06)连接Hologres的服务。
 
-    建议您选择40.2.x以上的JDBC Driver版本。示例在pom.xml文件中添加42.2.5版本的JDBC Driver。
+    建议您选择40.2.18及以上的JDBC Driver版本。示例在pom.xml文件中添加42.2.18版本的JDBC Driver。
 
     ```
     <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.2.5</version>
+        <version>42.2.18</version>
     </dependency>
     ```
 
