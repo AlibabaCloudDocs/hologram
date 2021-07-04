@@ -37,13 +37,13 @@ TPC-H的测试数据集共包含8张表，相互关系如下图所示。
     -   CentOS 7.9系统。
     -   ESSD数据盘，具体数据容量根据需要测试的数据量大小决定。
     -   建议ECS与Hologres实例在相同地域，使用相同的VPC网络。
-更多关于创建ECS的操作，请参见[创建实例](/cn.zh-CN/实例/创建实例/创建方式导航.md)。|
+更多关于创建ECS的操作，请参见[创建实例](/intl.zh-CN/实例/创建实例/创建方式导航.md)。|
     |2.创建Hologres实例|本次测试环境使用了独享（按量付费）的实例，由于该实例仅用于测试使用，计算资源配置选择8核32G。您可以根据实际业务需求，选择计算资源配置。
 
 登录阿里云，进入[Hologres管理控制台](https://hologram.console.aliyun.com/#/overview)，单击**新增引擎实例**。
 
-更多关于创建Hologres实例的操作，请参见[购买Hologres](/cn.zh-CN/准备工作/购买Hologres.md)。 |
-    |3.创建测试数据库|您需要登录创建的Hologres实例，创建一个数据库。本文示例中命名数据库为**tpch\_1sf**。更多关于创建数据库的操作，请参见[新建数据库](/cn.zh-CN/连接开发工具/HoloWeb/连接管理/数据库.md)。 |
+更多关于创建Hologres实例的操作，请参见[购买Hologres](/intl.zh-CN/准备工作/购买Hologres.md)。 |
+    |3.创建测试数据库|您需要登录创建的Hologres实例，创建一个数据库。本文示例中命名数据库为**tpch\_1sf**。更多关于创建数据库的操作，请参见[新建数据库](/intl.zh-CN/连接开发工具/HoloWeb/连接管理/数据库.md)。 |
 
 -   **生成TCP-H数据**
 
@@ -53,7 +53,7 @@ TPC-H的测试数据集共包含8张表，相互关系如下图所示。
     |----|----|
     |1.准备数据生成工具|准备数据生成工具，您需要执行如下内容：    1.  远程连接ECS实例。
 
-更多关于连接方式的说明，请参见[连接方式概述](/cn.zh-CN/实例/连接实例/连接方式概述.md)。
+更多关于连接方式的说明，请参见[连接方式概述](/intl.zh-CN/实例/连接实例/连接方式概述.md)。
 
     2.  连接实例后，执行`yum update`，更新所有库。
     3.  执行`yum install git`，安装git。
@@ -94,7 +94,7 @@ OLAP查询场景测试，您需要创建表并导入数据。数据导入完成�
         yum install postgresql-server
         ```
 
-    2.  安装psql后，您可以使用如下命令登录Hologres实例。更多关于参数的说明，请参见[连接psql参数说明](/cn.zh-CN/连接开发工具/psql客户端.md)。
+    2.  安装psql后，您可以使用如下命令登录Hologres实例。更多关于参数的说明，请参见[连接psql参数说明](/intl.zh-CN/连接开发工具/psql客户端.md)。
 
         ```
         PGUSER=<AccessID> PGPASSWORD=<AccessKey> psql -p <Port> -h <Endpoint> -d <Database>
@@ -295,8 +295,8 @@ OLAP查询场景测试，您需要创建表并导入数据。数据导入完成�
 
     您可以使用如下方式导入数据：
 
-    -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/cn.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#table_8lb_57o_71n)中生成的TPC-H数据。
-    -   您也可以在数据生成工具的目录中，使用如下shell脚本导入数据。更多关于参数的说明，请参见[参数说明](/cn.zh-CN/连接开发工具/psql客户端.md)。
+    -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/intl.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#table_8lb_57o_71n)中生成的TPC-H数据。
+    -   您也可以在数据生成工具的目录中，使用如下shell脚本导入数据。更多关于参数的说明，请参见[参数说明](/intl.zh-CN/连接开发工具/psql客户端.md)。
 
         ```
         for i in `ls *.tbl`; do
@@ -344,7 +344,7 @@ OLAP查询场景测试，您需要创建表并导入数据。数据导入完成�
         pgbench --version
         ```
 
-    2.  为了方便查询，您可以直接单击[下载TCPH 22条查询语句](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/207600/cn_zh/1621844924898/tpch_data_tpch_query.zip)，并将下载的语句上传至ECS。更多关于上传数据的操作，请参见[上传本地文件到ECS实例](/cn.zh-CN/运维与监控/云助手/使用云助手/上传本地文件到ECS实例.md)。
+    2.  为了方便查询，您可以直接单击[下载TCPH 22条查询语句](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/207600/cn_zh/1621844924898/tpch_data_tpch_query.zip)，并将下载的语句上传至ECS。更多关于上传数据的操作，请参见[上传本地文件到ECS实例](/intl.zh-CN/运维与监控/云助手/使用云助手/上传本地文件到ECS实例.md)。
 
     3.  进入ECS，并访问上传文件的目录，使用如下shell命令解压缩文件。
 
@@ -413,7 +413,7 @@ Key/Value点查场景测试，您需要创建表并导入数据。数据导入�
 
 1.  **创建表**
 
-    Key/Value点查场景测试继续使用OLAP查询场景创建的数据库，使用TPCH数据集中的ORDERS表进行测试。您在使用psql连接Hologres后即可运行如下命令创建表。psql连接Hologres操作，请参见[连接psql参数说明](/cn.zh-CN/连接开发工具/psql客户端.md)。
+    Key/Value点查场景测试继续使用OLAP查询场景创建的数据库，使用TPCH数据集中的ORDERS表进行测试。您在使用psql连接Hologres后即可运行如下命令创建表。psql连接Hologres操作，请参见[连接psql参数说明](/intl.zh-CN/连接开发工具/psql客户端.md)。
 
     **说明：** 由于点查场景需要使用行存表，所以不能使用OLAP查询场景中使用的表，需要新创建一张表。
 
@@ -445,8 +445,8 @@ Key/Value点查场景测试，您需要创建表并导入数据。数据导入�
     您可以使用如下方式导入数据：
 
     -   COPY方式导入数据
-        -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/cn.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#table_8lb_57o_71n)中生成的TPC-H数据。
-        -   您也可以在数据生成工具的目录中，使用如下shell脚本导入数据。更多关于参数的说明，请参见[参数说明](/cn.zh-CN/连接开发工具/psql客户端.md)。
+        -   本文主要使用`COPY FROM STDIN`的方式导入数据。更多关于`COPY FROM STDIN`的详细操作，请参见[使用COPY命令导入本地数据至Hologres](/intl.zh-CN/数据接入/离线同步/本地文件/使用COPY命令导入本地数据至Hologres.md)。此处会将**tbl**数据文件导入Hologres创建的表中，**tbl**为[准备工作](#table_8lb_57o_71n)中生成的TPC-H数据。
+        -   您也可以在数据生成工具的目录中，使用如下shell脚本导入数据。更多关于参数的说明，请参见[参数说明](/intl.zh-CN/连接开发工具/psql客户端.md)。
 
             ```
             PGUSER=<AccessID> PGPASSWORD=<AccessKey> psql -p <Port> -h <Endpoint> -d <Database> -c "COPY public.orders_row from stdin with delimiter '|' csv;" < orders.tbl>
