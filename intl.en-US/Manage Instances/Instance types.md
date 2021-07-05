@@ -55,5 +55,5 @@ Hologres allows you to query and manage the connections to a Hologres instance.
 
 After a Hologres instance is scaled up, more CPU cores are available. This improves the performance of concurrent queries. In most cases, you do not need to change the number of shards. If you need to write more data to Hologres, you can increase the number of shards. This improves the write throughout.
 
-For a row-oriented table, if the number of shards increases, data in this table can be easier read. For information about how to view and change the number of shards for a Hologres instance, see [t2069037.md\#]().
+For a row-oriented table, if the number of shards increases, data in this table can be easier read. For information about how to view and change the number of shards for a Hologres instance, see [Resharding \(Beta\)](/intl.en-US/Hologres SQL/Advanced features/Resharding (Beta).md).
 
