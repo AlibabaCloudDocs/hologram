@@ -92,6 +92,7 @@ set hg_experimental_foreign_table_executor_max_dop = 64;
 
 -   **使用限制**
     -   该功能仅Hologres V0.10及以上版本支持，请在Hologres管理控制台的实例详情页查看当前实例版本，如果您的实例是V0.10以下版本，请您[提交工单](https://selfservice.console.aliyun.com/ticket/createIndex?spm=5176.2020520129.console-base-top.dwork-order-1.29d546aee0gsiH)升级实例。
+    -   该功能仅适用于独享实例，不适用于共享实例。
     -   当前仅对MaxCompute ORC类型的表有加速效果，暂不支持对Cfile等文件进行加速。
     -   请确保[MaxCompute与Hologres的数据类型映射](/cn.zh-CN/Hologres SQL/数据类型/数据类型汇总.md)正确，否则加速效果不明显。
 -   **使用方式**
