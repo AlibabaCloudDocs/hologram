@@ -75,20 +75,20 @@ Superuser可以根据业务情况更改默认参数，以此达到部分性能�
 
     ```
     --session级别，只对当前连接生效。
-    set hg_experimental_auto_check_table_changes_interval = 10min;
+    set hg_experimental_auto_check_table_changes_interval = '10min';
     
     --DB级别，执行后整个DB生效，将<databasename>替换为实际的DB名称。
-    alter database <databasename> set hg_experimental_auto_check_table_changes_interval = 10min;
+    alter database <databasename> set hg_experimental_auto_check_table_changes_interval = '10min';
     ```
 
 -   修改周期性检查所有外表的更新时间间隔，外部表默认每4小时执行一次Auto Analyze。
 
     ```
     --session级别，只对当前连接生效。
-    set hg_experimental_auto_check_foreign_table_changes_interval = 240min;
+    set hg_experimental_auto_check_foreign_table_changes_interval = '240min';
     
     --DB级别，执行后整个DB生效，将<databasename>替换为实际的DB名称。
-    alter database <databasename> set hg_experimental_auto_check_foreign_table_changes_interval = 240min;
+    alter database <databasename> set hg_experimental_auto_check_foreign_table_changes_interval = '240min';
     ```
 
 -   修改扫描表的最大记录数，扫描表的最大记录数默认是224条（16,777,216条），如果表的记录条数超过224条，将不再对超过的记录数自动进行Auto Analyze。
