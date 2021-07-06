@@ -75,20 +75,20 @@ If you are a superuser, you can modify the default implementation settings by co
 
     ```
     -- The feature setting takes effect only on the current session. 
-    set hg_experimental_auto_check_table_changes_interval = 10min;
+    set hg_experimental_auto_check_table_changes_interval = '10min';
     
     -- The feature setting takes effect on the specified database. Replace <databasename> with the name of a database. 
-    alter database <databasename> set hg_experimental_auto_check_table_changes_interval = 10min;
+    alter database <databasename> set hg_experimental_auto_check_table_changes_interval = '10min';
     ```
 
 -   Execute one of the following statements to specify the intervals at which Hologres implements the Auto Analyze feature on foreign tables. By default, Hologres implements the Auto Analyze feature every 4 hours on all foreign tables to check the data changes in these tables.
 
     ```
     -- The feature setting takes effect only on the current session. 
-    set hg_experimental_auto_check_foreign_table_changes_interval = 240min;
+    set hg_experimental_auto_check_foreign_table_changes_interval = '240min';
     
     -- The feature setting takes effect on the specified database. Replace <databasename> with the name of a database. 
-    alter database <databasename> set hg_experimental_auto_check_foreign_table_changes_interval = 240min;
+    alter database <databasename> set hg_experimental_auto_check_foreign_table_changes_interval = '240min';
     ```
 
 -   Execute one of the following statements to specify the maximum number of records that can be scanned each time the Auto Analyze feature is implemented on a table. The default value is 224 \(16,777,216\). Under the default setting, if a table contains more than 224 records, the Auto Analyze feature is not implemented on the excess records.
