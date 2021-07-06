@@ -10,7 +10,7 @@ MaxCompute is a fast and fully managed computing platform for large-scale data w
 
 Hologres is a real-time interactive analytics data warehouse that is compatible with PostgreSQL. Hologres seamlessly integrates with MaxCompute at the underlying layer. Hologres allows you to perform accelerated queries of MaxCompute data by creating foreign tables, without the need to store data in Hologres or import data to and export data from Hologres.
 
-You can also import data to Hologres and query the data. Compared with other similar services that are not oriented for the big data ecosystem, Hologres offers higher performance and faster data import and export.
+You can also import data to Hologres before you query the data. Compared with other similar services that are not oriented for the big data ecosystem, Hologres offers higher performance and faster data import and export.
 
 You can select one of the following query methods based on the business features and scenarios:
 
@@ -20,7 +20,7 @@ You can select one of the following query methods based on the business features
 
     **Note:** The volume of data to be queried is the volume of data in the partitions that hit the filter conditions, not the size of queried fields.
 
--   Import MaxCompute data to Hologres and query the data.
+-   Import MaxCompute data to Hologres before you query the data.
 
     This method is suitable for the following scenarios: the size of a single table to be queried being larger than 200 GB, complex queries, index-based queries, and queries that involve UPDATE and INSERT operations.
 
@@ -39,9 +39,9 @@ When you create a foreign table in Hologres to accelerate queries of MaxCompute 
 
 1.  Create a non-partitioned table in MaxCompute.
 
-    Create a non-partitioned table in MaxCompute and import data to the table. For more information, see [Create and view a table](/intl.en-US/Quick Start/Use MaxCompute through the MaxCompute client/Create and view a table.md). You can also use an existing non-partitioned MaxCompute table.
+    Create a non-partitioned table in MaxCompute and import data to the table. For more information, see [Create tables](/intl.en-US/Quick Start/Use MaxCompute through the MaxCompute client/Create and view a table.md). You can also use an existing non-partitioned MaxCompute table.
 
-    In this example, an existing non-partitioned MaxCompute table is used. You can also execute the following statements to create a non-partitioned table in MaxCompute and import data to the table:
+    In this example, an existing non-partitioned MaxCompute table is used. To create a non-partitioned table in MaxCompute and import data to the table, execute the following statements:
 
     ```
     CREATE TABLE weather (
@@ -56,7 +56,7 @@ When you create a foreign table in Hologres to accelerate queries of MaxCompute 
 
 2.  Create a foreign table in Hologres.
 
-    Create a foreign table in Hologres to map the source table in MaxCompute. You can configure the foreign table to include part of or all fields in the MaxCompute table. For example, you can execute the following statement to create a foreign table:
+    Create a foreign table in Hologres to map the source table in MaxCompute. You can configure the foreign table to include some or all fields in the MaxCompute table. For example, you can execute the following statement to create a foreign table:
 
     ```
     CREATE FOREIGN TABLE weather1 (
@@ -72,15 +72,15 @@ When you create a foreign table in Hologres to accelerate queries of MaxCompute 
 
     |Parameter|Description|
     |---------|-----------|
-    |SERVER|The server on which you want to create the foreign table.You can set this parameter to the **odps\_server** server that is created at the underlying layer of Hologres. For more information, see [postgres\_fdw](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k). |
+    |SERVER|The server on which you want to create the foreign table. You can select the **odps\_server** server that is created at the underlying layer of Hologres. For more information, see [postgres\_fdw](https://www.postgresql.org/docs/11/postgres-fdw.html?spm=a2c4g.11186623.2.11.7e476020Gyif3k). |
     |project\_name|The name of the project where the MaxCompute table to be queried resides.|
     |table\_name|The name of the MaxCompute table to be queried.|
 
     **Note:** :
 
     -   The data types of the fields in the foreign table must map those in the MaxCompute table. For more information about the mappings between data types, see [Data type mappings between MaxCompute and Hologres when you create a foreign table](/intl.en-US/Hologres SQL/Data types/Data types.mdsection_w14_cec_th7).
-    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md). .
-    -   Hologres allows you to accelerate queries of only internal tables in MaxCompute. Queries of foreign tables and views in MaxCompute cannot be accelerated.
+    -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md).
+    -   You can accelerate queries of only internal tables in MaxCompute. Queries of foreign tables and views in MaxCompute cannot be accelerated.
 3.  Query data in the non-partitioned MaxCompute table by using the foreign table in Hologres.
 
     After you create a foreign table, you can directly query the foreign table for data in the mapping MaxCompute table. For example, you can execute the following statement to query the foreign table:
@@ -96,19 +96,16 @@ When you create a foreign table in Hologres to accelerate queries of MaxCompute 
 
     Create a partitioned table in MaxCompute and import data to the table. For more information, see [Partition and column operations](/intl.en-US/Development/SQL/DDL SQL/Partition and column operations.md). You can also use an existing partitioned MaxCompute table.
 
-    In this example, an existing partitioned MaxCompute table is used. You can also execute the following statements to create a partitioned table in MaxCompute and import data to the table:
+    In this example, an existing partitioned MaxCompute table is used. To create a partitioned table in MaxCompute and import data to the table, execute the following statements:
 
     ```
-    CREATE TABLE odps_test
+    create table odps_test
     (
         shop_name     string,
         customer_id   string,
         total_price   INT 
     )
-    PARTITIONED BY  (sale_date string);
-    INSERT  OVERWRITE TABLE odps_test PARTITION  (sale_date='2013') VALUES ('shop', '1234', 12);
-    INSERT  OVERWRITE TABLE odps_test PARTITION  (sale_date='2014')VALUES ('rest', '1111', 13);
-    INSERT  OVERWRITE TABLE odps_test PARTITION (sale_date='2015')VALUES ('texy', '2222', 14);
+    partitioned by (sale_date string);
     ```
 
 2.  Create a foreign table in Hologres.
@@ -150,4 +147,8 @@ To accelerate queries of a MaxCompute table that contains a large amount of data
 
 -   Hologres allows you to execute the `IMPORT FOREIGN SCHEMA` statement to create multiple foreign tables at a time. For more information, see [IMPORT FOREIGN SCHEMA](/intl.en-US/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md).
 -   You can also create multiple foreign tables at a time by using HoloWeb. For more information, see [Create multiple foreign tables at a time](/intl.en-US/Common Development Tools/HoloWeb/Connection Management/MaxCompute Acceleration/Create multiple foreign tables at a time.md).
+
+## Optimize the performance of querying MaxCompute tables in Hologres
+
+If the performance of querying MaxCompute tables in Hologres does not meet your requirements, you can merge small files in MaxCompute or optimize Hologres SQL statements. Hologres V0.10 and later adopt a new engine to query MaxCompute data. Compared with the versions earlier than V0.10, Hologres V0.10 and later improve query performance by about 30% to 100%. For more information, see [Optimize the performance of querying MaxCompute tables in Hologres](/intl.en-US/Best Practices/Performance optimization/Optimize the performance of querying MaxCompute tables in Hologres.md).
 
