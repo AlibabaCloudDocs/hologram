@@ -105,7 +105,7 @@ For example, the expression is `excluded.column_name`. In this expression, exclu
     insert into tmp1_on_conflict values(1,2,3) on conflict(a) do update set (a, b ,c )= ROW(excluded.*); 
     ```
 
-    ![conflict](../images/p174954.png)
+    ![conflict](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0461175261/p174954.png)
 
 -   The following examples show you how to optimize the `INSERT ON CONFLICT` statement for row-oriented tables:
 
@@ -124,7 +124,7 @@ For example, the expression is `excluded.column_name`. In this expression, exclu
 
     The following error occurs when you execute the `INSERT ON CONFLICT` statement to insert data from a source table to a destination table.
 
-    ![Common errors of the INSERT ON CONFLICT statement](../images/p200644.png)
+    ![Common errors of the INSERT ON CONFLICT statement](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1461175261/p200644.png)
 
 -   Cause
 
