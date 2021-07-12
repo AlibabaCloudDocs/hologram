@@ -10,10 +10,11 @@ HoloStudio与DataWorks无缝连通，您可以通过HoloStudio将MaxCompute数�
 -   前往Dataworks调度会产生一定的调度费用，详细收费情况，请参见[DataWorks资源组概述]()。
 -   如果需要实现写入更新，您需要使用[INSERT ON CONFLICT](/cn.zh-CN/Hologres SQL/DML&DQL/INSERT ON CONFLICT.md)语法。
 -   如果MaxCompute数据会定期更新，建议您在Hologres导入数据时，使用[IMPORT FOREIGN SCHEMA](/cn.zh-CN/Hologres SQL/DDL/SCHEMA/IMPORT FOREIGN SCHEMA.md)语句来更新外部表，以便于及时获取MaxCompute的元数据。
+-   外表名和内表名必须不一样，否则会报错。如使用import foreign语法创建外表，则外表名和MaxCompute表名必须保持一致。
 
 1.  准备MaxCompute表数据。
 
-    准备一张MaxCompute数据源表，您可以参考[t11950.dita\#concept\_rkk\_kcy\_5db](/cn.zh-CN/快速入门/创建和查看表.md)进行建表并导入数据。示例选用MaxCompute公共数据集**public\_data**的分区表dwd\_ product\_movie\_basic\_info表，您可以参照[使用公开数据集](/cn.zh-CN/公开数据集/概述.md)描述，登录并查询数据集。其建表DDL语句如下：
+    准备一张MaxCompute数据源表，您可以参考[t11950.dita\#concept\_rkk\_kcy\_5db](/cn.zh-CN/快速入门/通过MaxCompute客户端使用MaxCompute/创建表.md)进行建表并导入数据。示例选用MaxCompute公共数据集**public\_data**的分区表dwd\_ product\_movie\_basic\_info表，您可以参照[使用公开数据集](/cn.zh-CN/公开数据集/概述.md)描述，登录并查询数据集。其建表DDL语句如下：
 
     ```
     --MaxCompute分区表DDL
