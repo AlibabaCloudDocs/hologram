@@ -243,3 +243,7 @@ x和y均为一个DOUBLE类型的值。
 |ST\_YMax|ST\_YMax\(geom\)|DOUBLE|ST\_YMax返回输入几何体最大的Y坐标。|
 |ST\_YMin|ST\_YMin\(geom\)|DOUBLE|ST\_YMin返回输入几何体最小的Y坐标。|
 
+## 空间函数最佳实践
+
+阿里云为您提供了空间函数使用方法的最佳实践，详情请参见[使用空间函数查询数据方法](/intl.zh-CN/最佳实践/数仓搭建/使用空间函数查询数据方法.md)。
+
