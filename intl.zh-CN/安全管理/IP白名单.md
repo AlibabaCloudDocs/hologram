@@ -22,7 +22,7 @@ keyword: [Hologres, IP白名单, Holoweb]
 
 1.  登录[Hologres管理控制台](https://hologram.console.aliyun.com/#/instance)，在顶部菜单栏左侧，选择相应的地域。
 
-2.  单击**Hologres引擎管理**页面的**登录Hologres数据库**，进入**HoloWeb**开发界面。
+2.  单击**Hologres引擎管理**页面的**前往HoloWeb**，进入**HoloWeb**开发界面。
 
 3.  在Holoweb页面，在系统管理页面的左侧导航栏，选择**数据安全** \> **IP白名单**。
 
