@@ -171,7 +171,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
 
         -   distribution\_key：指定了数据库表分布策略。数据根据distribution\_key被分配到各个shard上。系统保证distribution\_key相同的记录会被分配到同一个shard上。
         -   columnName部分如设置单列，不要有多余空格。如设置多列，则以逗号分隔，同样不要有多余的空格。
-        -   distribution\_key指定的列或列组合不支持Float、Double、Numeric、Array、Json及其他复杂数据类型。
+        -   distribution\_key指定的列或列组合不支持Float、Double、Numeric、Date、Timestamp、Timestamptz、Array、Json、Serial、Bytea及其他复杂数据类型。
         -   当表中有primary key时，distribution\_key默认为primary key。distribution\_key必须为primary key或者primary key中的部分字段（不能为空），同一记录的数据只能属于一个shard。当表中没有primary key时，对distribution\_key没有限制，可以为空（不指定任何列）。如果distribution\_key为空，即随机shuffle，数据随机分布到不同shard上。当distribution\_key对应列的值为空时，当作“”（空串）看待。
         -   Hologres中，distribution\_key是非常重要的分布式概念。合理的设置distribution\_key可以达到如下效果：
             -   提高性能。不同的Shard可以进行并行计算，从而提高性能。
