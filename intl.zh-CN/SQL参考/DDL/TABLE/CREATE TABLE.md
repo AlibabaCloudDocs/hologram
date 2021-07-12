@@ -40,7 +40,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
 
     3.  set\_table\_property为表设置属性，详请参见[设置表属性](#section_l9q_k83_z01)。
 3.  **使用限制**
-    1.  支持将多个字段设置为primary key（即复合主键）。被设置为primary key的字段是唯一且非空的列或者列组合，同时只能在一个语句里设置多列为表的primary key。目前primary key不支持Float、Double、Numeric、Array、Json及其他复杂数据类型。如下示例指导您将id和ds设置为表的primary key。
+    1.  支持将多个字段设置为primary key（即复合主键）。被设置为primary key的字段是唯一且非空的列或者列组合，同时只能在一个语句里设置多列为表的primary key。目前primary key不支持Float、Double、Numeric、Array、Json、Date及其他复杂数据类型。如下示例指导您将id和ds设置为表的primary key。
 
         ```
         BEGIN;
