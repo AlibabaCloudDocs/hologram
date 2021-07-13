@@ -28,7 +28,7 @@ Hologres是一款实时交互式分析产品，与大数据生态无缝打通，
         -   [配置Oracle数据源]()
         -   [配置PolarDB数据源]()
         -   [配置SQLServer数据源]()
-        -   更多数据源配置请参见[配置数据源](https://help.aliyun.com/knowledge_list/137669.html)。
+        -   更多数据源配置请参见[配置数据源](https://www.alibabacloud.com/help/zh/faq-list/137669.htm?spm=a2c63.l28256.b99.209.20df2466yvNcz6)。
     -   配置Hologres数据源：[配置Hologres数据源]()
 2.  配置离线同步任务。
 
