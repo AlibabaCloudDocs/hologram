@@ -203,28 +203,29 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
     3.  **clustering\_key**
 
         ```
-        call set_table_property('tbl', 'clustering_key', '[columnName{:[desc|asc]} [,...]]');
+        call set_table_property('tbl', 'clustering_key', '[columnName{:asc} [,...]]');
         ```
 
         -   clustering\_key：在指定的列上建立聚簇索引。Hologres会在聚簇索引上对数据进行排序，建立聚簇索引能够加速在索引列上的range和filter查询。
-        -   clustering\_key指定的列必须满足非空约束（not null），不支持Float、Double、Array、Json及其他复杂数据类型。
-        -   clustering\_key指定列时，可在列名后添加 ：`asc`或`desc`来表明构建索引时的排序方式。`asc`表示升序，为默认方式，`desc`表示降序。
-        -   列存表的clustering\_key默认为空。行存表的clustering\_key默认为主键 （V0.9之前的版本默认不设置）。如果clustering\_key的设和主键不同的，那么Hologres会为这张表生成两个排序（primary key排序和clustering\_key排序），会造成数据冗余。
-        -   由于clustering\_key用于排序，所以clustering key里的列组合排在前面的优先级更高，clustering\_key建议仅保留1～2列。
+        -   必须为`not nullable`的列或者列组合，不支持Float、Double、Array、Json及其他复杂数据类型。
+        -   clustering\_key指定列时，可在列名后添加 `:asc`（升序）来表明构建索引时的排序方式。
+        -   行存表的clustering\_key默认为主键 （V0.9之前的版本默认不设置）。如果设置为和主键不同的clustering\_key，那么Hologres会为这张表生成两个排序（`primary_key`排序和`clustering_key`排序），造成数据冗余。
+        -   列存表的clustering\_key默认为空。
+        -   由于clustering\_key用于排序，所以clustering\_key里的列组合排在前面的优先级更高，clustering\_key建议仅保留1～2列。
         -   clustering\_key可以用于在clustering index最开始几列的range和filter的加速查询，即**查询具备左匹配原则，不匹配则无法利用clustering\_key查询加速**。
 
             假设表table1的clustering\_key设置为col1和col2，那么下面的query可以被加速：
 
             ```
-            //可加速
+            --可加速
             select * from table1 where col1='abc'; 
-            //可加速
+            --可加速
             select * from table1 where col1>'xxx' and col1<'abc';
-            //可加速
+            --可加速
             select * from table1 where col1 in ('abc','def');
-            //可加速
+            --可加速
             select * from table1 where col1='abc' and col='def'; 
-            //不可加速
+            --不可加速
             select col1,col4 from table1 where col2='def';
             ```
 
@@ -238,7 +239,7 @@ CREATE TABLE语句用于创建表。本文为您介绍在交互式分析Hologres
             -------------------------------------------------------------
             begin;
             create table tbl (a int not null, b text not null);
-            call set_table_property('tbl', 'clustering_key', 'a:desc,b:asc');
+            call set_table_property('tbl', 'clustering_key', 'a,b:asc');
             commit;
             ```
 
