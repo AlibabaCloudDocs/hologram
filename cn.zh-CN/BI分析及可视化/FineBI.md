@@ -24,13 +24,15 @@ FineBI是帆软软件有限公司推出的一款商业智能（Business Intellig
 
     1.  使用管理员账号登录FineBI，选择**管理系统** \> **数据连接** \> **数据连接管理**。
 
-    2.  单击**新建数据连接**，在所有页签下选择**PostgreSQL**。
+    2.  单击**新建数据连接**，在所有页签下选择**Hologres**。
 
-        ![选择数据](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9153249161/p268316.png)
+        **说明：** 如您的FineBI版本低于5.1.14，也可以使用PostgreSQL数据源连接Hologres。
 
-    3.  在PostgreSQL页面配置连接信息。
+        ![finbi截图](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7348236261/p294992.png)
 
-        ![配置信息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9153249161/p268321.png)
+    3.  在Hologres页面配置连接信息。
+
+        ![Hologres的数据源截图](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7348236261/p294997.png)
 
         具体参数说明如下：
 
