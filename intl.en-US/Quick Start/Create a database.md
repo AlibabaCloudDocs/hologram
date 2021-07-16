@@ -32,7 +32,7 @@ Only a superuser or a user granted the database creation permission can create a
     |SLPM|If the schema-level permission model \(SLPM\) is used, permissions are granted at the schema level. The following user groups are provided: <db\>.admin, <db\>.<schema\>.developer, <db\>.<schema\>.writer, and <db\>.<schema\>.viewer. Compared with the SPM, the SLPM manages permissions in a more fine-grained manner. For more information, see [Overview](/intl.en-US/User Authorization/Hologres permission models/SLPM/Overview.md).|
     |Standard PostgreSQL authorization model|Hologres allows you to use the standard PostgreSQL authorization model. For more information, see [Standard PostgreSQL authorization model](/intl.en-US/User Authorization/Hologres permission models/Standard PostgreSQL authorization model.md).|
 
-    ![Create Database](../images/p284751.png)
+    ![Create Database](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6222046261/p284751.png)
 
 6.  Click **OK**.
 
