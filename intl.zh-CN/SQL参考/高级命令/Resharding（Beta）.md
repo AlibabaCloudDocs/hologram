@@ -36,11 +36,8 @@ Resharding功能用于修改Shard数后，自动实现Rebalance的功能，无�
 
 2.  **修改Shard数**
 
-    如果您当前Table Group的Shard数不满足需求，您可以通过新建一个Table Group来修改Shard数（不支持在原Table Group上直接修改）。当您创建Table Group来修改Shard数是，需要注意如下内容：
+    如果您当前Table Group的Shard数不满足需求，您可以通过新建一个Table Group来修改Shard数（不支持在原Table Group上直接修改）。
 
-    -   此后新建的表都会放到该Table Group下，除非再次修改Table Group。
-    -   原来的表和数据还会在原Table Group中，不会默认迁移到新的Table Group中。
-    -   需要将原来表和数据都迁移至新的Table Group或者删除，原Table Group才会失效。
     -   语法示例
 
         ```
